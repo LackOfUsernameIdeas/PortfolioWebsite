@@ -241,13 +241,18 @@ function HeroSection() {
         <div
           className={`${a ? "hero-4" : "opacity-0"} flex items-center gap-4 mt-8`}
         >
-          <a
-            href="mailto:kaloyan.kostadinov0730@gmail.com"
-            aria-label="Email"
-            className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
-          >
-            <Mail className="w-4 h-4" />
-          </a>
+          <div className="relative group/email">
+            <a
+              href="mailto:kaloyan.kostadinov0730@gmail.com"
+              aria-label="Email"
+              className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
+            >
+              <Mail className="w-4 h-4" />
+            </a>
+            <span className="absolute top-12 left-0 px-2.5 py-1 rounded-md bg-popover border border-border text-md text-foreground whitespace-nowrap opacity-0 pointer-events-none group-hover/email:opacity-100 transition-opacity duration-200 shadow-md">
+              kaloyan.kostadinov0730@gmail.com
+            </span>
+          </div>
           <a
             href="https://github.com/LackOfUsernameIdeas"
             target="_blank"
@@ -707,33 +712,6 @@ function ContactSection() {
           <p className="mt-4 text-muted-foreground">
             Have a project in mind? I'd love to hear from you.
           </p>
-          <div className="flex justify-center gap-4 mt-6">
-            <a
-              href="mailto:kaloyan.kostadinov0730@gmail.com"
-              aria-label="Email"
-              className="w-11 h-11 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
-            >
-              <Mail className="w-4 h-4" />
-            </a>
-            <a
-              href="https://github.com/LackOfUsernameIdeas"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="w-11 h-11 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
-            >
-              <Github className="w-4 h-4" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/kaloyan-kostadinov-3ab625367/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="w-11 h-11 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
-            >
-              <Linkedin className="w-4 h-4" />
-            </a>
-          </div>
         </div>
         <Card className="reveal shadow-xl">
           <CardContent className="p-8">
