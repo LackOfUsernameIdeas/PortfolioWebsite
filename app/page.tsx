@@ -242,14 +242,14 @@ function HeroSection() {
           className={`${a ? "hero-4" : "opacity-0"} flex items-center gap-4 mt-8`}
         >
           <a
-            href="mailto:your.email@example.com"
+            href="mailto:kaloyan.kostadinov0730@gmail.com"
             aria-label="Email"
             className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
           >
             <Mail className="w-4 h-4" />
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/LackOfUsernameIdeas"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -258,7 +258,7 @@ function HeroSection() {
             <Github className="w-4 h-4" />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/kaloyan-kostadinov-3ab625367/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -679,7 +679,10 @@ function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1000));
+    const body = `From: ${form.name} (${form.email})\n\n${form.message}`;
+    const mailtoLink = `mailto:kaloyan.kostadinov0730@gmail.com?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+    await new Promise((r) => setTimeout(r, 500));
     setSubmitting(false);
     setDone(true);
     setForm({ name: "", email: "", subject: "", message: "" });
@@ -706,14 +709,14 @@ function ContactSection() {
           </p>
           <div className="flex justify-center gap-4 mt-6">
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:kaloyan.kostadinov0730@gmail.com"
               aria-label="Email"
               className="w-11 h-11 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
             >
               <Mail className="w-4 h-4" />
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/LackOfUsernameIdeas"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -722,7 +725,7 @@ function ContactSection() {
               <Github className="w-4 h-4" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/kaloyan-kostadinov-3ab625367/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -853,7 +856,7 @@ function Footer() {
           </a>
         </div>
         <p className="text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} Your Name
+          &copy; {new Date().getFullYear()} Kaloyan Kostadinov
         </p>
       </div>
     </footer>
