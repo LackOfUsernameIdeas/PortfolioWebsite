@@ -212,8 +212,8 @@ function HeroSection() {
         <p
           className={`${a ? "hero-2" : "opacity-0"} mt-6 text-lg sm:text-xl text-muted-foreground max-w-md leading-relaxed`}
         >
-          Full-stack developer & engineer building innovative solutions in AI,
-          IoT, and Robotics.
+          Full-stack Software Developer | Building scalable web and mobile
+          applications with AI integration
         </p>
         <div
           className={`${a ? "hero-3" : "opacity-0"} flex items-center gap-4 mt-10`}
