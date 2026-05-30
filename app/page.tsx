@@ -93,6 +93,7 @@ function useReveal() {
 
 function HeroSection() {
   const [mounted, setMounted] = useState(false);
+  const [emailTipOpen, setEmailTipOpen] = useState(false);
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setMounted(true));
@@ -246,10 +247,19 @@ function HeroSection() {
               href="mailto:kaloyan.kostadinov0730@gmail.com"
               aria-label="Email"
               className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
+              onClick={(e) => {
+                if (window.innerWidth < 1024) {
+                  e.preventDefault();
+                  setEmailTipOpen((v) => !v);
+                }
+              }}
             >
               <Mail className="w-4 h-4" />
             </a>
-            <span className="absolute top-12 left-0 px-2.5 py-1 rounded-md bg-popover border border-border text-md text-foreground whitespace-nowrap opacity-0 pointer-events-none group-hover/email:opacity-100 transition-opacity duration-200 shadow-md">
+            <span
+              className={`absolute top-12 left-0 px-2.5 py-1 rounded-md bg-popover border border-border text-sm text-foreground whitespace-nowrap pointer-events-none transition-opacity duration-200 shadow-md
+      ${emailTipOpen ? "opacity-100" : "opacity-0 group-hover/email:opacity-100"}`}
+            >
               kaloyan.kostadinov0730@gmail.com
             </span>
           </div>
