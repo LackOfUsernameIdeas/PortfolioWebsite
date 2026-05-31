@@ -420,18 +420,18 @@ function AboutSection() {
               </Button>
             </div>
           </div>
-          <div className="reveal grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="reveal grid grid-cols-1 sm:grid-cols-2 gap-3 auto-rows-fr">
             {skills.map((group) => (
               <Card
                 key={group.category}
-                className="bg-card/80 hover:border-primary/30 transition-colors"
+                className="bg-card/80 hover:border-primary/30 transition-colors flex flex-col h-full"
               >
                 <CardHeader>
                   <CardTitle className="text-base font-semibold text-primary">
                     {group.category}
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-1 flex items-center">
                   <div className="flex flex-wrap gap-1">
                     {group.items.map((s) => (
                       <Badge
