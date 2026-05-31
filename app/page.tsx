@@ -334,15 +334,16 @@ function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="reveal space-y-5 text-lg text-muted-foreground leading-relaxed">
             <p>
-              I am a passionate software developer and engineer with expertise
-              in full-stack development, IoT systems, artificial intelligence,
-              and robotics. My work spans across multiple disciplines, combining
-              hardware and software to create innovative solutions.
+              I am a passionate software developer and engineer with practical
+              knowledge in full-stack development, android development,
+              artificial intelligence, databases, electronical sensors and more.
+              My work spans across multiple disciplines, combining hardware and
+              software to create innovative solutions.
             </p>
             <p>
               With a strong foundation in computer science and hands-on
               experience in competitive programming, I have achieved recognition
-              in national and international competitions.
+              in national competitions.
             </p>
             <p>
               Currently seeking opportunities to apply my skills in challenging
