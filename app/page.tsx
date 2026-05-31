@@ -303,21 +303,73 @@ function HeroSection() {
 const skills = [
   {
     category: "Languages",
-    items: ["Python", "TypeScript", "C++", "Solidity", "Rust"]
+    items: ["TypeScript", "JavaScript", "Python", "PHP", "SQL", "HTML", "CSS"]
   },
   {
-    category: "Frameworks",
-    items: ["React", "Next.js", "Node.js", "FastAPI", "ROS"]
+    category: "Frontend & Mobile",
+    items: [
+      "React",
+      "Next.js",
+      "React Native",
+      "Vite",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Bootstrap",
+      "Three.js",
+      "A-Frame",
+      "Expo Go"
+    ]
   },
   {
-    category: "AI / ML",
-    items: ["TensorFlow", "PyTorch", "OpenCV", "Scikit-learn"]
+    category: "Backend & Databases",
+    items: [
+      "Node.js",
+      "Express.js",
+      "MySQL",
+      "PostgreSQL",
+      "Firebase",
+      "Supabase",
+      "Socket.IO"
+    ]
   },
   {
-    category: "Hardware",
-    items: ["Arduino", "Raspberry Pi", "ESP32", "CAD/CAM"]
+    category: "AI, Computer Vision & Data",
+    items: [
+      "OpenAI API",
+      "Gemini API",
+      "Vertex AI",
+      "LangChain",
+      "OpenCV",
+      "PyNuitrack",
+      "Nuitrack SDK",
+      "NumPy",
+      "BeautifulSoup"
+    ]
   },
-  { category: "Tools", items: ["Git", "Docker", "Linux", "AWS", "Figma"] }
+  {
+    category: "Tools, Testing & APIs",
+    items: [
+      "Git",
+      "Docker",
+      "Android Studio",
+      "Vitest",
+      "YouTube API",
+      "Spotify API",
+      "TikTok API",
+      "OMDb API"
+    ]
+  },
+  {
+    category: "Visualization, Desktop & Hardware",
+    items: [
+      "Chart.js",
+      "ApexCharts",
+      "Tkinter",
+      "Pygame",
+      "Orbbec Astra+ (3D Camera)",
+      "NeuroSky MindWave EEG"
+    ]
+  }
 ];
 
 function AboutSection() {
@@ -464,6 +516,67 @@ function AboutSection() {
   );
 }
 
+// ─── Project image map ─────────────────────────────────────────────────────
+const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
+  mobilis: [
+    {
+      src: "https://i.imgur.com/3QkqjmP.png",
+      caption: "Dashboard — BMI, body fat %, lean mass & weight forecast"
+    },
+    {
+      src: "https://i.imgur.com/KgmV9pP.png",
+      caption: "AI-generated meal plan with macros, ingredients & recipes"
+    },
+    {
+      src: "https://i.imgur.com/QH3t4Ls.png",
+      caption: "Orbbec Astra+ 3D posture correction in real time"
+    }
+  ],
+  mindreel: [
+    {
+      src: "https://i.imgur.com/kDtCfzJ.png",
+      caption:
+        "Live EEG brainwave visualisation (Delta, Theta, Alpha, Beta, Gamma)"
+    },
+    {
+      src: "https://i.imgur.com/8xCkGRH.png",
+      caption: "AI recommendation panel with Precision / Recall / F1 metrics"
+    },
+    {
+      src: "https://i.imgur.com/HJfXqWq.png",
+      caption: "VR cinema experience built with A-Frame & Three.js"
+    }
+  ],
+  nutrifit: [
+    {
+      src: "https://i.imgur.com/OxUz6Dq.png",
+      caption: "Home — most-recommended dish & top 5 chart"
+    },
+    {
+      src: "https://i.imgur.com/xW4Z3gR.png",
+      caption: "ChatGPT vs Gemini deviation dashboard"
+    },
+    {
+      src: "https://i.imgur.com/mJdEq7B.png",
+      caption: "Meal planner — diet type selector & AI-generated daily menu"
+    }
+  ],
+  tikfluence: [
+    {
+      src: "https://i.imgur.com/ySKHfpZ.png",
+      caption: "Influenced songs ranking — TikTok peak vs Spotify peak dates"
+    },
+    {
+      src: "https://i.imgur.com/mVAGUGY.png",
+      caption: "Per-song stats — popularity change over time across platforms"
+    },
+    {
+      src: "https://i.imgur.com/H4bLpAQ.png",
+      caption: "Live personal TikTok stats updated every minute via Socket.IO"
+    }
+  ]
+};
+
 // ─── Project Modal ─────────────────────────────────────────────────────────
 function ProjectModal({
   project,
@@ -472,15 +585,28 @@ function ProjectModal({
   project: Project;
   onClose: () => void;
 }) {
+  const [imgIdx, setImgIdx] = useState(0);
+  const images = PROJECT_IMAGES[project.id] ?? [];
+
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    setImgIdx(0);
+  }, [project.id]);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight" && images.length > 1)
+        setImgIdx((i) => (i + 1) % images.length);
+      if (e.key === "ArrowLeft" && images.length > 1)
+        setImgIdx((i) => (i - 1 + images.length) % images.length);
+    };
     window.addEventListener("keydown", handler);
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", handler);
       document.body.style.overflow = "";
     };
-  }, [onClose]);
+  }, [onClose, images.length]);
 
   return (
     <div
@@ -499,105 +625,160 @@ function ProjectModal({
         >
           <X className="w-4 h-4" />
         </button>
-        <div className="overflow-y-auto p-6 sm:p-8 flex flex-col gap-6">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <Badge variant="outline" className="rounded-full text-xs">
-                {project.year}
-              </Badge>
-              <Badge className="rounded-full text-xs bg-primary/10 text-primary border-0">
-                {project.category}
-              </Badge>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-bold">{project.title}</h2>
-            <p className="text-muted-foreground mt-2">
-              {project.shortDescription}
-            </p>
-          </div>
-          <div className="space-y-2">
-            {project.fullDescription
-              .trim()
-              .split("\n")
-              .map((line, i) =>
-                line.trim() === "" ? null : line.trim().startsWith("-") ? (
-                  <div
-                    key={i}
-                    className="flex items-start gap-2 text-sm text-muted-foreground"
+
+        {/* ── Scrollable body ── */}
+        <div className="overflow-y-auto flex flex-col">
+          {/* Image gallery */}
+          {images.length > 0 && (
+            <div className="relative w-full aspect-video bg-black/40 shrink-0 select-none">
+              <img
+                src={images[imgIdx].src}
+                alt={images[imgIdx].caption}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = "none";
+                }}
+              />
+              {/* Caption */}
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3">
+                <p className="text-white text-xs">{images[imgIdx].caption}</p>
+              </div>
+              {/* Prev / Next */}
+              {images.length > 1 && (
+                <>
+                  <button
+                    onClick={() =>
+                      setImgIdx((i) => (i - 1 + images.length) % images.length)
+                    }
+                    className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-primary transition-colors"
                   >
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                    <span>{line.replace(/^-\s*/, "")}</span>
+                    ‹
+                  </button>
+                  <button
+                    onClick={() => setImgIdx((i) => (i + 1) % images.length)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-primary transition-colors"
+                  >
+                    ›
+                  </button>
+                  {/* Dots */}
+                  <div className="absolute top-2 right-4 flex gap-1">
+                    {images.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setImgIdx(i)}
+                        className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                          i === imgIdx ? "bg-primary" : "bg-white/50"
+                        }`}
+                      />
+                    ))}
                   </div>
-                ) : (
-                  <p
-                    key={i}
-                    className="text-sm text-muted-foreground leading-relaxed"
-                  >
-                    {line.trim()}
-                  </p>
-                )
+                </>
               )}
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold mb-2 flex items-center gap-1.5">
-              <Code2 className="w-4 h-4 text-primary" /> Technologies
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map((t) => (
-                <Badge key={t} variant="secondary" className="rounded-full">
-                  {t}
-                </Badge>
-              ))}
             </div>
-          </div>
-          {project.rankings && project.rankings.length > 0 && (
+          )}
+
+          <div className="p-6 sm:p-8 flex flex-col gap-6">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <Badge variant="outline" className="rounded-full text-xs">
+                  {project.year}
+                </Badge>
+                <Badge className="rounded-full text-xs bg-primary/10 text-primary border-0">
+                  {project.category}
+                </Badge>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold">
+                {project.title}
+              </h2>
+              <p className="text-muted-foreground mt-2">
+                {project.shortDescription}
+              </p>
+            </div>
+            <div className="space-y-2">
+              {project.fullDescription
+                .trim()
+                .split("\n")
+                .map((line, i) =>
+                  line.trim() === "" ? null : line.trim().startsWith("-") ? (
+                    <div
+                      key={i}
+                      className="flex items-start gap-2 text-sm text-muted-foreground"
+                    >
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                      <span>{line.replace(/^-\s*/, "")}</span>
+                    </div>
+                  ) : (
+                    <p
+                      key={i}
+                      className="text-sm text-muted-foreground leading-relaxed"
+                    >
+                      {line.trim()}
+                    </p>
+                  )
+                )}
+            </div>
             <div>
               <h3 className="text-sm font-semibold mb-2 flex items-center gap-1.5">
-                <Trophy className="w-4 h-4 text-primary" /> Rankings & Awards
+                <Code2 className="w-4 h-4 text-primary" /> Technologies
               </h3>
-              <div className="space-y-1.5">
-                {project.rankings.map((r, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-2 text-sm text-muted-foreground"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                    {r}
-                  </div>
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.map((t) => (
+                  <Badge key={t} variant="secondary" className="rounded-full">
+                    {t}
+                  </Badge>
                 ))}
               </div>
             </div>
-          )}
-          <div className="flex flex-wrap gap-3 pt-2">
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
-              >
-                <Github className="w-4 h-4" /> GitHub
-              </a>
+            {project.rankings && project.rankings.length > 0 && (
+              <div>
+                <h3 className="text-sm font-semibold mb-2 flex items-center gap-1.5">
+                  <Trophy className="w-4 h-4 text-primary" /> Rankings & Awards
+                </h3>
+                <div className="space-y-1.5">
+                  {project.rankings.map((r, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-2 text-sm text-muted-foreground"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                      {r}
+                    </div>
+                  ))}
+                </div>
+              </div>
             )}
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
-              >
-                <ExternalLink className="w-4 h-4" /> Live Demo
-              </a>
-            )}
-            {project.documentationUrl && (
-              <a
-                href={project.documentationUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
-              >
-                <ExternalLink className="w-4 h-4" /> Docs
-              </a>
-            )}
+            <div className="flex flex-wrap gap-3 pt-2 pb-2">
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
+                >
+                  <Github className="w-4 h-4" /> GitHub
+                </a>
+              )}
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
+                >
+                  <ExternalLink className="w-4 h-4" /> Live Demo
+                </a>
+              )}
+              {project.documentationUrl && (
+                <a
+                  href={project.documentationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4" /> Docs
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -627,10 +808,23 @@ function ProjectsSection() {
             >
               <div className="h-1 w-full bg-gradient-to-r from-primary to-primary/40" />
               <div className="aspect-[4/3] bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center relative overflow-hidden">
-                <div className="w-16 h-16 rounded-2xl bg-primary/15 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-primary">
-                    {project.title.charAt(0)}
-                  </span>
+                {/* Tech stack preview */}
+                <div className="flex flex-col items-center gap-2 px-4 text-center">
+                  <div className="w-14 h-14 rounded-2xl bg-primary/15 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-primary">
+                      {project.title.charAt(0)}
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap justify-center gap-1 mt-1 max-w-[160px]">
+                    {project.technologies.slice(0, 4).map((t) => (
+                      <span
+                        key={t}
+                        className="text-[10px] px-1.5 py-0.5 rounded-full bg-primary/10 text-primary/80"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
                 <div className="absolute inset-0 bg-primary/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 gap-2">
                   <span className="text-white text-sm font-semibold">
@@ -736,8 +930,8 @@ function ContactSection() {
                   I'll respond as soon as possible.
                 </p>
                 <Button
-                  variant="outline"
-                  className="rounded-full px-8"
+                  size="lg"
+                  className="rounded-full px-8 bg-transparent border border-border font-semibold text-foreground cursor-pointer hover:bg-secondary transition-all duration-300"
                   onClick={() => setDone(false)}
                 >
                   Send Another
