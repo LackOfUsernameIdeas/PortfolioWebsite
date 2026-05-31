@@ -379,8 +379,8 @@ function AboutSection() {
         <div className="reveal flex items-end gap-6 mb-16">
           <h2 className="text-4xl sm:text-6xl font-bold">About Me</h2>
           <div className="hidden sm:flex items-center gap-2 pb-2 text-muted-foreground">
-            <MapPin className="w-4 h-4 text-primary" />
-            <span className="text-sm">Bulgaria</span>
+            <MapPin className="w-5 h-5 text-primary" />
+            <span className="text-lg">Bulgaria</span>
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -650,18 +650,18 @@ function ProjectModal({
                     onClick={() =>
                       setImgIdx((i) => (i - 1 + images.length) % images.length)
                     }
-                    className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-primary transition-colors"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-primary transition-colors cursor-pointer"
                   >
                     ‹
                   </button>
                   <button
                     onClick={() => setImgIdx((i) => (i + 1) % images.length)}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-primary transition-colors"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-primary transition-colors cursor-pointer"
                   >
                     ›
                   </button>
                   {/* Dots */}
-                  <div className="absolute top-2 right-4 flex gap-1">
+                  <div className="absolute top-3 left-4 flex gap-1">
                     {images.map((_, i) => (
                       <button
                         key={i}
