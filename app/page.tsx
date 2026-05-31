@@ -829,23 +829,10 @@ function ContactSection() {
 function Footer() {
   return (
     <footer className="py-8 px-6 sm:px-12 lg:px-20 border-t border-border">
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <a
-            href="#"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Privacy
-          </a>
-          <a
-            href="#"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Legal Notice
-          </a>
-        </div>
+      <div className="max-w-7xl mx-auto text-center">
         <p className="text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} Kaloyan Kostadinov
+          Designed and coded by Kaloyan Kostadinov &copy;{" "}
+          {new Date().getFullYear()}
         </p>
       </div>
     </footer>
