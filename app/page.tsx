@@ -420,19 +420,19 @@ function AboutSection() {
               </Button>
             </div>
           </div>
-          <div className="reveal grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="reveal grid grid-cols-1 sm:grid-cols-2 gap-3">
             {skills.map((group) => (
               <Card
                 key={group.category}
                 className="bg-card/80 hover:border-primary/30 transition-colors"
               >
-                <CardHeader className="pb-3">
+                <CardHeader>
                   <CardTitle className="text-base font-semibold text-primary">
                     {group.category}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-1">
                     {group.items.map((s) => (
                       <Badge
                         key={s}
