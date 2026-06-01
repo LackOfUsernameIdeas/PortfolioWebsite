@@ -449,7 +449,7 @@ function AboutSection() {
           </div>
         </div>
 
-        {/* Achievements — no `group` on Card, icon uses plain hover: */}
+        {/* Achievements - no `group` on Card, icon uses plain hover: */}
         <div className="mt-24">
           <h3 className="reveal text-3xl sm:text-4xl font-bold mb-12">
             Achievements
@@ -529,11 +529,11 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/mobilis.png",
       caption:
-        "Mobilis — AI-powered fitness companion for personalized health insights"
+        "Mobilis - AI-powered fitness companion for personalized health insights"
     },
     {
       src: "https://i.imgur.com/3QkqjmP.png",
-      caption: "Dashboard — BMI, body fat %, lean mass & weight forecast"
+      caption: "Dashboard - BMI, body fat %, lean mass & weight forecast"
     },
     {
       src: "https://i.imgur.com/KgmV9pP.png",
@@ -548,7 +548,7 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/mindreel.png",
       caption:
-        "MindReel — EEG-powered neuro-assistant with VR cinema and ML recommendation evaluation"
+        "MindReel - EEG-powered neuro-assistant with VR cinema and ML recommendation evaluation"
     },
     {
       src: "https://i.imgur.com/kDtCfzJ.png",
@@ -568,11 +568,11 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/nutrifit.png",
       caption:
-        "NutriFit — AI meal planning with GPT-4 & Gemini deviation analysis"
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
     },
     {
       src: "https://i.imgur.com/OxUz6Dq.png",
-      caption: "Home — most-recommended dish & top 5 chart"
+      caption: "Home - most-recommended dish & top 5 chart"
     },
     {
       src: "https://i.imgur.com/xW4Z3gR.png",
@@ -580,22 +580,22 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     },
     {
       src: "https://i.imgur.com/mJdEq7B.png",
-      caption: "Meal planner — diet type selector & AI-generated daily menu"
+      caption: "Meal planner - diet type selector & AI-generated daily menu"
     }
   ],
   tikfluence: [
     {
       src: "/tikfluence.png",
       caption:
-        "TikFluence — data analytics platform proving TikTok's cross-platform music influence"
+        "TikFluence - data analytics platform proving TikTok's cross-platform music influence"
     },
     {
       src: "https://i.imgur.com/ySKHfpZ.png",
-      caption: "Influenced songs ranking — TikTok peak vs Spotify peak dates"
+      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
     },
     {
       src: "https://i.imgur.com/mVAGUGY.png",
-      caption: "Per-song stats — popularity change over time across platforms"
+      caption: "Per-song stats - popularity change over time across platforms"
     },
     {
       src: "https://i.imgur.com/H4bLpAQ.png",
@@ -763,24 +763,6 @@ function ProjectModal({
                 ))}
               </div>
             </div>
-            {project.rankings && project.rankings.length > 0 && (
-              <div>
-                <h3 className="text-sm font-semibold mb-2 flex items-center gap-1.5">
-                  <Trophy className="w-4 h-4 text-primary" /> Rankings & Awards
-                </h3>
-                <div className="space-y-1.5">
-                  {project.rankings.map((r, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center gap-2 text-sm text-muted-foreground"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                      {r}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
             <div className="flex flex-wrap gap-3 pt-2 pb-2">
               {project.githubUrl && (
                 <a
@@ -927,7 +909,7 @@ function ProjectsSection() {
               <div className="w-12 h-12 rounded-full border-2 border-foreground/30 flex items-center justify-center mx-auto mb-4 group-hover:border-primary group-hover:text-primary transition-colors">
                 <span className="text-2xl">+</span>
               </div>
-              <h3 className="font-semibold">Start a new project</h3>
+              <h3 className="font-semibold">Start a new project with me</h3>
             </div>
           </div>
         </div>
