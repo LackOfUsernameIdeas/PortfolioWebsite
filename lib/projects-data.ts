@@ -12,6 +12,12 @@ export interface Project {
   images?: string[];
   year: string;
   category: string;
+  // Documentation download files
+  docs?: {
+    label: string;
+    filename: string; // relative to /documentations/ in public/
+    icon?: "pdf" | "docx" | "zip";
+  }[];
 }
 
 export const projects: Project[] = [
@@ -50,6 +56,13 @@ Key algorithms include the U.S. Navy body fat formula, Mifflin-St Jeor BMR, and 
     rankings: ["Presented at National IT Competition (NOIT) 2025"],
     githubUrl: "https://github.com/LackOnUsernameIdeas",
     liveUrl: "https://mobilis.noit.eu/",
+    docs: [
+      {
+        label: "Documentation",
+        filename: "734_documentation.docx",
+        icon: "docx"
+      }
+    ],
     year: "2025",
     category: "Health & AI"
   },
@@ -94,6 +107,18 @@ Built on a React + Vite + TypeScript frontend, ExpressJS + NodeJS backend, MySQL
     rankings: ["Presented at National IT Competition (NOIT) 2025"],
     githubUrl: "https://github.com/LackOnUsernameIdeas",
     liveUrl: "https://mindreel.noit.eu",
+    docs: [
+      {
+        label: "Documentation",
+        filename: "mindreel_documentation.docx",
+        icon: "docx"
+      },
+      {
+        label: "Schemes & Photos",
+        filename: "schemes_and_photos.zip",
+        icon: "zip"
+      }
+    ],
     year: "2025",
     category: "AI / Neuroscience"
   },
@@ -136,6 +161,13 @@ Stack: ReactJS, TypeScript, Node.js, FireStore (Firebase), Chakra-UI, Chart.js, 
     ],
     githubUrl: "https://github.com/LackOnUsernameIdeas/NutriFit",
     liveUrl: "https://nutri.noit.eu",
+    docs: [
+      {
+        label: "Documentation",
+        filename: "249_nutrifit_documentation.pdf",
+        icon: "pdf"
+      }
+    ],
     year: "2024",
     category: "Health & AI"
   },
@@ -177,6 +209,13 @@ Key capabilities:
     ],
     githubUrl: "https://github.com/LackOnUsernameIdeas/TikFluence",
     liveUrl: "https://fluence.noit.eu/",
+    docs: [
+      {
+        label: "Documentation",
+        filename: "tikfluence_documentation.pdf",
+        icon: "pdf"
+      }
+    ],
     year: "2023",
     category: "Data Analytics"
   }

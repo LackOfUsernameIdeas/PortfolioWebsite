@@ -517,8 +517,20 @@ function AboutSection() {
 }
 
 // ─── Project image map ─────────────────────────────────────────────────────
+const PROJECT_CARD_IMAGES: Record<string, string> = {
+  mobilis: "/mobilis.png",
+  mindreel: "/mindreel.png",
+  nutrifit: "/nutrifit.png",
+  tikfluence: "/tikfluence.png"
+};
+
 const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
   mobilis: [
+    {
+      src: "/mobilis.png",
+      caption:
+        "Mobilis — AI-powered fitness companion for personalized health insights"
+    },
     {
       src: "https://i.imgur.com/3QkqjmP.png",
       caption: "Dashboard — BMI, body fat %, lean mass & weight forecast"
@@ -533,6 +545,11 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     }
   ],
   mindreel: [
+    {
+      src: "/mindreel.png",
+      caption:
+        "MindReel — EEG-powered neuro-assistant with VR cinema and ML recommendation evaluation"
+    },
     {
       src: "https://i.imgur.com/kDtCfzJ.png",
       caption:
@@ -549,6 +566,11 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
   ],
   nutrifit: [
     {
+      src: "/nutrifit.png",
+      caption:
+        "NutriFit — AI meal planning with GPT-4 & Gemini deviation analysis"
+    },
+    {
       src: "https://i.imgur.com/OxUz6Dq.png",
       caption: "Home — most-recommended dish & top 5 chart"
     },
@@ -562,6 +584,11 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     }
   ],
   tikfluence: [
+    {
+      src: "/tikfluence.png",
+      caption:
+        "TikFluence — data analytics platform proving TikTok's cross-platform music influence"
+    },
     {
       src: "https://i.imgur.com/ySKHfpZ.png",
       caption: "Influenced songs ranking — TikTok peak vs Spotify peak dates"
@@ -588,8 +615,11 @@ function ProjectModal({
   const [imgIdx, setImgIdx] = useState(0);
   const images = PROJECT_IMAGES[project.id] ?? [];
 
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
   useEffect(() => {
     setImgIdx(0);
+    setLightboxOpen(false);
   }, [project.id]);
 
   useEffect(() => {
@@ -634,7 +664,11 @@ function ProjectModal({
               <img
                 src={images[imgIdx].src}
                 alt={images[imgIdx].caption}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover cursor-zoom-in"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightboxOpen(true);
+                }}
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = "none";
                 }}
@@ -768,20 +802,50 @@ function ProjectModal({
                   <ExternalLink className="w-4 h-4" /> Live Demo
                 </a>
               )}
-              {project.documentationUrl && (
-                <a
-                  href={project.documentationUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
-                >
-                  <ExternalLink className="w-4 h-4" /> Docs
-                </a>
-              )}
+              {project.docs &&
+                project.docs.length > 0 &&
+                project.docs.map((doc, i) => (
+                  <a
+                    key={i}
+                    href={`/documentations/${doc.filename}`}
+                    download
+                    className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
+                  >
+                    <Download className="w-4 h-4" /> {doc.label}
+                  </a>
+                ))}
             </div>
           </div>
         </div>
       </div>
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          onClick={(e) => {
+            e.stopPropagation();
+            setLightboxOpen(false);
+          }}
+        >
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxOpen(false);
+            }}
+            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors cursor-pointer"
+          >
+            <X className="w-5 h-5" />
+          </button>
+          <img
+            src={images[imgIdx].src}
+            alt={images[imgIdx].caption}
+            className="max-w-[95vw] max-h-[90vh] object-contain rounded-lg shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <p className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/70 text-sm text-center px-4">
+            {images[imgIdx].caption}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
@@ -808,30 +872,27 @@ function ProjectsSection() {
             >
               <div className="h-1 w-full bg-gradient-to-r from-primary to-primary/40" />
               <div className="aspect-[4/3] bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center relative overflow-hidden">
-                {/* Tech stack preview */}
-                <div className="flex flex-col items-center gap-2 px-4 text-center">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/15 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-primary">
-                      {project.title.charAt(0)}
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap justify-center gap-1 mt-1 max-w-[160px]">
-                    {project.technologies.slice(0, 4).map((t) => (
-                      <span
-                        key={t}
-                        className="text-[10px] px-1.5 py-0.5 rounded-full bg-primary/10 text-primary/80"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+                {/* Image preview */}
+                <div className="w-full h-full absolute inset-0">
+                  {PROJECT_CARD_IMAGES[project.id] ? (
+                    <img
+                      src={PROJECT_CARD_IMAGES[project.id]}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="flex flex-col items-center gap-2 px-4 text-center h-full justify-center">
+                      <div className="w-14 h-14 rounded-2xl bg-primary/15 flex items-center justify-center">
+                        <span className="text-2xl font-bold text-primary">
+                          {project.title.charAt(0)}
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="absolute inset-0 bg-primary/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 gap-2">
-                  <span className="text-white text-sm font-semibold">
+                  <span className="text-white text-base font-semibold">
                     Click to expand
-                  </span>
-                  <span className="text-white/70 text-xs">
-                    {project.technologies.slice(0, 3).join(" · ")}
                   </span>
                 </div>
               </div>
