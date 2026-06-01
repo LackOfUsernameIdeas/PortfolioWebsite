@@ -868,7 +868,7 @@ function ProjectsSection() {
             <div
               key={project.id}
               onClick={() => setSelected(project)}
-              className="reveal group relative bg-card rounded-2xl overflow-hidden shadow hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-border hover:border-primary/30 cursor-pointer"
+              className="reveal group relative bg-card rounded-2xl overflow-hidden shadow hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border border-border hover:border-primary/30 cursor-pointer"
             >
               <div className="h-1 w-full bg-gradient-to-r from-primary to-primary/40" />
               <div className="aspect-[4/3] bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center relative overflow-hidden">
