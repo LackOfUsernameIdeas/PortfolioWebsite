@@ -63,7 +63,7 @@ Key algorithms include the U.S. Navy body fat formula, Mifflin-St Jeor BMR, and 
         icon: "docx"
       }
     ],
-    year: "2025",
+    year: "2026",
     category: "Health & AI"
   },
   {
