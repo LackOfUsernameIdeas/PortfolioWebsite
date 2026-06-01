@@ -1,24 +1,25 @@
 export interface Project {
-  id: string
-  title: string
-  shortDescription: string
-  fullDescription: string
-  technologies: string[]
-  videoUrl?: string
-  documentationUrl?: string
-  githubUrl?: string
-  liveUrl?: string
-  rankings?: string[]
-  images?: string[]
-  year: string
-  category: string
+  id: string;
+  title: string;
+  shortDescription: string;
+  fullDescription: string;
+  technologies: string[];
+  videoUrl?: string;
+  documentationUrl?: string;
+  githubUrl?: string;
+  liveUrl?: string;
+  rankings?: string[];
+  images?: string[];
+  year: string;
+  category: string;
 }
 
 export const projects: Project[] = [
   {
     id: "mobilis",
     title: "Mobilis",
-    shortDescription: "Personalized fitness & nutrition platform using AI, 3D posture analysis, and medical-grade body composition algorithms",
+    shortDescription:
+      "Personalized fitness & nutrition platform using AI, 3D posture analysis, and medical-grade body composition algorithms",
     fullDescription: `Mobilis is a comprehensive health platform that analyzes user body composition (BMI, BF%, LBM, BMR, TDEE) combined with personal metrics and uses a scientific recommendation algorithm to determine the optimal fitness goal for each user.
 
 The platform features:
@@ -30,7 +31,22 @@ The platform features:
 - PostgreSQL + Supabase backend, Next.js frontend with full TypeScript
 
 Key algorithms include the U.S. Navy body fat formula, Mifflin-St Jeor BMR, and a multi-priority goal selection algorithm that detects critical health states and adjusts recommendations accordingly.`,
-    technologies: ["Next.js", "React", "TypeScript", "Python", "Supabase", "PostgreSQL", "OpenAI API", "YouTube API", "Nuitrack SDK", "OpenCV", "PyNuitrack", "Tailwind CSS", "ShadCN/UI", "Vitest"],
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Python",
+      "Supabase",
+      "PostgreSQL",
+      "OpenAI API",
+      "YouTube API",
+      "Nuitrack SDK",
+      "OpenCV",
+      "PyNuitrack",
+      "Tailwind CSS",
+      "ShadCN/UI",
+      "Vitest"
+    ],
     rankings: ["Presented at National IT Competition (NOIT) 2025"],
     githubUrl: "https://github.com/LackOnUsernameIdeas",
     liveUrl: "https://mobilis.noit.eu/",
@@ -40,7 +56,8 @@ Key algorithms include the U.S. Navy body fat formula, Mifflin-St Jeor BMR, and 
   {
     id: "mindreel",
     title: "MindReel",
-    shortDescription: "EEG-powered neuro-assistant that reads your brainwaves to recommend the perfect movies, books and music",
+    shortDescription:
+      "EEG-powered neuro-assistant that reads your brainwaves to recommend the perfect movies, books and music",
     fullDescription: `MindReel is a full-stack recommendation platform that integrates live EEG brain activity analysis (via NeuroSky MindWave Mobile 2 headset) with AI-generated content recommendations tailored to the user's emotional and cognitive state.
 
 Core features:
@@ -53,7 +70,27 @@ Core features:
 - Consulted with qualified neurologists to validate EEG interpretation logic
 
 Built on a React + Vite + TypeScript frontend, ExpressJS + NodeJS backend, MySQL database, Docker, and JWT authentication.`,
-    technologies: ["React", "TypeScript", "Vite", "Node.js", "ExpressJS", "MySQL", "Docker", "Python", "Socket.IO", "OpenAI API", "Gemini API", "A-Frame", "Three.js", "LangChain", "Tailwind CSS", "ApexCharts", "OMDb API", "Spotify API", "YouTube API"],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Node.js",
+      "ExpressJS",
+      "MySQL",
+      "Docker",
+      "Python",
+      "Socket.IO",
+      "OpenAI API",
+      "Gemini API",
+      "A-Frame",
+      "Three.js",
+      "LangChain",
+      "Tailwind CSS",
+      "ApexCharts",
+      "OMDb API",
+      "Spotify API",
+      "YouTube API"
+    ],
     rankings: ["Presented at National IT Competition (NOIT) 2025"],
     githubUrl: "https://github.com/LackOnUsernameIdeas",
     liveUrl: "https://mindreel.noit.eu",
@@ -63,7 +100,8 @@ Built on a React + Vite + TypeScript frontend, ExpressJS + NodeJS backend, MySQL
   {
     id: "nutrifit",
     title: "NutriFit",
-    shortDescription: "AI-powered nutrition platform with GPT-4 & Gemini meal planning, deviation tracking, and a full React Native mobile app",
+    shortDescription:
+      "AI-powered nutrition platform with GPT-4 & Gemini meal planning, deviation tracking, and a full React Native mobile app",
     fullDescription: `NutriFit is an integrated web and mobile platform helping users maintain optimal weight through AI-driven meal planning, body statistics, and food rankings.
 
 Highlights:
@@ -77,8 +115,25 @@ Highlights:
 - GitHub branching strategy: main, dev, and per-feature branches
 
 Stack: ReactJS, TypeScript, Node.js, FireStore (Firebase), Chakra-UI, Chart.js, OpenAI API, Vertex AI API, Google Custom Search API, Fitness Calculator API.`,
-    technologies: ["ReactJS", "TypeScript", "Node.js", "Express.js", "Firebase", "Firestore", "React Native", "Chart.js", "OpenAI API", "Vertex AI (Gemini Pro)", "Google Custom Search API", "Fitness Calculator API", "Chakra-UI"],
-    rankings: ["1st Place – Regional Round, National IT Competition (NOIT) 2024", "Finalist – National IT Competition (NOIT) 2024"],
+    technologies: [
+      "ReactJS",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "Firebase",
+      "Firestore",
+      "React Native",
+      "Chart.js",
+      "OpenAI API",
+      "Vertex AI (Gemini Pro)",
+      "Google Custom Search API",
+      "Fitness Calculator API",
+      "Chakra-UI"
+    ],
+    rankings: [
+      "1st Place – Regional Round, National IT Competition (NOIT) 2024",
+      "Finalist – National IT Competition (NOIT) 2024"
+    ],
     githubUrl: "https://github.com/LackOnUsernameIdeas/NutriFit",
     liveUrl: "https://nutri.noit.eu",
     year: "2024",
@@ -87,70 +142,94 @@ Stack: ReactJS, TypeScript, Node.js, FireStore (Firebase), Chakra-UI, Chart.js, 
   {
     id: "tikfluence",
     title: "TikFluence",
-    shortDescription: "Data analytics platform that proves TikTok's influence on Spotify popularity, with real-time personal TikTok stats",
+    shortDescription:
+      "Data analytics platform that proves TikTok's influence on songs' popularity, with different stats and real-time personal profile information",
     fullDescription: `TikFluence is a research and analytics web app that investigates and visualises how TikTok videos drive a song's popularity on Spotify and YouTube, backed by original influence-detection algorithms.
 
 Key capabilities:
 - Influence Algorithm: identifies songs whose TikTok popularity peak predates their Spotify peak — proving cross-platform influence
 - Growth Algorithm: flags songs that are currently surging (last 2 days' popularity > all-time average) in real time
-- Charts & leaderboards for: Top 200 Global TikTok songs, Top 200 Bulgaria TikTok songs, Top 200 most-followed TikTokers, Top 200 most-viewed videos — all updated daily via Cronjob + Chartex API scraping
+- Charts & leaderboards for: Top 200 Global TikTok songs, Top 200 TikTok songs in Bulgaria, Top 200 most-followed TikTokers, Top 200 most-viewed videos — all updated daily via Cronjob + Chartex API scraping
 - Per-song stats pages: TikTok videos count, YouTube views, Spotify popularity (0-100 scale), historical popularity change charts
 - "My Statistics" page: live personal TikTok profile stats (followers, likes, following, videos) updated every minute via Socket.IO + proxy server (CORS workaround)
 - 14 API approval attempts with TikTok Developer team before gaining access — documented in full email correspondence
-- All rankings rendered with jQuery Datatables; diagrams with Chart.js; real-time data via Socket.IO WebSocket / HTTP Long Polling
-
-Stack: PHP, MySQL, JavaScript (jQuery, Chart.js), Node.js, Express.js, Socket.IO, TikTok API, Spotify API, YouTube API, Chartex API, Apache, Cronjob, Bootstrap.`,
-    technologies: ["PHP", "MySQL", "JavaScript", "jQuery", "Chart.js", "Node.js", "Express.js", "Socket.IO", "TikTok API", "Spotify API", "YouTube API", "Chartex API", "Bootstrap", "Apache"],
-    rankings: ["1st Place – Regional Round, National IT Competition (NOIT) 2023", "Finalist – National IT Competition (NOIT) 2023"],
+- All rankings rendered with jQuery Datatables; diagrams with Chart.js; real-time data via Socket.IO WebSocket / HTTP Long Polling`,
+    technologies: [
+      "PHP",
+      "MySQL",
+      "JavaScript",
+      "jQuery",
+      "Chart.js",
+      "Node.js",
+      "Express.js",
+      "Socket.IO",
+      "TikTok API",
+      "Spotify API",
+      "YouTube API",
+      "Chartex API",
+      "Bootstrap",
+      "Apache",
+      "Cronjob"
+    ],
+    rankings: [
+      "1st Place – Regional Round, National IT Competition (NOIT) 2023",
+      "Finalist – National IT Competition (NOIT) 2023"
+    ],
     githubUrl: "https://github.com/LackOnUsernameIdeas/TikFluence",
     liveUrl: "https://fluence.noit.eu/",
     year: "2023",
     category: "Data Analytics"
   }
-]
+];
 
 export interface Achievement {
-  year: string
-  title: string
-  description: string
-  type: "competition" | "certification" | "award"
+  year: string;
+  title: string;
+  description: string;
+  type: "competition" | "certification" | "award";
 }
 
 export const achievements: Achievement[] = [
   {
     year: "2025",
     title: "NOIT National Finals – Mobilis",
-    description: "AI fitness platform with Orbbec 3D posture correction and scientific goal algorithms",
+    description:
+      "AI fitness platform with Orbbec 3D posture correction and scientific goal algorithms",
     type: "competition"
   },
   {
     year: "2025",
     title: "NOIT National Finals – MindReel",
-    description: "EEG-powered neuro-assistant with VR cinema and ML recommendation evaluation",
+    description:
+      "EEG-powered neuro-assistant with VR cinema and ML recommendation evaluation",
     type: "competition"
   },
   {
     year: "2024",
     title: "1st Place – Regional Round, NOIT 2024",
-    description: "NutriFit – AI meal planning with GPT-4 & Gemini deviation analysis",
+    description:
+      "NutriFit – AI meal planning with GPT-4 & Gemini deviation analysis",
     type: "competition"
   },
   {
     year: "2024",
     title: "NOIT National Finals – NutriFit",
-    description: "Finalist at the National IT Competition with AI-powered nutrition platform",
+    description:
+      "Finalist at the National IT Competition with AI-powered nutrition platform",
     type: "competition"
   },
   {
     year: "2023",
     title: "1st Place – Regional Round, NOIT 2023",
-    description: "TikFluence – data analytics platform proving TikTok's cross-platform music influence",
+    description:
+      "TikFluence – data analytics platform proving TikTok's cross-platform music influence",
     type: "competition"
   },
   {
     year: "2023",
     title: "NOIT National Finals – TikFluence",
-    description: "Finalist at the National IT Competition with original influence-detection algorithms",
+    description:
+      "Finalist at the National IT Competition with original influence-detection algorithms",
     type: "competition"
   }
-]
+];
