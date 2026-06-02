@@ -590,16 +590,44 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
         "TikFluence - data analytics platform proving TikTok's cross-platform music influence"
     },
     {
-      src: "https://i.imgur.com/ySKHfpZ.png",
+      src: "/tikfluence2.png",
       caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
     },
     {
-      src: "https://i.imgur.com/mVAGUGY.png",
-      caption: "Per-song stats - popularity change over time across platforms"
+      src: "/tikfluence3.png",
+      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
     },
     {
-      src: "https://i.imgur.com/H4bLpAQ.png",
-      caption: "Live personal TikTok stats updated every minute via Socket.IO"
+      src: "/tikfluence4.png",
+      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+    },
+    {
+      src: "/tikfluence5.png",
+      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+    },
+    {
+      src: "/tikfluence6.png",
+      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+    },
+    {
+      src: "/tikfluence7.png",
+      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+    },
+    {
+      src: "/tikfluence8.png",
+      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+    },
+    {
+      src: "/tikfluence9.png",
+      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+    },
+    {
+      src: "/tikfluence10.png",
+      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+    },
+    {
+      src: "/tikfluenceDB.png",
+      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
     }
   ]
 };
@@ -684,13 +712,13 @@ function ProjectModal({
                     onClick={() =>
                       setImgIdx((i) => (i - 1 + images.length) % images.length)
                     }
-                    className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-primary transition-colors cursor-pointer"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-xl hover:bg-primary transition-colors cursor-pointer"
                   >
                     ‹
                   </button>
                   <button
                     onClick={() => setImgIdx((i) => (i + 1) % images.length)}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-primary transition-colors cursor-pointer"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-xl hover:bg-primary transition-colors cursor-pointer"
                   >
                     ›
                   </button>
@@ -817,12 +845,53 @@ function ProjectModal({
           >
             <X className="w-5 h-5" />
           </button>
+
+          {images.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setImgIdx((i) => (i - 1 + images.length) % images.length);
+              }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer"
+            >
+              ‹
+            </button>
+          )}
+
           <img
             src={images[imgIdx].src}
             alt={images[imgIdx].caption}
-            className="max-w-[95vw] max-h-[90vh] object-contain rounded-lg shadow-2xl"
+            className="max-w-[85vw] max-h-[85vh] object-contain rounded-lg shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           />
+
+          {images.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setImgIdx((i) => (i + 1) % images.length);
+              }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer"
+            >
+              ›
+            </button>
+          )}
+
+          <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setImgIdx(i);
+                }}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  i === imgIdx ? "bg-primary" : "bg-white/40"
+                }`}
+              />
+            ))}
+          </div>
+
           <p className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/70 text-sm text-center px-4">
             {images[imgIdx].caption}
           </p>

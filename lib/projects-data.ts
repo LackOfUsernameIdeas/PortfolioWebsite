@@ -203,8 +203,8 @@ Key capabilities:
     docs: [
       {
         label: "Documentation",
-        filename: "tikfluence_documentation.pdf",
-        icon: "pdf"
+        filename: "tikfluence_documentation.docx",
+        icon: "docx"
       }
     ],
     year: "2023",
