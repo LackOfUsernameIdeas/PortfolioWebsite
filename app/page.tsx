@@ -679,9 +679,9 @@ function ProjectModal({
         <div className="h-1.5 w-full bg-gradient-to-r from-primary to-primary/30 shrink-0" />
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-secondary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors z-10"
+          className="absolute top-4 right-4 w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors z-10"
         >
-          <X className="w-4 h-4" />
+          <X className="w-5 h-5" />
         </button>
 
         {/* ── Scrollable body ── */}
@@ -712,13 +712,13 @@ function ProjectModal({
                     onClick={() =>
                       setImgIdx((i) => (i - 1 + images.length) % images.length)
                     }
-                    className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-xl hover:bg-primary transition-colors cursor-pointer"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer"
                   >
                     ‹
                   </button>
                   <button
                     onClick={() => setImgIdx((i) => (i + 1) % images.length)}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-xl hover:bg-primary transition-colors cursor-pointer"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer"
                   >
                     ›
                   </button>
@@ -841,9 +841,9 @@ function ProjectModal({
               e.stopPropagation();
               setLightboxOpen(false);
             }}
-            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors cursor-pointer"
+            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-2xl hover:bg-white/20 transition-colors cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-6 h-6" />
           </button>
 
           {images.length > 1 && (
@@ -852,7 +852,7 @@ function ProjectModal({
                 e.stopPropagation();
                 setImgIdx((i) => (i - 1 + images.length) % images.length);
               }}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer"
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors cursor-pointer"
             >
               ‹
             </button>
@@ -871,13 +871,13 @@ function ProjectModal({
                 e.stopPropagation();
                 setImgIdx((i) => (i + 1) % images.length);
               }}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer"
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors cursor-pointer"
             >
               ›
             </button>
           )}
 
-          <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1.5">
+          <div className="absolute bottom-13 left-1/2 -translate-x-1/2 flex gap-1.5">
             {images.map((_, i) => (
               <button
                 key={i}
