@@ -588,59 +588,66 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/tikfluence.png",
       caption:
-        "TikFluence - data analytics platform proving TikTok's cross-platform music influence"
+        "TikFluence - data analytics platform proving TikTok's cross-platform music influence."
     },
     {
       src: "/tikfluence2.png",
-      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+      caption:
+        "Ranking of songs whose popularity was most influenced by TikTok. The table contains data about peak popularity dates on Spotify and TikTok, showing the time difference between them in days. There is also a section that includes the most frequently used hashtags in TikTok video descriptions."
     },
     {
       src: "/tikfluence3.png",
-      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+      caption:
+        "The visualization is representing the change in popularity, including rises and declines within the respective platform, and highlights the peak date."
     },
     {
       src: "/tikfluence4.png",
-      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+      caption:
+        "Explanation of the TikTok influence effect. A song increases in popularity across TikTok and Spotify until reaching peak interest on both platforms. When the TikTok peak happens before the Spotify peak, the song is classified as influenced by TikTok, where exposure on TikTok drives later growth on Spotify."
     },
     {
       src: "/tikfluence5.png",
-      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+      caption:
+        "Table showing songs affected by the TikTok influence effect. The dataset includes tracks that appeared in the global Top 200 TikTok songs ranking from the “ОЩЕ СТАТИСТИКИ” section, along with their peak dates on TikTok and Spotify."
     },
     {
       src: "/tikfluence6.png",
-      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+      caption:
+        "Ranking of the most streamed songs on TikTok across all platform users (Global Top 200 TikTok Songs). It shows information such as the number of recent videos created, total likes across all TikTok videos, YouTube views, and Spotify popularity index (0–100). Each song has a subpage accessed via “Вижте нарастване / Вижте детайли” button, which includes detailed popularity metrics."
     },
     {
       src: "/tikfluence7.png",
-      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+      caption:
+        "The statistics shown apply to the selected song from the respective ranking, including position in the ranking of most popular songs, changes in the popularity statistics over the time, and daily percentage growth on likes, views, videos made, and popularity index."
     },
     {
       src: "/tikfluence8.png",
-      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+      caption:
+        "After authenticating using a personal TikTok account, the user can view real-time statistics such as follower count, following count, total likes, and number of videos. This approach is relies on a self-hosted proxy server with Socket.IO for transmitting data from TikTok servers to the end user."
     },
     {
       src: "/tikfluence9.png",
-      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+      caption:
+        "Ranking of Top 200 most popular TikTok content creators. There is information such as change of follower count over time, total likes, and total number of videos created. Each creator has a subpage with detailed statistics and growth metrics."
     },
     {
       src: "/tikfluence10.png",
-      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+      caption:
+        "Main information related to the selected video from the ranking list - views, shares, and likes. Similar to the song details page, there are chronological diagrams showing growth or decline in the follower count."
     },
     {
       src: "/tikfluence11.png",
-      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+      caption:
+        "OAuth authentication flow for accessing personal TikTok account data: the server requests an access and refresh token from the TikTok API, then uses them to make two separate HTTP requests - one fetching profile statistics (follower count, following, likes, uploaded videos count), and another fetching per-video engagement metrics (likes, views, shares, comments). Both data sets are passed into Chart.js and rendered in the UI."
     },
     {
       src: "/tikfluence12.png",
-      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
-    },
-    {
-      src: "/tikfluence13.png",
-      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+      caption:
+        "Detailed 7-step Socket.IO real-time data flow: (1) the browser requests a Socket.IO connection to the server, (2) the server confirms with a success message, (3) the browser sends the access token to the server, (4) every minute the server makes an async fetch request to the TikTok API for likes and followers data, (5) the API returns the data to the server, (6) the server pushes the data to the browser via the Socket.IO connection, and (7) the data is embedded into Chart.js diagrams for real-time visualization."
     },
     {
       src: "/tikfluenceDB.png",
-      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+      caption: "Structure of the MySQL Database."
     }
   ]
 };
@@ -716,7 +723,9 @@ function ProjectModal({
               />
               {/* Caption */}
               <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3">
-                <p className="text-white text-xs">{images[imgIdx].caption}</p>
+                <p className="text-white text-xs line-clamp-1">
+                  {images[imgIdx].caption}
+                </p>
               </div>
               {/* Prev / Next */}
               {images.length > 1 && (
@@ -855,7 +864,7 @@ function ProjectModal({
       </div>
       {lightboxOpen && (
         <div
-          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black/90 backdrop-blur-sm"
           onClick={(e) => {
             e.stopPropagation();
             setLightboxOpen(false);
@@ -886,9 +895,31 @@ function ProjectModal({
           <img
             src={images[imgIdx].src}
             alt={images[imgIdx].caption}
-            className="max-w-[85vw] max-h-[85vh] object-contain rounded-lg shadow-2xl"
+            className="max-w-[85vw] max-h-[80vh] object-contain rounded-lg shadow-2xl shrink-0"
             onClick={(e) => e.stopPropagation()}
           />
+
+          <div className="flex flex-col items-center gap-3 mt-4 px-6 max-w-[85vw]">
+            {images.length > 1 && (
+              <div className="flex gap-1.5">
+                {images.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setImgIdx(i);
+                    }}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      i === imgIdx ? "bg-primary" : "bg-white/40"
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+            <p className="text-white/70 text-sm text-center leading-relaxed">
+              {images[imgIdx].caption}
+            </p>
+          </div>
 
           {images.length > 1 && (
             <button
@@ -901,25 +932,6 @@ function ProjectModal({
               ›
             </button>
           )}
-
-          <div className="absolute bottom-13 left-1/2 -translate-x-1/2 flex gap-1.5">
-            {images.map((_, i) => (
-              <button
-                key={i}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setImgIdx(i);
-                }}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  i === imgIdx ? "bg-primary" : "bg-white/40"
-                }`}
-              />
-            ))}
-          </div>
-
-          <p className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/70 text-sm text-center px-4">
-            {images[imgIdx].caption}
-          </p>
         </div>
       )}
     </div>
