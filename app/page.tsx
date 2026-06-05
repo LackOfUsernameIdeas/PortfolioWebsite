@@ -22,7 +22,8 @@ import {
   Trophy,
   X,
   ExternalLink,
-  Code2
+  Code2,
+  Languages
 } from "lucide-react";
 import { projects, achievements, type Project } from "@/lib/projects-data";
 
@@ -626,6 +627,18 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
       caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
     },
     {
+      src: "/tikfluence11.png",
+      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+    },
+    {
+      src: "/tikfluence12.png",
+      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+    },
+    {
+      src: "/tikfluence13.png",
+      caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
+    },
+    {
       src: "/tikfluenceDB.png",
       caption: "Influenced songs ranking - TikTok peak vs Spotify peak dates"
     }
@@ -651,12 +664,12 @@ function ProjectModal({
   }, [project.id]);
 
   useEffect(() => {
+    const len = images.length;
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight" && images.length > 1)
-        setImgIdx((i) => (i + 1) % images.length);
-      if (e.key === "ArrowLeft" && images.length > 1)
-        setImgIdx((i) => (i - 1 + images.length) % images.length);
+      if (e.key === "ArrowRight" && len > 1) setImgIdx((i) => (i + 1) % len);
+      if (e.key === "ArrowLeft" && len > 1)
+        setImgIdx((i) => (i - 1 + len) % len);
     };
     window.addEventListener("keydown", handler);
     document.body.style.overflow = "hidden";
@@ -722,24 +735,24 @@ function ProjectModal({
                   >
                     ›
                   </button>
-                  {/* Dots */}
-                  <div className="absolute top-3 left-4 flex gap-1">
-                    {images.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setImgIdx(i)}
-                        className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                          i === imgIdx ? "bg-primary" : "bg-white/50"
-                        }`}
-                      />
-                    ))}
-                  </div>
                 </>
               )}
             </div>
           )}
-
-          <div className="p-6 sm:p-8 flex flex-col gap-6">
+          {images.length > 1 && (
+            <div className="flex justify-center gap-1.5 pt-3">
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setImgIdx(i)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    i === imgIdx ? "bg-primary" : "bg-muted-foreground/30"
+                  }`}
+                />
+              ))}
+            </div>
+          )}
+          <div className="px-6 pb-6 pt-1 sm:px-8 sm:pb-8 flex flex-col gap-6">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <Badge variant="outline" className="rounded-full text-xs">
@@ -821,7 +834,19 @@ function ProjectModal({
                     download
                     className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
                   >
-                    <Download className="w-4 h-4" /> {doc.label}
+                    <Download className="w-4 h-4" />
+                    {doc.label}
+                    <Languages className="w-4 h-4" />
+                    <svg
+                      width="18"
+                      height="12"
+                      viewBox="0 0 18 12"
+                      className="rounded-sm shrink-0"
+                    >
+                      <rect width="18" height="4" y="0" fill="#FFFFFF" />
+                      <rect width="18" height="4" y="4" fill="#00966E" />
+                      <rect width="18" height="4" y="8" fill="#D62612" />
+                    </svg>
                   </a>
                 ))}
             </div>
