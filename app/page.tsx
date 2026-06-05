@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Navigation } from "@/components/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -450,7 +450,7 @@ function AboutSection() {
           </div>
         </div>
 
-        {/* Achievements - no `group` on Card, icon uses plain hover: */}
+        {/* Achievements */}
         <div className="mt-24">
           <h3 className="reveal text-3xl sm:text-4xl font-bold mb-12">
             Achievements
@@ -661,22 +661,34 @@ function ProjectModal({
   onClose: () => void;
 }) {
   const [imgIdx, setImgIdx] = useState(0);
+  const [imgLoading, setImgLoading] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const images = PROJECT_IMAGES[project.id] ?? [];
 
-  const [lightboxOpen, setLightboxOpen] = useState(false);
+  // Guarded navigation — blocked while the current image is still loading
+  const goTo = useCallback(
+    (idx: number) => {
+      if (imgLoading) return;
+      setImgLoading(true);
+      setImgIdx(idx);
+    },
+    [imgLoading]
+  );
 
+  // Reset on project change
   useEffect(() => {
     setImgIdx(0);
+    setImgLoading(false);
     setLightboxOpen(false);
   }, [project.id]);
 
+  // Keyboard navigation
   useEffect(() => {
     const len = images.length;
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight" && len > 1) setImgIdx((i) => (i + 1) % len);
-      if (e.key === "ArrowLeft" && len > 1)
-        setImgIdx((i) => (i - 1 + len) % len);
+      if (e.key === "ArrowRight" && len > 1) goTo((imgIdx + 1) % len);
+      if (e.key === "ArrowLeft" && len > 1) goTo((imgIdx - 1 + len) % len);
     };
     window.addEventListener("keydown", handler);
     document.body.style.overflow = "hidden";
@@ -684,7 +696,7 @@ function ProjectModal({
       window.removeEventListener("keydown", handler);
       document.body.style.overflow = "";
     };
-  }, [onClose, images.length]);
+  }, [onClose, images.length, imgIdx, goTo]);
 
   return (
     <div
@@ -712,15 +724,22 @@ function ProjectModal({
               <img
                 src={images[imgIdx].src}
                 alt={images[imgIdx].caption}
-                className="w-full h-full object-cover cursor-zoom-in"
+                className={`w-full h-full object-cover cursor-zoom-in transition-opacity duration-150 ${
+                  imgLoading ? "opacity-40" : "opacity-100"
+                }`}
+                onLoad={() => setImgLoading(false)}
+                onError={() => setImgLoading(false)}
                 onClick={(e) => {
                   e.stopPropagation();
                   setLightboxOpen(true);
                 }}
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = "none";
-                }}
               />
+              {/* Loading spinner overlay */}
+              {imgLoading && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                </div>
+              )}
               {/* Caption */}
               <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3">
                 <p className="text-white text-xs line-clamp-1">
@@ -732,15 +751,17 @@ function ProjectModal({
                 <>
                   <button
                     onClick={() =>
-                      setImgIdx((i) => (i - 1 + images.length) % images.length)
+                      goTo((imgIdx - 1 + images.length) % images.length)
                     }
-                    className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer"
+                    disabled={imgLoading}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     ‹
                   </button>
                   <button
-                    onClick={() => setImgIdx((i) => (i + 1) % images.length)}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer"
+                    onClick={() => goTo((imgIdx + 1) % images.length)}
+                    disabled={imgLoading}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     ›
                   </button>
@@ -753,8 +774,9 @@ function ProjectModal({
               {images.map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => setImgIdx(i)}
-                  className={`w-2 h-2 rounded-full transition-colors ${
+                  onClick={() => goTo(i)}
+                  disabled={imgLoading}
+                  className={`w-2 h-2 rounded-full transition-colors disabled:cursor-not-allowed ${
                     i === imgIdx ? "bg-primary" : "bg-muted-foreground/30"
                   }`}
                 />
@@ -862,6 +884,8 @@ function ProjectModal({
           </div>
         </div>
       </div>
+
+      {/* ── Lightbox ── */}
       {lightboxOpen && (
         <div
           className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black/90 backdrop-blur-sm"
@@ -884,9 +908,10 @@ function ProjectModal({
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                setImgIdx((i) => (i - 1 + images.length) % images.length);
+                goTo((imgIdx - 1 + images.length) % images.length);
               }}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors cursor-pointer"
+              disabled={imgLoading}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             >
               ‹
             </button>
@@ -895,9 +920,19 @@ function ProjectModal({
           <img
             src={images[imgIdx].src}
             alt={images[imgIdx].caption}
-            className="max-w-[85vw] max-h-[80vh] object-contain rounded-lg shadow-2xl shrink-0"
+            className={`max-w-[85vw] max-h-[80vh] object-contain rounded-lg shadow-2xl shrink-0 transition-opacity duration-150 ${
+              imgLoading ? "opacity-40" : "opacity-100"
+            }`}
+            onLoad={() => setImgLoading(false)}
+            onError={() => setImgLoading(false)}
             onClick={(e) => e.stopPropagation()}
           />
+
+          {imgLoading && (
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="w-10 h-10 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+            </div>
+          )}
 
           <div className="flex flex-col items-center gap-3 mt-4 px-6 max-w-[85vw]">
             {images.length > 1 && (
@@ -907,9 +942,10 @@ function ProjectModal({
                     key={i}
                     onClick={(e) => {
                       e.stopPropagation();
-                      setImgIdx(i);
+                      goTo(i);
                     }}
-                    className={`w-2 h-2 rounded-full transition-colors ${
+                    disabled={imgLoading}
+                    className={`w-2 h-2 rounded-full transition-colors disabled:cursor-not-allowed ${
                       i === imgIdx ? "bg-primary" : "bg-white/40"
                     }`}
                   />
@@ -925,9 +961,10 @@ function ProjectModal({
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                setImgIdx((i) => (i + 1) % images.length);
+                goTo((imgIdx + 1) % images.length);
               }}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors cursor-pointer"
+              disabled={imgLoading}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             >
               ›
             </button>
@@ -960,7 +997,6 @@ function ProjectsSection() {
             >
               <div className="h-1 w-full bg-gradient-to-r from-primary to-primary/40" />
               <div className="aspect-[4/3] bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center relative overflow-hidden">
-                {/* Image preview */}
                 <div className="w-full h-full absolute inset-0">
                   {PROJECT_CARD_IMAGES[project.id] ? (
                     <img
