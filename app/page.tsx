@@ -745,7 +745,7 @@ function ProjectModal({
 
   const isVideo = (src: string) => /\.(mp4|mov|webm|ogg)$/i.test(src);
 
-  // Guarded navigation — blocked while the current image is still loading
+  // Guarded navigation - blocked while the current image is still loading
   const goTo = useCallback(
     (idx: number) => {
       if (imgLoading) return;
@@ -850,7 +850,7 @@ function ProjectModal({
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-14 h-14 rounded-full bg-black/50 flex items-center justify-center group-hover/video:bg-primary transition-colors duration-300">
                       <svg
-                        className="w-6 h-6 text-white"
+                        className="w-7 h-7 text-white"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                       >
@@ -941,7 +941,9 @@ function ProjectModal({
                 .trim()
                 .split("\n")
                 .map((line, i) =>
-                  line.trim() === "" ? null : line.trim().startsWith("-") ? (
+                  line.trim() === "" ? (
+                    <div key={i} className="h-2" />
+                  ) : line.trim().startsWith("-") ? (
                     <div
                       key={i}
                       className="flex items-start gap-2 text-sm text-muted-foreground"
@@ -982,6 +984,16 @@ function ProjectModal({
                   <Github className="w-4 h-4" /> GitHub
                 </a>
               )}
+              {project.githubMobileUrl && (
+                <a
+                  href={project.githubMobileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
+                >
+                  <Github className="w-4 h-4" /> GitHub (Mobile)
+                </a>
+              )}
               {project.liveUrl && (
                 <a
                   href={project.liveUrl}
@@ -1003,17 +1015,21 @@ function ProjectModal({
                   >
                     <Download className="w-4 h-4" />
                     {doc.label}
-                    <Languages className="w-4 h-4" />
-                    <svg
-                      width="18"
-                      height="12"
-                      viewBox="0 0 18 12"
-                      className="rounded-sm shrink-0"
-                    >
-                      <rect width="18" height="4" y="0" fill="#FFFFFF" />
-                      <rect width="18" height="4" y="4" fill="#00966E" />
-                      <rect width="18" height="4" y="8" fill="#D62612" />
-                    </svg>
+                    {doc.label !== "Schemes & Photos" && (
+                      <>
+                        <Languages className="w-4 h-4" />
+                        <svg
+                          width="18"
+                          height="12"
+                          viewBox="0 0 18 12"
+                          className="rounded-sm shrink-0"
+                        >
+                          <rect width="18" height="4" y="0" fill="#FFFFFF" />
+                          <rect width="18" height="4" y="4" fill="#00966E" />
+                          <rect width="18" height="4" y="8" fill="#D62612" />
+                        </svg>
+                      </>
+                    )}
                   </a>
                 ))}
             </div>

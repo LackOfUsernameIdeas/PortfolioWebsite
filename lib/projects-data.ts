@@ -7,6 +7,7 @@ export interface Project {
   videoUrl?: string;
   documentationUrl?: string;
   githubUrl?: string;
+  githubMobileUrl?: string;
   liveUrl?: string;
   images?: string[];
   year: string;
@@ -118,18 +119,19 @@ Core features:
     id: "nutrifit",
     title: "NutriFit",
     shortDescription:
-      "AI-powered nutrition platform with GPT-4 & Gemini meal planning, deviation tracking, and a full React Native mobile app",
-    fullDescription: `NutriFit is an integrated web and mobile platform helping users maintain optimal weight through AI-driven meal planning, body statistics, and food rankings.
+      "A modern platform that takes advantage of the power of GPT-4 Turbo & Gemini Pro to actively support users in maintaining their optimal weight and healthy lifestyle",
 
-Highlights:
-- AI meal generation via GPT-4 Turbo (OpenAI) and Gemini Pro (via Vertex AI), producing full daily menus: breakfast, lunch (starter + main + dessert), and dinner with exact macros, ingredients and recipes
-- AI deviation algorithm: measures how closely ChatGPT vs Gemini adhere to user-defined nutritional limits - tracking average %, maximum deviation per category (calories, protein, fat, carbs)
-- ~40+ interactive statistics and Chart.js diagrams covering BMI, body fat %, lean mass, fat mass, daily macro intake over time, and platform-wide user data
-- Food ranking system: sorted by calories, fat, carbs, and protein per 100g
-- Custom NutriFit API (Node.js/Express) that proxies Fitness Calculator API calls and persists all data to Firestore even if the user navigates away
-- Food images fetched via Google Custom Search API with custom Search Engines
+    fullDescription: `NutriFit is an integrated web and mobile nutrition platform focused entirely on AI-driven meal planning - the project that later inspired Mobilis, where the concept expanded to include movement and physical activity. NutriFit's core idea is to make the two AI models generate a truly personalized, nutritionally accurate meal plan, inspect how far they deviate from the user's defined limits and compare their performance with each other.
+
+Key capabilities:
+- Meal generation, producing full daily menus: breakfast, lunch (starter + main + dessert), and dinner with exact macros, ingredients and recipes. Food images are fetched via Google Custom Search API with custom-configured Search Engines
+- AI deviation algorithm: measures how closely ChatGPT vs Gemini adhere to user-defined nutritional limits - tracking average deviation %, max deviation per category (calories, protein, fat, carbs), and overall AI deviation score
+- Weight regulation algorithm: compares current vs ideal weight for the user's height and recommends whether to reduce, maintain, or gain weight, with guidance on diet and activity adjustments
+- ~40+ interactive statistics and Chart.js diagrams covering BMI, body fat %, lean mass, fat mass, daily macro intake over time, and platform-wide aggregated user data
+- Food ranking system: sorted by calories, fat, carbs, and protein per 100g, with recipes, preparation steps, and nutritional values
+- Custom NutriFit API (Node.js/Express + Firebase Admin SDK) that proxies Fitness Calculator API calls and persists all data to Firestore - my own first experiment with a NoSQL database
 - React Native mobile app (separate codebase) mirroring core web features
-- GitHub branching strategy: main, dev, and per-feature branches`,
+- GitHub branching strategy: main, dev, and per-feature branches. Unit tests included`,
     technologies: [
       "ReactJS",
       "TypeScript",
@@ -146,6 +148,7 @@ Highlights:
       "Chakra-UI"
     ],
     githubUrl: "https://github.com/LackOnUsernameIdeas/NutriFit",
+    githubMobileUrl: "https://github.com/LackOfUsernameIdeas/NutriFitMobile",
     liveUrl: "https://nutri.noit.eu",
     docs: [
       {
