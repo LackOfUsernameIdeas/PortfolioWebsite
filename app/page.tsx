@@ -1329,7 +1329,7 @@ function ContactSection() {
             <span className="text-primary">together!</span>
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Have a project in mind? I'd love to hear from you.
+            Interested in working together? I'd love to hear from you.
           </p>
         </div>
         <Card className="reveal shadow-xl">
