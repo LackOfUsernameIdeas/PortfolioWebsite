@@ -725,6 +725,18 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
   ]
 };
 
+function renderBold(text: string) {
+  return text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
+    i % 2 === 1 ? (
+      <strong key={i} className="text-foreground font-semibold">
+        {part}
+      </strong>
+    ) : (
+      part
+    )
+  );
+}
+
 // ─── Project Modal ─────────────────────────────────────────────────────────
 function ProjectModal({
   project,
@@ -934,7 +946,9 @@ function ProjectModal({
                 </Badge>
               </div>
             </div>
-            <p className="text-muted-foreground">{project.shortDescription}</p>
+            <p className="text-foreground/70 font-bold">
+              {project.shortDescription}
+            </p>
 
             <div className="space-b-2">
               {project.fullDescription
@@ -949,14 +963,14 @@ function ProjectModal({
                       className="flex items-start gap-2 text-sm text-muted-foreground"
                     >
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                      <span>{line.replace(/^-\s*/, "")}</span>
+                      <span>{renderBold(line.replace(/^-\s*/, ""))}</span>
                     </div>
                   ) : (
                     <p
                       key={i}
                       className="text-sm text-muted-foreground leading-relaxed"
                     >
-                      {line.trim()}
+                      {renderBold(line.trim())}
                     </p>
                   )
                 )}
