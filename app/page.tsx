@@ -924,23 +924,19 @@ function ProjectModal({
             </div>
           )}
           <div className="px-6 pb-6 pt-1 sm:px-8 sm:pb-8 flex flex-col gap-6">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <Badge variant="outline" className="rounded-full text-xs">
-                  {project.year}
-                </Badge>
-                <Badge className="rounded-full text-xs bg-primary/10 text-primary border-0">
-                  {project.category}
-                </Badge>
-              </div>
+            <div className="flex items-center justify-between mt-2">
               <h2 className="text-2xl sm:text-3xl font-bold">
                 {project.title}
               </h2>
-              <p className="text-muted-foreground mt-2">
-                {project.shortDescription}
-              </p>
+              <div className="flex items-center gap-2 shrink-0">
+                <Badge variant="outline" className="rounded-full text-xs">
+                  {project.year}
+                </Badge>
+              </div>
             </div>
-            <div className="space-y-2">
+            <p className="text-muted-foreground">{project.shortDescription}</p>
+
+            <div className="space-b-2">
               {project.fullDescription
                 .trim()
                 .split("\n")

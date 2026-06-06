@@ -10,7 +10,6 @@ export interface Project {
   liveUrl?: string;
   images?: string[];
   year: string;
-  category: string;
   // Documentation download files
   docs?: {
     label: string;
@@ -61,8 +60,7 @@ Key algorithms include the U.S. Navy body fat formula, Mifflin-St Jeor BMR, and 
         icon: "docx"
       }
     ],
-    year: "2026",
-    category: "Health & AI"
+    year: "2026"
   },
   {
     id: "mindreel",
@@ -114,8 +112,7 @@ Core features:
         icon: "zip"
       }
     ],
-    year: "2025",
-    category: "AI / Neuroscience"
+    year: "2025"
   },
   {
     id: "nutrifit",
@@ -157,8 +154,7 @@ Highlights:
         icon: "docx"
       }
     ],
-    year: "2024",
-    category: "Health & AI"
+    year: "2024"
   },
   {
     id: "tikfluence",
@@ -203,8 +199,7 @@ Key capabilities:
         icon: "docx"
       }
     ],
-    year: "2023",
-    category: "Data Analytics"
+    year: "2023"
   }
 ];
 
