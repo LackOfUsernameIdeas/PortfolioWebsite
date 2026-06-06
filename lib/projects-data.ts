@@ -179,15 +179,17 @@ Engineering notes:
 Note: The live demo is visitable but some features may not function as the project is no longer actively maintained.
 
 Key capabilities:
-- Influence Algorithm: identifies songs whose TikTok popularity peak predates their Spotify peak - proving cross-platform influence
+- Influence Algorithm: identifies songs whose TikTok popularity peak predates their Spotify peak - proving cross-platform influence. Notable constraint: Spotify doesn't expose raw play counts, only a proprietary 0-100 popularity score - understanding and working around this was essential to making the algorithm applicable
 - Growth Algorithm: flags songs that are currently surging (last 2 days' popularity > all-time average) in real time
 - Charts & leaderboards for: Top 200 Global TikTok songs, Top 200 TikTok songs in Bulgaria, Top 200 most-followed TikTokers, Top 200 most-viewed videos - all updated daily via Cronjob + Chartex API scraping
 - Per-song stats pages: TikTok videos count, YouTube views, Spotify popularity (0-100 scale), historical popularity change charts
-- "My Statistics" page: live personal TikTok profile stats (followers, likes, following, videos) updated every minute via Socket.IO + proxy server (CORS workaround)
+- ~60 interactive statistics and diagrams across the platform
+- "My Statistics" page: live personal TikTok profile stats (followers, likes, following, videos) updated every minute via Socket.IO + proxy server (CORS workaround). The only page requiring TikTok OAuth login - session key is stored in a cookie valid for 1 hour. All other pages are publicly accessible
 - 14 API approval attempts with TikTok Developer team before gaining access - documented in full email correspondence
 - All rankings rendered with jQuery Datatables; diagrams with Chart.js; real-time data via Socket.IO WebSocket / HTTP Long Polling`,
     technologies: [
       "PHP",
+      "PDO",
       "MySQL",
       "JavaScript",
       "jQuery",
