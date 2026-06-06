@@ -78,9 +78,7 @@ Core features:
 - VR cinema experience built with A-Frame and Three.js
 - Platform-wide statistics (trending creators, content popularity, user tendencies) rendered with ApexCharts
 - Scraped and enriched content data from IMDb, OMDb API, Goodreads, Google Books, YouTube, and Spotify
-- Consulted with qualified neurologists to validate EEG interpretation logic
-
-Built on a React + Vite + TypeScript frontend, ExpressJS + NodeJS backend, MySQL database, Docker, and JWT authentication.`,
+- Consulted with qualified neurologists to validate EEG interpretation logic`,
     technologies: [
       "React",
       "TypeScript",
@@ -134,17 +132,15 @@ Highlights:
 - Custom NutriFit API (Node.js/Express) that proxies Fitness Calculator API calls and persists all data to Firestore even if the user navigates away
 - Food images fetched via Google Custom Search API with custom Search Engines
 - React Native mobile app (separate codebase) mirroring core web features
-- GitHub branching strategy: main, dev, and per-feature branches
-
-Stack: ReactJS, TypeScript, Node.js, FireStore (Firebase), Chakra-UI, Chart.js, OpenAI API, Vertex AI API, Google Custom Search API, Fitness Calculator API.`,
+- GitHub branching strategy: main, dev, and per-feature branches`,
     technologies: [
       "ReactJS",
       "TypeScript",
       "Node.js",
       "Express.js",
       "Firebase",
-      "Firestore",
       "React Native",
+      "Android Studio",
       "Chart.js",
       "OpenAI API",
       "Vertex AI (Gemini Pro)",
@@ -157,8 +153,8 @@ Stack: ReactJS, TypeScript, Node.js, FireStore (Firebase), Chakra-UI, Chart.js, 
     docs: [
       {
         label: "Documentation",
-        filename: "249_nutrifit_documentation.pdf",
-        icon: "pdf"
+        filename: "nutrifit_documentation.docx",
+        icon: "docx"
       }
     ],
     year: "2024",

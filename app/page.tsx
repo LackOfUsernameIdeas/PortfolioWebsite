@@ -572,16 +572,89 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
         "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
     },
     {
-      src: "https://i.imgur.com/OxUz6Dq.png",
-      caption: "Home - most-recommended dish & top 5 chart"
+      src: "/nutrifit2.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
     },
     {
-      src: "https://i.imgur.com/xW4Z3gR.png",
-      caption: "ChatGPT vs Gemini deviation dashboard"
+      src: "/nutrifit3.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
     },
     {
-      src: "https://i.imgur.com/mJdEq7B.png",
-      caption: "Meal planner - diet type selector & AI-generated daily menu"
+      src: "/nutrifit4.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+    },
+    {
+      src: "/nutrifit5.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+    },
+    {
+      src: "/nutrifit6.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+    },
+    {
+      src: "/nutrifit7.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+    },
+    {
+      src: "/nutrifit8.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+    },
+    {
+      src: "/nutrifit9.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+    },
+    {
+      src: "/nutrifit10.mov",
+      caption:
+        "The video demonstration showcases the user interface and features of the NutriFit mobile application."
+    },
+    {
+      src: "/nutrifit11.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+    },
+    {
+      src: "/nutrifit12.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+    },
+    {
+      src: "/nutrifit13.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+    },
+    {
+      src: "/nutrifit14.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+    },
+    {
+      src: "/nutrifit15.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+    },
+    {
+      src: "/nutrifit16.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+    },
+    {
+      src: "/nutrifit17.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+    },
+    {
+      src: "/nutrifitDB.png",
+      caption:
+        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
     }
   ],
   tikfluence: [
@@ -663,7 +736,14 @@ function ProjectModal({
   const [imgIdx, setImgIdx] = useState(0);
   const [imgLoading, setImgLoading] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+
   const images = PROJECT_IMAGES[project.id] ?? [];
+
+  const isVideo = (src: string) => /\.(mp4|mov|webm|ogg)$/i.test(src);
 
   // Guarded navigation — blocked while the current image is still loading
   const goTo = useCallback(
@@ -671,6 +751,8 @@ function ProjectModal({
       if (imgLoading) return;
       setImgLoading(true);
       setImgIdx(idx);
+      setZoom(1);
+      setPan({ x: 0, y: 0 });
     },
     [imgLoading]
   );
@@ -680,6 +762,8 @@ function ProjectModal({
     setImgIdx(0);
     setImgLoading(false);
     setLightboxOpen(false);
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
   }, [project.id]);
 
   // Keyboard navigation
@@ -697,6 +781,29 @@ function ProjectModal({
       document.body.style.overflow = "";
     };
   }, [onClose, images.length, imgIdx, goTo]);
+
+  const resetZoom = () => {
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+  };
+
+  const clampPan = (x: number, y: number, z: number) => {
+    const maxX = (z - 1) * (window.innerWidth * 0.425); // 85vw / 2
+    const maxY = (z - 1) * (window.innerHeight * 0.4); // 80vh / 2
+    return {
+      x: Math.max(-maxX, Math.min(maxX, x)),
+      y: Math.max(-maxY, Math.min(maxY, y))
+    };
+  };
+
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    setZoom((z) => {
+      const next = Math.min(5, Math.max(1, z - e.deltaY * 0.001));
+      setPan((p) => clampPan(p.x, p.y, next));
+      return next;
+    });
+  };
 
   return (
     <div
@@ -721,21 +828,54 @@ function ProjectModal({
           {/* Image gallery */}
           {images.length > 0 && (
             <div className="relative w-full aspect-video bg-black/40 shrink-0 select-none">
-              <img
-                src={images[imgIdx].src}
-                alt={images[imgIdx].caption}
-                className={`w-full h-full object-cover cursor-zoom-in transition-opacity duration-150 ${
-                  imgLoading ? "opacity-40" : "opacity-100"
-                }`}
-                onLoad={() => setImgLoading(false)}
-                onError={() => setImgLoading(false)}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setLightboxOpen(true);
-                }}
-              />
+              {isVideo(images[imgIdx].src) ? (
+                <div
+                  className="absolute inset-0 cursor-pointer group/video"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxOpen(true);
+                  }}
+                >
+                  <video
+                    src={images[imgIdx].src}
+                    className={`w-full h-full object-cover transition-opacity duration-150 ${
+                      imgLoading ? "opacity-40" : "opacity-100"
+                    }`}
+                    loop
+                    muted
+                    playsInline
+                    onCanPlay={() => setImgLoading(false)}
+                    onError={() => setImgLoading(false)}
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-14 h-14 rounded-full bg-black/50 flex items-center justify-center group-hover/video:bg-primary transition-colors duration-300">
+                      <svg
+                        className="w-6 h-6 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <img
+                  src={images[imgIdx].src}
+                  alt={images[imgIdx].caption}
+                  className={`w-full h-full object-cover cursor-zoom-in transition-opacity duration-150 ${
+                    imgLoading ? "opacity-40" : "opacity-100"
+                  }`}
+                  onLoad={() => setImgLoading(false)}
+                  onError={() => setImgLoading(false)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxOpen(true);
+                  }}
+                />
+              )}
               {/* Loading spinner overlay */}
-              {imgLoading && (
+              {imgLoading && !isVideo(images[imgIdx].src) && (
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
                 </div>
@@ -916,25 +1056,88 @@ function ProjectModal({
               ‹
             </button>
           )}
+          {isVideo(images[imgIdx].src) ? (
+            <video
+              src={images[imgIdx].src}
+              className="max-w-[85vw] max-h-[80vh] rounded-lg shadow-2xl"
+              controls
+              autoPlay
+              loop
+              muted
+              playsInline
+              onCanPlay={() => setImgLoading(false)}
+              onClick={(e) => e.stopPropagation()}
+            />
+          ) : (
+            <div
+              className="relative overflow-hidden"
+              style={{
+                width: "85vw",
+                maxWidth: "1200px",
+                height: "80vh",
+                cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default"
+              }}
+              onWheel={handleWheel}
+              onMouseDown={(e) => {
+                if (zoom > 1) {
+                  setDragging(true);
+                  setDragStart({ x: e.clientX - pan.x, y: e.clientY - pan.y });
+                }
+              }}
+              onMouseMove={(e) => {
+                if (dragging) {
+                  const raw = {
+                    x: e.clientX - dragStart.x,
+                    y: e.clientY - dragStart.y
+                  };
+                  setPan(clampPan(raw.x, raw.y, zoom));
+                }
+              }}
+              onMouseUp={() => setDragging(false)}
+              onMouseLeave={() => setDragging(false)}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={images[imgIdx].src}
+                alt={images[imgIdx].caption}
+                className={`w-full h-full object-contain select-none transition-opacity duration-150 ${imgLoading ? "opacity-40" : "opacity-100"}`}
+                style={{
+                  transform: `scale(${zoom}) translate(${pan.x / zoom}px, ${pan.y / zoom}px)`,
+                  transformOrigin: "center",
+                  transition: dragging ? "none" : "transform 0.1s"
+                }}
+                onLoad={() => setImgLoading(false)}
+                onError={() => setImgLoading(false)}
+                draggable={false}
+              />
+            </div>
+          )}
 
-          <img
-            src={images[imgIdx].src}
-            alt={images[imgIdx].caption}
-            className={`max-w-[85vw] max-h-[80vh] object-contain rounded-lg shadow-2xl shrink-0 transition-opacity duration-150 ${
-              imgLoading ? "opacity-40" : "opacity-100"
-            }`}
-            onLoad={() => setImgLoading(false)}
-            onError={() => setImgLoading(false)}
-            onClick={(e) => e.stopPropagation()}
-          />
-
-          {imgLoading && (
+          {imgLoading && !isVideo(images[imgIdx].src) && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="w-10 h-10 border-2 border-white/20 border-t-white rounded-full animate-spin" />
             </div>
           )}
 
           <div className="flex flex-col items-center gap-3 mt-4 px-6 max-w-[85vw]">
+            {!isVideo(images[imgIdx].src) && (
+              <div className="flex items-center gap-3">
+                <span className="text-white/50 text-xs">
+                  Scroll to zoom · drag to pan
+                </span>
+                {zoom > 1 && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      resetZoom();
+                    }}
+                    className="text-xs text-white/70 border border-white/20 px-2 py-0.5 cursor-pointer rounded-full hover:border-white/50 transition-colors"
+                  >
+                    Reset zoom
+                  </button>
+                )}
+              </div>
+            )}
             {images.length > 1 && (
               <div className="flex gap-1.5">
                 {images.map((_, i) => (
