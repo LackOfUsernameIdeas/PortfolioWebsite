@@ -936,7 +936,7 @@ function ProjectModal({
             </div>
           )}
           <div className="px-6 pb-6 pt-1 sm:px-8 sm:pb-8 flex flex-col gap-6">
-            <div className="flex items-center justify-between mt-2">
+            <div className="flex items-center justify-between mt-1">
               <h2 className="text-2xl sm:text-3xl font-bold">
                 {project.title}
               </h2>
