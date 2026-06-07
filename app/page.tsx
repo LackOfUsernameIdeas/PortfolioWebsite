@@ -214,7 +214,7 @@ function HeroSection() {
           className={`${a ? "hero-2" : "opacity-0"} mt-6 text-lg sm:text-xl text-muted-foreground max-w-md leading-relaxed`}
         >
           Full-stack Software Developer | Building scalable web and mobile
-          applications with AI integration
+          applications
         </p>
         <div
           className={`${a ? "hero-3" : "opacity-0"} flex items-center gap-4 mt-10`}
@@ -315,9 +315,11 @@ const skills = [
       "Vite",
       "Tailwind CSS",
       "shadcn/ui",
+      "Chakra UI",
       "Bootstrap",
       "Three.js",
       "A-Frame",
+      "WebXR",
       "Expo Go"
     ]
   },
@@ -330,7 +332,9 @@ const skills = [
       "PostgreSQL",
       "Firebase",
       "Supabase",
-      "Socket.IO"
+      "Socket.IO",
+      "Google Cloud Run",
+      "Google Cloud Storage"
     ]
   },
   {
@@ -343,7 +347,6 @@ const skills = [
       "OpenCV",
       "PyNuitrack",
       "Nuitrack SDK",
-      "NumPy",
       "BeautifulSoup"
     ]
   },
@@ -354,10 +357,12 @@ const skills = [
       "Docker",
       "Android Studio",
       "Vitest",
+      "Cronjob",
       "YouTube API",
       "Spotify API",
       "TikTok API",
-      "OMDb API"
+      "OMDb API",
+      "Google Custom Search API"
     ]
   },
   {
@@ -368,7 +373,8 @@ const skills = [
       "Tkinter",
       "Pygame",
       "Orbbec Astra+ (3D Camera)",
-      "NeuroSky MindWave EEG"
+      "NeuroSky MindWave EEG",
+      "Meta Quest 2"
     ]
   }
 ];
