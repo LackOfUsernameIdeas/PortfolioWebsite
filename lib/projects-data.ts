@@ -137,7 +137,7 @@ Key algorithms include the **U.S. Navy body fat formula**, **Mifflin-St Jeor BMR
 - **React Native mobile app** (separate codebase) mirroring core web features
 - **GitHub branching strategy:** main, dev, and per-feature branches. Unit tests included.
 
-**Engineering notes:**
+**Development notes:**
 - One of the hardest problems was **prompt engineering:** early GPT-3.5 and Gemini builds generated objects and activities instead of food. Upgrading to **GPT-4 Turbo** and rewriting the entire prompt from scratch was the breakthrough
 - Gemini is accessed via **Vertex AI (Google Cloud)** because the Gemini API is unavailable in Bulgaria
 - Meal generation went through **two rejected APIs** (Spoonacular, then Edamam) before landing on AI - limited recipe variety and inability to represent Bulgarian cuisine were the dealbreakers`,
