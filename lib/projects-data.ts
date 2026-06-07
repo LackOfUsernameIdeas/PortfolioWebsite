@@ -130,7 +130,7 @@ Key algorithms include the **U.S. Navy body fat formula**, **Mifflin-St Jeor BMR
 - **Food ranking system** across 4 dedicated pages: sorted by calories, fat, carbs, and protein per 100g, with recipes, preparation steps, and nutritional values
 - **Weight Calculator page:** shows BMI range, ideal vs current weight, body fat %, lean mass, fat mass - all with day-over-day progress tracking
 - **User measurement flow:** height, weight, age, waist/hip/neck entered once per 24h; persisted via cookie if the user opts in, yesterday's values pre-filled via localStorage on any device
-- **Custom NutriFit API** (Node.js/Express + Firebase Admin SDK): proxies Fitness Calculator API calls server-side so the flood of per-page-load requests is reduced to one batch per day, regardless of whether the user stays on the page - data is safe in Firestore either way
+- **NutriFit API** (Node.js/Express + Firebase Admin SDK): proxies Fitness Calculator API calls server-side so the flood of per-page-load requests is reduced to one batch per day, regardless of whether the user stays on the page - data is safe in Firestore either way
 - **Firebase Admin SDK over client SDK:** after a month of debugging, discovered the client SDK was failing to reliably deliver data at scale; switching to Admin SDK via the Node.js backend resolved it entirely
 - **React Native mobile app** (separate codebase) mirroring core web features
 - **GitHub branching strategy:** main, dev, and per-feature branches. Unit tests included.

@@ -569,47 +569,47 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/nutrifit.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "NutriFit - platform that actively supports users in maintaining their optimal weight and healthy lifestyle"
     },
     {
       src: "/nutrifit2.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "ChatGPT vs Gemini AI deviation comparison panel. The overall score (e.g. 12.61% vs 33.50%) represents the platform-wide average absolute deviation - calculated by taking the absolute deviation of every meal plan generation ever stored in the database, across all users and all categories, and averaging the results into a single value. Deviations are treated as absolute values, meaning both undershooting and overshooting the user's nutritional limits count equally. Below that, two category-level breakdowns are shown for each model: average deviation (absolute difference from the user's defined limit per each category, in grams and %) and maximum deviation (the largest absolute overshoot or undershoot ever recorded per category), across Calories, Protein, Carbohydrates, and Fats."
     },
     {
       src: "/nutrifit3.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "Platform-wide user statistics dashboard showing average body metrics and nutrient intake split by gender (45 men, 36 women, 81 total), visualized as both a line chart and a bar chart."
     },
     {
       src: "/nutrifit4.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "Weight Calculator page showing the user's BMI (26.78 - overweight, healthy range 18.5–25), ideal weight (70.99kg, currently 11.01kg above), and body composition breakdown - body fat % (24.09%), fat mass (19.75kg), and lean mass (62.25kg). Each metric includes a day-over-day comparison against the previous entry."
     },
     {
       src: "/nutrifit5.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "Historical body composition charts tracking the user's daily progress over time - weight, BMI, body fat %, fat mass, lean mass, and kg above/below ideal weight."
     },
     {
       src: "/nutrifit6.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "Meal plan generation page - the user selects their activity level (6 levels), a calorie goal (7 presets from mild weight loss to extreme bulk, BMR value), and a diet type (Balanced, Low Fat, Low Carb, High Protein), which auto-fills the macro targets. The user can also specify foods to exclude and choose a cuisine (Bulgarian, Spanish, Italian, French). Submitting generates a meal plan via either OpenAI or Gemini."
     },
     {
       src: "/nutrifit7.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "AI-generated meal plan showing breakfast (1 dish) and lunch (starter, main, dessert) - each meal card displays a food image fetched via Google Custom Search API, weight in grams, and exact macros (calories, protein, carbs, fats), with a button linking to the preparation steps."
     },
     {
       src: "/nutrifit8.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "Dinner section (main + dessert) of the meal plan, followed by the daily macro totals - summed calories, protein, carbs, and fats across all meals - with Gemini's deviation shown per category in both absolute grams and percentage, indicating how far the generated plan strayed from the current user's defined limits."
     },
     {
       src: "/nutrifit9.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "Most recommended foods ranking - dishes sorted by how many times the system included them in generated meal plans across all users. The top entry expands to show full nutritional details (calories, macros, serving size) and a macro bar chart, with buttons to view ingredients and the recipe. The sidebar also shows the other 4 ranking pages (by calories, fats, carbs, protein)."
     },
     {
       src: "/nutrifit10.mov",
@@ -619,42 +619,42 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/nutrifit11.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "NutriFit mobile app - welcome screen, login form, and daily measurements input (height, age, weight, neck, waist, hip circumference) used to calculate body metrics."
     },
     {
       src: "/nutrifit12.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "Meal plan generation form - activity level selection (6 levels), calorie goal presets, diet type table with auto-filled macros, foods to exclude, cuisine selection, and generate buttons for OpenAI or Gemini - all the same as the web version."
     },
     {
       src: "/nutrifit13.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "Info tooltips on the meal plan form explaining activity levels (1–6) and diet types. Activity levels range from Level 1 (little to no exercise, e.g. short walk or light yoga) up to Level 6 (very intense daily training, e.g. marathon prep, 2hr cycling, weightlifting). Diet types cover Balanced (even macro distribution for general health), Low Fat (reduced fat for calorie control), Low Carb (minimized carbs with adequate protein and healthy fats), and High Protein (prioritizes protein intake, ideal for muscle development and strength training)."
     },
     {
       src: "/nutrifit14.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "Meal plan result - breakfast dishes with food images, weight, and macros, followed by daily macro totals with their deviations in absolute grams and percentage. This image also shows the diet type tooltip modal explaining each type in details."
     },
     {
       src: "/nutrifit15.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "Recipe modal showing ingredients and preparation steps for a selected dish, alongside the full daily macro summary with deviation per category (calories, protein, carbs, fats) in both absolute and percentage values."
     },
     {
       src: "/nutrifit16.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "Diagram of the NutriFit API data flow. The user's measurements (weight, age, gender, neck, hip, waist, height, goal) and activity level are sent to the `measurements/userData` endpoint, which batches all calculations into a single request to the Fitness Calculator API - covering body fat, daily calories, macros, ideal weight, and BMI. The response is processed by the NutriFit API and saved to Firestore (Firebase) under the `additionalUserData` collection, keyed by UID. Simultaneously, the user is redirected to `admin/default`. This architecture is designed to work only with a single API call per day."
     },
     {
       src: "/nutrifit17.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "Diagram of the meal plan generation flow. The user's preferences (excluded foods, cuisine, protein, diet type, carbs, fats, calories) are saved and fed into an AI prompt, which is sent to either the OpenAI API or the NutriFit API (Gemini via Vertex AI library). The raw response is cleaned into a structured meal plan object. Dish names from the response are then sent to the Google Custom Search API to fetch food images, which are injected back into the final meal plan rendered on the `admin/mealplan` page."
     },
     {
       src: "/nutrifitDB.png",
       caption:
-        "NutriFit - AI meal planning with GPT-4 & Gemini deviation analysis"
+        "Firestore database schema for NutriFit. Each user document is keyed by UID and stores gender and goal as top-level fields, with a `dataEntries` subcollection where each document is keyed by date (YYYY-MM-DD). Each daily entry holds body measurements (weight, waist, neck, hip, height, age), BMI data (bmi, health status, healthy range), perfect weight (ideal value and difference from current). Preferences are also stored (calories, nutrients per diet type), as well as the full meal plans for both OpenAI and Gemini (breakfast, lunch with appetizer/main/dessert, dinner) each with dish name, ingredients, instructions, image, recipe quantity, and deviations (absolute value, percentage, user limit) per macro category. Alongside, 'MacroNutrients' and 'DailyCalorieRequirements' are stored by being broken down across all 6 activity levels, diet types, and calorie goals (ExtremeLoss, MildLoss, Loss, Gain, MildGain, ExtremeGain)."
     }
   ],
   tikfluence: [
@@ -1100,7 +1100,7 @@ function ProjectModal({
               style={{
                 width: "85vw",
                 maxWidth: "1200px",
-                height: "80vh",
+                maxHeight: "80vh",
                 cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default"
               }}
               onWheel={handleWheel}
@@ -1148,7 +1148,7 @@ function ProjectModal({
           <div className="flex flex-col items-center gap-3 mt-4 px-6 max-w-[85vw]">
             {!isVideo(images[imgIdx].src) && (
               <div className="flex items-center gap-3">
-                <span className="text-white/50 text-xs">
+                <span className="text-white/50 text-sm">
                   Scroll to zoom · drag to pan
                 </span>
                 {zoom > 1 && (
@@ -1157,7 +1157,7 @@ function ProjectModal({
                       e.stopPropagation();
                       resetZoom();
                     }}
-                    className="text-xs text-white/70 border border-white/20 px-2 py-0.5 cursor-pointer rounded-full hover:border-white/50 transition-colors"
+                    className="text-sm text-white/70 border border-white/20 px-2 py-0.5 cursor-pointer rounded-full hover:border-white/50 transition-colors"
                   >
                     Reset zoom
                   </button>
