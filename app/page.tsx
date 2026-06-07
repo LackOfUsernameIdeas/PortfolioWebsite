@@ -1280,7 +1280,7 @@ function ProjectsSection() {
               <div className="w-12 h-12 rounded-full border-2 border-foreground/30 flex items-center justify-center mx-auto mb-4 group-hover:border-primary group-hover:text-primary transition-colors">
                 <span className="text-2xl">+</span>
               </div>
-              <h3 className="font-semibold">Start a new project with me</h3>
+              <h3 className="font-semibold">Collaborate on a New Project</h3>
             </div>
           </div>
         </div>
