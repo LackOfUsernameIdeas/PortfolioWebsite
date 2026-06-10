@@ -555,20 +555,152 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/mindreel.png",
       caption:
-        "MindReel - EEG-powered neuro-assistant with VR cinema and ML recommendation evaluation"
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
     },
     {
-      src: "https://i.imgur.com/kDtCfzJ.png",
+      src: "/mindreel1.png",
       caption:
-        "Live EEG brainwave visualisation (Delta, Theta, Alpha, Beta, Gamma)"
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
     },
     {
-      src: "https://i.imgur.com/8xCkGRH.png",
-      caption: "AI recommendation panel with Precision / Recall / F1 metrics"
+      src: "/mindreel2.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
     },
     {
-      src: "https://i.imgur.com/HJfXqWq.png",
-      caption: "VR cinema experience built with A-Frame & Three.js"
+      src: "/mindreel3.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel4.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel5.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel6.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel7.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel8.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel9.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel10.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel11.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel12.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel13.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel14.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel15.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel16.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel17.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel18.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel19.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel20.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel21.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel22.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel23.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel24.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel25.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel26.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel27.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel28.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+    },
+    {
+      src: "/mindreel29.png",
+      caption:
+        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
     }
   ],
   nutrifit: [
@@ -1035,7 +1167,7 @@ function ProjectModal({
                   >
                     <Download className="w-4 h-4" />
                     {doc.label}
-                    {doc.label !== "Schemes & Photos" && (
+                    {doc.label !== "All Schemes & Photos" && (
                       <>
                         <Languages className="w-4 h-4" />
                         <svg

@@ -113,7 +113,7 @@ Key algorithms include the **U.S. Navy body fat formula**, **Mifflin-St Jeor BMR
         icon: "docx"
       },
       {
-        label: "Schemes & Photos",
+        label: "All Schemes & Photos",
         filename: "schemes_and_photos.zip",
         icon: "zip"
       }
