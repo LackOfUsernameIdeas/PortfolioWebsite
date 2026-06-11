@@ -560,37 +560,37 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/mindreel1.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "Home page statistics displaying average machine learning evaluation metrics (Precision – 82.27% for last generation, 29.48% overall; Recall – 54.49%; F1 Score – 29.44%) across all users, alongside a book adaptations counter showing how many recommended books have been adapted into movies and series (360 movie adaptations, 133 series adaptations, 493 total)"
     },
     {
       src: "/mindreel2.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "Music statistics showing average Spotify popularity (63.50/100) and YouTube engagement metrics (403.6M views, 2.4M likes, 73.6K comments) fetched via the Spotify and YouTube APIs, followed by other platform-wide stats including total users (20), most recommended genre (Drama), average box office ($90,851,285), and total awards count (21,380)"
     },
     {
       src: "/mindreel3.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "The New Recommendations page entry point, where the user selects the type of content they want to explore - Movies & Series, Books, or Music - before being guided through a preference questionnaire that collects data for the AI prompt"
     },
     {
-      src: "/mindreel4.png",
+      src: "/mindreel4.mov",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "Full end-to-end walkthrough of the EEG analysis session - the NeuroSky MindWave Mobile 2 headset is placed on the head and connected via Bluetooth, after which the user runs a purpose-built Python .exe application that establishes a Socket.IO connection with the MindReel API and begins transmitting the raw brainwave data in real time. Once the connection is confirmed, the live brain activity dashboard activates, displaying the Attention and Meditation meter values as circular gauges, a combined area chart tracking both metrics over time, and eight individual brainwave frequency charts (Delta, Theta, Low Alpha, High Alpha, Low Beta, High Beta, Low Gamma, High Gamma) - all streamed for one minute until the session ends and the collected data is forwarded to the AI for recommendation generation"
     },
     {
-      src: "/mindreel5.png",
+      src: "/mindreel5.mov",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "Five generated movies and series recommendations produced as a result of the EEG analysis - each card displays the title in Bulgarian and English, genre, duration, release year, IMDb rating and vote count, Metascore, Rotten Tomatoes score, a description, plot summary, and additional metadata including director, writers, cast, release date, language, country, awards, and box office revenue. There is a diagnostic section that explains why the recommendation serves as a corrective for the user's recorded psycho-emotional state. Each card includes a trailer button that opens an embedded YouTube player in a modal, and a bookmark icon for adding or removing the title from the personal watchlist, confirmed by a toast notification"
     },
     {
       src: "/mindreel6.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "A recommendation card generated via the standard preference questionnaire, following the same structure as the EEG-based results. There is a section explaining why the title was recommended based on the inputted individual preferences"
     },
     {
       src: "/mindreel7.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "Relevance analysis panel for the last recommendation generation - each recommendation is displayed as a navigable card (with previous/next arrows) showing its relevance classification (Relevant/Irrelevant) and a breakdown score across six categories: Genres, Type, Mood, Watch Time, Creation Period, and Target Audience, each scored individually and summed into a total relevance score (e.g. 7/7). Below, a summary row shows the number of relevant recommendations, total recommendations generated, Precision percentage, and average relevance score for the generation"
     },
     {
       src: "/mindreel8.png",
