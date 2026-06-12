@@ -585,7 +585,7 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/mindreel6.png",
       caption:
-        "A recommendation card generated via the standard preference questionnaire, following the same structure as the EEG-based results. There is a section explaining why the title was recommended based on the inputted individual preferences"
+        "A recommendation card generated via the standard preference questionnaire, following the same structure as the EEG-based results. There is a section explaining why the movie/series was recommended based on the inputted individual preferences"
     },
     {
       src: "/mindreel7.png",
@@ -595,12 +595,12 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/mindreel8.png",
       caption:
-        "A book recommendation card displaying data scraped from Goodreads — showing the cover image, genres, Goodreads rating (4.24 / 1,204,089 votes), explanation of why the book was recommended, description, characters, literary awards, adaptations (movies, series, theatre, and more), is the book part of a series, and additional metadata such as origin, language, cover type, setting, publisher, publication date, and ISBN"
+        "A book recommendation card displaying data scraped from Goodreads - showing the cover image, genres, Goodreads rating (4.24 / 1,204,089 votes), explanation of why the book was recommended, description, characters, literary awards, adaptations (movies, series, theatre, and more), is the book part of a series, and additional metadata such as origin, language, cover type, setting, publisher, publication date, and ISBN"
     },
     {
       src: "/mindreel9.png",
       caption:
-        "A music recommendation card displaying data fetched from the Spotify and YouTube APIs — showing the thumbnail with a play button for the YouTube video, Spotify popularity score (91/100) with a direct listening link, YouTube views (383.0M) and likes (2.0M), an explanation of why the song was recommended, description, and additional metadata such as artists, album, album type, duration, release date, tracks in album, and Spotify popularity"
+        "A music recommendation card displaying data fetched from the Spotify and YouTube APIs - showing the thumbnail with a play button for the YouTube video, Spotify popularity score (91/100) with a direct listening link, YouTube views (383.0M) and likes (2.0M), an explanation of why the song was recommended, description, and additional metadata such as artists, album, album type, duration, release date, tracks in album, and Spotify popularity"
     },
     {
       src: "/mindreel10.png",
@@ -610,42 +610,42 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/mindreel11.png",
       caption:
-        'Inside the A-Frame virtual cinema hall — featuring rows of red seats, a ceiling projector and spotlights, a popcorn machine with yellow lights on the left, and navigation arrows for switching between recommendations, with the "Home Alone" recommendation card displayed on the central screen'
+        'Inside the A-Frame virtual cinema hall - featuring rows of red seats, a ceiling projector and spotlights, a popcorn machine with yellow lights on the left, and navigation arrows for switching between recommendations, with the "Home Alone" recommendation card displayed on the central screen'
     },
     {
       src: "/mindreel12.png",
       caption:
-        "There are two side screens — the left displaying the per-recommendation relevance breakdown by criteria (Genres, Type, Mood, Time, Age, Target Group) with a score of 6/7, and the right showing the Overall Analysis panel with 4 relevant recommendations out of 5 generated, 80.00% Precision, and an average relevance score of 5.60"
+        "There are two side screens - the left displaying the per-recommendation relevance breakdown by criteria (Genres, Type, Mood, Time, Age, Target Group) with a score of 6/7, and the right showing the Overall Analysis panel with 4 relevant recommendations out of 5 generated, 80.00% Precision, and an average relevance score of 5.60"
     },
     {
       src: "/mindreel13.png",
       caption:
-        "Trailer playback view inside the VR scene — the movie trailer is downloaded via yt-dlp, stored in Google Cloud Storage, and loaded as a <video> element rendered on the cinema screen, with playback controls (play, replay, progress bar at 0:59/2:13) and a close button"
+        "Trailer playback view inside the VR scene - the movie trailer is downloaded via yt-dlp, stored in Google Cloud Storage, and loaded as a <video> element rendered on the cinema screen, with playback controls (play, replay, progress bar at 0:59/2:13) and a close button"
     },
     {
       src: "/mindreel14.png",
       caption:
-        "The exit door of the virtual cinema hall — a 3D double door with a glowing EXIT sign above it, rendered as part of the immersive cinema environment built in A-Frame"
+        "The exit door of the virtual cinema hall - a 3D double door with a glowing EXIT sign above it, rendered as part of the immersive cinema environment built in A-Frame"
     },
     {
       src: "/mindreel15.png",
       caption:
-        "AI Analyzer page showing the user-specific machine learning metrics — Precision (34.28%, 194 relevant out of 566 total generated), Recall/TPR (70.80%, 194 out of 274 relevant recommendations in the system sent to the user), and F1 Score (46.19%, balance between Precision and Recall) — alongside the four statistics used in their calculation: total recommendations generated (TP+FP: 566), relevant among generated (TP: 194), total recommendations in platform (TP+TN+FP+FN: 792), and total relevant recommendations in platform (274)"
+        "AI Analyzer page showing the user-specific machine learning metrics - Precision (34.28%, 194 relevant out of 566 total generated), Recall/TPR (70.80%, 194 out of 274 relevant recommendations in the system sent to the user), and F1 Score (46.19%, balance between Precision and Recall) - alongside the four statistics used in their calculation: total recommendations generated (TP+FP: 566), relevant among generated (TP: 194), total recommendations in platform (TP+TN+FP+FN: 792), and total relevant recommendations in platform (274)"
     },
     {
       src: "/mindreel16.png",
       caption:
-        "AI Analyzer page showing two paginated line charts tracking the average Precision, Recall, and F1 Score over time (February–March 2025) — the left chart represents values across all platform users, while the right chart tracks the same metrics for the individual user, allowing direct comparison between personal AI behavior and the overall platform trend"
+        "AI Analyzer page showing two paginated line charts tracking the average Precision, Recall, and F1 Score over time (February–March 2025) - the left chart represents values across all platform users, while the right chart tracks the same metrics for the individual user, allowing direct comparison between personal AI behavior and the overall platform trend"
     },
     {
       src: "/mindreel17.png",
       caption:
-        "The visualization is showing the extended recommendation metrics — FPR (71.81%, 372 irrelevant recommendations sent out of 518 total irrelevant in the platform), Specificity (28.19%), FNR (29.2%), and Accuracy (42.93%) — with a detailed breakdown panel for the currently selected metric (FPR) displaying its formula, progress bar, and the TP/FP/FN/TN counts, alongside a legend explaining all four types of AI predictions"
+        "The visualization is showing the extended recommendation metrics - FPR (71.81%, 372 irrelevant recommendations sent out of 518 total irrelevant in the platform), Specificity (28.19%), FNR (29.2%), and Accuracy (42.93%) - with a detailed breakdown panel for the currently selected metric (FPR) displaying its formula, progress bar, and the TP/FP/FN/TN counts, alongside a legend explaining all four types of AI predictions"
     },
     {
       src: "/mindreel18.png",
       caption:
-        "The Watchlist page displaying saved movies and series recommendations as cards with poster and metadata — with the filter panel on the right, offering filtering by genre, duration, type (movies or series), actors, directors, writers, languages, IMDb rating, Metascore, box office, and release year, with Apply and Reset buttons. The Readlist and Listenlist pages have the same structure and filtering options, but for books and music respectively"
+        "The Watchlist page displaying saved movies and series recommendations as cards with poster and metadata - with the filter panel on the right, offering filtering by genre, duration, type (movies or series), actors, directors, writers, languages, IMDb rating, Metascore, box office, and release year, with Apply and Reset buttons. The Readlist and Listenlist pages have the same structure and filtering options, but for books and music respectively"
     },
     {
       src: "/mindreel19.png",
@@ -655,52 +655,42 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/mindreel20.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "A reference table of the five EEG brain wave frequency bands with distributed signal power across the ranges, expressed as Power Spectral Density (PSD), used in the application's EEG analysis. It includes each wave name, frequency range, associated psycho-physiological states, and a visual example of the filtered waveform corresponding to the level of brain activity. Delta: 0-4 Hz - deep sleep; Theta: 4-7 Hz - creativity and hypnagogic state; Alpha: 8-12 Hz - calm and balanced state with normal cognitive function; Beta: 12-30 Hz - active thinking and cognitive processing; Gamma: 30-100+ Hz - intense cognitive activity and potential cognitive overload"
     },
     {
       src: "/mindreel21.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "The Confusion Matrix used in the application to evaluate AI recommendation behavior - rows represent the actual relevance of recommendations (positive/relevant, negative/irrelevant), columns represent the AI's predictions (positive/negative), and the four resulting cells define TP (relevant and recommended), FP (irrelevant but recommended), FN (relevant but not recommended), and TN (irrelevant and not recommended). The derived metrics - Precision (share of recommended items that are actually relevant), Recall/TPR (share of all relevant items that were recommended), Specificity/TNR (share of all irrelevant items that were correctly not recommended), False Positive Rate (share of irrelevant items that were incorrectly recommended), False Negative Rate (share of relevant items that were incorrectly not recommended), and Accuracy (share of all correct predictions out of all predictions made) - are shown alongside the complementary relationships TPR + FNR = 1 and TNR + FPR = 1"
     },
     {
       src: "/mindreel22.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "Diagram of the movies and series recommendation data flow for the `app/recommendations/movies_series` page: The user's preferences (genres, mood, free time, engagement level, target audience, creation time, type (movies or series), actors/directors/writers, action pace, themes) are saved to the MindReel DB and sent to the `/get-model-response` endpoint, where LangChain selects the AI model and returns a raw response, which is cleaned and processed into a structured JSON result. Each title's IMDb ID is then retrieved via the Google Custom Search JSON API, and full metadata (title, year, director, actors, writers, genre, ratings, awards, plot, revenue) is fetched from the OMDb API and saved to the database. In parallel, the AI analysis for the current generation is composed based on the preferences and recommendations - covering criteria scoring, average relevance calculation, and Precision. The final result is returned and visualized for the user"
     },
     {
       src: "/mindreel23.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "Diagram of the relevance algorithm flow: The React client sends a separate request for each recommendation, passing the user's last entered preferences to the MindReel API, which checks whether the recommendation is relevant or not by scoring it against six criteria - genres (max 2 points), type (max 1 point), mood (max 1 point), creation time (max 1 point), target audience (max 1 point), and free time (max 1 point). The points are summed into a final relevance score out of 7, and if the total reaches at least 5 points the recommendation is classified as relevant. The result is returned to the React client and further processed as part of the movies and series recommendation generation flow"
     },
     {
       src: "/mindreel24.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "Diagram of the trailer extraction flow for the VR cinema option in `app/recommendations/movies_series`: After recommendations are generated (per the movies and series recommendation data flow), the YouTube ID (URL) of each trailer is retrieved from the YouTube API, then saved to the MindReel DB. The YouTube URL is then sent to Google Cloud Run, which executes the `yt-dlp` code to download the video and store it in Google Cloud Storage. The resulting public URL (`https://storage.googleapis.com/BUCKET_NAME/video.mp4`) is returned to the application and loaded as a `<video>` element in the A-Frame VR scene"
     },
     {
       src: "/mindreel25.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "Diagram of the book recommendation data flow for the `app/recommendations/books` page: The user's preferences (genres, authors, engagement level, target audience, origin, mood, action pace, themes) are saved to the MindReel DB and sent to the `/get-model-response` endpoint, where LangChain selects the AI model (GPT-4-Turbo) and returns a raw response, processed into a structured JSON result. Depending on the `.env` configuration, each book's ID is then retrieved via the Google Custom Search JSON API. After that, the full metadata (title, year, author, description, adaptations, ratings, publisher, awards, characters, genre, page count) is fetched from the respective source via either the Goodreads scraping mechanism (MindReel API with Beautiful Soup) or the Google Books API, and saved to the database, before the final result is returned and visualized for the user"
     },
     {
       src: "/mindreel26.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "Diagram of the Goodreads scraping mechanism: The React client sends a request with the book's Goodreads ID to the MindReel API, which executes scraper.py - parsing the HTML of the page via Beautiful Soup and locating each data field by its HTML tag. The extracted fields (title, original title, description, genres, page count, book format, setting, collaborators, characters, rating, number of ratings, number of reviews, first publication info, publisher, cover image, series, ISBN-13, ISBN-10, ASIN, language, publication date) are returned as a JSON response from scraper.py back to the MindReel API, which forwards the response to the React client, where it is further processed as part of the book recommendation generation flow"
     },
     {
       src: "/mindreel27.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
-    },
-    {
-      src: "/mindreel28.png",
-      caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
-    },
-    {
-      src: "/mindreel29.png",
-      caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "Diagram of the music recommendation data flow for the `app/recommendations/music` page: The user's preferences (genres, mood, producers/composers, lyrics style, target audience, creation time, countries, performers/groups, tempo, themes) are saved to the MindReel DB and sent to the `/get-model-response` endpoint, where LangChain selects the AI model and returns a raw response, processed into a structured JSON result. For each recommended song, a Spotify Access Token is obtained first, then song data is fetched in parallel from both the Spotify API and the YouTube API, with all metadata (title, release date, artists, popularity, views, likes, album details, explanation of why it was recommended, description, video link) saved to the database alongside the AI analysis, before the final result is returned and visualized for the user"
     }
   ],
   nutrifit: [
