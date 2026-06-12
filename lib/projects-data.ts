@@ -49,7 +49,7 @@ Key algorithms include the **U.S. Navy body fat formula**, **Mifflin-St Jeor BMR
       "OpenCV",
       "PyNuitrack",
       "Tailwind CSS",
-      "ShadCN/UI",
+      "shadcn/ui",
       "Vitest"
     ],
     githubUrl: "https://github.com/LackOfUsernameIdeas/Mobilis",
@@ -90,7 +90,7 @@ Key algorithms include the **U.S. Navy body fat formula**, **Mifflin-St Jeor BMR
       "Python",
       "Vite",
       "Node.js",
-      "ExpressJS",
+      "Express.js",
       "MySQL",
       "Tailwind CSS",
       "shadcn/ui",
@@ -155,7 +155,7 @@ Key algorithms include the **U.S. Navy body fat formula**, **Mifflin-St Jeor BMR
 - Gemini is accessed via **Vertex AI (Google Cloud)** because the Gemini API is unavailable in Bulgaria
 - Meal generation went through **two rejected APIs** (Spoonacular, then Edamam) before landing on AI - limited recipe variety and inability to represent Bulgarian cuisine were the dealbreakers`,
     technologies: [
-      "ReactJS",
+      "React",
       "TypeScript",
       "Node.js",
       "Express.js",
@@ -167,8 +167,8 @@ Key algorithms include the **U.S. Navy body fat formula**, **Mifflin-St Jeor BMR
       "Vertex AI (Gemini Pro)",
       "Google Custom Search API",
       "Fitness Calculator API",
-      "Chakra-UI",
-      "React Spring",
+      "Chakra UI",
+      "react-spring",
       "Galio"
     ],
     githubUrl: "https://github.com/LackOfUsernameIdeas/NutriFit",

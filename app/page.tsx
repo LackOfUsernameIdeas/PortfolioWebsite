@@ -345,9 +345,10 @@ const skills = [
       "Vertex AI",
       "LangChain",
       "OpenCV",
+      "NumPy",
       "PyNuitrack",
       "Nuitrack SDK",
-      "BeautifulSoup"
+      "Beautiful Soup"
     ]
   },
   {
