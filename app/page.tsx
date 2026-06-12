@@ -580,7 +580,7 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/mindreel5.mov",
       caption:
-        "Five generated movies and series recommendations produced as a result of the EEG analysis - each card displays the title in Bulgarian and English, genre, duration, release year, IMDb rating and vote count, Metascore, Rotten Tomatoes score, a description, plot summary, and additional metadata including director, writers, cast, release date, language, country, awards, and box office revenue. There is a diagnostic section that explains why the recommendation serves as a corrective for the user's recorded psycho-emotional state. Each card includes a trailer button that opens an embedded YouTube player in a modal, and a bookmark icon for adding or removing the title from the personal watchlist, confirmed by a toast notification"
+        "Five generated movies and series recommendations produced as a result of the EEG analysis - each card displays the title in Bulgarian and English, genre, duration, release year, IMDb rating and vote count, Metascore, Rotten Tomatoes score, description, plot summary, and additional metadata including director, writers, cast, release date, language, country, awards, and box office revenue. There is a diagnostic section that explains why the recommendation serves as a corrective for the user's recorded psycho-emotional state. Each card includes a trailer button that opens an embedded YouTube player in a modal, and a bookmark icon for adding or removing the title from the personal watchlist"
     },
     {
       src: "/mindreel6.png",
@@ -595,62 +595,62 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/mindreel8.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "A book recommendation card displaying data scraped from Goodreads — showing the cover image, genres, Goodreads rating (4.24 / 1,204,089 votes), explanation of why the book was recommended, description, characters, literary awards, adaptations (movies, series, theatre, and more), is the book part of a series, and additional metadata such as origin, language, cover type, setting, publisher, publication date, and ISBN"
     },
     {
       src: "/mindreel9.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "A music recommendation card displaying data fetched from the Spotify and YouTube APIs — showing the thumbnail with a play button for the YouTube video, Spotify popularity score (91/100) with a direct listening link, YouTube views (383.0M) and likes (2.0M), an explanation of why the song was recommended, description, and additional metadata such as artists, album, album type, duration, release date, tracks in album, and Spotify popularity"
     },
     {
       src: "/mindreel10.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "The VR cinema page showing the entry button to the A-Frame virtual scene, alongside a keyboard and mouse controls reference panel (WASD and arrow keys for navigation, left mouse button drag for rotation)"
     },
     {
       src: "/mindreel11.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        'Inside the A-Frame virtual cinema hall — featuring rows of red seats, a ceiling projector and spotlights, a popcorn machine with yellow lights on the left, and navigation arrows for switching between recommendations, with the "Home Alone" recommendation card displayed on the central screen'
     },
     {
       src: "/mindreel12.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "There are two side screens — the left displaying the per-recommendation relevance breakdown by criteria (Genres, Type, Mood, Time, Age, Target Group) with a score of 6/7, and the right showing the Overall Analysis panel with 4 relevant recommendations out of 5 generated, 80.00% Precision, and an average relevance score of 5.60"
     },
     {
       src: "/mindreel13.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "Trailer playback view inside the VR scene — the movie trailer is downloaded via yt-dlp, stored in Google Cloud Storage, and loaded as a <video> element rendered on the cinema screen, with playback controls (play, replay, progress bar at 0:59/2:13) and a close button"
     },
     {
       src: "/mindreel14.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "The exit door of the virtual cinema hall — a 3D double door with a glowing EXIT sign above it, rendered as part of the immersive cinema environment built in A-Frame"
     },
     {
       src: "/mindreel15.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "AI Analyzer page showing the user-specific machine learning metrics — Precision (34.28%, 194 relevant out of 566 total generated), Recall/TPR (70.80%, 194 out of 274 relevant recommendations in the system sent to the user), and F1 Score (46.19%, balance between Precision and Recall) — alongside the four statistics used in their calculation: total recommendations generated (TP+FP: 566), relevant among generated (TP: 194), total recommendations in platform (TP+TN+FP+FN: 792), and total relevant recommendations in platform (274)"
     },
     {
       src: "/mindreel16.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "AI Analyzer page showing two paginated line charts tracking the average Precision, Recall, and F1 Score over time (February–March 2025) — the left chart represents values across all platform users, while the right chart tracks the same metrics for the individual user, allowing direct comparison between personal AI behavior and the overall platform trend"
     },
     {
       src: "/mindreel17.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "The visualization is showing the extended recommendation metrics — FPR (71.81%, 372 irrelevant recommendations sent out of 518 total irrelevant in the platform), Specificity (28.19%), FNR (29.2%), and Accuracy (42.93%) — with a detailed breakdown panel for the currently selected metric (FPR) displaying its formula, progress bar, and the TP/FP/FN/TN counts, alongside a legend explaining all four types of AI predictions"
     },
     {
       src: "/mindreel18.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "The Watchlist page displaying saved movies and series recommendations as cards with poster and metadata — with the filter panel on the right, offering filtering by genre, duration, type (movies or series), actors, directors, writers, languages, IMDb rating, Metascore, box office, and release year, with Apply and Reset buttons. The Readlist and Listenlist pages have the same structure and filtering options, but for books and music respectively"
     },
     {
       src: "/mindreel19.png",
       caption:
-        "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs"
+        "Individual statistics page showing four sections: a paginated table of the most frequently recommended movies and series (565 total) with prosperity rating, box office, and Oscar wins; a top directors/actors/writers table ranked by recommendation count with average IMDb and Rotten Tomatoes ratings; a bar chart of the user's most recommended genres; and a summary count of total recommendations split by movies (359), series (206), and combined (565)"
     },
     {
       src: "/mindreel20.png",
