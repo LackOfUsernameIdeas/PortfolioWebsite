@@ -1079,30 +1079,45 @@ function ProjectModal({
               {project.shortDescription}
             </p>
 
-            <div className="space-b-2">
+            <div className="space-y-2">
               {project.fullDescription
                 .trim()
                 .split("\n")
-                .map((line, i) =>
-                  line.trim() === "" ? (
-                    <div key={i} className="h-2" />
-                  ) : line.trim().startsWith("-") ? (
-                    <div
-                      key={i}
-                      className="flex items-start gap-2 text-sm text-muted-foreground"
-                    >
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                      <span>{renderBold(line.replace(/^-\s*/, ""))}</span>
-                    </div>
-                  ) : (
+                .map((line, i) => {
+                  const trimmed = line.trim();
+                  if (trimmed === "") {
+                    return <div key={i} className="h-2" />;
+                  }
+                  if (trimmed.startsWith("-")) {
+                    return (
+                      <div
+                        key={i}
+                        className="flex items-start gap-2 text-sm text-muted-foreground"
+                      >
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                        <span>{renderBold(trimmed.replace(/^-\s*/, ""))}</span>
+                      </div>
+                    );
+                  }
+                  if (trimmed.startsWith(">")) {
+                    return (
+                      <p
+                        key={i}
+                        className="text-sm text-muted-foreground leading-relaxed pl-3.5"
+                      >
+                        {renderBold(trimmed.replace(/^>\s*/, ""))}
+                      </p>
+                    );
+                  }
+                  return (
                     <p
                       key={i}
                       className="text-sm text-muted-foreground leading-relaxed"
                     >
-                      {renderBold(line.trim())}
+                      {renderBold(trimmed)}
                     </p>
-                  )
-                )}
+                  );
+                })}
             </div>
             <div>
               <h3 className="text-sm font-semibold mb-2 flex items-center gap-1.5">
