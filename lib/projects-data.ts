@@ -24,18 +24,25 @@ export const projects: Project[] = [
     id: "mobilis",
     title: "Mobilis",
     shortDescription:
-      "Personalized fitness & nutrition platform using AI, 3D posture analysis, and medical-grade body composition algorithms",
-    fullDescription: `Mobilis is a comprehensive health platform that analyzes user **body composition (BMI, BF%, LBM, BMR, TDEE)** combined with personal metrics and uses a **scientific recommendation algorithm** to determine the optimal fitness goal for each user.
+      "Personalized fitness & nutrition platform that analyzes body composition and personal metrics using scientific algorithms to deliver meal plans, workout recommendations, and real-time 3D posture correction via depth camera",
+    fullDescription: `**Mobilis** is a comprehensive health platform that analyzes **characteristics of the users' body condition** (BMI – body mass index, body composition – ratio of body fat to muscle mass, BMR – basal metabolic rate, TDEE – total daily energy expenditure) combined with personal metrics (height, gender, age, weight, activity level, neck/waist/hip measurements) and uses a **goal selection algorithm** to determine **the optimal fitness goal** for each user to follow, detecting critical health states and providing workout and nutrition recommendations accordingly. A distinctive feature of the platform is **the corrective exercise program** aimed at **improving postural health**, which uses the Orbbec Astra+ 3D camera and specialized algorithms for real-time tracking and analysis of body movements and posture.
 
 **Core features:**
-- **AI-generated personalized meal plans and workout recommendations** (fitness, calisthenics, yoga) via OpenAI API
-- **3D real-time posture correction** using the Orbbec Astra+ depth camera with Nuitrack SDK and custom skeletal tracking algorithms
-- **Weight forecast engine:** projects when the user will hit their target weight, updated dynamically based on daily logged measurements
-- **Nearly 180 unit tests** across calorie calculation, health metrics, measurements, nutritional profiling, and more
-- **Scientific macronutrient distribution** (WHO/EFSA-based) tailored to 8 different goals: Cut, Aggressive Cut, Lean Bulk, Dirty Bulk, Recomposition, Aesthetic, Strength, Maintenance
-- **PostgreSQL + Supabase** backend, **Next.js** frontend with full TypeScript
+- **AI-generated personalized meal plans and workout recommendations** (fitness, calisthenics, yoga) via **OpenAI API** (GPT-5.2, chosen after extensive benchmarking against GPT-4o), including pre/post-workout meals and optional intermediate snacks — each with nutritional values, ingredients, recipes, and suggested consumption times
+- **3D real-time posture correction** using the **Orbbec Astra+ depth camera** with **Nuitrack SDK** and **PyNuitrack**, featuring a **custom calibration process** that computes personalized skeletal tolerances based on individual proportions (arm length, shoulder/hip width, leg length). A **voice assistant** (OpenAI TTS, gpt-4o-mini-tts) dictates exercise instructions step by step in Bulgarian
+- **Posture checking algorithm** using **relative skeleton normalization** (torso as origin), **pose checks** (arm/leg/shoulder/spine/pelvis/head positions via joint coordinates), and **angle checks** via **vector algebra** (arm elevation, knee angle, elbow angle). A step is completed only when overall accuracy exceeds **80%** and the correct pose is held for the required duration without interruption
+- **Weight forecast engine:** projects when the user will reach their target weight based on goal-specific caloric deficit/surplus, updated dynamically based on daily logged measurements and training frequency
+- **Scientific macronutrient distribution** (WHO/EFSA-based, with elevated protein ranges for active users) tailored to **8 different goals:** Cut, Aggressive Cut, Lean Bulk, Dirty Bulk, Recomposition, Aesthetic, Strength, Maintenance
+- **Nearly 180 unit tests** across calorie calculation, health metrics, measurements, nutritional profiling, recommended goal logic, cookies, and save functions (Vitest)
+- **JWT + HMAC/SHA-256 authentication** via Supabase Auth and three distinct Supabase client types (Browser, Server, Service Role) used contextually across the Next.js architecture
+- **Trello**-managed task distribution and **GitHub branching strategy** (main, dev, per-feature branches) throughout development
 
-Key algorithms include the **U.S. Navy body fat formula**, **Mifflin-St Jeor BMR**, and a **multi-priority goal selection algorithm** that detects critical health states and adjusts recommendations accordingly.`,
+Key algorithms include the **U.S. Navy body fat formula**, **Mifflin-St Jeor BMR**, a **multi-priority goal selection algorithm**, and a **3D-to-2D perspective projection** (project_world_to_screen()) for rendering the skeleton overlay on the OpenCV video stream regardless of the user's distance from the camera.
+
+**Development notes:**
+- The posture program's 7 exercises were selected in **consultation with kinesiotherapy specialists** to ensure they address contemporary postural issues (forward head posture, rounded shoulders, lower back instability) and can be performed without equipment
+- After benchmarking multiple models, **GPT-5.2** proved the most reliable for generating relevant, logically connected fitness and nutrition recommendations — GPT-4o was initially preferred due to prior experience, but its output was not sufficiently relevant
+- The forecast engine accounts for **training frequency** (user-specified training days) as an additional factor, making weight change projections closer to real-world outcomes`,
     technologies: [
       "Next.js",
       "React",
