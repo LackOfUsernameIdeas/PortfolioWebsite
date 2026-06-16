@@ -139,7 +139,7 @@ export const projects: Project[] = [
     shortDescription:
       "A modern platform that takes advantage of the power of GPT-4 Turbo & Gemini Pro to actively support users in maintaining their optimal weight and healthy lifestyle",
     fullDescription: `**NutriFit** is an integrated web and mobile nutrition platform focused entirely on **AI-driven meal planning** - the project that later inspired **Mobilis**, where the concept expanded to include movement and physical activity. NutriFit's core idea is to make **two AI models generate a truly personalized, nutritionally accurate meal plan**, measure how far they deviate from the user's defined limits, and compare their performance against each other.
-
+ 
 **Core features:**
 - **Meal generation:** full daily menus with breakfast, lunch (starter + main + dessert), and dinner - each with exact macros, ingredients, and recipes. Food images are fetched via **Google Custom Search API** with custom-configured Search Engines
 - **AI deviation algorithm:** measures how closely **ChatGPT vs Gemini** adhere to user-defined nutritional limits - tracking average deviation %, max deviation per category (calories, protein, fat, carbs), and overall AI deviation score
@@ -148,13 +148,12 @@ export const projects: Project[] = [
 - **Weight Calculator page:** shows BMI range, ideal vs current weight, body fat %, lean mass, fat mass - all with day-over-day progress tracking
 - **User measurement flow:** height, weight, age, waist/hip/neck entered once per 24h; persisted via cookie if the user opts in, yesterday's values pre-filled via localStorage on any device
 - **NutriFit API** (Node.js/Express + Firebase Admin SDK): proxies **Fitness Calculator API** calls server-side so the flood of per-page-load requests is reduced to one batch per day, regardless of whether the user stays on the page - data is safe in Firestore either way
-- **Firebase Admin SDK over client SDK:** after a month of debugging, discovered the client SDK was failing to reliably deliver data at scale; switching to **Admin SDK** via the Node.js backend resolved it entirely
 - **Food ranking system** across 4 dedicated pages: sorted by calories, fat, carbs, and protein per 100g, with recipes, preparation steps, and nutritional values
 - **React Native mobile app** (separate codebase) mirroring core web features
-- **GitHub branching strategy:** main, dev, and per-feature branches
-- **Unit tests included**
-
+- **Unit tests included** and **GitHub branching strategy** (main, dev, per-feature branches)
+ 
 **Development notes:**
+- After a month of debugging, the **Firebase client SDK** was found to be failing to reliably deliver data at scale; switching to the **Firebase Admin SDK** via the Node.js backend resolved it entirely
 - One of the hardest problems was **prompt engineering:** early GPT-3.5 and Gemini builds generated objects and activities instead of food. Upgrading to **GPT-4 Turbo** and rewriting the entire prompt from scratch was the breakthrough
 - Gemini is accessed via **Vertex AI (Google Cloud)** because the Gemini API is unavailable in Bulgaria
 - Meal generation went through **two rejected APIs** (Spoonacular, then Edamam) before landing on AI - limited recipe variety and inability to represent Bulgarian cuisine were the dealbreakers`,
@@ -193,9 +192,9 @@ export const projects: Project[] = [
     shortDescription:
       "Data analytics platform that proves TikTok's influence on songs' popularity, with different stats and real-time personal profile information",
     fullDescription: `**TikFluence** was my **first serious project**, built primarily as a **learning exercise** to get comfortable working with the technologies involved. The core idea explores a real phenomenon: when a song gets used repeatedly across TikTok videos, the platform's exposure gradually pushes up that song's popularity on **Spotify and YouTube** over time - TikTok acts as a launchpad that influences a track's trajectory across other music platforms.
-
+ 
 **Note:** The live demo is visitable but **some features may not function** as the project is **no longer actively maintained**.
-
+ 
 **Core features:**
 - **Influence Algorithm:** identifies songs whose **TikTok popularity** peak predates their **Spotify peak** - proving cross-platform influence. One noticeable constraint is that Spotify doesn't expose raw play counts, only a **proprietary 0-100 popularity score** - understanding and working around this was essential to making the algorithm applicable
 - **Growth Algorithm:** flags songs that are currently surging (last 2 days' popularity > all-time average)
@@ -203,8 +202,10 @@ export const projects: Project[] = [
 - **Per-song stats pages:** TikTok videos count, YouTube views, Spotify popularity (0-100 scale), historical popularity change charts
 - **Nearly 60 interactive statistics** and diagrams across the platform
 - **"My Statistics" page:** live personal TikTok profile stats (followers, likes, following, videos) updated every minute via **Socket.IO + proxy server** (CORS mechanism did not allow requests to be sent directly from a browser to a different domain). This is the only page requiring TikTok OAuth login - session key is stored in a cookie valid for 1 hour. All other pages are publicly accessible
-- **14 API approval attempts** with TikTok Developer team before gaining access - images from the email correspondence are included in the documentation
-- All rankings rendered with **jQuery Datatables**; diagrams with **Chart.js**; real-time data via **Socket.IO** WebSocket / HTTP Long Polling`,
+- All rankings rendered with **jQuery Datatables**; diagrams with **Chart.js**; real-time data via **Socket.IO** WebSocket / HTTP Long Polling
+ 
+**Development notes:**
+- **14 API approval attempts** with TikTok Developer team before gaining access - images from the email correspondence are included in the documentation`,
     technologies: [
       "PHP",
       "PDO",
