@@ -540,16 +540,14 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
         "Mobilis - AI-powered fitness companion for personalized health insights"
     },
     {
-      src: "https://i.imgur.com/3QkqjmP.png",
-      caption: "Dashboard - BMI, body fat %, lean mass & weight forecast"
+      src: "/mobilis2.png",
+      caption:
+        "Mobilis - AI-powered fitness companion for personalized health insights"
     },
     {
-      src: "https://i.imgur.com/KgmV9pP.png",
-      caption: "AI-generated meal plan with macros, ingredients & recipes"
-    },
-    {
-      src: "https://i.imgur.com/QH3t4Ls.png",
-      caption: "Orbbec Astra+ 3D posture correction in real time"
+      src: "/mobilis3.png",
+      caption:
+        "Mobilis - AI-powered fitness companion for personalized health insights"
     }
   ],
   mindreel: [
