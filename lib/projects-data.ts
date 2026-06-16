@@ -73,7 +73,7 @@ export const projects: Project[] = [
     shortDescription:
       "Recommendation platform that analyzes live EEG brainwave signals and user preferences in order to understand psycho-emotional state, stress levels and cognitive performance, then suggests the most suitable movies, TV series, books, and songs",
     fullDescription: `**MindReel** is a comprehensive platform that integrates **live EEG bioelectric brain activity analysis** (via **NeuroSky MindWave Mobile 2** headset) with **AI-suggested content recommendations** tailored to the user's real-time emotional and cognitive state, as well as their personal preferences - where the AI itself is continuously subjected to accuracy and reliability evaluation through industry-standard ML metrics adapted to the specific needs and logic of the platform, measuring **Precision, Recall, F1 Score, Accuracy, Specificity, FPR, and FNR** against a relevance algorithm grounded in the user's own preferences. The project was developed in consultation with **qualified neurologists and specialists in that field** to validate its **science-based approach** to brainwave interpretation.
-
+ 
 **Core features:**
 - **Real-time EEG analysis:** Live brainwave data streamed via **Bluetooth → ThinkGear Connector → PyMindWave2 → Socket.IO → Node.js API → React app**, classified into five frequency bands using **Power Spectral Density (PSD)**. Detailed explanations for each frequency band are available in the image gallery for this project. The system also captures **Attention** and **Meditation** scores (0–100) extracted by NeuroSky's proprietary algorithms. After the 1-minute session, all data is passed to the AI to determine **corrective content recommendations**
 - **AI recommendations** for movies, TV series, books, and songs, generated via **OpenAI API** (and **Gemini API** in earlier versions) using heavily engineered prompts. Model access is managed through **LangChain**, which provides a unified way to interact with different LLMs and enables structured, comparable testing across models. After extensive benchmarking - testing **Claude 3 Opus**, **Gemini 1.5 Pro**, and the OpenAI family - **GPT-4o** proved to be the most reliable for movies and series, **GPT-4-Turbo** for books, **GPT-4.1** for songs, and **GPT-5-mini** for brain analysis
@@ -81,13 +81,13 @@ export const projects: Project[] = [
 - **ML evaluation metrics** that determine recommendation quality: **Precision**, **Recall / TPR**, **F1 Score**, **Accuracy**, **Specificity / TNR**, **FPR**, and **FNR**. A separate **per-generation Precision** is also calculated for the last 5 registered recommendations for the user
 - **VR cinema experience** built with **A-Frame** (Three.js + WebGL) and tested with **Oculus / Meta Quest 2** headset. The scene recreates a real cinema hall with projectors, a popcorn machine, and a large screen, where users can watch movie or TV series trailers in order to decide whether the content interests them before committing to watch it
 - **Content data pipelines:** a **custom Python/BeautifulSoup scraper** targeting **Goodreads** with **Google Books API** for the books; songs merging **Spotify API** (rich metadata) with **YouTube API** (view counts, likes, comments, direct video links); for the movies and series, the data is drawn from **OMDb API**
-- **JWT + HMAC/SHA-256 authentication**, **Trello**-managed task distribution throughout the development period, as well as **86 unit tests** across user, recommendation, preference, statistics, and metrics functions
-
+ 
 **Development notes:**
 - Parts of the functions in the **PyMindWave2** library, related to the NeuroSky device for retrieving EEG data, were incompatible with the project's requirements and had to be rewritten from scratch
 - The VR cinema faced a core blocker: **A-Frame cannot render \`<iframe>\` elements**, making **YouTube embeds impossible**. An attempt was made to work around this by creating an \`<iframe>\` dynamically in the DOM outside the A-Frame scene and positioning it to visually overlap with the 3D environment - but this also failed. Since the **YouTube API only provides a video ID for use in a link** (not a directly streamable file), downloading the trailers as MP4s was the only applicable path. The first attempt was via the **yt-dlp-wrap** wrapper and the Python version of **yt-dlp** - but running it on shared hosting was not possible (no sudo access, Python v3.6.8 only - which **does not support the library**). The final solution was making **yt-dlp run inside a containerized service on Google Cloud Run**, downloading trailers and storing them in **Google Cloud Storage (GCS)**, accessed via public GCS URLs (e.g. \`<video src="https://storage.googleapis.com/BUCKET/video.mp4" />\`). A-Frame's built-in hand controllers weren't appearing in the scene, so they also required a separate **custom fix**, since the described solution for this situation in the official documentation did not produce the expected result. Not only that, but the example that was visualized in the embed box, intended to demonstrate a working implementation, also did not work
 - **Goodreads** - the most comprehensive book database - **shut down its public API in 2020**. After trying every available alternative, the scraper approach was selected due to the rich and comprehensive data for the books, including **sufficient metadata for Bulgarian books, even older titles**. It extracts a large hidden JSON object embedded in a \`<script>\` tag on Goodreads pages, containing complete book metadata, including fields not visible on the page itself
-- The **Spotify API** frequently lacked data for older or less-popular tracks, which is why **YouTube API** was added as a complementary source. Early on, the AI regularly **hallucinated fictional songs** that existed on neither platform - making extensive prompt modifications and testing across different preference combinations solved it`,
+- The **Spotify API** frequently lacked data for older or less-popular tracks, which is why **YouTube API** was added as a complementary source. Early on, the AI regularly **hallucinated fictional songs** that existed on neither platform - making extensive prompt modifications and testing across different preference combinations solved it
+- **JWT + HMAC/SHA-256 authentication**, **Trello**-managed task distribution throughout the development period, as well as **86 unit tests** across user, recommendation, preference, statistics, and metrics functions`,
     technologies: [
       "React",
       "TypeScript",
@@ -150,13 +150,13 @@ export const projects: Project[] = [
 - **NutriFit API** (Node.js/Express + Firebase Admin SDK): proxies **Fitness Calculator API** calls server-side so the flood of per-page-load requests is reduced to one batch per day, regardless of whether the user stays on the page - data is safe in Firestore either way
 - **Food ranking system** across 4 dedicated pages: sorted by calories, fat, carbs, and protein per 100g, with recipes, preparation steps, and nutritional values
 - **React Native mobile app** (separate codebase) mirroring core web features
-- **Unit tests included** and **GitHub branching strategy** (main, dev, per-feature branches)
  
 **Development notes:**
 - After a month of debugging, the **Firebase client SDK** was found to be failing to reliably deliver data at scale; switching to the **Firebase Admin SDK** via the Node.js backend resolved it entirely
 - One of the hardest problems was **prompt engineering:** early GPT-3.5 and Gemini builds generated objects and activities instead of food. Upgrading to **GPT-4 Turbo** and rewriting the entire prompt from scratch was the breakthrough
 - Gemini is accessed via **Vertex AI (Google Cloud)** because the Gemini API is unavailable in Bulgaria
-- Meal generation went through **two rejected APIs** (Spoonacular, then Edamam) before landing on AI - limited recipe variety and inability to represent Bulgarian cuisine were the dealbreakers`,
+- Meal generation went through **two rejected APIs** (Spoonacular, then Edamam) before landing on AI - limited recipe variety and inability to represent Bulgarian cuisine were the dealbreakers
+- **Unit tests included** and **GitHub branching strategy** (main, dev, per-feature branches)`,
     technologies: [
       "React",
       "TypeScript",
