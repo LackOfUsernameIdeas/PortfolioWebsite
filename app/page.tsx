@@ -548,6 +548,151 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
       src: "/mobilis3.png",
       caption:
         "Mobilis - AI-powered fitness companion for personalized health insights"
+    },
+    {
+      src: "/mobilis4.png",
+      caption:
+        "Mobilis - AI-powered fitness companion for personalized health insights"
+    },
+    {
+      src: "/mobilis5.png",
+      caption:
+        "Mobilis - AI-powered fitness companion for personalized health insights"
+    },
+    {
+      src: "/mobilis6.png",
+      caption:
+        "Mobilis - AI-powered fitness companion for personalized health insights"
+    },
+    {
+      src: "/mobilis7.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis8.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis9.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis10.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis11.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis12.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis13.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis14.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis15.mp4",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis16.mp4",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis17.mp4",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis18.mp4",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis19.mp4",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis20.mp4",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis21.mp4",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis22.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis23.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis24.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis25.png",
+      caption:
+        "след като имаме TDEE (количеството калории, които изгаряме на ден), следва да се направи калорична корекция - дефицит или суфицит, в зависимост от целта. Тези калории се приемат от макронутриенти в съотношение, отново според целта. Целите Aesthetic и Strength са по избор и желание на потребителя"
+    },
+    {
+      src: "/mobilis26.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis27.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis28.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis29.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis30.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis31.jpg",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+    },
+    {
+      src: "/mobilis32.png",
+      caption:
+        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
     }
   ],
   mindreel: [
@@ -966,7 +1111,7 @@ function ProjectModal({
         <div className="overflow-y-auto flex flex-col">
           {/* Image gallery */}
           {images.length > 0 && (
-            <div className="relative w-full aspect-video bg-black/40 shrink-0 select-none">
+            <div className="relative w-full max-h-[55vh] aspect-video bg-black/40 shrink-0 select-none">
               {isVideo(images[imgIdx].src) ? (
                 <div
                   className="absolute inset-0 cursor-pointer group/video"
@@ -981,7 +1126,6 @@ function ProjectModal({
                       imgLoading ? "opacity-40" : "opacity-100"
                     }`}
                     loop
-                    muted
                     playsInline
                     onCanPlay={() => setImgLoading(false)}
                     onError={() => setImgLoading(false)}
@@ -1231,7 +1375,6 @@ function ProjectModal({
               controls
               autoPlay
               loop
-              muted
               playsInline
               onCanPlay={() => setImgLoading(false)}
               onClick={(e) => e.stopPropagation()}
