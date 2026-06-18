@@ -537,122 +537,119 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/mobilis.png",
       caption:
-        "Mobilis - AI-powered fitness companion for personalized health insights"
+        "Mobilis - platform for improving physical health through personalized workout and nutrition plans, and real-time posture correction"
     },
     {
       src: "/mobilis2.png",
       caption:
-        "Mobilis - AI-powered fitness companion for personalized health insights"
+        "Health dashboard page showing the user's BMI (27.47 - overweight), BF% (26.97%, Body fat mass: 25.35kg, Lean body mass: 68.65kg), recommended goal (Cut), target daily calories (2617 kcal, deficit: 500 kcal), BMR (2011), TDEE (3117), macronutrient breakdown (Protein: 262g, Fat: 73g, Carbs: 229g)"
     },
     {
       src: "/mobilis3.png",
       caption:
-        "Mobilis - AI-powered fitness companion for personalized health insights"
+        "Weight forecast panel showing 91% progress (70 out of 77 days elapsed), estimated completion date (end of May 2026), remaining weeks (~1), and weekly change of -0.45 kg/week calculated from the -500 kcal/day deficit - with milestone stages (Week 3, 6, 9 completed, Week 11 current) showing expected weight at each step, and a forecast note accounting for 2 training days per week, water/glycogen fluctuations, and protein intake recommendations"
     },
     {
       src: "/mobilis4.png",
       caption:
-        "Mobilis - AI-powered fitness companion for personalized health insights"
+        "Workout recommendations entry point where the user selects a training category - Gym, Calisthenics, or Yoga - before being guided through a preference questionnaire used to generate a personalized workout plan tailored to their level, needs, and physical condition"
     },
     {
       src: "/mobilis5.png",
       caption:
-        "Mobilis - AI-powered fitness companion for personalized health insights"
+        "Workout preference questionnaire - goal selection step showing all 8 available goals: Cut, Aggressive Cut, Lean Bulk, Dirty Bulk, Recomposition, Maintenance, Aesthetic, and Strength - each with a short description, with Cut preselected and marked as the recommended goal in this case, based on the user's body metrics"
     },
     {
       src: "/mobilis6.png",
       caption:
-        "Mobilis - AI-powered fitness companion for personalized health insights"
+        "Yoga-specific questionnaire step where the user selects their preferred yoga style - Hatha, Vinyasa, Yin, Power Yoga, Restorative, or No preference - with Yin selected (long-held poses for deeper stretching)"
     },
     {
       src: "/mobilis7.png",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Weekly gym workout plan - Day 3 (Upper Body: Back/Shoulders + Arms) showing a 10-minute warm-up, 6 exercises each with sets, reps, and activated muscle count, an 8-minute cooldown stretching, and safety notes covering rest periods, progressive overload - with day navigation tabs (Day 1-4, based on the selected 4-day training split in the questionnaire) and a button for generating a new plan"
     },
     {
       src: "/mobilis8.png",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Exercise detail modal for Barbell Bench Press (4 sets × 8-12 reps) showing the targeted muscle groups - Chest (red), Front Deltoids (yellow), and Triceps (purple) - highlighted on a front and back body diagram"
     },
     {
       src: "/mobilis9.png",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Exercise tutorial video section showing an embedded YouTube player with a technique guide for the Barbell Bench Press, with an option to open it directly on YouTube"
     },
     {
       src: "/mobilis10.png",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Nutrition questionnaire steps - target weight input (current weight: 95kg, target: 90kg, difference: -5.0kg) and training days selection (minimum 2 days per week, Monday/Wednesday/Saturday selected) - both used to generate the weight prognosis and personalize the meal plan with pre- and post-workout meals on selected training days"
     },
     {
       src: "/mobilis11.png",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Meal plan for the week - Day 1 (a training day) showing 5 meals with suggested times: Breakfast (07:30), Mid-Morning Snack (10:00), Pre-Workout Meal (11:15), Post-Workout Meal (14:30), and Dinner (19:00) - each with a description and macros breakdown. There are daily macro totals (2607 kcal, Protein: 223.1g, Carbs: 279.8g, Fat: 73.7g) against the target ones (2617 kcal, 262g, 229g, 73g), and general nutrition tips covering hydration, sleep, meal prep, and daily movement"
     },
     {
       src: "/mobilis12.png",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Meal detail modal for a post-workout dish (Chicken with Pasta and Carrots, 14:10, 25 min total) showing macros (604 kcal, Protein: 65.5g, Carbs: 71g, Fat: 6.4g), prep and cooking time (10 + 15 min), ingredients with gram amounts (Chicken fillet: 170g, Pasta: 240g, Carrots: 200g), and 4-step preparation instructions"
     },
     {
       src: "/mobilis13.png",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Specialized posture correction program (7 exercises) targeting flexibility and mobility of the neck, shoulders, and back, reducing tension from prolonged poor posture, and developing balance and injury prevention. Each exercise has a corresponding card showing the target zone (in this case, shoulder blades and shoulders), difficulty (medium), categories (Mobility/Posture), benefits, and four-step instructions. Each exercise also has a detail panel with an embedded YouTube demonstration video"
     },
     {
       src: "/mobilis14.png",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "6-step setup guide for the Orbbec Astra+ posture correction application - covering app download, Nuitrack Runtime installation (with GitHub link), obtaining a free license key from 3DiVi, running the activation tool (Nuitrack.exe), activating the camera with the license key, and launching the Mobilis pose correction executable (mobilis_pose_correction.exe) from the downloaded zip"
     },
     {
       src: "/mobilis15.mp4",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Real-time posture correction session - tracked via the Orbbec Astra+ depth camera using the Nuitrack SDK and PyNuitrack, with a voice assistant (OpenAI TTS, gpt-4o-mini-tts) dictating each step. A 5-second calibration process is done where the user stands still with arms down and legs together, during which the system computes height, arm length, shoulder/hip width, and leg length to derive body-proportional tolerances for pose and angle checks. Chin Tucks address forward head posture caused by prolonged screen use by activating the deep neck flexors responsible for stabilizing the head"
     },
     {
       src: "/mobilis16.mp4",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Neck Side Tilts exercise improves lateral neck flexibility and reduces side tension caused by sustained poor head positioning and improves range of motion"
     },
     {
       src: "/mobilis17.mp4",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Shoulder Blade Squeezes exercise targets rounded shoulders caused by prolonged sitting, hunching, and forward head positioning, strengthening the upper back muscles and improving shoulder posture"
     },
     {
       src: "/mobilis18.mp4",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Wall Angels exercise addresses rounded shoulders and weak upper back control, improves shoulder mobility and upper back posture, and also opens the chest"
     },
     {
       src: "/mobilis19.mp4",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Standing T Stretch exercise targets the shoulder blades and shoulders, addressing rounded shoulders and upper back weakness caused by prolonged sitting and screen use, strengthening the muscles between the shoulder blades and improving upper back posture"
     },
     {
       src: "/mobilis20.mp4",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Standing Pelvic Tilts exercise improves pelvic stability and mobility, addressing lower back imbalances (caused by sedentary habits and prolonged standing) and reducing lower back pain"
     },
     {
       src: "/mobilis21.mp4",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Standing Lumbar Extensions exercise targets the lower back, improving lumbar mobility and stability, and reducing stiffness and tension accumulated from prolonged sitting or poor postural habits"
     },
     {
       src: "/mobilis22.png",
-      caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+      caption: "седмицата"
     },
     {
       src: "/mobilis23.png",
-      caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+      caption: "седмицата"
     },
     {
       src: "/mobilis24.png",
-      caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+      caption: "седмицата"
     },
     {
       src: "/mobilis25.png",
