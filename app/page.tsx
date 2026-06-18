@@ -605,37 +605,37 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
         "6-step setup guide for the Orbbec Astra+ posture correction application - covering app download, Nuitrack Runtime installation (with GitHub link), obtaining a free license key from 3DiVi, running the activation tool (Nuitrack.exe), activating the camera with the license key, and launching the Mobilis pose correction executable (mobilis_pose_correction.exe) from the downloaded zip"
     },
     {
-      src: "/mobilis15.mp4",
+      src: "/mobilis15.mov",
       caption:
         "Real-time posture correction session - tracked via the Orbbec Astra+ depth camera using the Nuitrack SDK and PyNuitrack, with a voice assistant (OpenAI TTS, gpt-4o-mini-tts) dictating each step. A 5-second calibration process is done where the user stands still with arms down and legs together, during which the system computes height, arm length, shoulder/hip width, and leg length to derive body-proportional tolerances for pose and angle checks. Chin Tucks address forward head posture caused by prolonged screen use by activating the deep neck flexors responsible for stabilizing the head"
     },
     {
-      src: "/mobilis16.mp4",
+      src: "/mobilis16.mov",
       caption:
         "Neck Side Tilts exercise improves lateral neck flexibility and reduces side tension caused by sustained poor head positioning and improves range of motion"
     },
     {
-      src: "/mobilis17.mp4",
+      src: "/mobilis17.mov",
       caption:
         "Shoulder Blade Squeezes exercise targets rounded shoulders caused by prolonged sitting, hunching, and forward head positioning, strengthening the upper back muscles and improving shoulder posture"
     },
     {
-      src: "/mobilis18.mp4",
+      src: "/mobilis18.mov",
       caption:
         "Wall Angels exercise addresses rounded shoulders and weak upper back control, improves shoulder mobility and upper back posture, and also opens the chest"
     },
     {
-      src: "/mobilis19.mp4",
+      src: "/mobilis19.mov",
       caption:
         "Standing T Stretch exercise targets the shoulder blades and shoulders, addressing rounded shoulders and upper back weakness caused by prolonged sitting and screen use, strengthening the muscles between the shoulder blades and improving upper back posture"
     },
     {
-      src: "/mobilis20.mp4",
+      src: "/mobilis20.mov",
       caption:
         "Standing Pelvic Tilts exercise improves pelvic stability and mobility, addressing lower back imbalances (caused by sedentary habits and prolonged standing) and reducing lower back pain"
     },
     {
-      src: "/mobilis21.mp4",
+      src: "/mobilis21.mov",
       caption:
         "Standing Lumbar Extensions exercise targets the lower back, improving lumbar mobility and stability, and reducing stiffness and tension accumulated from prolonged sitting or poor postural habits"
     },
