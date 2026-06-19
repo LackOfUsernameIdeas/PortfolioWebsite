@@ -547,7 +547,7 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/mobilis3.png",
       caption:
-        "Weight forecast panel showing 91% progress (70 out of 77 days elapsed), estimated completion date (end of May 2026), remaining weeks (~1), and weekly change of -0.45 kg/week calculated from the -500 kcal/day deficit - with milestone stages (Week 3, 6, 9 completed, Week 11 current) showing expected weight at each step, and a forecast note accounting for 2 training days per week, water/glycogen fluctuations, and protein intake recommendations"
+        "Weight prognosis panel showing 91% progress (70 out of 77 days elapsed), estimated completion date (end of May 2026), remaining weeks (~1), and weekly change of -0.45 kg/week calculated from the -500 kcal/day deficit - with milestone stages (Week 3, 6, 9 completed, Week 11 current) showing expected weight at each step, and a prognosis note accounting for 2 training days per week, water/glycogen fluctuations, and protein intake recommendations"
     },
     {
       src: "/mobilis4.png",
@@ -662,37 +662,35 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/mobilis26.png",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Each goal's caloric deficit or surplus is converted into an expected weekly weight change via `Weekly change = caloric offset × 7 ÷ 7700 kcal/kg` formula, which is the main driver of the target weight prognosis. The prognosis shows what would happen if the plan is strictly followed - it helps the user judge whether their chosen goal actually fits their target. The number of weeks needed for completion is calculated by dividing the weight difference - `|target weight − current weight|` - by the weekly change"
     },
     {
       src: "/mobilis27.png",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "The Nuitrack exercise application uses two coordinate systems: a 3D world space that follows the standard convention with Y pointing up and a 2D screen space used for rendering skeleton data (joints, angles, and visual guides) aligned to the user's body in the OpenCV window, which has its origin at the top-left with Y growing downward. This inversion is why the Y coordinate is negated (-world_y) in the projection formula, and why all pose and angle calculations in the app reference Y using negative values - this keeps them consistent with the screen's coordinate system"
     },
     {
       src: "/mobilis28.png",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Diagram of the workout recommendation generation flow: when the user submits preferences on `/dashboard/workout_recommendations`, the data is routed to the saveUserPreferences() function by category - Nutrition or Workout, which branches further into Gym, Calisthenics, or Yoga, each saving its own preference fields (e.g. experience, frequency, muscle groups, yoga style) in the workout_user_preferences table. The preferences are sent to `/get-model-response/workout-recommendations` and the functions generateSystemPrompt(), generateUserPrompt(), and generateResponseFormat() compose the request sent via POST method to the OpenAI API. The raw response is validated and parsed, then saveWorkoutRecommendations() uses the stored preferences to process the result into four Supabase tables - workout_generations (top-level generation record), workout_day_recommendations (per-day warmup/cooldown and focus data), workout_day_exercises (workout-specific exercise data such as sets/reps), and workout_exercises (unique exercise details - muscle activation, category)"
     },
     {
       src: "/mobilis29.png",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Diagram of the nutrition recommendation generation flow: when the user submits preferences on `/dashboard/nutrition_plans`, the data is routed to the saveUserPreferences() function by category - Nutrition or Workout. The preferences (goal, training time, target weight, health issues, cuisine preference, macros) are saved in nutrition_user_preferences. They are sent to `/get-model-response/nutrition-plans` and the functions generateSystemPrompt(), generateUserPrompt(), and generateResponseFormat() compose the request sent via POST method to the OpenAI API. The raw response is validated and parsed, then saveNutritionRecommendations() uses the stored preferences to process the result into four Supabase tables - nutrition_generations (top-level generation record), nutrition_day_recommendations (per-day macro totals), nutrition_day_meals (meal-specific data such as type and time), and nutrition_meals (unique meal details - ingredients, macros, instructions, prep/cooking time)"
     },
     {
       src: "/mobilis30.png",
       caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+        "Diagram of the weight prognosis generation flow: when the user submits a target weight on `/dashboard/nutrition_plans`, a request is sent to `/get-model-response/weight-prognosis`, where generatePrognosisSystemPrompt(), generatePrognosisUserPrompt(), and generatePrognosisResponseFormat() compose the request sent via POST method to the OpenAI API. The raw response is validated and parsed, then saveWeightPrognosis() selects the linked record from the nutrition_generations table and inserts the result into nutrition_weight_prognosis (estimated weeks, estimated date, weekly change, milestones, note), before the success result is returned to the page"
     },
     {
       src: "/mobilis31.jpg",
-      caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+      caption: "Diagram of the Supabase PostgreSQL public schema"
     },
     {
       src: "/mobilis32.png",
-      caption:
-        "получаваме препоръки след като сме избрали, че предпочитаме да тренираме 4 дни в седмицата"
+      caption: "Diagram of the Supabase PostgreSQL auth schema"
     }
   ],
   mindreel: [
@@ -846,153 +844,153 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     {
       src: "/nutrifit2.png",
       caption:
-        "ChatGPT vs Gemini AI deviation comparison panel. The overall score (e.g. 12.61% vs 33.50%) represents the platform-wide average absolute deviation - calculated by taking the absolute deviation of every meal plan generation ever stored in the database, across all users and all categories, and averaging the results into a single value. Deviations are treated as absolute values, meaning both undershooting and overshooting the user's nutritional limits count equally. Below that, two category-level breakdowns are shown for each model: average deviation (absolute difference from the user's defined limit per each category, in grams and %) and maximum deviation (the largest absolute overshoot or undershoot ever recorded per category), across Calories, Protein, Carbohydrates, and Fats."
+        "ChatGPT vs Gemini AI deviation comparison panel. The overall score (e.g. 12.61% vs 33.50%) represents the platform-wide average absolute deviation - calculated by taking the absolute deviation of every meal plan generation ever stored in the database, across all users and all categories, and averaging the results into a single value. Deviations are treated as absolute values, meaning both undershooting and overshooting the user's nutritional limits count equally. Below that, two category-level breakdowns are shown for each model: average deviation (absolute difference from the user's defined limit per each category, in grams and %) and maximum deviation (the largest absolute overshoot or undershoot ever recorded per category), across Calories, Protein, Carbohydrates, and Fats"
     },
     {
       src: "/nutrifit3.png",
       caption:
-        "Platform-wide user statistics dashboard showing average body metrics and nutrient intake split by gender (45 men, 36 women, 81 total), visualized as both a line chart and a bar chart."
+        "Platform-wide user statistics dashboard showing average body metrics and nutrient intake split by gender (45 men, 36 women, 81 total), visualized as both a line chart and a bar chart"
     },
     {
       src: "/nutrifit4.png",
       caption:
-        "Weight Calculator page showing the user's BMI (26.78 - overweight, healthy range 18.5–25), ideal weight (70.99kg, currently 11.01kg above), and body composition breakdown - body fat % (24.09%), fat mass (19.75kg), and lean mass (62.25kg). Each metric includes a day-over-day comparison against the previous entry."
+        "Weight Calculator page showing the user's BMI (26.78 - overweight, healthy range 18.5–25), ideal weight (70.99kg, currently 11.01kg above), and body composition breakdown - body fat % (24.09%), fat mass (19.75kg), and lean mass (62.25kg). Each metric includes a day-over-day comparison against the previous entry"
     },
     {
       src: "/nutrifit5.png",
       caption:
-        "Historical body composition charts tracking the user's daily progress over time - weight, BMI, body fat %, fat mass, lean mass, and kg above/below ideal weight."
+        "Historical body composition charts tracking the user's daily progress over time - weight, BMI, body fat %, fat mass, lean mass, and kg above/below ideal weight"
     },
     {
       src: "/nutrifit6.png",
       caption:
-        "Meal plan generation page - the user selects their activity level (6 levels), a calorie goal (7 presets from mild weight loss to extreme bulk, BMR value), and a diet type (Balanced, Low Fat, Low Carb, High Protein), which auto-fills the macro targets. The user can also specify foods to exclude and choose a cuisine (Bulgarian, Spanish, Italian, French). Submitting generates a meal plan via either OpenAI or Gemini."
+        "Meal plan generation page - the user selects their activity level (6 levels), a calorie goal (7 presets from mild weight loss to extreme bulk, BMR value), and a diet type (Balanced, Low Fat, Low Carb, High Protein), which auto-fills the macro targets. The user can also specify foods to exclude and choose a cuisine (Bulgarian, Spanish, Italian, French). Submitting generates a meal plan via either OpenAI or Gemini"
     },
     {
       src: "/nutrifit7.png",
       caption:
-        "AI-generated meal plan showing breakfast (1 dish) and lunch (starter, main, dessert) - each meal card displays a food image fetched via Google Custom Search API, weight in grams, and exact macros (calories, protein, carbs, fats), with a button linking to the preparation steps."
+        "AI-generated meal plan showing breakfast (1 dish) and lunch (starter, main, dessert) - each meal card displays a food image fetched via Google Custom Search API, weight in grams, and exact macros (calories, protein, carbs, fats), with a button linking to the preparation steps"
     },
     {
       src: "/nutrifit8.png",
       caption:
-        "Dinner section (main + dessert) of the meal plan, followed by the daily macro totals - summed calories, protein, carbs, and fats across all meals - with Gemini's deviation shown per category in both absolute grams and percentage, indicating how far the generated plan strayed from the current user's defined limits."
+        "Dinner section (main + dessert) of the meal plan, followed by the daily macro totals - summed calories, protein, carbs, and fats across all meals - with Gemini's deviation shown per category in both absolute grams and percentage, indicating how far the generated plan strayed from the current user's defined limits"
     },
     {
       src: "/nutrifit9.png",
       caption:
-        "Most recommended foods ranking - dishes sorted by how many times the system included them in generated meal plans across all users. The top entry expands to show full nutritional details (calories, macros, serving size) and a macro bar chart, with buttons to view ingredients and the recipe. The sidebar also shows the other 4 ranking pages (by calories, fats, carbs, protein)."
+        "Most recommended foods ranking - dishes sorted by how many times the system included them in generated meal plans across all users. The top entry expands to show full nutritional details (calories, macros, serving size) and a macro bar chart, with buttons to view ingredients and the recipe. The sidebar also shows the other 4 ranking pages (by calories, fats, carbs, protein)"
     },
     {
       src: "/nutrifit10.mov",
       caption:
-        "The video demonstration showcases the user interface and features of the NutriFit mobile application."
+        "The video demonstration showcases the user interface and features of the NutriFit mobile application"
     },
     {
       src: "/nutrifit11.png",
       caption:
-        "NutriFit mobile app - welcome screen, login form, and daily measurements input (height, age, weight, neck, waist, hip circumference) used to calculate body metrics."
+        "NutriFit mobile app - welcome screen, login form, and daily measurements input (height, age, weight, neck, waist, hip circumference) used to calculate body metrics"
     },
     {
       src: "/nutrifit12.png",
       caption:
-        "Meal plan generation form - activity level selection (6 levels), calorie goal presets, diet type table with auto-filled macros, foods to exclude, cuisine selection, and generate buttons for OpenAI or Gemini - all the same as the web version."
+        "Meal plan generation form - activity level selection (6 levels), calorie goal presets, diet type table with auto-filled macros, foods to exclude, cuisine selection, and generate buttons for OpenAI or Gemini - all the same as the web version"
     },
     {
       src: "/nutrifit13.png",
       caption:
-        "Info tooltips on the meal plan form explaining activity levels (1–6) and diet types. Activity levels range from Level 1 (little to no exercise, e.g. short walk or light yoga) up to Level 6 (very intense daily training, e.g. marathon prep, 2hr cycling, weightlifting). Diet types cover Balanced (even macro distribution for general health), Low Fat (reduced fat for calorie control), Low Carb (minimized carbs with adequate protein and healthy fats), and High Protein (prioritizes protein intake, ideal for muscle development and strength training)."
+        "Info tooltips on the meal plan form explaining activity levels (1–6) and diet types. Activity levels range from Level 1 (little to no exercise, e.g. short walk or light yoga) up to Level 6 (very intense daily training, e.g. marathon prep, 2hr cycling, weightlifting). Diet types cover Balanced (even macro distribution for general health), Low Fat (reduced fat for calorie control), Low Carb (minimized carbs with adequate protein and healthy fats), and High Protein (prioritizes protein intake, ideal for muscle development and strength training)"
     },
     {
       src: "/nutrifit14.png",
       caption:
-        "Meal plan result - breakfast dishes with food images, weight, and macros, followed by daily macro totals with their deviations in absolute grams and percentage. This image also shows the diet type tooltip modal explaining each type in details."
+        "Meal plan result - breakfast dishes with food images, weight, and macros, followed by daily macro totals with their deviations in absolute grams and percentage. This image also shows the diet type tooltip modal explaining each type in details"
     },
     {
       src: "/nutrifit15.png",
       caption:
-        "Recipe modal showing ingredients and preparation steps for a selected dish, alongside the full daily macro summary with deviation per category (calories, protein, carbs, fats) in both absolute and percentage values."
+        "Recipe modal showing ingredients and preparation steps for a selected dish, alongside the full daily macro summary with deviation per category (calories, protein, carbs, fats) in both absolute and percentage values"
     },
     {
       src: "/nutrifit16.png",
       caption:
-        "Diagram of the NutriFit API data flow. The user's measurements (weight, age, gender, neck, hip, waist, height, goal) and activity level are sent to the `measurements/userData` endpoint, which batches all calculations into a single request to the Fitness Calculator API - covering body fat, daily calories, macros, ideal weight, and BMI. The response is processed by the NutriFit API and saved to Firestore (Firebase) under the `additionalUserData` collection, keyed by UID. Simultaneously, the user is redirected to `admin/default`. This architecture is designed to work only with a single API call per day."
+        "Diagram of the NutriFit API data flow. The user's measurements (weight, age, gender, neck, hip, waist, height, goal) and activity level are sent to the `measurements/userData` endpoint, which batches all calculations into a single request to the Fitness Calculator API - covering body fat, daily calories, macros, ideal weight, and BMI. The response is processed by the NutriFit API and saved to Firestore (Firebase) under the `additionalUserData` collection, keyed by UID. Simultaneously, the user is redirected to `admin/default`. This architecture is designed to work only with a single API call per day"
     },
     {
       src: "/nutrifit17.png",
       caption:
-        "Diagram of the meal plan generation flow. The user's preferences (excluded foods, cuisine, protein, diet type, carbs, fats, calories) are saved and fed into an AI prompt, which is sent to either the OpenAI API or the NutriFit API (Gemini via Vertex AI library). The raw response is cleaned into a structured meal plan object. Dish names from the response are then sent to the Google Custom Search API to fetch food images, which are injected back into the final meal plan rendered on the `admin/mealplan` page."
+        "Diagram of the meal plan generation flow. The user's preferences (excluded foods, cuisine, protein, diet type, carbs, fats, calories) are saved and fed into an AI prompt, which is sent to either the OpenAI API or the NutriFit API (Gemini via Vertex AI library). The raw response is cleaned into a structured meal plan object. Dish names from the response are then sent to the Google Custom Search API to fetch food images, which are injected back into the final meal plan rendered on the `admin/mealplan` page"
     },
     {
       src: "/nutrifitDB.png",
       caption:
-        "Firestore database schema for NutriFit. Each user document is keyed by UID and stores gender and goal as top-level fields, with a `dataEntries` subcollection where each document is keyed by date (YYYY-MM-DD). Each daily entry holds body measurements (weight, waist, neck, hip, height, age), BMI data (bmi, health status, healthy range), perfect weight (ideal value and difference from current). Preferences are also stored (calories, nutrients per diet type), as well as the full meal plans for both OpenAI and Gemini (breakfast, lunch with appetizer/main/dessert, dinner) each with dish name, ingredients, instructions, image, recipe quantity, and deviations (absolute value, percentage, user limit) per macro category. Alongside, 'MacroNutrients' and 'DailyCalorieRequirements' are stored by being broken down across all 6 activity levels, diet types, and calorie goals (ExtremeLoss, MildLoss, Loss, Gain, MildGain, ExtremeGain)."
+        "Firestore database schema for NutriFit. Each user document is keyed by UID and stores gender and goal as top-level fields, with a `dataEntries` subcollection where each document is keyed by date (YYYY-MM-DD). Each daily entry holds body measurements (weight, waist, neck, hip, height, age), BMI data (bmi, health status, healthy range), perfect weight (ideal value and difference from current). Preferences are also stored (calories, nutrients per diet type), as well as the full meal plans for both OpenAI and Gemini (breakfast, lunch with appetizer/main/dessert, dinner) each with dish name, ingredients, instructions, image, recipe quantity, and deviations (absolute value, percentage, user limit) per macro category. Alongside, 'MacroNutrients' and 'DailyCalorieRequirements' are stored by being broken down across all 6 activity levels, diet types, and calorie goals (ExtremeLoss, MildLoss, Loss, Gain, MildGain, ExtremeGain)"
     }
   ],
   tikfluence: [
     {
       src: "/tikfluence.png",
       caption:
-        "TikFluence - data analytics platform proving TikTok's cross-platform music influence."
+        "TikFluence - data analytics platform proving TikTok's cross-platform music influence"
     },
     {
       src: "/tikfluence2.png",
       caption:
-        "Ranking of songs whose popularity was most influenced by TikTok. The table contains data about peak popularity dates on Spotify and TikTok, showing the time difference between them in days. There is also a section that includes the most frequently used hashtags in TikTok video descriptions."
+        "Ranking of songs whose popularity was most influenced by TikTok. The table contains data about peak popularity dates on Spotify and TikTok, showing the time difference between them in days. There is also a section that includes the most frequently used hashtags in TikTok video descriptions"
     },
     {
       src: "/tikfluence3.png",
       caption:
-        "The visualization is representing the change in popularity, including rises and declines within the respective platform, and highlights the peak date."
+        "The visualization is representing the change in popularity, including rises and declines within the respective platform, and highlights the peak date"
     },
     {
       src: "/tikfluence4.png",
       caption:
-        "Explanation of the TikTok influence effect. A song increases in popularity across TikTok and Spotify until reaching peak interest on both platforms. When the TikTok peak happens before the Spotify peak, the song is classified as influenced by TikTok, where exposure on TikTok drives later growth on Spotify."
+        "Explanation of the TikTok influence effect. A song increases in popularity across TikTok and Spotify until reaching peak interest on both platforms. When the TikTok peak happens before the Spotify peak, the song is classified as influenced by TikTok, where exposure on TikTok drives later growth on Spotify"
     },
     {
       src: "/tikfluence5.png",
       caption:
-        "Table showing songs affected by the TikTok influence effect. The dataset includes tracks that appeared in the global Top 200 TikTok songs ranking from the “ОЩЕ СТАТИСТИКИ” section, along with their peak dates on TikTok and Spotify."
+        "Table showing songs affected by the TikTok influence effect. The dataset includes tracks that appeared in the global Top 200 TikTok songs ranking from the “ОЩЕ СТАТИСТИКИ” section, along with their peak dates on TikTok and Spotify"
     },
     {
       src: "/tikfluence6.png",
       caption:
-        "Ranking of the most streamed songs on TikTok across all platform users (Global Top 200 TikTok Songs). It shows information such as the number of recent videos created, total likes across all TikTok videos, YouTube views, and Spotify popularity index (0–100). Each song has a subpage accessed via “Вижте нарастване / Вижте детайли” button, which includes detailed popularity metrics."
+        "Ranking of the most streamed songs on TikTok across all platform users (Global Top 200 TikTok Songs). It shows information such as the number of recent videos created, total likes across all TikTok videos, YouTube views, and Spotify popularity index (0–100). Each song has a subpage accessed via “Вижте нарастване / Вижте детайли” button, which includes detailed popularity metrics"
     },
     {
       src: "/tikfluence7.png",
       caption:
-        "The statistics shown apply to the selected song from the respective ranking, including position in the ranking of most popular songs, changes in the popularity statistics over the time, and daily percentage growth on likes, views, videos made, and popularity index."
+        "The statistics shown apply to the selected song from the respective ranking, including position in the ranking of most popular songs, changes in the popularity statistics over the time, and daily percentage growth on likes, views, videos made, and popularity index"
     },
     {
       src: "/tikfluence8.png",
       caption:
-        "After authenticating using a personal TikTok account, the user can view real-time statistics such as follower count, following count, total likes, and number of videos. This approach is relies on a self-hosted proxy server with Socket.IO for transmitting data from TikTok servers to the end user."
+        "After authenticating using a personal TikTok account, the user can view real-time statistics such as follower count, following count, total likes, and number of videos. This approach is relies on a self-hosted proxy server with Socket.IO for transmitting data from TikTok servers to the end user"
     },
     {
       src: "/tikfluence9.png",
       caption:
-        "Ranking of Top 200 most popular TikTok content creators. There is information such as change of follower count over time, total likes, and total number of videos created. Each creator has a subpage with detailed statistics and growth metrics."
+        "Ranking of Top 200 most popular TikTok content creators. There is information such as change of follower count over time, total likes, and total number of videos created. Each creator has a subpage with detailed statistics and growth metrics"
     },
     {
       src: "/tikfluence10.png",
       caption:
-        "Main information related to the selected video from the ranking list - views, shares, and likes. Similar to the song details page, there are chronological diagrams showing growth or decline in the follower count."
+        "Main information related to the selected video from the ranking list - views, shares, and likes. Similar to the song details page, there are chronological diagrams showing growth or decline in the follower count"
     },
     {
       src: "/tikfluence11.png",
       caption:
-        "OAuth authentication flow for accessing personal TikTok account data: the server requests an access and refresh token from the TikTok API, then uses them to make two separate HTTP requests - one fetching profile statistics (follower count, following, likes, uploaded videos count), and another fetching per-video engagement metrics (likes, views, shares, comments). Both data sets are passed into Chart.js and rendered in the UI."
+        "OAuth authentication flow for accessing personal TikTok account data: the server requests an access and refresh token from the TikTok API, then uses them to make two separate HTTP requests - one fetching profile statistics (follower count, following, likes, uploaded videos count), and another fetching per-video engagement metrics (likes, views, shares, comments). Both data sets are passed into Chart.js and rendered in the UI"
     },
     {
       src: "/tikfluence12.png",
       caption:
-        "Detailed 7-step Socket.IO real-time data flow: (1) the browser requests a Socket.IO connection to the server, (2) the server confirms with a success message, (3) the browser sends the access token to the server, (4) every minute the server makes an async fetch request to the TikTok API for likes and followers data, (5) the API returns the data to the server, (6) the server pushes the data to the browser via the Socket.IO connection, and (7) the data is embedded into Chart.js diagrams for real-time visualization."
+        "Detailed 7-step Socket.IO real-time data flow: (1) the browser requests a Socket.IO connection to the server, (2) the server confirms with a success message, (3) the browser sends the access token to the server, (4) every minute the server makes an async fetch request to the TikTok API for likes and followers data, (5) the API returns the data to the server, (6) the server pushes the data to the browser via the Socket.IO connection, and (7) the data is embedded into Chart.js diagrams for real-time visualization"
     },
     {
       src: "/tikfluenceDB.png",
-      caption: "Structure of the MySQL Database."
+      caption: "Structure of the MySQL Database"
     }
   ]
 };
