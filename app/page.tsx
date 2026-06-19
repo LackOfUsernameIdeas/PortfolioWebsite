@@ -641,20 +641,23 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     },
     {
       src: "/mobilis22.png",
-      caption: "седмицата"
+      caption:
+        "BMI classification table showing 8 categories: Severe Thinness (<16), Moderate Thinness (16-16.99), Mild Thinness (17-18.49), Normal (18.5-24.99), Pre-obese (25-29.99), Obesity Class I (30-34.99), Obesity Class II (35-39.99), and Obesity Class III (≥40) - alongside the BMI formula (weight in kg / height in m²), used by the goal selection algorithm to determine the user's recommended fitness goal"
     },
     {
       src: "/mobilis23.png",
-      caption: "седмицата"
+      caption:
+        "BF% classification table (American Council on Exercise standard) - 5 categories for men and women: Essential Fat (2-5% / 10-13%), Athletes (6-13% / 14-20%), Fitness (14-17% / 21-24%), Average (18-24% / 25-31%), and Obese (≥25% / ≥32%) - alongside the U.S. Navy method formulas for calculating BF% by gender (using waist, neck, hip, and height measurements) and the Lean Body Mass formula (weight minus Body Fat Mass)"
     },
     {
       src: "/mobilis24.png",
-      caption: "седмицата"
+      caption:
+        "BMR (Mifflin-St Jeor formula; calculated separately for each gender using weight, height, and age) and TDEE formulas, with TDEE derived by multiplying BMR by one of 5 activity level multipliers - Sedentary (×1.2, little to no exercise, desk job), Light (×1.375, light exercise 1-3 days/week), Moderate (×1.55, moderate exercise 3-5 days/week e.g. running, cycling, swimming), Active (×1.725, hard exercise 6-7 days/week), and Very Active (×1.9, very intense training, physical job or 2x/day training)"
     },
     {
       src: "/mobilis25.png",
       caption:
-        "след като имаме TDEE (количеството калории, които изгаряме на ден), следва да се направи калорична корекция - дефицит или суфицит, в зависимост от целта. Тези калории се приемат от макронутриенти в съотношение, отново според целта. Целите Aesthetic и Strength са по избор и желание на потребителя"
+        "After determining TDEE (the calories burned per day), the next step is a caloric correction - a deficit or surplus relative to TDEE, depending on the assigned goal - since TDEE represents the maintenance point at which body weight stays stable. These daily calories are then split into macronutrients in a ratio that also depends on the goal. Aggressive Cut (-750 kcal) applies a larger deficit for Obese Class II/III (BMI). Cut (-500 kcal) applies a moderate deficit for Obese Class I (BMI), Pre-obese (BMI), or Obese BF%. Lean Bulk (+300 kcal) applies a moderate surplus for Mild Thinness (BMI). Dirty Bulk (+500 kcal) applies a larger surplus for Moderate/Severe Thinness (BMI) or critically low BF% (below 2% for men, below 10% for women). Recomposition (-200 kcal) applies a slight deficit for Normal/Pre-obese BMI combined with Obese or Average BF%. Maintenance (±0 kcal) keeps calories at TDEE for Normal or Pre-obese BMI (where the elevated weight comes from muscle mass) combined with Athlete or Fitness-level BF%. Aesthetic (-300 kcal) is a user-chosen moderate deficit for muscle definition. Strength (+200 kcal) is a user-chosen slight surplus for optimal strength performance"
     },
     {
       src: "/mobilis26.png",
@@ -1337,7 +1340,7 @@ function ProjectModal({
       {/* ── Lightbox ── */}
       {lightboxOpen && (
         <div
-          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black/90 backdrop-blur-sm"
+          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black/90 backdrop-blur-sm py-4 overflow-y-auto"
           onClick={(e) => {
             e.stopPropagation();
             setLightboxOpen(false);
