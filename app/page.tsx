@@ -996,7 +996,7 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
 };
 
 function renderInline(text: string, keyPrefix: string) {
-  // Splits on `code` spans only — used for content already inside a bold span
+  // Splits on `code` spans only - used for content already inside a bold span
   return text.split(/(`.+?`)/g).map((part, i) => {
     if (part.startsWith("`") && part.endsWith("`")) {
       return (
