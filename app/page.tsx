@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Navigation } from "@/components/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -995,16 +995,47 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
   ]
 };
 
-function renderBold(text: string) {
-  return text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
-    i % 2 === 1 ? (
-      <strong key={i} className="text-foreground font-semibold">
-        {part}
-      </strong>
-    ) : (
-      part
-    )
-  );
+function renderInline(text: string, keyPrefix: string) {
+  // Splits on `code` spans only — used for content already inside a bold span
+  return text.split(/(`.+?`)/g).map((part, i) => {
+    if (part.startsWith("`") && part.endsWith("`")) {
+      return (
+        <code
+          key={`${keyPrefix}-${i}`}
+          className="inline-block bg-primary/10 text-primary border border-primary/20 rounded-md px-2 py-0.5 mx-0.5 text-[0.85em]"
+        >
+          {part.slice(1, -1)}
+        </code>
+      );
+    }
+    return part;
+  });
+}
+
+function renderFormatted(text: string) {
+  // Split on **bold** and `code` simultaneously, keeping the delimiters
+  const parts = text.split(/(\*\*.+?\*\*|`.+?`)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      const inner = part.slice(2, -2);
+      return (
+        <strong key={i} className="text-foreground font-semibold">
+          {renderInline(inner, `b${i}`)}
+        </strong>
+      );
+    }
+    if (part.startsWith("`") && part.endsWith("`")) {
+      return (
+        <code
+          key={i}
+          className="inline-block bg-primary/10 text-primary border border-primary/20 rounded-md px-2 py-0.5 mx-0.5 text-[0.85em]"
+        >
+          {part.slice(1, -1)}
+        </code>
+      );
+    }
+    return part;
+  });
 }
 
 // ─── Project Modal ─────────────────────────────────────────────────────────
@@ -1022,6 +1053,9 @@ function ProjectModal({
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [isScrollable, setIsScrollable] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const images = PROJECT_IMAGES[project.id] ?? [];
 
@@ -1063,6 +1097,32 @@ function ProjectModal({
       document.body.style.overflow = "";
     };
   }, [onClose, images.length, imgIdx, goTo]);
+
+  // Scroll indicator
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    setHasScrolled(false);
+    setIsScrollable(el.scrollHeight > el.clientHeight + 10);
+
+    const onScroll = () => {
+      setHasScrolled(true);
+      el.removeEventListener("scroll", onScroll);
+    };
+
+    const ro = new ResizeObserver(() => {
+      setIsScrollable(el.scrollHeight > el.clientHeight + 10);
+    });
+    ro.observe(el);
+
+    el.addEventListener("scroll", onScroll);
+
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      ro.disconnect();
+    };
+  }, [project.id, imgIdx]);
 
   const resetZoom = () => {
     setZoom(1);
@@ -1106,7 +1166,7 @@ function ProjectModal({
         </button>
 
         {/* ── Scrollable body ── */}
-        <div className="overflow-y-auto flex flex-col">
+        <div ref={scrollRef} className="overflow-y-auto flex flex-col">
           {/* Image gallery */}
           {images.length > 0 && (
             <div className="relative w-full max-h-[55vh] aspect-video bg-black/40 shrink-0 select-none">
@@ -1204,7 +1264,7 @@ function ProjectModal({
               ))}
             </div>
           )}
-          <div className="px-6 pb-6 pt-1 sm:px-8 sm:pb-8 flex flex-col gap-6">
+          <div className="px-6 pb-6 pt-2 sm:px-8 sm:pb-8 flex flex-col gap-4">
             <div className="flex items-center justify-between mt-1">
               <h2 className="text-2xl sm:text-3xl font-bold">
                 {project.title}
@@ -1215,50 +1275,11 @@ function ProjectModal({
                 </Badge>
               </div>
             </div>
+
             <p className="text-foreground/70 font-bold">
               {project.shortDescription}
             </p>
 
-            <div className="space-y-2">
-              {project.fullDescription
-                .trim()
-                .split("\n")
-                .map((line, i) => {
-                  const trimmed = line.trim();
-                  if (trimmed === "") {
-                    return <div key={i} className="h-2" />;
-                  }
-                  if (trimmed.startsWith("-")) {
-                    return (
-                      <div
-                        key={i}
-                        className="flex items-start gap-2 text-sm text-muted-foreground"
-                      >
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                        <span>{renderBold(trimmed.replace(/^-\s*/, ""))}</span>
-                      </div>
-                    );
-                  }
-                  if (trimmed.startsWith(">")) {
-                    return (
-                      <p
-                        key={i}
-                        className="text-sm text-muted-foreground leading-relaxed pl-3.5"
-                      >
-                        {renderBold(trimmed.replace(/^>\s*/, ""))}
-                      </p>
-                    );
-                  }
-                  return (
-                    <p
-                      key={i}
-                      className="text-sm text-muted-foreground leading-relaxed"
-                    >
-                      {renderBold(trimmed)}
-                    </p>
-                  );
-                })}
-            </div>
             <div>
               <h3 className="text-sm font-semibold mb-2 flex items-center gap-1.5">
                 <Code2 className="w-4 h-4 text-primary" /> Technologies
@@ -1271,6 +1292,7 @@ function ProjectModal({
                 ))}
               </div>
             </div>
+
             <div className="flex flex-wrap gap-3 pt-2 pb-2">
               {project.githubUrl && (
                 <a
@@ -1290,16 +1312,6 @@ function ProjectModal({
                   className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
                 >
                   <Github className="w-4 h-4" /> GitHub (Mobile)
-                </a>
-              )}
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
-                >
-                  <ExternalLink className="w-4 h-4" /> Live Demo
                 </a>
               )}
               {project.docs &&
@@ -1330,9 +1342,69 @@ function ProjectModal({
                     )}
                   </a>
                 ))}
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
+                >
+                  <ExternalLink className="w-4 h-4" /> Live Demo
+                </a>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              {project.fullDescription
+                .trim()
+                .split("\n")
+                .map((line, i) => {
+                  const trimmed = line.trim();
+                  if (trimmed === "") {
+                    return <div key={i} className="h-2" />;
+                  }
+                  if (trimmed.startsWith("-")) {
+                    return (
+                      <div
+                        key={i}
+                        className="flex items-start gap-2 text-sm text-muted-foreground"
+                      >
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                        <span>
+                          {renderFormatted(trimmed.replace(/^-\s*/, ""))}
+                        </span>
+                      </div>
+                    );
+                  }
+                  if (trimmed.startsWith(">")) {
+                    return (
+                      <p
+                        key={i}
+                        className="text-sm text-muted-foreground leading-relaxed pl-3.5"
+                      >
+                        {renderFormatted(trimmed.replace(/^>\s*/, ""))}
+                      </p>
+                    );
+                  }
+                  return (
+                    <p
+                      key={i}
+                      className="text-sm text-muted-foreground leading-relaxed"
+                    >
+                      {renderFormatted(trimmed)}
+                    </p>
+                  );
+                })}
             </div>
           </div>
         </div>
+        {isScrollable && !hasScrolled && (
+          <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-card to-transparent pointer-events-none flex items-end justify-center pb-2">
+            <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center animate-bounce">
+              <ArrowRight className="w-3.5 h-3.5 rotate-90 text-foreground" />
+            </div>
+          </div>
+        )}
       </div>
 
       {/* ── Lightbox ── */}
