@@ -193,7 +193,7 @@ export const projects: Project[] = [
       "Data analytics platform that proves TikTok's influence on songs' popularity, with different stats and real-time personal profile information",
     fullDescription: `**TikFluence** was my **first serious project**, built primarily as a **learning exercise** to get comfortable working with the technologies involved. The core idea explores a real phenomenon: when a song gets used repeatedly across TikTok videos, the platform's exposure gradually pushes up that song's popularity on **Spotify and YouTube** over time - TikTok acts as a launchpad that influences a track's trajectory across other music platforms.
  
-**Note:** The live demo is visitable but **some features may not function** as the project is **no longer actively maintained**
+**Note:** the live demo is visitable but **some features may not function** as the project is **no longer actively maintained** due to changes in Spotify API policies and access restrictions, which removed access to the track popularity score (0–100) used in core functionality and made long-term maintenance impractical
  
 **Core features:**
 - **Influence Algorithm:** identifies songs whose **TikTok popularity** peak predates their **Spotify peak** - proving cross-platform influence. One noticeable constraint is that Spotify doesn't expose raw play counts, only a **proprietary 0-100 popularity score** - understanding and working around this was essential to making the algorithm applicable
