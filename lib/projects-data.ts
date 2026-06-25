@@ -153,7 +153,7 @@ export const projects: Project[] = [
  
 **Development notes:**
 - After a month of debugging, the **Firebase client SDK** was found to be failing to reliably deliver data at scale; switching to the **Firebase Admin SDK** via the Node.js backend resolved it entirely
-- One of the hardest problems was **prompt engineering:** early GPT-3.5 and Gemini builds generated objects and activities instead of food. Upgrading to **GPT-4 Turbo** and rewriting the entire prompt from scratch was the breakthrough. Currently, the project uses **GPT5.2** and **Gemini 3.5 flash**
+- One of the hardest problems was **prompt engineering:** early GPT-3.5 and Gemini builds generated objects and activities instead of food. Upgrading to **GPT-4 Turbo** and rewriting the entire prompt from scratch was the breakthrough. Currently, the project uses **GPT5.2** and **Gemini 3.5 Flash**
 - Gemini is accessed via **Vertex AI (Google Cloud)** because the Gemini API is unavailable in Bulgaria
 - Meal generation went through **two rejected APIs** (Spoonacular, then Edamam) before landing on AI - limited recipe variety and inability to represent Bulgarian cuisine were the dealbreakers
 - **Unit tests included** and **GitHub branching strategy** (main, dev, per-feature branches)`,
