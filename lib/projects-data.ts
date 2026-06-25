@@ -137,7 +137,7 @@ export const projects: Project[] = [
     id: "nutrifit",
     title: "NutriFit",
     shortDescription:
-      "A modern platform that takes advantage of the power of GPT-4 Turbo & Gemini Pro to actively support users in maintaining their optimal weight and healthy lifestyle",
+      "A modern platform that takes advantage of the power of GPT & Gemini to actively support users in maintaining their optimal weight and healthy lifestyle",
     fullDescription: `**NutriFit** is an integrated web and mobile nutrition platform focused entirely on **AI-driven meal planning** - the project that later inspired **Mobilis**, where the concept expanded to include movement and physical activity. NutriFit's core idea is to make **two AI models generate a truly personalized, nutritionally accurate meal plan**, measure how far they deviate from the user's defined limits, and compare their performance against each other.
  
 **Core features:**
@@ -153,7 +153,7 @@ export const projects: Project[] = [
  
 **Development notes:**
 - After a month of debugging, the **Firebase client SDK** was found to be failing to reliably deliver data at scale; switching to the **Firebase Admin SDK** via the Node.js backend resolved it entirely
-- One of the hardest problems was **prompt engineering:** early GPT-3.5 and Gemini builds generated objects and activities instead of food. Upgrading to **GPT-4 Turbo** and rewriting the entire prompt from scratch was the breakthrough
+- One of the hardest problems was **prompt engineering:** early GPT-3.5 and Gemini builds generated objects and activities instead of food. Upgrading to **GPT-4 Turbo** and rewriting the entire prompt from scratch was the breakthrough. Currently, the project uses **GPT5.2** and **Gemini 3.5 flash**
 - Gemini is accessed via **Vertex AI (Google Cloud)** because the Gemini API is unavailable in Bulgaria
 - Meal generation went through **two rejected APIs** (Spoonacular, then Edamam) before landing on AI - limited recipe variety and inability to represent Bulgarian cuisine were the dealbreakers
 - **Unit tests included** and **GitHub branching strategy** (main, dev, per-feature branches)`,
@@ -263,7 +263,7 @@ export const achievements: Achievement[] = [
     year: "2024",
     title: "1st Place – Regional Round, NOIT 2024",
     description:
-      "NutriFit – AI meal planning with GPT-4 & Gemini deviation analysis",
+      "NutriFit – AI meal planning with GPT & Gemini deviation analysis",
     type: "competition"
   },
   {
