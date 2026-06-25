@@ -167,7 +167,7 @@ export const projects: Project[] = [
       "Android Studio",
       "Chart.js",
       "OpenAI API",
-      "Vertex AI (Gemini Pro)",
+      "Vertex AI (Gemini)",
       "Google Custom Search API",
       "Fitness Calculator API",
       "Chakra UI",
