@@ -15,7 +15,7 @@ export interface Project {
   docs?: {
     label: string;
     filename: string; // relative to /documentations/ in public/
-    icon?: "pdf" | "docx" | "zip";
+    icon?: "pdf" | "docx" | "zip" | "apk";
   }[];
 }
 
@@ -182,6 +182,11 @@ export const projects: Project[] = [
         label: "Documentation",
         filename: "nutrifit_documentation.docx",
         icon: "docx"
+      },
+      {
+        label: "NutriFit Mobile (.apk)",
+        filename: "../NutriFitMobile.apk",
+        icon: "apk"
       }
     ],
     year: "2024"

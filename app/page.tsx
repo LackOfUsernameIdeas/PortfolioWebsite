@@ -1316,32 +1316,50 @@ function ProjectModal({
               )}
               {project.docs &&
                 project.docs.length > 0 &&
-                project.docs.map((doc, i) => (
-                  <a
-                    key={i}
-                    href={`/documentations/${doc.filename}`}
-                    download
-                    className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
-                  >
-                    <Download className="w-4 h-4" />
-                    {doc.label}
-                    {doc.label !== "All Schemes & Photos" && (
-                      <>
-                        <Languages className="w-4 h-4" />
-                        <svg
-                          width="18"
-                          height="12"
-                          viewBox="0 0 18 12"
-                          className="rounded-sm shrink-0"
-                        >
-                          <rect width="18" height="4" y="0" fill="#FFFFFF" />
-                          <rect width="18" height="4" y="4" fill="#00966E" />
-                          <rect width="18" height="4" y="8" fill="#D62612" />
-                        </svg>
-                      </>
-                    )}
-                  </a>
-                ))}
+                project.docs.map((doc, i) =>
+                  doc.icon === "apk" ? (
+                    <a
+                      key={i}
+                      href={`/documentations/${doc.filename}`}
+                      download
+                      className="flex items-center gap-2 text-sm border border-primary/50 text-primary px-4 py-2 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                    >
+                      <svg
+                        className="w-4 h-4 pointer-events-none"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M17.523 0.976l-1.302 2.252a7.293 7.293 0 0 0-8.442 0L6.477.976a.5.5 0 0 0-.866.5l1.312 2.27A7.271 7.271 0 0 0 4.5 9.5h15a7.271 7.271 0 0 0-2.423-5.754l1.312-2.27a.5.5 0 0 0-.866-.5ZM9 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm6 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM2 10.5a1.5 1.5 0 0 0-1.5 1.5v5a1.5 1.5 0 0 0 3 0V12A1.5 1.5 0 0 0 2 10.5Zm20 0a1.5 1.5 0 0 0-1.5 1.5v5a1.5 1.5 0 0 0 3 0V12a1.5 1.5 0 0 0-1.5-1.5ZM4.5 10.5v9A1.5 1.5 0 0 0 6 21v2.5a1.5 1.5 0 0 0 3 0V21h6v2.5a1.5 1.5 0 0 0 3 0V21a1.5 1.5 0 0 0 1.5-1.5v-9Z" />
+                      </svg>
+                      {doc.label}
+                    </a>
+                  ) : (
+                    <a
+                      key={i}
+                      href={`/documentations/${doc.filename}`}
+                      download
+                      className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
+                    >
+                      <Download className="w-4 h-4" />
+                      {doc.label}
+                      {doc.label !== "All Schemes & Photos" && (
+                        <>
+                          <Languages className="w-4 h-4" />
+                          <svg
+                            width="18"
+                            height="12"
+                            viewBox="0 0 18 12"
+                            className="rounded-sm shrink-0"
+                          >
+                            <rect width="18" height="4" y="0" fill="#FFFFFF" />
+                            <rect width="18" height="4" y="4" fill="#00966E" />
+                            <rect width="18" height="4" y="8" fill="#D62612" />
+                          </svg>
+                        </>
+                      )}
+                    </a>
+                  )
+                )}
               {project.liveUrl && (
                 <a
                   href={project.liveUrl}
