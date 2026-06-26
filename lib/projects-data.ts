@@ -140,6 +140,8 @@ export const projects: Project[] = [
       "A modern platform that takes advantage of the power of GPT & Gemini to actively support users in maintaining their optimal weight and healthy lifestyle",
     fullDescription: `**NutriFit** is an integrated web and mobile nutrition platform focused entirely on **AI-driven meal planning** - the project that later inspired **Mobilis**, where the concept expanded to include movement and physical activity. NutriFit's core idea is to make **two AI models generate a truly personalized, nutritionally accurate meal plan**, measure how far they deviate from the user's defined limits, and compare their performance against each other.
  
+**Note:** Ongoing **model upgrades** (due to **deprecation of older models**) have introduced occasional **inconsistencies** in meal naming and food image matching
+
 **Core features:**
 - **Meal generation:** full daily menus with breakfast, lunch (starter + main + dessert), and dinner - each with exact macros, ingredients, and recipes. Food images are fetched via **Google Custom Search API** with custom-configured Search Engines
 - **AI deviation algorithm:** measures how closely **ChatGPT vs Gemini** adhere to user-defined nutritional limits - tracking average deviation %, max deviation per category (calories, protein, fat, carbs), and overall AI deviation score
@@ -152,9 +154,9 @@ export const projects: Project[] = [
 - **React Native mobile app** (separate codebase) mirroring core web features
  
 **Development notes:**
+- One of the hardest problems was **prompt engineering:** early project builds that used GPT-3.5 were giving recommendations of objects and activities instead of food in the meal plans. Upgrading to **GPT-4 Turbo** and rewriting the entire prompt from scratch was the breakthrough. Currently, the project uses **GPT 5.2** and **Gemini 3.5 Flash**
+- Gemini is accessed via **Vertex AI (Google Cloud)** because the Gemini API was unavailable in Bulgaria during project development
 - After a month of debugging, the **Firebase client SDK** was found to be failing to reliably deliver data at scale; switching to the **Firebase Admin SDK** via the Node.js backend resolved it entirely
-- One of the hardest problems was **prompt engineering:** early GPT-3.5 and Gemini builds generated objects and activities instead of food. Upgrading to **GPT-4 Turbo** and rewriting the entire prompt from scratch was the breakthrough. Currently, the project uses **GPT5.2** and **Gemini 3.5 Flash**
-- Gemini is accessed via **Vertex AI (Google Cloud)** because the Gemini API is unavailable in Bulgaria
 - Meal generation went through **two rejected APIs** (Spoonacular, then Edamam) before landing on AI - limited recipe variety and inability to represent Bulgarian cuisine were the dealbreakers
 - **Unit tests included** and **GitHub branching strategy** (main, dev, per-feature branches)`,
     technologies: [
