@@ -51,6 +51,7 @@ export const projects: Project[] = [
       "YouTube API",
       "Nuitrack SDK",
       "OpenCV",
+      "Tkinter",
       "PyNuitrack",
       "Tailwind CSS",
       "shadcn/ui",
