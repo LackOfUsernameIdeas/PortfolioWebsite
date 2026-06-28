@@ -716,18 +716,18 @@ function AchievementModal({
         {/* PDF viewer or fallback image */}
         <div className="flex-1 min-h-0 px-6 pb-6 sm:px-8 sm:pb-8">
           {activeDoc ? (
-            <div className="w-full h-full min-h-[400px] rounded-xl overflow-hidden border border-border">
+            <div className="w-full h-full min-h-[55vh] rounded-xl overflow-hidden border border-border">
               <iframe
                 key={activeDoc.path}
                 src={`${activeDoc.path}#zoom=100`}
                 className="w-full h-full"
-                style={{ minHeight: "400px", zoom: 1 }}
+                style={{ minHeight: "55vh", zoom: 1 }}
                 title={activeDoc.label}
               />
             </div>
           ) : achievement.fallbackImage ? (
             <div
-              className="w-full h-full max-h-[400px] rounded-xl overflow-hidden border border-border relative cursor-zoom-in group/img"
+              className="w-full h-full max-h-[55vh] rounded-xl overflow-hidden border border-border relative cursor-zoom-in group/img"
               onClick={() => setLightboxOpen(true)}
             >
               <img
