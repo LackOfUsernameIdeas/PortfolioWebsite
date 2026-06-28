@@ -632,11 +632,11 @@ function AchievementModal({
             </p>
             <h2 className="text-3xl font-bold">{achievement.title}</h2>
             <p className="text-base text-muted-foreground mt-1.5">
-              {achievement.category}
+              Category: {achievement.category}
             </p>
           </div>
 
-          {/* Badges, doc tabs, links — with rank floating in the empty space to the right */}
+          {/* Badges, doc tabs, links - with rank floating in the empty space to the right */}
           <div className="relative pr-20 sm:pr-24">
             {/* Badges */}
             <div className="flex flex-wrap gap-2 mt-4">
@@ -903,17 +903,17 @@ function AboutSection() {
                 className="bg-card/80 hover:border-primary/30 transition-colors flex flex-col h-full"
               >
                 <CardHeader>
-                  <CardTitle className="text-base font-semibold text-primary">
+                  <CardTitle className="text-lg font-semibold text-primary">
                     {group.category}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex-1 flex items-center">
-                  <div className="flex flex-wrap gap-1">
+                  <div className="flex flex-wrap gap-1.5">
                     {group.items.map((s) => (
                       <Badge
                         key={s}
                         variant="secondary"
-                        className="rounded-full text-xs"
+                        className="rounded-full text-sm"
                       >
                         {s}
                       </Badge>
@@ -2029,15 +2029,15 @@ function ProjectsSection() {
               </div>
               <div className="p-5">
                 <div className="flex items-start justify-between gap-2">
-                  <h3 className="font-semibold text-base">{project.title}</h3>
+                  <h3 className="font-bold text-xl">{project.title}</h3>
                   <Badge
                     variant="outline"
-                    className="text-xs rounded-full shrink-0"
+                    className="text-sm rounded-full shrink-0"
                   >
                     {project.year}
                   </Badge>
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-base text-muted-foreground mt-1.5">
                   {project.shortDescription}
                 </p>
               </div>
@@ -2058,7 +2058,9 @@ function ProjectsSection() {
               <div className="w-12 h-12 rounded-full border-2 border-foreground/30 flex items-center justify-center mx-auto mb-4 group-hover:border-primary group-hover:text-primary transition-colors">
                 <span className="text-2xl">+</span>
               </div>
-              <h3 className="font-semibold">Collaborate on a New Project</h3>
+              <h3 className="font-bold text-lg">
+                Collaborate on a New Project
+              </h3>
             </div>
           </div>
         </div>
@@ -2106,7 +2108,7 @@ function ContactSection() {
             <br />
             <span className="text-primary">together!</span>
           </h2>
-          <p className="mt-4 text-muted-foreground">
+          <p className="mt-4 text-lg text-muted-foreground">
             Interested in working together? I'd love to hear from you.
           </p>
         </div>
@@ -2117,13 +2119,13 @@ function ContactSection() {
                 <div className="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
                   <Send className="h-7 w-7" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
-                <p className="text-muted-foreground mb-6 text-sm">
+                <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
+                <p className="text-muted-foreground mb-6 text-base">
                   I'll respond as soon as possible.
                 </p>
                 <Button
                   size="lg"
-                  className="rounded-full px-8 bg-transparent border border-border font-semibold text-foreground cursor-pointer hover:bg-secondary transition-all duration-300"
+                  className="rounded-full px-8 text-base bg-transparent border border-border font-semibold text-foreground cursor-pointer hover:bg-secondary transition-all duration-300"
                   onClick={() => setDone(false)}
                 >
                   Send Another
@@ -2133,11 +2135,13 @@ function ContactSection() {
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
-                    <Label htmlFor="name">Name</Label>
+                    <Label htmlFor="name" className="text-base">
+                      Name
+                    </Label>
                     <Input
                       id="name"
                       placeholder="Your name"
-                      className="rounded-xl"
+                      className="rounded-xl text-base"
                       value={form.name}
                       onChange={(e) =>
                         setForm({ ...form, name: e.target.value })
@@ -2146,12 +2150,14 @@ function ContactSection() {
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email" className="text-base">
+                      Email
+                    </Label>
                     <Input
                       id="email"
                       type="email"
                       placeholder="you@email.com"
-                      className="rounded-xl"
+                      className="rounded-xl text-base"
                       value={form.email}
                       onChange={(e) =>
                         setForm({ ...form, email: e.target.value })
@@ -2161,11 +2167,13 @@ function ContactSection() {
                   </div>
                 </div>
                 <div className="space-y-1.5">
-                  <Label htmlFor="subject">Subject</Label>
+                  <Label htmlFor="subject" className="text-base">
+                    Subject
+                  </Label>
                   <Input
                     id="subject"
                     placeholder="What is this about?"
-                    className="rounded-xl"
+                    className="rounded-xl text-base"
                     value={form.subject}
                     onChange={(e) =>
                       setForm({ ...form, subject: e.target.value })
@@ -2174,12 +2182,14 @@ function ContactSection() {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <Label htmlFor="message">Message</Label>
+                  <Label htmlFor="message" className="text-base">
+                    Message
+                  </Label>
                   <Textarea
                     id="message"
                     placeholder="Your message..."
                     rows={5}
-                    className="rounded-xl resize-none"
+                    className="rounded-xl resize-none text-base"
                     value={form.message}
                     onChange={(e) =>
                       setForm({ ...form, message: e.target.value })
@@ -2190,7 +2200,7 @@ function ContactSection() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full rounded-full cursor-pointer"
+                  className="w-full rounded-full text-base cursor-pointer"
                   disabled={submitting}
                 >
                   {submitting ? (
