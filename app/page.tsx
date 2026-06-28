@@ -465,10 +465,10 @@ function AchievementsGrid() {
                           {a.title}
                         </p>
                         <p className="text-xs text-muted-foreground">
-                          {a.category}
+                          Category: {a.category}
                         </p>
 
-                        {(a.score || a.extra) && (
+                        {(a.score || a.points || a.extra) && (
                           <div className="flex flex-wrap gap-1.5 pt-1">
                             {a.score && (
                               <Badge
@@ -476,6 +476,14 @@ function AchievementsGrid() {
                                 className="rounded-full text-xs"
                               >
                                 Grade: {a.score}
+                              </Badge>
+                            )}
+                            {a.points && (
+                              <Badge
+                                variant="secondary"
+                                className="rounded-full text-xs"
+                              >
+                                Points: {a.points}
                               </Badge>
                             )}
                             {a.extra && (
@@ -612,6 +620,11 @@ function AchievementModal({
                 Grade: {achievement.score}
               </Badge>
             )}
+            {achievement.points && (
+              <Badge variant="secondary" className="rounded-full text-xs">
+                Points: {achievement.points}
+              </Badge>
+            )}
             {achievement.extra && (
               <Badge
                 variant="outline"
@@ -622,7 +635,7 @@ function AchievementModal({
             )}
           </div>
 
-          {/* Doc tabs — if multiple docs */}
+          {/* Doc tabs - if multiple docs */}
           {achievement.docs && achievement.docs.length > 1 && (
             <div className="flex gap-2 mt-4">
               {achievement.docs.map((doc) => (
@@ -685,6 +698,31 @@ function AchievementModal({
         </div>
       </div>
     </div>
+  );
+}
+
+function AchievementsSection() {
+  return (
+    <section id="achievements" className="py-24 px-6 sm:px-12 lg:px-20">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="reveal text-4xl sm:text-6xl font-bold mb-6">
+          Achievements
+        </h2>
+        <div className="reveal flex flex-wrap gap-3 mb-12">
+          <div className="flex items-center gap-2 text-xs bg-card border border-border rounded-full px-3 py-1.5 text-muted-foreground">
+            <span className="font-semibold text-foreground">НОИТ</span>
+            <ArrowRight className="w-3 h-3 text-muted-foreground" />
+            <span>National Olympiad in Information Technologies</span>
+          </div>
+          <div className="flex items-center gap-2 text-xs bg-card border border-border rounded-full px-3 py-1.5 text-muted-foreground">
+            <span className="font-semibold text-foreground">НЕТИТ</span>
+            <ArrowRight className="w-3 h-3 text-muted-foreground" />
+            <span>National Autumn Tournament in Information Technologies</span>
+          </div>
+        </div>
+        <AchievementsGrid />
+      </div>
+    </section>
   );
 }
 
@@ -762,14 +800,6 @@ function AboutSection() {
               </Card>
             ))}
           </div>
-        </div>
-
-        {/* Achievements */}
-        <div className="mt-24">
-          <h3 className="reveal text-3xl sm:text-4xl font-bold mb-12">
-            Achievements
-          </h3>
-          <AchievementsGrid />
         </div>
       </div>
     </section>
@@ -2082,6 +2112,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <AboutSection />
+        <AchievementsSection />
         <ProjectsSection />
         <ContactSection />
       </main>

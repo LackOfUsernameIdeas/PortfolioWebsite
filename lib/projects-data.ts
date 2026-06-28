@@ -248,10 +248,11 @@ export const projects: Project[] = [
 export interface Achievement {
   year: string;
   title: string;
-  competition: string; // "НОИТ" | "НЕТИТ"
+  competition: string;
   category: string;
   place?: string;
   score?: string;
+  points?: string;
   extra?: string;
   docs?: { label: string; path: string }[];
   links?: { label: string; url: string }[];
@@ -285,6 +286,7 @@ export const achievements: Achievement[] = [
     category: "Software Applications · 8–10 grade",
     place: "4th",
     score: "6.00",
+    points: "88 project · 86 individual",
     docs: [
       {
         label: "Project Ranking",
@@ -318,6 +320,7 @@ export const achievements: Achievement[] = [
     category: "Software Applications · 8–10 grade",
     place: "4th",
     score: "5.75",
+    points: "85 project · 77 individual",
     docs: [
       {
         label: "Project Ranking",
@@ -342,7 +345,7 @@ export const achievements: Achievement[] = [
     category: "Big Data · 11–12 grade",
     place: "5th",
     score: "5.75",
-    extra: "formerly ArtCompass · 87 pts theory · 2 pts from laureate",
+    points: "78 project · 83 individual",
     docs: [
       {
         label: "Project Ranking",
