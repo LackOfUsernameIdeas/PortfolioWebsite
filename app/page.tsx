@@ -685,7 +685,7 @@ function AchievementModal({
                   className={`text-xs px-3 py-1.5 rounded-full border transition-colors cursor-pointer ${
                     activeDoc?.path === doc.path
                       ? "bg-primary text-primary-foreground border-primary"
-                      : "border-border text-muted-foreground hover:border-primary hover:text-primary"
+                      : "border-border text-foreground hover:border-primary hover:text-primary"
                   }`}
                 >
                   {doc.label}

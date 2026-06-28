@@ -310,6 +310,7 @@ export const achievements: Achievement[] = [
     competition: "НЕТИТ „Джон Атанасов“",
     category: "Software Applications",
     place: "1st",
+    points: "96 project",
     docs: [{ label: "Project Ranking", path: "/achievements/netit-2024.pdf" }],
     links: [{ label: "Official Results", url: "https://122ou.com/netit2024/" }]
   },
@@ -346,6 +347,8 @@ export const achievements: Achievement[] = [
     place: "5th",
     score: "5.75",
     points: "78 project · 83 individual",
+    extra: "known in its early stage as ArtCompass",
+
     docs: [
       {
         label: "Project Ranking",
