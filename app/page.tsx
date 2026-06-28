@@ -25,7 +25,12 @@ import {
   Code2,
   Languages
 } from "lucide-react";
-import { projects, achievements, type Project } from "@/lib/projects-data";
+import {
+  projects,
+  achievements,
+  type Project,
+  Achievement
+} from "@/lib/projects-data";
 
 // ─── CSS particle background ───────────────────────────────────────────────
 function Particles({ count = 18 }: { count?: number }) {
@@ -380,6 +385,309 @@ const skills = [
   }
 ];
 
+// ─── Achievements Grid ─────────────────────────────────────────────────────
+function AchievementsGrid() {
+  const [openAchievement, setOpenAchievement] = useState<Achievement | null>(
+    null
+  );
+
+  return (
+    <>
+      {openAchievement && (
+        <AchievementModal
+          achievement={openAchievement}
+          onClose={() => setOpenAchievement(null)}
+        />
+      )}
+
+      <div className="space-y-14">
+        {(["2025", "2024", "2023"] as const).map((year) => {
+          const items = achievements.filter((a) => a.year === year);
+          return (
+            <div key={year} className="reveal">
+              <div className="flex items-center gap-4 mb-6">
+                <h4 className="text-xl font-semibold text-primary">{year}</h4>
+                <div className="flex-1 h-px bg-border" />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {items.map((a, i) => {
+                  const placeNum = a.place ? a.place.replace(/\D/g, "") : null;
+                  const placeColor =
+                    a.place === "1st"
+                      ? "text-yellow-500"
+                      : a.place === "2nd"
+                        ? "text-slate-400"
+                        : "text-primary";
+                  const accentColor =
+                    a.place === "1st"
+                      ? "bg-yellow-500"
+                      : a.place === "2nd"
+                        ? "bg-slate-400"
+                        : "bg-primary/60";
+                  const CardIcon =
+                    a.place === "1st"
+                      ? Trophy
+                      : a.place === "2nd"
+                        ? Medal
+                        : Award;
+                  const hasViewer =
+                    (a.docs && a.docs.length > 0) || a.fallbackImage;
+
+                  return (
+                    <Card
+                      key={i}
+                      className={`flex flex-col overflow-hidden transition-all ${hasViewer ? "hover:border-primary/30 hover:shadow-md cursor-pointer" : ""}`}
+                      onClick={() => hasViewer && setOpenAchievement(a)}
+                    >
+                      <div className={`h-1 w-full shrink-0 ${accentColor}`} />
+
+                      <CardHeader className="pb-2 pt-4">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="p-2 rounded-xl bg-primary/10 text-primary shrink-0">
+                            <CardIcon className="h-4 w-4" />
+                          </div>
+                          {placeNum && (
+                            <span
+                              className={`text-3xl font-black tabular-nums leading-none ${placeColor}`}
+                            >
+                              #{placeNum}
+                            </span>
+                          )}
+                        </div>
+                      </CardHeader>
+
+                      <CardContent className="flex flex-col gap-2 flex-1 pt-0">
+                        <p className="text-xs text-muted-foreground">
+                          {a.competition}
+                        </p>
+                        <p className="font-semibold text-sm leading-snug">
+                          {a.title}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {a.category}
+                        </p>
+
+                        {(a.score || a.extra) && (
+                          <div className="flex flex-wrap gap-1.5 pt-1">
+                            {a.score && (
+                              <Badge
+                                variant="secondary"
+                                className="rounded-full text-xs"
+                              >
+                                Grade: {a.score}
+                              </Badge>
+                            )}
+                            {a.extra && (
+                              <Badge
+                                variant="outline"
+                                className="rounded-full text-xs text-primary border-primary/30"
+                              >
+                                {a.extra}
+                              </Badge>
+                            )}
+                          </div>
+                        )}
+
+                        {hasViewer && (
+                          <div className="mt-auto pt-3">
+                            <span className="flex items-center gap-1.5 text-xs text-primary font-medium">
+                              <ExternalLink className="w-3 h-3" />
+                              View ranking
+                            </span>
+                          </div>
+                        )}
+
+                        {a.links && a.links.length > 0 && (
+                          <div className="flex flex-wrap gap-2 pt-1">
+                            {a.links.map((link, li) => (
+                              <a
+                                key={li}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+                              >
+                                <ExternalLink className="w-3 h-3" />
+                                {link.label}
+                              </a>
+                            ))}
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+}
+
+// ─── Achievement Modal ─────────────────────────────────────────────────────
+function AchievementModal({
+  achievement,
+  onClose
+}: {
+  achievement: Achievement;
+  onClose: () => void;
+}) {
+  const [activeDoc, setActiveDoc] = useState<{
+    label: string;
+    path: string;
+  } | null>(achievement.docs?.[0] ?? null);
+
+  useEffect(() => {
+    setActiveDoc(achievement.docs?.[0] ?? null);
+  }, [achievement]);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handler);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handler);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  const placeColor =
+    achievement.place === "1st"
+      ? "text-yellow-500"
+      : achievement.place === "2nd"
+        ? "text-slate-400"
+        : "text-primary";
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-6"
+      onClick={onClose}
+    >
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+      <div
+        className="relative z-10 w-full sm:max-w-4xl max-h-[92vh] bg-card border border-border rounded-t-3xl sm:rounded-3xl overflow-hidden flex flex-col shadow-2xl animate-in slide-in-from-bottom-8 duration-300"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="h-1.5 w-full bg-gradient-to-r from-primary to-primary/30 shrink-0" />
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors z-10"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        {/* Header */}
+        <div className="px-6 pt-5 pb-4 sm:px-8 shrink-0">
+          <div className="flex items-start justify-between gap-4 pr-10">
+            <div>
+              <p className="text-xs text-muted-foreground mb-1">
+                {achievement.competition} · {achievement.year}
+              </p>
+              <h2 className="text-2xl sm:text-3xl font-bold">
+                {achievement.title}
+              </h2>
+              <p className="text-sm text-muted-foreground mt-1">
+                {achievement.category}
+              </p>
+            </div>
+            {achievement.place && (
+              <span
+                className={`text-4xl font-black tabular-nums shrink-0 ${placeColor}`}
+              >
+                #{achievement.place.replace(/\D/g, "")}
+              </span>
+            )}
+          </div>
+
+          {/* Badges */}
+          <div className="flex flex-wrap gap-2 mt-3">
+            {achievement.score && (
+              <Badge variant="secondary" className="rounded-full text-xs">
+                Grade: {achievement.score}
+              </Badge>
+            )}
+            {achievement.extra && (
+              <Badge
+                variant="outline"
+                className="rounded-full text-xs text-primary border-primary/30"
+              >
+                {achievement.extra}
+              </Badge>
+            )}
+          </div>
+
+          {/* Doc tabs — if multiple docs */}
+          {achievement.docs && achievement.docs.length > 1 && (
+            <div className="flex gap-2 mt-4">
+              {achievement.docs.map((doc) => (
+                <button
+                  key={doc.path}
+                  onClick={() => setActiveDoc(doc)}
+                  className={`text-xs px-3 py-1.5 rounded-full border transition-colors cursor-pointer ${
+                    activeDoc?.path === doc.path
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "border-border text-muted-foreground hover:border-primary hover:text-primary"
+                  }`}
+                >
+                  {doc.label}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Reference links */}
+          {achievement.links && achievement.links.length > 0 && (
+            <div className="flex flex-wrap gap-3 mt-3">
+              {achievement.links.map((link, i) => (
+                <a
+                  key={i}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <ExternalLink className="w-3 h-3" />
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* PDF viewer or fallback image */}
+        <div className="flex-1 min-h-0 px-6 pb-6 sm:px-8 sm:pb-8">
+          {activeDoc ? (
+            <div className="w-full h-full min-h-[400px] rounded-xl overflow-hidden border border-border">
+              <iframe
+                key={activeDoc.path}
+                src={`${activeDoc.path}#zoom=100`}
+                className="w-full h-full"
+                style={{ minHeight: "400px", zoom: 1 }}
+                title={activeDoc.label}
+              />
+            </div>
+          ) : achievement.fallbackImage ? (
+            <div className="w-full h-full min-h-[400px] rounded-xl overflow-auto border border-border">
+              <img
+                src={achievement.fallbackImage}
+                alt={`${achievement.title} – ${achievement.competition} ${achievement.year}`}
+                className="w-full h-auto object-contain"
+                style={{ minWidth: "100%", width: "100%" }}
+              />
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function AboutSection() {
   return (
     <section id="about" className="py-24 px-6 sm:px-12 lg:px-20 bg-card/40">
@@ -402,8 +710,7 @@ function AboutSection() {
             </p>
             <p>
               With a strong foundation in computer science and hands-on
-              experience in competitive programming, I have achieved recognition
-              in national competitions.
+              experience, I have achieved recognition in national competitions.
             </p>
             <p>
               Currently seeking opportunities to apply my skills in challenging
@@ -462,62 +769,7 @@ function AboutSection() {
           <h3 className="reveal text-3xl sm:text-4xl font-bold mb-12">
             Achievements
           </h3>
-          <div className="space-y-10">
-            {Object.entries(
-              achievements.reduce(
-                (acc, a) => {
-                  if (!acc[a.year]) acc[a.year] = [];
-                  acc[a.year].push(a);
-                  return acc;
-                },
-                {} as Record<string, typeof achievements>
-              )
-            )
-              .sort((a, b) => b[0].localeCompare(a[0]))
-              .map(([year, items]) => (
-                <div key={year} className="reveal">
-                  <h4 className="text-xl font-semibold text-primary mb-4">
-                    {year}
-                  </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {items.map((a, i) => {
-                      const Icon =
-                        a.type === "competition"
-                          ? Trophy
-                          : a.type === "award"
-                            ? Award
-                            : GraduationCap;
-                      return (
-                        <Card
-                          key={i}
-                          className="hover:border-primary/30 transition-colors"
-                        >
-                          <CardHeader className="pb-2">
-                            <div className="flex items-center gap-3">
-                              <div className="p-2 rounded-xl bg-primary/10 text-primary">
-                                <Icon className="h-4 w-4" />
-                              </div>
-                              <Badge
-                                variant="outline"
-                                className="rounded-full text-xs capitalize"
-                              >
-                                {a.type}
-                              </Badge>
-                            </div>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="font-semibold text-sm">{a.title}</p>
-                            <p className="text-xs text-muted-foreground mt-1">
-                              {a.description}
-                            </p>
-                          </CardContent>
-                        </Card>
-                      );
-                    })}
-                  </div>
-                </div>
-              ))}
-          </div>
+          <AchievementsGrid />
         </div>
       </div>
     </section>

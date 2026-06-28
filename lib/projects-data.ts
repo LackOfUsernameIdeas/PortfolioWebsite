@@ -248,51 +248,116 @@ export const projects: Project[] = [
 export interface Achievement {
   year: string;
   title: string;
-  description: string;
-  type: "competition" | "certification" | "award";
+  competition: string; // "НОИТ" | "НЕТИТ"
+  category: string;
+  place?: string;
+  score?: string;
+  extra?: string;
+  docs?: { label: string; path: string }[];
+  links?: { label: string; url: string }[];
+  fallbackImage?: string;
 }
 
 export const achievements: Achievement[] = [
   {
-    year: "2025",
-    title: "NOIT National Finals – Mobilis",
-    description:
-      "AI fitness platform with Orbbec 3D posture correction and scientific goal algorithms",
-    type: "competition"
-  },
-  {
-    year: "2025",
-    title: "NOIT National Finals – MindReel",
-    description:
-      "EEG-powered neuro-assistant with VR cinema and ML recommendation evaluation",
-    type: "competition"
-  },
-  {
-    year: "2024",
-    title: "1st Place – Regional Round, NOIT 2024",
-    description:
-      "NutriFit – AI meal planning with GPT & Gemini deviation analysis",
-    type: "competition"
-  },
-  {
-    year: "2024",
-    title: "NOIT National Finals – NutriFit",
-    description:
-      "Finalist at the National IT Competition with AI-powered nutrition platform",
-    type: "competition"
+    year: "2023",
+    title: "TikFluence",
+    competition: "НЕТИТ „Джон Атанасов“",
+    category: "Software Applications · 8–10 grade",
+    place: "2nd",
+    extra: "First НЕТИТ participation",
+    fallbackImage: "/achievements/netit-2023-newspaper.png",
+    links: [
+      {
+        label: "Newspaper Article",
+        url: "https://glashatai.com/article/24722-golqm-yspeh-na-ychenicite-ot-pgi-na-nacionalnoto-s"
+      },
+      {
+        label: "School News",
+        url: "https://pgi-pernik.bg-schools.com/novini.php?id=823"
+      }
+    ]
   },
   {
     year: "2023",
-    title: "1st Place – Regional Round, NOIT 2023",
-    description:
-      "TikFluence – data analytics platform proving TikTok's cross-platform music influence",
-    type: "competition"
+    title: "TikFluence",
+    competition: "НОИТ",
+    category: "Software Applications · 8–10 grade",
+    place: "4th",
+    score: "6.00",
+    docs: [
+      {
+        label: "Project Ranking",
+        path: "/achievements/noit-2023-project.pdf"
+      },
+      {
+        label: "Individual Ranking",
+        path: "/achievements/noit-2023-individual.pdf"
+      }
+    ],
+    links: [
+      {
+        label: "Official Results",
+        url: "https://edusoft.fmi.uni-sofia.bg/news/view/171"
+      }
+    ]
   },
   {
-    year: "2023",
-    title: "NOIT National Finals – TikFluence",
-    description:
-      "Finalist at the National IT Competition with original influence-detection algorithms",
-    type: "competition"
+    year: "2024",
+    title: "NutriFit",
+    competition: "НЕТИТ „Джон Атанасов“",
+    category: "Software Applications",
+    place: "1st",
+    docs: [{ label: "Project Ranking", path: "/achievements/netit-2024.pdf" }],
+    links: [{ label: "Official Results", url: "https://122ou.com/netit2024/" }]
+  },
+  {
+    year: "2024",
+    title: "NutriFit",
+    competition: "НОИТ",
+    category: "Software Applications · 8–10 grade",
+    place: "4th",
+    score: "5.75",
+    docs: [
+      {
+        label: "Project Ranking",
+        path: "/achievements/noit-2024-project.pdf"
+      },
+      {
+        label: "Individual Ranking",
+        path: "/achievements/noit-2024-individual.pdf"
+      }
+    ],
+    links: [
+      {
+        label: "Official Results",
+        url: "https://edusoft.fmi.uni-sofia.bg/news/view/182"
+      }
+    ]
+  },
+  {
+    year: "2025",
+    title: "MindReel",
+    competition: "НОИТ",
+    category: "Big Data · 11–12 grade",
+    place: "5th",
+    score: "5.75",
+    extra: "formerly ArtCompass · 87 pts theory · 2 pts from laureate",
+    docs: [
+      {
+        label: "Project Ranking",
+        path: "/achievements/noit-2025-project.pdf"
+      },
+      {
+        label: "Individual Ranking",
+        path: "/achievements/noit-2025-individual.pdf"
+      }
+    ],
+    links: [
+      {
+        label: "Official Results",
+        url: "https://edusoft.fmi.uni-sofia.bg/news/view/193"
+      }
+    ]
   }
 ];
