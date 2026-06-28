@@ -257,6 +257,7 @@ export interface Achievement {
   docs?: { label: string; path: string }[];
   links?: { label: string; url: string }[];
   fallbackImage?: string;
+  fallbackImageCaption?: string; // ← ADD THIS
 }
 
 export const achievements: Achievement[] = [
@@ -268,6 +269,8 @@ export const achievements: Achievement[] = [
     place: "2nd",
     extra: "First НЕТИТ participation",
     fallbackImage: "/achievements/netit-2023-newspaper.png",
+    fallbackImageCaption:
+      'Newspaper clipping from Glashatai covering the awards ceremony at the National Autumn Tournament in Information Technologies - "John Atanasov", held December 1–3 in Sofia. I won 2nd place in the Software Applications category with TikFluence project',
     links: [
       {
         label: "Newspaper Article",

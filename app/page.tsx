@@ -734,6 +734,13 @@ function AchievementModal({
                   Click to expand
                 </div>
               </div>
+              {achievement.fallbackImageCaption && (
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3 pointer-events-none">
+                  <p className="text-white text-xs line-clamp-2">
+                    {achievement.fallbackImageCaption}
+                  </p>
+                </div>
+              )}
             </div>
           ) : null}
         </div>
@@ -800,7 +807,7 @@ function AchievementModal({
             />
           </div>
 
-          <div className="flex flex-col items-center gap-2 mt-4">
+          <div className="flex flex-col items-center gap-3 mt-4 px-6 max-w-[85vw]">
             <div className="flex items-center gap-3">
               <span className="text-white/50 text-sm">
                 Scroll to zoom · drag to pan
@@ -817,6 +824,11 @@ function AchievementModal({
                 </button>
               )}
             </div>
+            {achievement.fallbackImageCaption && (
+              <p className="text-white/70 text-sm text-center leading-relaxed">
+                {achievement.fallbackImageCaption}
+              </p>
+            )}
           </div>
         </div>
       )}
@@ -878,21 +890,14 @@ function AboutSection() {
               projects and collaborate with like-minded professionals.
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button size="lg" className="rounded-full px-8" asChild>
-                <a href="/cv-europass.pdf" download>
-                  <Download className="h-5 w-5 mr-2" /> Download CV
-                </a>
-              </Button>
               <Button
                 size="lg"
-                className="rounded-full px-8 bg-transparent border border-border font-semibold text-foreground cursor-pointer hover:bg-secondary transition-all duration-300"
-                onClick={() =>
-                  document
-                    .getElementById("contact")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
+                className="rounded-full px-7 py-5 text-base leading-none"
+                asChild
               >
-                Contact Me
+                <a href="/cv-europass.pdf" download>
+                  <Download className="h-4 w-4 mr-2" /> Download CV
+                </a>
               </Button>
             </div>
           </div>
