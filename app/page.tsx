@@ -549,13 +549,30 @@ function AchievementModal({
     path: string;
   } | null>(achievement.docs?.[0] ?? null);
 
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+
   useEffect(() => {
     setActiveDoc(achievement.docs?.[0] ?? null);
+    setLightboxOpen(false);
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
   }, [achievement]);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        if (lightboxOpen) {
+          setLightboxOpen(false);
+          setZoom(1);
+          setPan({ x: 0, y: 0 });
+        } else {
+          onClose();
+        }
+      }
     };
     window.addEventListener("keydown", handler);
     document.body.style.overflow = "hidden";
@@ -563,7 +580,30 @@ function AchievementModal({
       window.removeEventListener("keydown", handler);
       document.body.style.overflow = "";
     };
-  }, [onClose]);
+  }, [onClose, lightboxOpen]);
+
+  const resetZoom = () => {
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+  };
+
+  const clampPan = (x: number, y: number, z: number) => {
+    const maxX = (z - 1) * (window.innerWidth * 0.425);
+    const maxY = (z - 1) * (window.innerHeight * 0.4);
+    return {
+      x: Math.max(-maxX, Math.min(maxX, x)),
+      y: Math.max(-maxY, Math.min(maxY, y))
+    };
+  };
+
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    setZoom((z) => {
+      const next = Math.min(5, Math.max(1, z - e.deltaY * 0.001));
+      setPan((p) => clampPan(p.x, p.y, next));
+      return next;
+    });
+  };
 
   const placeColor =
     achievement.place === "1st"
@@ -686,17 +726,106 @@ function AchievementModal({
               />
             </div>
           ) : achievement.fallbackImage ? (
-            <div className="w-full h-full min-h-[400px] rounded-xl overflow-auto border border-border">
+            <div
+              className="w-full h-full max-h-[400px] rounded-xl overflow-hidden border border-border relative cursor-zoom-in group/img"
+              onClick={() => setLightboxOpen(true)}
+            >
               <img
                 src={achievement.fallbackImage}
                 alt={`${achievement.title} – ${achievement.competition} ${achievement.year}`}
-                className="w-full h-auto object-contain"
-                style={{ minWidth: "100%", width: "100%" }}
+                className="w-full h-full object-contain"
               />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-200">
+                <div className="bg-black/60 text-white text-base px-6 py-3 rounded-full font-semibold">
+                  Click to expand
+                </div>
+              </div>
             </div>
           ) : null}
         </div>
       </div>
+
+      {/* ── Fallback image lightbox ── */}
+      {lightboxOpen && achievement.fallbackImage && (
+        <div
+          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black/90 backdrop-blur-sm py-4"
+          onClick={() => {
+            setLightboxOpen(false);
+            resetZoom();
+          }}
+        >
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxOpen(false);
+              resetZoom();
+            }}
+            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors cursor-pointer"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          <div
+            className="relative overflow-hidden"
+            style={{
+              width: "85vw",
+              maxWidth: "1200px",
+              maxHeight: "80vh",
+              cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default"
+            }}
+            onWheel={handleWheel}
+            onMouseDown={(e) => {
+              if (zoom > 1) {
+                setDragging(true);
+                setDragStart({ x: e.clientX - pan.x, y: e.clientY - pan.y });
+              }
+            }}
+            onMouseMove={(e) => {
+              if (dragging) {
+                const raw = {
+                  x: e.clientX - dragStart.x,
+                  y: e.clientY - dragStart.y
+                };
+                setPan(clampPan(raw.x, raw.y, zoom));
+              }
+            }}
+            onMouseUp={() => setDragging(false)}
+            onMouseLeave={() => setDragging(false)}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={achievement.fallbackImage}
+              alt={`${achievement.title} – ${achievement.competition} ${achievement.year}`}
+              className="w-full h-full object-contain select-none"
+              style={{
+                transform: `scale(${zoom}) translate(${pan.x / zoom}px, ${pan.y / zoom}px)`,
+                transformOrigin: "center",
+                transition: dragging ? "none" : "transform 0.1s"
+              }}
+              draggable={false}
+            />
+          </div>
+
+          <div className="flex flex-col items-center gap-2 mt-4">
+            <div className="flex items-center gap-3">
+              <span className="text-white/50 text-sm">
+                Scroll to zoom · drag to pan
+              </span>
+              {zoom > 1 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    resetZoom();
+                  }}
+                  className="text-sm text-white/70 border border-white/20 px-2 py-0.5 cursor-pointer rounded-full hover:border-white/50 transition-colors"
+                >
+                  Reset zoom
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
