@@ -400,17 +400,17 @@ function AchievementsGrid() {
         />
       )}
 
-      <div className="space-y-14">
+      <div className="space-y-16">
         {(["2025", "2024", "2023"] as const).map((year) => {
           const items = achievements.filter((a) => a.year === year);
           return (
             <div key={year} className="reveal">
-              <div className="flex items-center gap-4 mb-6">
-                <h4 className="text-xl font-semibold text-primary">{year}</h4>
+              <div className="flex items-center gap-4 mb-7">
+                <h4 className="text-2xl font-bold text-primary">{year}</h4>
                 <div className="flex-1 h-px bg-border" />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {items.map((a, i) => {
                   const placeNum = a.place ? a.place.replace(/\D/g, "") : null;
                   const placeColor =
@@ -425,46 +425,40 @@ function AchievementsGrid() {
                       : a.place === "2nd"
                         ? "bg-slate-400"
                         : "bg-primary/60";
-                  const CardIcon =
+                  const glowClass =
                     a.place === "1st"
-                      ? Trophy
+                      ? "hover:shadow-[0_0_28px_-6px_rgba(234,179,8,0.45)]"
                       : a.place === "2nd"
-                        ? Medal
-                        : Award;
+                        ? "hover:shadow-[0_0_22px_-6px_rgba(148,163,184,0.4)]"
+                        : "hover:shadow-md";
                   const hasViewer =
                     (a.docs && a.docs.length > 0) || a.fallbackImage;
 
                   return (
                     <Card
                       key={i}
-                      className={`flex flex-col overflow-hidden transition-all ${hasViewer ? "hover:border-primary/30 hover:shadow-md cursor-pointer" : ""}`}
+                      className={`flex flex-col overflow-hidden transition-all duration-300 ${glowClass} ${hasViewer ? "hover:border-primary/30 hover:-translate-y-1 cursor-pointer" : ""}`}
                       onClick={() => hasViewer && setOpenAchievement(a)}
                     >
-                      <div className={`h-1 w-full shrink-0 ${accentColor}`} />
+                      <div className={`h-1.5 w-full shrink-0 ${accentColor}`} />
 
-                      <CardHeader className="pb-2 pt-4">
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="p-2 rounded-xl bg-primary/10 text-primary shrink-0">
-                            <CardIcon className="h-4 w-4" />
-                          </div>
+                      <CardContent className="flex flex-col gap-2.5 flex-1">
+                        <p className="text-md text-muted-foreground">
+                          {a.competition}
+                        </p>
+                        <div className="flex items-center justify-between gap-2">
+                          <p className="font-bold text-2xl leading-snug">
+                            {a.title}
+                          </p>
                           {placeNum && (
                             <span
-                              className={`text-3xl font-black tabular-nums leading-none ${placeColor}`}
+                              className={`text-3xl font-black tabular-nums leading-none shrink-0 ${placeColor}`}
                             >
                               #{placeNum}
                             </span>
                           )}
                         </div>
-                      </CardHeader>
-
-                      <CardContent className="flex flex-col gap-2 flex-1 pt-0">
-                        <p className="text-xs text-muted-foreground">
-                          {a.competition}
-                        </p>
-                        <p className="font-semibold text-sm leading-snug">
-                          {a.title}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-sm text-muted-foreground">
                           Category: {a.category}
                         </p>
 
@@ -473,7 +467,7 @@ function AchievementsGrid() {
                             {a.score && (
                               <Badge
                                 variant="secondary"
-                                className="rounded-full text-xs"
+                                className="rounded-full text-sm"
                               >
                                 Grade: {a.score}
                               </Badge>
@@ -481,7 +475,7 @@ function AchievementsGrid() {
                             {a.points && (
                               <Badge
                                 variant="secondary"
-                                className="rounded-full text-xs"
+                                className="rounded-full text-sm"
                               >
                                 Points: {a.points}
                               </Badge>
@@ -489,7 +483,7 @@ function AchievementsGrid() {
                             {a.extra && (
                               <Badge
                                 variant="outline"
-                                className="rounded-full text-xs text-primary border-primary/30"
+                                className="rounded-full text-sm text-primary border-primary/30"
                               >
                                 {a.extra}
                               </Badge>
@@ -499,8 +493,8 @@ function AchievementsGrid() {
 
                         {hasViewer && (
                           <div className="mt-auto pt-3">
-                            <span className="flex items-center gap-1.5 text-xs text-primary font-medium">
-                              <ExternalLink className="w-3 h-3" />
+                            <span className="flex items-center gap-1.5 text-sm text-primary font-medium">
+                              <ExternalLink className="w-3.5 h-3.5" />
                               View ranking
                             </span>
                           </div>
@@ -515,9 +509,9 @@ function AchievementsGrid() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={(e) => e.stopPropagation()}
-                                className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+                                className="flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
                               >
-                                <ExternalLink className="w-3 h-3" />
+                                <ExternalLink className="w-3.5 h-3.5" />
                                 {link.label}
                               </a>
                             ))}
@@ -632,85 +626,85 @@ function AchievementModal({
 
         {/* Header */}
         <div className="px-6 pt-5 pb-4 sm:px-8 shrink-0">
-          <div className="flex items-start justify-between gap-4 pr-10">
-            <div>
-              <p className="text-xs text-muted-foreground mb-1">
-                {achievement.competition} · {achievement.year}
-              </p>
-              <h2 className="text-2xl sm:text-3xl font-bold">
-                {achievement.title}
-              </h2>
-              <p className="text-sm text-muted-foreground mt-1">
-                {achievement.category}
-              </p>
+          <div className="pr-10">
+            <p className="text-sm text-muted-foreground mb-1">
+              {achievement.competition} · {achievement.year}
+            </p>
+            <h2 className="text-3xl font-bold">{achievement.title}</h2>
+            <p className="text-base text-muted-foreground mt-1.5">
+              {achievement.category}
+            </p>
+          </div>
+
+          {/* Badges, doc tabs, links — with rank floating in the empty space to the right */}
+          <div className="relative pr-20 sm:pr-24">
+            {/* Badges */}
+            <div className="flex flex-wrap gap-2 mt-4">
+              {achievement.score && (
+                <Badge variant="secondary" className="rounded-full text-sm">
+                  Grade: {achievement.score}
+                </Badge>
+              )}
+              {achievement.points && (
+                <Badge variant="secondary" className="rounded-full text-sm">
+                  Points: {achievement.points}
+                </Badge>
+              )}
+              {achievement.extra && (
+                <Badge
+                  variant="outline"
+                  className="rounded-full text-sm text-primary border-primary/30"
+                >
+                  {achievement.extra}
+                </Badge>
+              )}
             </div>
+
+            {/* Doc tabs - if multiple docs */}
+            {achievement.docs && achievement.docs.length > 1 && (
+              <div className="flex gap-2 mt-4">
+                {achievement.docs.map((doc) => (
+                  <button
+                    key={doc.path}
+                    onClick={() => setActiveDoc(doc)}
+                    className={`text-sm px-3.5 py-1.5 rounded-full border transition-colors cursor-pointer ${
+                      activeDoc?.path === doc.path
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "border-border text-foreground hover:border-primary hover:text-primary"
+                    }`}
+                  >
+                    {doc.label}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Reference links */}
+            {achievement.links && achievement.links.length > 0 && (
+              <div className="flex flex-wrap gap-3 mt-3.5">
+                {achievement.links.map((link, i) => (
+                  <a
+                    key={i}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            )}
+
             {achievement.place && (
               <span
-                className={`text-4xl font-black tabular-nums shrink-0 ${placeColor}`}
+                className={`absolute right-0 top-1/2 -translate-y-1/2 text-4xl font-black tabular-nums ${placeColor}`}
               >
                 #{achievement.place.replace(/\D/g, "")}
               </span>
             )}
           </div>
-
-          {/* Badges */}
-          <div className="flex flex-wrap gap-2 mt-3">
-            {achievement.score && (
-              <Badge variant="secondary" className="rounded-full text-xs">
-                Grade: {achievement.score}
-              </Badge>
-            )}
-            {achievement.points && (
-              <Badge variant="secondary" className="rounded-full text-xs">
-                Points: {achievement.points}
-              </Badge>
-            )}
-            {achievement.extra && (
-              <Badge
-                variant="outline"
-                className="rounded-full text-xs text-primary border-primary/30"
-              >
-                {achievement.extra}
-              </Badge>
-            )}
-          </div>
-
-          {/* Doc tabs - if multiple docs */}
-          {achievement.docs && achievement.docs.length > 1 && (
-            <div className="flex gap-2 mt-4">
-              {achievement.docs.map((doc) => (
-                <button
-                  key={doc.path}
-                  onClick={() => setActiveDoc(doc)}
-                  className={`text-xs px-3 py-1.5 rounded-full border transition-colors cursor-pointer ${
-                    activeDoc?.path === doc.path
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "border-border text-foreground hover:border-primary hover:text-primary"
-                  }`}
-                >
-                  {doc.label}
-                </button>
-              ))}
-            </div>
-          )}
-
-          {/* Reference links */}
-          {achievement.links && achievement.links.length > 0 && (
-            <div className="flex flex-wrap gap-3 mt-3">
-              {achievement.links.map((link, i) => (
-                <a
-                  key={i}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <ExternalLink className="w-3 h-3" />
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          )}
         </div>
 
         {/* PDF viewer or fallback image */}
@@ -838,14 +832,14 @@ function AchievementsSection() {
           Achievements
         </h2>
         <div className="reveal flex flex-wrap gap-3 mb-12">
-          <div className="flex items-center gap-2 text-xs bg-card border border-border rounded-full px-3 py-1.5 text-muted-foreground">
+          <div className="flex items-center gap-2 text-sm bg-card border border-border rounded-full px-3.5 py-2 text-muted-foreground">
             <span className="font-semibold text-foreground">НОИТ</span>
-            <ArrowRight className="w-3 h-3 text-muted-foreground" />
+            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
             <span>National Olympiad in Information Technologies</span>
           </div>
-          <div className="flex items-center gap-2 text-xs bg-card border border-border rounded-full px-3 py-1.5 text-muted-foreground">
+          <div className="flex items-center gap-2 text-sm bg-card border border-border rounded-full px-3.5 py-2 text-muted-foreground">
             <span className="font-semibold text-foreground">НЕТИТ</span>
-            <ArrowRight className="w-3 h-3 text-muted-foreground" />
+            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
             <span>National Autumn Tournament in Information Technologies</span>
           </div>
         </div>
