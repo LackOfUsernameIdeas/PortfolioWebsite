@@ -264,13 +264,13 @@ export const achievements: Achievement[] = [
   {
     year: "2023",
     title: "TikFluence",
-    competition: "НЕТИТ „Джон Атанасов“",
+    competition: "NATIT “John Atanasov”",
     category: "Software Applications · 8–10 grade",
     place: "2nd",
-    extra: "First НЕТИТ participation",
+    extra: "First NATIT participation",
     fallbackImage: "/achievements/netit-2023-newspaper.png",
     fallbackImageCaption:
-      'Newspaper clipping from Glashatai covering the awards ceremony at the National Autumn Tournament in Information Technologies - "John Atanasov", held December 1–3 in Sofia. I won 2nd place in the Software Applications category with TikFluence project',
+      "Newspaper clipping from Glashatai covering the awards ceremony at the National Autumn Tournament in Information Technologies - “John Atanasov”, held December 1–3 in Sofia. I won 2nd place in the Software Applications category with TikFluence project",
     links: [
       {
         label: "Newspaper Article",
@@ -285,7 +285,7 @@ export const achievements: Achievement[] = [
   {
     year: "2023",
     title: "TikFluence",
-    competition: "НОИТ",
+    competition: "NOIT",
     category: "Software Applications · 8–10 grade",
     place: "4th",
     score: "6.00",
@@ -310,7 +310,7 @@ export const achievements: Achievement[] = [
   {
     year: "2024",
     title: "NutriFit",
-    competition: "НЕТИТ „Джон Атанасов“",
+    competition: "NATIT “John Atanasov”",
     category: "Software Applications",
     place: "1st",
     points: "96 project",
@@ -320,7 +320,7 @@ export const achievements: Achievement[] = [
   {
     year: "2024",
     title: "NutriFit",
-    competition: "НОИТ",
+    competition: "NOIT",
     category: "Software Applications · 8–10 grade",
     place: "4th",
     score: "5.75",
@@ -345,7 +345,7 @@ export const achievements: Achievement[] = [
   {
     year: "2025",
     title: "MindReel",
-    competition: "НОИТ",
+    competition: "NOIT",
     category: "Big Data · 11–12 grade",
     place: "5th",
     score: "5.75",

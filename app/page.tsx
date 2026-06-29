@@ -845,12 +845,12 @@ function AchievementsSection() {
         </h2>
         <div className="reveal flex flex-wrap gap-3 mb-12">
           <div className="flex items-center gap-2 text-sm bg-card border border-border rounded-full px-3.5 py-2 text-muted-foreground">
-            <span className="font-semibold text-foreground">НОИТ</span>
+            <span className="font-semibold text-foreground">NOIT</span>
             <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
             <span>National Olympiad in Information Technologies</span>
           </div>
           <div className="flex items-center gap-2 text-sm bg-card border border-border rounded-full px-3.5 py-2 text-muted-foreground">
-            <span className="font-semibold text-foreground">НЕТИТ</span>
+            <span className="font-semibold text-foreground">NATIT</span>
             <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
             <span>National Autumn Tournament in Information Technologies</span>
           </div>
