@@ -2,20 +2,24 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { LanguageToggle } from "@/components/language-toggle";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { t } from "@/lib/i18n/ui-translations";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "#home", label: "HOME" },
-  { href: "#about", label: "ABOUT" },
-  { href: "#achievements", label: "ACHIEVEMENTS" },
-  { href: "#projects", label: "PROJECTS" },
-  { href: "#contact", label: "CONTACT" }
+  { href: "#home", key: "nav.home" },
+  { href: "#about", key: "nav.about" },
+  { href: "#achievements", key: "nav.achievements" },
+  { href: "#projects", key: "nav.projects" },
+  { href: "#contact", key: "nav.contact" }
 ];
 
 export function Navigation() {
   const [active, setActive] = useState("home");
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -46,7 +50,7 @@ export function Navigation() {
 
   return (
     <header
-      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${
+      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 flex items-center gap-3 ${
         scrolled ? "scale-95" : ""
       }`}
     >
@@ -62,13 +66,19 @@ export function Navigation() {
                 : "text-foreground hover:bg-secondary"
             }`}
           >
-            {link.label}
+            {t(link.key, language)}
           </button>
         ))}
       </nav>
 
+      {/* Language toggle - desktop, sits right next to the nav pill */}
+      <div className="hidden md:block">
+        <LanguageToggle />
+      </div>
+
       {/* Mobile */}
-      <div className="md:hidden">
+      <div className="md:hidden flex items-center gap-2">
+        <LanguageToggle />
         <Button
           variant="outline"
           size="icon"
@@ -79,7 +89,7 @@ export function Navigation() {
         </Button>
 
         {open && (
-          <div className="absolute top-14 left-1/2 -translate-x-1/2 w-48 bg-card/95 backdrop-blur-md rounded-2xl shadow-lg border border-border p-2">
+          <div className="absolute top-14 right-0 w-48 bg-card/95 backdrop-blur-md rounded-2xl shadow-lg border border-border p-2">
             <div className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <button
@@ -91,7 +101,7 @@ export function Navigation() {
                       : "text-foreground hover:bg-secondary"
                   }`}
                 >
-                  {link.label}
+                  {t(link.key, language)}
                 </button>
               ))}
             </div>

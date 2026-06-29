@@ -1,8 +1,10 @@
+import type { Localized } from "./i18n/language-context";
+
 export interface Project {
   id: string;
   title: string;
-  shortDescription: string;
-  fullDescription: string;
+  shortDescription: Localized;
+  fullDescription: Localized;
   technologies: string[];
   videoUrl?: string;
   documentationUrl?: string;
@@ -23,9 +25,12 @@ export const projects: Project[] = [
   {
     id: "mobilis",
     title: "Mobilis",
-    shortDescription:
-      "Personalized fitness & nutrition platform that analyzes body composition and personal metrics using scientific algorithms to deliver workout recommendations, meal plans, and real-time 3D posture correction via depth camera",
-    fullDescription: `**Mobilis** is a comprehensive health platform that analyzes **characteristics of the users' body condition** - **BMI** (Body Mass Index), **body composition** (ratio of body fat to muscle mass via the U.S. Navy method), **BMR** (Basal Metabolic Rate, calculated using the Mifflin-St Jeor formula separately for each gender), and **TDEE** (Total Daily Energy Expenditure, derived by multiplying BMR by the user's activity level multiplier) - combined with personal metrics (height, gender, age, weight, activity level, neck/waist/hip measurements) to determine optimal daily calorie and macronutrient targets. These feed into a **goal selection algorithm** that assigns the most appropriate fitness goal based on whether the user requires a calorie deficit or a calorie surplus relative to TDEE - ranging across **Cut, Aggressive Cut, Lean Bulk, Dirty Bulk, Recomposition, Aesthetic, Strength, and Maintenance** - each paired with a scientifically grounded caloric adjustment relative to TDEE. A distinctive feature of the platform is the **corrective exercise program aimed at improving postural health**, which uses the **Orbbec Astra+ 3D camera** and specialized algorithms for real-time tracking and analysis of body movements and poses.
+    shortDescription: {
+      en: "Personalized fitness & nutrition platform that analyzes body composition and personal metrics using scientific algorithms to deliver workout recommendations, meal plans, and real-time 3D posture correction via depth camera",
+      bg: "Персонализирана платформа за фитнес и хранене, която анализира телесния състав и личните показатели чрез научни алгоритми, за да предложи тренировъчни препоръки, хранителни планове и корекция на стойката в реално време с 3D камера"
+    },
+    fullDescription: {
+      en: `**Mobilis** is a comprehensive health platform that analyzes **characteristics of the users' body condition** - **BMI** (Body Mass Index), **body composition** (ratio of body fat to muscle mass via the U.S. Navy method), **BMR** (Basal Metabolic Rate, calculated using the Mifflin-St Jeor formula separately for each gender), and **TDEE** (Total Daily Energy Expenditure, derived by multiplying BMR by the user's activity level multiplier) - combined with personal metrics (height, gender, age, weight, activity level, neck/waist/hip measurements) to determine optimal daily calorie and macronutrient targets. These feed into a **goal selection algorithm** that assigns the most appropriate fitness goal based on whether the user requires a calorie deficit or a calorie surplus relative to TDEE - ranging across **Cut, Aggressive Cut, Lean Bulk, Dirty Bulk, Recomposition, Aesthetic, Strength, and Maintenance** - each paired with a scientifically grounded caloric adjustment relative to TDEE. A distinctive feature of the platform is the **corrective exercise program aimed at improving postural health**, which uses the **Orbbec Astra+ 3D camera** and specialized algorithms for real-time tracking and analysis of body movements and poses.
 
 **Core features:**
 - **Goal selection algorithm:** Critical health states always take highest priority - critically low BMI (moderate/severe undernutrition) or dangerously low body fat (below 2% for men, below 10% for women) unconditionally triggers **Dirty Bulk**; Obesity Class II/III triggers **Aggressive Cut**; Class I BMI or obese BF% triggers **Cut**. Outside critical cases, the recommendation is determined by the interaction of BMI and BF% categories - mildly underweight BMI maps to **Lean Bulk**, normal BMI with elevated or average BF% maps to **Recomposition**, while normal BMI with fitness or athlete-level BF% maps to **Maintenance**. For pre-obese BMI, athlete or fitness-level BF% (where body weight is elevated due to muscle mass rather than excess fat) maps to **Maintenance**
@@ -40,6 +45,22 @@ export const projects: Project[] = [
 **Development notes:**
 - **The body-proportional calibration tolerance system** was a critical aspect of the system design. Using **fixed distance thresholds** for all users would produce **inconsistent results** because body dimensions vary significantly between individuals (for example, a **20 cm wrist-to-shoulder pose deviation** may be acceptable for a **190 cm person** but indicate incorrect execution for a **160 cm person**). To address this, the system converts **absolute joint distances (in mm)** into **percentages relative to each user's body segment lengths**, allowing posture assessment to remain **accurate across users with different body proportions**
 - **JWT + HMAC/SHA-256 authentication** via **Supabase Auth**, with three distinct client types across the Next.js architecture: **Browser Client** (client-side actions, annon key, auto-attaches JWT), **Server Client** (server-side actions, reads JWT from cookies), and **Service Role Client** (admin operations, service role key, server-side only). **Nearly 180 unit tests** (Vitest) across calorie, health, measurements, nutritional profiling, recommended goal, cookies, and save functions. **Trello**-managed task distribution and **GitHub branching strategy** (main, dev, per-feature branches) throughout development`,
+      bg: `**Mobilis** е цялостна здравна платформа, която анализира **характеристиките на телесното състояние на потребителите** - **ИТМ** (индекс на телесна маса), **телесен състав** (съотношение между телесни мазнини и мускулна маса по метода на американските военноморски сили), **БМР** (базален метаболизъм, изчислен по формулата на Mifflin-St Jeor поотделно за всеки пол) и **ОДЕР** (общ дневен енергиен разход, получен чрез умножаване на БМР по коефициента за нивото на активност на потребителя) - съчетани с лични показатели (височина, пол, възраст, тегло, ниво на активност, обиколка на врат/талия/ханш) за определяне на оптимални дневни цели за калории и макронутриенти. Тези данни захранват **алгоритъм за избор на цел**, който определя най-подходящата фитнес цел в зависимост от това дали потребителят се нуждае от калориен дефицит или излишък спрямо ОДЕР - обхващащ **Cut, Aggressive Cut, Lean Bulk, Dirty Bulk, Recomposition, Aesthetic, Strength и Maintenance** - всяка с научно обосновано калорийно отклонение спрямо ОДЕР. Отличителна черта на платформата е **корективната програма от упражнения за подобряване на стойката**, която използва **3D камерата Orbbec Astra+** и специализирани алгоритми за следене и анализ на движенията и позите на тялото в реално време.
+
+**Основни функции:**
+- **Алгоритъм за избор на цел:** Критичните здравословни състояния винаги имат най-висок приоритет - критично нисък ИТМ (умерено/тежко недохранване) или опасно нисък процент телесни мазнини (под 2% за мъже, под 10% за жени) безусловно задава **Dirty Bulk**; Затлъстяване Клас II/III задава **Aggressive Cut**; ИТМ от Клас I или висок % телесни мазнини задава **Cut**. Извън критичните случаи препоръката се определя от съчетанието между категориите на ИТМ и % телесни мазнини - леко поднормено тегло води до **Lean Bulk**, нормален ИТМ с повишен или среден % телесни мазнини води до **Recomposition**, докато нормален ИТМ с атлетичен или фитнес % телесни мазнини води до **Maintenance**. При предзатлъстяване, атлетичен или фитнес % телесни мазнини (където повишеното тегло идва от мускулна маса, а не от излишни мазнини) също води до **Maintenance**
+>**Забележка:** Потребителите имат пълна свобода да **не следват препоръчаната цел** и да **коригират съотношението на макронутриентите** според индивидуалните си нужди, предпочитания и здравословно състояние, като се препоръчва медицинска или диетологична консултация при заболяване, бременност или други здравословни фактори
+- **Разпределение на макронутриентите:** дневната калорийна цел се разделя на **въглехидрати**, **протеин** (1 г = 4 ккал) и **мазнини** (1 г = 9 ккал) според макро съотношение, зададено за всяка цел (напр. при **Cut - 40% протеин / 25% мазнини / 35% въглехидрати**), като съотношенията за **мазнини** и **въглехидрати** остават в препоръчаните от **СЗО/EFSA** граници (съответно **20–35%** и **45–60%**), докато **протеинът** варира между **25–45%**. Диапазонът за протеин понякога умишлено надхвърля базовите препоръки на организациите с цел **подпомагане на мускулния синтез, ситостта, имунната функция и възстановяването**, което е особено важно за активните хора. Всяка цел прилага и **конкретно калорийно отклонение (дефицит или излишък) спрямо ОДЕР**. Указанията на CDC и NHS подкрепят безопасни темпове от ~0,5–1 кг/седмица отслабване или ~0,25–0,5 кг/седмица покачване
+- **Прогноза за тегло:** Изчислява кога потребителят ще достигне целевото си тегло чрез **\`Седмична промяна = калорийно отклонение × 7 ÷ 7700 ккал/кг\`** и **\`Необходими седмици = |целево тегло − текущо тегло| ÷ седмична промяна\`**. Прогнозата отчита и **зададените от потребителя тренировъчни дни** (минимум 2/седмица) като допълнителен фактор, доближавайки прогнозите до реалните резултати. Очакваният и реалният прогрес се показват едновременно - панел с прогноза, показващ седмични етапи, и диаграма на тегло/ИТМ, обновявана от дневните измервания. Оставащите седмици се обновяват динамично
+- **3D корекция на стойката в реално време** чрез дълбочинната камера **Orbbec Astra+** със **Nuitrack SDK** и **PyNuitrack** (инициализирани чрез \`py_nuitrack.Nuitrack()\` в nuitrack_runner.py, свързани през USB 3.0 с лицензиран Nuitrack Runtime). **Гласов асистент** (OpenAI TTS, gpt-4o-mini-tts) озвучава инструкциите за всяко упражнение поетапно. Корективната програма от 7 упражнения е разработена **в консултация със специалисти по кинезитерапия**, насочена към съвременни проблеми със стойката - изнесената напред глава се коригира чрез **Chin Tucks** и **Neck Side Tilts**; заоблените рамене - чрез **Shoulder Blade Squeezes**, **Wall Angels** и **Standing T Stretch**; нестабилността на таза и кръста - чрез **Standing Pelvic Tilts** и **Standing Lumbar Extensions**. Всички упражнения се изпълняват прав и без оборудване
+- **Алгоритъм за калибрация и проверка на позата/ъглите:** Преди да започнат упражненията за корекция на стойката, системата извършва 5-секундно сканиране (\`calibration.py\`), докато потребителят стои неподвижно, изчислявайки височина, дължина на ръката, ширина на рамене/ханш и дължина на крака, след което определя **пропорционални на тялото толеранси** (\`calculate_tolerances()\`) като процент от съответния телесен сегмент, вместо фиксирани стойности в милиметри. Всички проверки на позата след това се извършват спрямо **торса като начална точка** (0, 0, 0) чрез \`normalize_skeleton()\`, използвайки торса като референтна точка за координатите на всички стави. **Тази нормализация запазва точността на следенето**, дори когато потребителят се отмести встрани или промени разстоянието си от камерата. \`check_relative_pose()\` обработва два вида проверки: **проверки на позата** (позиции на ръце/крака/рамене/гръбнак/таз/глава чрез координатите на ставите) и **проверки на ъгли** чрез **векторна алгебра** (напр. повдигане на ръката чрез вектора китка-рамо спрямо насочената надолу Y ос; ъгъл на коляното чрез ъгъла между векторите бедро-колянo и коляно-глезен; ъгли на лакътя чрез ъгъла между векторите рамо-лакът и китка-лакът). **Проверките на ъгли също прилагат толеранси** (±градусови граници), тъй като изискването на точни ъгли би направило упражненията непрактични поради дребни движения, треперене или шум при следенето
+>След прилагане на всички проверки **\`Общата точност\`** се изчислява като **\`общ брой точки (точки от позите + точки от ъглите) ÷ общ брой проверки\`**, където проверките на позата дават по 100 точки, а проверките на ъгли - 0-100 точки: **\`max(0, 100 × (1 – разлика / (2 × ъглов_толеранс)))\`**, където **разлика** е абсолютното отклонение от целевия ъгъл; колкото по-малко е отклонението, толкова по-висок е резултатът. Стъпка се счита за завършена само когато **точността надхвърля 80%** и се **задържи за пълната изисквана продължителност** без прекъсване - таймерът се нулира при всяко нарушение
+>Системата работи едновременно в две координатни системи: **3D пространството на Nuitrack (X/Y/Z)** и **2D екранното пространство на OpenCV**, преобразувани чрез перспективна проекция (\`project_world_to_screen()\`), при която по-големите стойности на Z намаляват мащабирането по X и Y и изместват проекцията към центъра. Това преобразуване е необходимо, за да се картографират 3D данните на скелета върху плоско изображение от камерата, така че стави, ъгли и визуални насоки да **останат правилно подравнени** с тялото на потребителя **на различни разстояния**. Трансформацията следва **\`screen_x = world_x × fx / world_z + cx\`** и **\`screen_y = –world_y × fy / world_z + cy\`**, където fx и fy задават мащаба, а cx и cy центрират изображението. Цветно кодирана лента за разстояние насочва потребителите към **оптималния обхват от 2,5–3,0 м**
+
+**Бележки от разработката:**
+- **Системата за толеранси, пропорционални на тялото при калибрация**, беше критичен аспект на дизайна на системата. Използването на **фиксирани прагове на разстояние** за всички потребители би довело до **противоречиви резултати**, защото телесните размери варират значително между отделните хора (например **20 см отклонение на позата китка-рамо** може да е приемливо за човек с ръст **190 см**, но да показва неправилно изпълнение при човек с ръст **160 см**). За да се реши това, системата преобразува **абсолютните разстояния между стави (в мм)** в **процент спрямо дължините на телесните сегменти на конкретния потребител**, което позволява оценката на стойката да остане **точна при потребители с различни телесни пропорции**
+- **JWT + HMAC/SHA-256 автентикация** чрез **Supabase Auth**, с три отделни типа клиенти в архитектурата на Next.js: **Browser Client** (клиентски действия, anon key, автоматично прикача JWT), **Server Client** (сървърни действия, чете JWT от бисквитки) и **Service Role Client** (административни операции, service role key, само на сървъра). **Близо 180 unit теста** (Vitest), обхващащи функции за калории, здравословни показатели, измервания, хранителен профил, препоръчвана цел, бисквитки и запазване на данни. Разпределение на задачите чрез **Trello** и **GitHub branching стратегия** (main, dev, клонове по функционалност) през целия процес на разработка`
+    },
     technologies: [
       "Next.js",
       "React",
@@ -71,9 +92,12 @@ export const projects: Project[] = [
   {
     id: "mindreel",
     title: "MindReel",
-    shortDescription:
-      "Recommendation platform that analyzes live EEG brainwave signals and user preferences in order to understand psycho-emotional state, stress levels and cognitive performance, then suggests the most suitable movies, TV series, books, and songs",
-    fullDescription: `**MindReel** is a comprehensive platform that integrates **live EEG bioelectric brain activity analysis** (via **NeuroSky MindWave Mobile 2** headset) with **AI-suggested content recommendations** tailored to the user's real-time emotional and cognitive state, as well as their personal preferences - where the AI itself is continuously subjected to accuracy and reliability evaluation through industry-standard ML metrics adapted to the specific needs and logic of the platform, measuring **Precision, Recall, F1 Score, Accuracy, Specificity, FPR, and FNR** against a relevance algorithm grounded in the user's own preferences. The project was developed in consultation with **qualified neurologists and specialists in that field** to validate its **science-based approach** to brainwave interpretation.
+    shortDescription: {
+      en: "Recommendation platform that analyzes live EEG brainwave signals and user preferences in order to understand psycho-emotional state, stress levels and cognitive performance, then suggests the most suitable movies, TV series, books, and songs",
+      bg: "Платформа за препоръки, която анализира мозъчни ЕЕГ сигнали в реално време и предпочитанията на потребителя, за да разбере психо-емоционалното състояние, нивото на стрес и когнитивните показатели, след което предлага най-подходящите филми, сериали, книги и песни"
+    },
+    fullDescription: {
+      en: `**MindReel** is a comprehensive platform that integrates **live EEG bioelectric brain activity analysis** (via **NeuroSky MindWave Mobile 2** headset) with **AI-suggested content recommendations** tailored to the user's real-time emotional and cognitive state, as well as their personal preferences - where the AI itself is continuously subjected to accuracy and reliability evaluation through industry-standard ML metrics adapted to the specific needs and logic of the platform, measuring **Precision, Recall, F1 Score, Accuracy, Specificity, FPR, and FNR** against a relevance algorithm grounded in the user's own preferences. The project was developed in consultation with **qualified neurologists and specialists in that field** to validate its **science-based approach** to brainwave interpretation.
  
 **Core features:**
 - **Real-time EEG analysis:** Live brainwave data streamed via **Bluetooth → ThinkGear Connector → PyMindWave2 → Socket.IO → Node.js API → React app**, classified into five frequency bands using **Power Spectral Density (PSD)**. Detailed explanations for each frequency band are available in the image gallery for this project. The system also captures **Attention** and **Meditation** scores (0–100) extracted by NeuroSky's proprietary algorithms. After the 1-minute session, all data is passed to the AI to determine **corrective content recommendations**
@@ -89,6 +113,23 @@ export const projects: Project[] = [
 - **Goodreads** - the most comprehensive book database - **shut down its public API in 2020**. After trying every available alternative, the scraper approach was selected due to the rich and comprehensive data for the books, including **sufficient metadata for Bulgarian books, even older titles**. It extracts a large hidden JSON object embedded in a \`<script>\` tag on Goodreads pages, containing complete book metadata, including fields not visible on the page itself
 - The **Spotify API** frequently lacked data for older or less-popular tracks, which is why **YouTube API** was added as a complementary source. Early on, the AI regularly **hallucinated fictional songs** that existed on neither platform - making extensive prompt modifications and testing across different preference combinations solved it
 - **JWT + HMAC/SHA-256 authentication**, **Trello**-managed task distribution throughout the development period, as well as **86 unit tests** across user, recommendation, preference, statistics, and metrics functions`,
+      bg: `**MindReel** е цялостна платформа, която съчетава **анализ на ЕЕГ биоелектрична мозъчна активност в реално време** (чрез слушалки **NeuroSky MindWave Mobile 2**) с **препоръки на съдържание, генерирани от изкуствен интелект**, съобразени с текущото емоционално и когнитивно състояние на потребителя, както и с личните му предпочитания - като самият модел се подлага на постоянна оценка на точността и надеждността чрез индустриални ML метрики, адаптирани към специфичните нужди и логика на платформата, измервайки **Precision, Recall, F1 Score, Accuracy, Specificity, FPR и FNR** спрямо алгоритъм за релевантност, основан на собствените предпочитания на потребителя. Проектът е разработен в консултация с **квалифицирани невролози и специалисти в тази област**, за да се потвърди **научната обоснованост** на подхода към интерпретацията на мозъчните вълни.
+ 
+**Основни функции:**
+- **ЕЕГ анализ в реално време:** Мозъчните вълни се предават на живо чрез **Bluetooth → ThinkGear Connector → PyMindWave2 → Socket.IO → Node.js API → React приложение**, класифицирани в пет честотни диапазона чрез **спектрална плътност на мощността (PSD)**. Подробни обяснения за всеки честотен диапазон са достъпни в галерията с изображения за този проект. Системата също улавя стойностите на **Attention** и **Meditation** (0–100), извлечени чрез патентованите алгоритми на NeuroSky. След 1-минутната сесия всички данни се подават на изкуствения интелект за определяне на **коригиращи препоръки за съдържание**
+- **AI препоръки** за филми, сериали, книги и песни, генерирани чрез **OpenAI API** (и **Gemini API** в по-ранни версии), използващи внимателно проектирани промптове. Достъпът до моделите се управлява чрез **LangChain**, който осигурява унифициран начин за работа с различни езикови модели и позволява структурирано, сравнимо тестване между моделите. След задълбочено сравнително тестване - на **Claude 3 Opus**, **Gemini 1.5 Pro** и моделите на OpenAI - **GPT-4o** се оказа най-надежден за филми и сериали, **GPT-4-Turbo** за книги, **GPT-4.1** за песни, а **GPT-5-mini** за анализа на мозъчната активност
+- **Собствен алгоритъм за релевантност**, който определя дали препоръка отговаря на определени предпочитания на потребителя по шест критерия: **предпочитани жанрове, тип съдържание, настроение на потребителя, съпоставено с жанрове, наличното време спрямо продължителността, диапазон на годината на издаване и целева аудитория**. Резултат над **5 точки** се счита за релевантен, генерирайки стойностите True/False, които захранват ML метриките за оценка
+- **ML метрики за оценка**, които определят качеството на препоръките: **Precision**, **Recall / TPR**, **F1 Score**, **Accuracy**, **Specificity / TNR**, **FPR** и **FNR**. Изчислява се и отделна **Precision за всяко генериране** на последните 5 регистрирани препоръки за потребителя
+- **VR кино изживяване**, изградено с **A-Frame** (Three.js + WebGL) и тествано със слушалки **Oculus / Meta Quest 2**. Сцената пресъздава истинска кино зала с прожектори, машина за пуканки и голям екран, където потребителите могат да гледат трейлъри на филми или сериали, за да решат дали съдържанието ги интересува, преди да се ангажират да го гледат
+- **Конвейери за данни на съдържанието:** **собствен Python/BeautifulSoup скрапер**, насочен към **Goodreads**, заедно с **Google Books API** за книгите; за песните - комбиниране на **Spotify API** (богати метаданни) с **YouTube API** (брой гледания, харесвания, коментари, директни линкове към видео); за филмите и сериалите данните се извличат от **OMDb API**
+ 
+**Бележки от разработката:**
+- Части от функциите в библиотеката **PyMindWave2**, свързани с устройството NeuroSky за извличане на ЕЕГ данни, бяха несъвместими с нуждите на проекта и трябваше да бъдат пренаписани от нулата
+- VR кино залата се сблъска с основна пречка: **A-Frame не може да рендерира елементи \`<iframe>\`**, което прави **вграждането на YouTube видеа невъзможно**. Беше направен опит за заобикаляне на проблема чрез динамично създаване на \`<iframe>\` в DOM-а извън A-Frame сцената и позиционирането му така, че визуално да се припокрива с 3D средата - но и това не сработи. Тъй като **YouTube API предоставя само ID на видео за използване в линк** (а не файл за директно стрийминг), изтеглянето на трейлърите като MP4 файлове беше единственият приложим вариант. Първият опит беше чрез обвивката **yt-dlp-wrap** и Python версията на **yt-dlp** - но изпълнението му на shared хостинг не беше възможно (без sudo достъп, само Python v3.6.8, който **не поддържа библиотеката**). Крайното решение беше **yt-dlp да се изпълнява в контейнеризирана услуга в Google Cloud Run**, изтегляйки трейлърите и съхранявайки ги в **Google Cloud Storage (GCS)**, достъпни чрез публични GCS URL-и (напр. \`<video src="https://storage.googleapis.com/BUCKET/video.mp4" />\`). Вградените контролери за ръце на A-Frame не се появяваха в сцената, така че се наложи отделна **персонализирана поправка**, тъй като описаното решение в официалната документация не даде очакваните резултати. Освен това, примерът, визуализиран във вградения демонстрационен прозорец, който трябваше да показва работещо изпълнение, също не работеше
+- **Goodreads** - най-обхватната база данни за книги - **спря публичния си API през 2020 г.** След опити с всяка достъпна алтернатива, беше избран подходът със скрапер заради богатите и подробни данни за книгите, включително **достатъчно метаданни за български книги, дори по-стари заглавия**. Той извлича голям скрит JSON обект, вграден в таг \`<script>\` на страниците на Goodreads, съдържащ пълни метаданни за книгата, включително полета, които не се виждат на самата страница
+- **Spotify API** често нямаше данни за по-стари или по-малко популярни песни, заради което беше добавен **YouTube API** като допълнителен източник. В началото изкуственият интелект редовно **измисляше несъществуващи песни**, които не съществуваха в нито една от двете платформи - решено чрез обширни промени на промптовете и тестване с различни комбинации от предпочитания
+- **JWT + HMAC/SHA-256 автентикация**, разпределение на задачите чрез **Trello** през целия период на разработка, както и **86 unit теста**, обхващащи функции за потребители, препоръки, предпочитания, статистики и метрики`
+    },
     technologies: [
       "React",
       "TypeScript",
@@ -137,9 +178,12 @@ export const projects: Project[] = [
   {
     id: "nutrifit",
     title: "NutriFit",
-    shortDescription:
-      "A modern platform that takes advantage of the power of GPT & Gemini to actively support users in maintaining their optimal weight and healthy lifestyle",
-    fullDescription: `**NutriFit** is an integrated web and mobile nutrition platform focused entirely on **AI-driven meal planning** - the project that later inspired **Mobilis**, where the concept expanded to include movement and physical activity. NutriFit's core idea is to make **two AI models generate a truly personalized, nutritionally accurate meal plan**, measure how far they deviate from the user's defined limits, and compare their performance against each other.
+    shortDescription: {
+      en: "A modern platform that takes advantage of the power of GPT & Gemini to actively support users in maintaining their optimal weight and healthy lifestyle",
+      bg: "Модерна платформа, която впряга силата на GPT и Gemini, за активно да подпомага потребителите в поддържането на оптималното им тегло и здравословен начин на живот"
+    },
+    fullDescription: {
+      en: `**NutriFit** is an integrated web and mobile nutrition platform focused entirely on **AI-driven meal planning** - the project that later inspired **Mobilis**, where the concept expanded to include movement and physical activity. NutriFit's core idea is to make **two AI models generate a truly personalized, nutritionally accurate meal plan**, measure how far they deviate from the user's defined limits, and compare their performance against each other.
  
 **Note:** Ongoing **model upgrades** (due to **deprecation of older models**) have introduced occasional **inconsistencies** in meal naming and food image matching
 
@@ -160,6 +204,28 @@ export const projects: Project[] = [
 - After a month of debugging, the **Firebase client SDK** was found to be failing to reliably deliver data at scale; switching to the **Firebase Admin SDK** via the Node.js backend resolved it entirely
 - Meal generation went through **two rejected APIs** (Spoonacular, then Edamam) before landing on AI - limited recipe variety and inability to represent Bulgarian cuisine were the dealbreakers
 - **Unit tests included** and **GitHub branching strategy** (main, dev, per-feature branches)`,
+      bg: `**NutriFit** е интегрирана уеб и мобилна платформа за хранене, изцяло фокусирана върху **планиране на хранения чрез изкуствен интелект** - проектът, който по-късно вдъхнови **Mobilis**, където концепцията се разширява, за да включи движение и физическа активност. Основната идея на NutriFit е да накара **два AI модела да генерират наистина персонализиран и точен от хранителна гледна точка хранителен план**, да измерва доколко се отклоняват от зададените от потребителя граници и да сравнява тяхното представяне.
+ 
+**Забележка:** Текущите **обновявания на моделите** (поради **прекратяване на поддръжката на по-стари модели**) понякога водят до **несъответствия** в наименованията на храненията и съпоставянето на изображения на храни
+
+**Основни функции:**
+- **Генериране на хранения:** пълни дневни менюта със закуска, обяд (предястие + основно + десерт) и вечеря - всяко с точни макроси, съставки и рецепти. Изображенията на храните се извличат чрез **Google Custom Search API** с персонализирано конфигурирани търсещи машини
+- **Алгоритъм за AI отклонение:** измерва доколко точно **ChatGPT vs Gemini** се придържат към зададените от потребителя хранителни граници - следи средно отклонение в %, максимално отклонение по категория (калории, протеин, мазнини, въглехидрати) и обща оценка за отклонение на изкуствения интелект
+- **Алгоритъм за регулиране на тегло:** сравнява текущото с идеалното тегло за височината на потребителя и препоръчва дали да намали, запази или увеличи теглото си, с насоки за хранителен режим и активност
+- **Близо 40 интерактивни статистики** и диаграми с Chart.js: ИТМ, % телесни мазнини, чиста маса, мастна маса, дневен прием на макроси във времето, обобщени данни за цялата платформа, и **панел за пряко сравнение между AI моделите** на началната страница
+- **Страница „Калкулатор на тегло“:** показва диапазон на ИТМ, идеално спрямо текущо тегло, % телесни мазнини, чиста маса, мастна маса - всичко със следене на прогреса ден за ден
+- **Поток за измервания на потребителя:** височина, тегло, възраст, обиколка на талия/ханш/врат, въвеждани веднъж на 24 часа; запазвани чрез бисквитка при съгласие на потребителя, а стойностите от вчера се попълват автоматично чрез localStorage на всяко устройство
+- **NutriFit API** (Node.js/Express + Firebase Admin SDK): препраща заявките към **Fitness Calculator API** през сървъра, така че потокът от заявки при всяко зареждане на страница се намалява до едно групирано извикване на ден, независимо дали потребителят остава на страницата - данните са защитени във Firestore във всички случаи
+- **Система за класиране на храни** в 4 отделни страници: сортирани по калории, мазнини, въглехидрати и протеин на 100 г, с рецепти, начин на приготвяне и хранителни стойности
+- **Мобилно приложение с React Native** (отделна кодова база), отразяващо основните уеб функции
+ 
+**Бележки от разработката:**
+- Един от най-трудните проблеми беше **проектирането на промптове:** ранните версии на проекта, използващи GPT-3.5, давали препоръки за предмети и дейности вместо храна в хранителните планове. Преходът към **GPT-4 Turbo** и пренаписването на целия промпт от нулата бяха решаващата стъпка. В момента проектът използва **GPT 5.2** и **Gemini 3.5 Flash**
+- Достъпът до Gemini се осъществява чрез **Vertex AI (Google Cloud)**, защото Gemini API не беше достъпен в България по времето на разработката на проекта
+- След месец отстраняване на грешки се установи, че **Firebase client SDK** не успява надеждно да доставя данни в по-голям мащаб; преминаването към **Firebase Admin SDK** през Node.js бекенда напълно реши проблема
+- Генерирането на хранения преминало през **два отхвърлени API** (първо Spoonacular, после Edamam), преди да се стигне до изкуствен интелект - ограниченото разнообразие от рецепти и невъзможността да представят българската кухня бяха решаващите причини
+- **Включени unit тестове** и **GitHub branching стратегия** (main, dev, клонове по функционалност)`
+    },
     technologies: [
       "React",
       "TypeScript",
@@ -197,9 +263,12 @@ export const projects: Project[] = [
   {
     id: "tikfluence",
     title: "TikFluence",
-    shortDescription:
-      "Data analytics platform that proves TikTok's influence on songs' popularity, with different stats and real-time personal profile information",
-    fullDescription: `**TikFluence** was my **first serious project**, built primarily as a **learning exercise** to get comfortable working with the technologies involved. The core idea explores a real phenomenon: when a song gets used repeatedly across TikTok videos, the platform's exposure gradually pushes up that song's popularity on **Spotify and YouTube** over time - TikTok acts as a launchpad that influences a track's trajectory across other music platforms.
+    shortDescription: {
+      en: "Data analytics platform that proves TikTok's influence on songs' popularity, with different stats and real-time personal profile information",
+      bg: "Платформа за анализ на данни, която доказва влиянието на TikTok върху популярността на песните, с различни статистики и информация за личния профил в реално време"
+    },
+    fullDescription: {
+      en: `**TikFluence** was my **first serious project**, built primarily as a **learning exercise** to get comfortable working with the technologies involved. The core idea explores a real phenomenon: when a song gets used repeatedly across TikTok videos, the platform's exposure gradually pushes up that song's popularity on **Spotify and YouTube** over time - TikTok acts as a launchpad that influences a track's trajectory across other music platforms.
 
 **Note:** the live demo is visitable but **some features may not function** as the project is **no longer actively maintained** due to changes in Spotify API policies and access restrictions, which **removed access to the track popularity score (0–100)** used in core functionality and made long-term maintenance **impractical**
 
@@ -214,6 +283,22 @@ export const projects: Project[] = [
  
 **Development notes:**
 - **14 API approval attempts** with TikTok Developer team before gaining access - images from the email correspondence are included in the documentation`,
+      bg: `**TikFluence** беше моят **първи сериозен проект**, изграден основно като **учебно упражнение**, за да свикна да работя с включените технологии. Основната идея изследва реален феномен: когато песен се използва многократно в TikTok видеа, експозицията от платформата постепенно повишава популярността на тази песен в **Spotify и YouTube** с времето - TikTok действа като стартова площадка, която влияе на траекторията на песента в други музикални платформи.
+
+**Забележка:** демото на живо е достъпно, но **някои функции може да не работят**, тъй като проектът **вече не се поддържа активно** поради промени в политиките на Spotify API и ограниченията за достъп, които **премахнаха достъпа до индекса за популярност на песента (0–100)**, използван в основната функционалност, и направиха дългосрочната поддръжка **непрактична**
+
+**Основни функции:**
+- **Алгоритъм за влияние:** идентифицира песни, чийто пик на **популярност в TikTok** предхожда пика им в **Spotify** - доказвайки влияние между платформите. Едно забележимо ограничение е, че Spotify не разкрива реалния брой пускания, а само **собствен индекс за популярност от 0 до 100** - разбирането и заобикалянето на това ограничение беше от съществено значение, за да бъде алгоритъмът приложим
+- **Алгоритъм за растеж:** отбелязва песни, които в момента нарастват в популярност (популярността през последните 2 дни > средната за цялото време)
+- **Диаграми и класирания** за: Топ 200 най-популярни TikTok песни в света, Топ 200 TikTok песни в България, Топ 200 TikTok потребители с най-много последователи, Топ 200 най-гледани видеа - всички обновявани ежедневно чрез скрапинг с **Cronjob + Chartex API**
+- **Страници със статистика за всяка песен:** брой TikTok видеа, гледания в YouTube, популярност в Spotify (по скала 0-100), диаграми за историческата промяна на популярността
+- **Близо 60 интерактивни статистики** и диаграми в цялата платформа
+- **Страница „Моята статистика“:** статистика на живо за личния TikTok профил (последователи, харесвания, последвани, видеа), обновявана всяка минута чрез **Socket.IO + проксиращ сървър** (CORS механизмът не позволяваше заявки да се изпращат директно от браузъра към друг домейн). Това е единствената страница, изискваща вход чрез TikTok OAuth - сесийният ключ се пази в бисквитка, валидна 1 час. Всички останали страници са публично достъпни
+- Всички класирания се изобразяват с **jQuery Datatables**; диаграмите - с **Chart.js**; данните в реално време - чрез **Socket.IO** WebSocket / HTTP Long Polling
+ 
+**Бележки от разработката:**
+- **14 опита за одобрение на API** с екипа на TikTok за разработчици, преди да се получи достъп - снимки от имейл кореспонденцията са включени в документацията`
+    },
     technologies: [
       "PHP",
       "PDO",
@@ -248,36 +333,41 @@ export const projects: Project[] = [
 export interface Achievement {
   year: string;
   title: string;
-  competition: string;
-  category: string;
+  competition: Localized;
+  category: Localized;
   place?: string;
   score?: string;
-  points?: string;
-  extra?: string;
-  docs?: { label: string; path: string }[];
-  links?: { label: string; url: string }[];
+  points?: Localized;
+  extra?: Localized;
+  docs?: { label: Localized; path: string }[];
+  links?: { label: Localized; url: string }[];
   fallbackImage?: string;
-  fallbackImageCaption?: string; // ← ADD THIS
+  fallbackImageCaption?: Localized;
 }
 
 export const achievements: Achievement[] = [
   {
     year: "2023",
     title: "TikFluence",
-    competition: "NATIT “John Atanasov”",
-    category: "Software Applications · 8–10 grade",
+    competition: { en: 'NATIT "John Atanasov"', bg: "НЕТИТ „Джон Атанасов“" },
+    category: {
+      en: "Software Applications · 8–10 grade",
+      bg: "Софтуерни приложения · 8–10 клас"
+    },
     place: "2nd",
-    extra: "First NATIT participation",
+    extra: { en: "First НЕТИТ participation", bg: "Първо участие в НЕТИТ" },
     fallbackImage: "/achievements/netit-2023-newspaper.png",
-    fallbackImageCaption:
-      "Newspaper clipping from Glashatai covering the awards ceremony at the National Autumn Tournament in Information Technologies - “John Atanasov”, held December 1–3 in Sofia. I won 2nd place in the Software Applications category with TikFluence project",
+    fallbackImageCaption: {
+      en: "Newspaper clipping from “Glashatai” covering the awards ceremony at the National Autumn Tournament in Information Technologies “John Atanasov”, held December 1–3 (2023) in Sofia. I won 2nd place in the “Software Applications” category with the “TikFluence” project",
+      bg: "Извадка от „Глашатай“, показваща церемонията по връчването на наградите на Националния есенен турнир по информационни технологии „Джон Атанасов“, проведен от 1 до 3 декември (2023) в София. Спечелих 2-ро място в категорията „Софтуерни приложения“ с проекта „TikFluence“"
+    },
     links: [
       {
-        label: "Newspaper Article",
+        label: { en: "Newspaper Article", bg: "Новинарска статия" },
         url: "https://glashatai.com/article/24722-golqm-yspeh-na-ychenicite-ot-pgi-na-nacionalnoto-s"
       },
       {
-        label: "School News",
+        label: { en: "School News", bg: "Училищни новини" },
         url: "https://pgi-pernik.bg-schools.com/novini.php?id=823"
       }
     ]
@@ -285,24 +375,30 @@ export const achievements: Achievement[] = [
   {
     year: "2023",
     title: "TikFluence",
-    competition: "NOIT",
-    category: "Software Applications · 8–10 grade",
+    competition: { en: "NOIT", bg: "НОИТ" },
+    category: {
+      en: "Software Applications · 8–10 grade",
+      bg: "Софтуерни приложения · 8–10 клас"
+    },
     place: "4th",
     score: "6.00",
-    points: "88 project · 86 individual",
+    points: {
+      en: "88 project · 86 individual",
+      bg: "88 на проект · 86 индивидуално"
+    },
     docs: [
       {
-        label: "Project Ranking",
+        label: { en: "Project ranking", bg: "Класиране на проект" },
         path: "/achievements/noit-2023-project.pdf"
       },
       {
-        label: "Individual Ranking",
+        label: { en: "Individual ranking", bg: "Индивидуално класиране" },
         path: "/achievements/noit-2023-individual.pdf"
       }
     ],
     links: [
       {
-        label: "Official Results",
+        label: { en: "Official results", bg: "Официални резултати" },
         url: "https://edusoft.fmi.uni-sofia.bg/news/view/171"
       }
     ]
@@ -310,34 +406,53 @@ export const achievements: Achievement[] = [
   {
     year: "2024",
     title: "NutriFit",
-    competition: "NATIT “John Atanasov”",
-    category: "Software Applications",
+    competition: { en: 'NATIT "John Atanasov"', bg: "НЕТИТ „Джон Атанасов“" },
+    category: {
+      en: "Software Applications",
+      bg: "Софтуерни приложения"
+    },
     place: "1st",
-    points: "96 project",
-    docs: [{ label: "Project Ranking", path: "/achievements/netit-2024.pdf" }],
-    links: [{ label: "Official Results", url: "https://122ou.com/netit2024/" }]
+    points: { en: "96 project", bg: "96 на проект" },
+    docs: [
+      {
+        label: { en: "Project ranking", bg: "Класиране на проект" },
+        path: "/achievements/netit-2024.pdf"
+      }
+    ],
+    links: [
+      {
+        label: { en: "Official results", bg: "Официални резултати" },
+        url: "https://122ou.com/netit2024/"
+      }
+    ]
   },
   {
     year: "2024",
     title: "NutriFit",
-    competition: "NOIT",
-    category: "Software Applications · 8–10 grade",
+    competition: { en: "NOIT", bg: "НОИТ" },
+    category: {
+      en: "Software Applications · 8–10 grade",
+      bg: "Софтуерни приложения · 8–10 клас"
+    },
     place: "4th",
     score: "5.75",
-    points: "85 project · 77 individual",
+    points: {
+      en: "85 project · 77 individual",
+      bg: "85 на проект · 77 индивидуално"
+    },
     docs: [
       {
-        label: "Project Ranking",
+        label: { en: "Project ranking", bg: "Класиране на проект" },
         path: "/achievements/noit-2024-project.pdf"
       },
       {
-        label: "Individual Ranking",
+        label: { en: "Individual ranking", bg: "Индивидуално класиране" },
         path: "/achievements/noit-2024-individual.pdf"
       }
     ],
     links: [
       {
-        label: "Official Results",
+        label: { en: "Official results", bg: "Официални резултати" },
         url: "https://edusoft.fmi.uni-sofia.bg/news/view/182"
       }
     ]
@@ -345,26 +460,34 @@ export const achievements: Achievement[] = [
   {
     year: "2025",
     title: "MindReel",
-    competition: "NOIT",
-    category: "Big Data · 11–12 grade",
+    competition: { en: "NOIT", bg: "НОИТ" },
+    category: {
+      en: "Big Data · 11–12 grade",
+      bg: "Големи обеми от данни · 11–12 клас"
+    },
     place: "5th",
     score: "5.75",
-    points: "78 project · 83 individual",
-    extra: "known in its early stage as ArtCompass",
-
+    points: {
+      en: "78 project · 83 individual",
+      bg: "78 на проект · 83 индивидуално"
+    },
+    extra: {
+      en: "known in its early stage as ArtCompass",
+      bg: "познат в ранния си етап като ArtCompass"
+    },
     docs: [
       {
-        label: "Project Ranking",
+        label: { en: "Project ranking", bg: "Класиране на проект" },
         path: "/achievements/noit-2025-project.pdf"
       },
       {
-        label: "Individual Ranking",
+        label: { en: "Individual ranking", bg: "Индивидуално класиране" },
         path: "/achievements/noit-2025-individual.pdf"
       }
     ],
     links: [
       {
-        label: "Official Results",
+        label: { en: "Official results", bg: "Официални резултати" },
         url: "https://edusoft.fmi.uni-sofia.bg/news/view/193"
       }
     ]

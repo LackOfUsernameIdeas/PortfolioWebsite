@@ -31,6 +31,8 @@ import {
   type Project,
   Achievement
 } from "@/lib/projects-data";
+import { useLanguage, localize, Localized } from "@/lib/i18n/language-context";
+import { t } from "@/lib/i18n/ui-translations";
 
 // ─── CSS particle background ───────────────────────────────────────────────
 function Particles({ count = 18 }: { count?: number }) {
@@ -100,6 +102,7 @@ function useReveal() {
 function HeroSection() {
   const [mounted, setMounted] = useState(false);
   const [emailTipOpen, setEmailTipOpen] = useState(false);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setMounted(true));
@@ -211,15 +214,16 @@ function HeroSection() {
         <h1
           className={`${a ? "hero-1" : "opacity-0"} text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]`}
         >
-          Kaloyan
+          {language === "bg" ? "Калоян" : "Kaloyan"}
           <br />
-          <span className="text-primary">Kostadinov</span>
+          <span className="text-primary">
+            {language === "bg" ? "Костадинов" : "Kostadinov"}
+          </span>
         </h1>
         <p
           className={`${a ? "hero-2" : "opacity-0"} mt-6 text-lg sm:text-xl text-muted-foreground max-w-md leading-relaxed`}
         >
-          Full-stack Software Developer | Building scalable web and mobile
-          applications
+          {t("hero.subtitle", language)}
         </p>
         <div
           className={`${a ? "hero-3" : "opacity-0"} flex items-center gap-4 mt-10`}
@@ -232,7 +236,8 @@ function HeroSection() {
             }
             className="flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3 rounded-full font-semibold cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
-            View Projects <ArrowRight className="w-4 h-4" />
+            {t("hero.viewProjects", language)}{" "}
+            <ArrowRight className="w-4 h-4" />
           </button>
           <button
             onClick={() =>
@@ -242,7 +247,7 @@ function HeroSection() {
             }
             className="flex items-center gap-2 border border-border px-7 py-3 rounded-full font-semibold cursor-pointer hover:bg-secondary transition-all duration-300"
           >
-            Contact Me
+            {t("hero.contactMe", language)}
           </button>
         </div>
         <div
@@ -298,7 +303,7 @@ function HeroSection() {
           <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-bounce" />
         </div>
         <span className="text-xs text-muted-foreground tracking-widest">
-          SCROLL
+          {t("hero.scroll", language)}
         </span>
       </div>
     </section>
@@ -390,6 +395,7 @@ function AchievementsGrid() {
   const [openAchievement, setOpenAchievement] = useState<Achievement | null>(
     null
   );
+  const { language } = useLanguage();
 
   return (
     <>
@@ -444,11 +450,11 @@ function AchievementsGrid() {
 
                       <CardContent className="flex flex-col gap-2.5 flex-1">
                         <p className="text-md text-muted-foreground">
-                          {a.competition}
+                          {localize(a.competition, language)}
                         </p>
                         <div className="flex items-center justify-between gap-2">
                           <p className="font-bold text-2xl leading-snug">
-                            {a.title}
+                            {t("projects.projectPrefix", language)} {a.title}
                           </p>
                           {placeNum && (
                             <span
@@ -459,7 +465,8 @@ function AchievementsGrid() {
                           )}
                         </div>
                         <p className="text-sm text-muted-foreground">
-                          Category: {a.category}
+                          {t("achievements.category", language)}:{" "}
+                          {localize(a.category, language)}
                         </p>
 
                         {(a.score || a.points || a.extra) && (
@@ -469,7 +476,7 @@ function AchievementsGrid() {
                                 variant="secondary"
                                 className="rounded-full text-sm"
                               >
-                                Grade: {a.score}
+                                {t("achievements.grade", language)}: {a.score}
                               </Badge>
                             )}
                             {a.points && (
@@ -477,7 +484,8 @@ function AchievementsGrid() {
                                 variant="secondary"
                                 className="rounded-full text-sm"
                               >
-                                Points: {a.points}
+                                {t("achievements.points", language)}:{" "}
+                                {localize(a.points, language)}
                               </Badge>
                             )}
                             {a.extra && (
@@ -485,7 +493,7 @@ function AchievementsGrid() {
                                 variant="outline"
                                 className="rounded-full text-sm text-primary border-primary/30"
                               >
-                                {a.extra}
+                                {localize(a.extra, language)}
                               </Badge>
                             )}
                           </div>
@@ -495,7 +503,7 @@ function AchievementsGrid() {
                           <div className="mt-auto pt-3">
                             <span className="flex items-center gap-1.5 text-sm text-primary font-medium">
                               <ExternalLink className="w-3.5 h-3.5" />
-                              View ranking
+                              {t("achievements.viewRanking", language)}
                             </span>
                           </div>
                         )}
@@ -512,7 +520,7 @@ function AchievementsGrid() {
                                 className="flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
                               >
                                 <ExternalLink className="w-3.5 h-3.5" />
-                                {link.label}
+                                {localize(link.label, language)}
                               </a>
                             ))}
                           </div>
@@ -538,8 +546,9 @@ function AchievementModal({
   achievement: Achievement;
   onClose: () => void;
 }) {
+  const { language } = useLanguage();
   const [activeDoc, setActiveDoc] = useState<{
-    label: string;
+    label: Localized;
     path: string;
   } | null>(achievement.docs?.[0] ?? null);
 
@@ -628,11 +637,14 @@ function AchievementModal({
         <div className="px-6 pt-5 pb-4 sm:px-8 shrink-0">
           <div className="pr-10">
             <p className="text-sm text-muted-foreground mb-1">
-              {achievement.competition} · {achievement.year}
+              {localize(achievement.competition, language)} · {achievement.year}
             </p>
-            <h2 className="text-3xl font-bold">{achievement.title}</h2>
+            <h2 className="text-3xl font-bold">
+              {t("projects.projectPrefix", language)} {achievement.title}
+            </h2>
             <p className="text-base text-muted-foreground mt-1.5">
-              Category: {achievement.category}
+              {t("achievements.category", language)}:{" "}
+              {localize(achievement.category, language)}
             </p>
           </div>
 
@@ -642,12 +654,13 @@ function AchievementModal({
             <div className="flex flex-wrap gap-2 mt-4">
               {achievement.score && (
                 <Badge variant="secondary" className="rounded-full text-sm">
-                  Grade: {achievement.score}
+                  {t("achievements.grade", language)}: {achievement.score}
                 </Badge>
               )}
               {achievement.points && (
                 <Badge variant="secondary" className="rounded-full text-sm">
-                  Points: {achievement.points}
+                  {t("achievements.points", language)}:{" "}
+                  {localize(achievement.points, language)}
                 </Badge>
               )}
               {achievement.extra && (
@@ -655,7 +668,7 @@ function AchievementModal({
                   variant="outline"
                   className="rounded-full text-sm text-primary border-primary/30"
                 >
-                  {achievement.extra}
+                  {localize(achievement.extra, language)}
                 </Badge>
               )}
             </div>
@@ -673,7 +686,7 @@ function AchievementModal({
                         : "border-border text-foreground hover:border-primary hover:text-primary"
                     }`}
                   >
-                    {doc.label}
+                    {localize(doc.label, language)}
                   </button>
                 ))}
               </div>
@@ -691,7 +704,7 @@ function AchievementModal({
                     className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
-                    {link.label}
+                    {localize(link.label, language)}
                   </a>
                 ))}
               </div>
@@ -716,7 +729,7 @@ function AchievementModal({
                 src={`${activeDoc.path}#zoom=100`}
                 className="w-full h-full"
                 style={{ minHeight: "55vh", zoom: 1 }}
-                title={activeDoc.label}
+                title={localize(activeDoc.label, language)}
               />
             </div>
           ) : achievement.fallbackImage ? (
@@ -731,13 +744,13 @@ function AchievementModal({
               />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-200">
                 <div className="bg-black/60 text-white text-base px-6 py-3 rounded-full font-semibold">
-                  Click to expand
+                  {t("achievements.clickToExpand", language)}
                 </div>
               </div>
               {achievement.fallbackImageCaption && (
                 <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3 pointer-events-none">
                   <p className="text-white text-xs line-clamp-2">
-                    {achievement.fallbackImageCaption}
+                    {localize(achievement.fallbackImageCaption, language)}
                   </p>
                 </div>
               )}
@@ -810,7 +823,7 @@ function AchievementModal({
           <div className="flex flex-col items-center gap-3 mt-4 px-6 max-w-[85vw]">
             <div className="flex items-center gap-3">
               <span className="text-white/50 text-sm">
-                Scroll to zoom · drag to pan
+                {t("achievements.scrollToZoom", language)}
               </span>
               {zoom > 1 && (
                 <button
@@ -820,13 +833,13 @@ function AchievementModal({
                   }}
                   className="text-sm text-white/70 border border-white/20 px-2 py-0.5 cursor-pointer rounded-full hover:border-white/50 transition-colors"
                 >
-                  Reset zoom
+                  {t("achievements.resetZoom", language)}
                 </button>
               )}
             </div>
             {achievement.fallbackImageCaption && (
               <p className="text-white/70 text-sm text-center leading-relaxed">
-                {achievement.fallbackImageCaption}
+                {localize(achievement.fallbackImageCaption, language)}
               </p>
             )}
           </div>
@@ -837,22 +850,27 @@ function AchievementModal({
 }
 
 function AchievementsSection() {
+  const { language } = useLanguage();
   return (
     <section id="achievements" className="py-24 px-6 sm:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
         <h2 className="reveal text-4xl sm:text-6xl font-bold mb-6">
-          Achievements
+          {t("achievements.heading", language)}
         </h2>
         <div className="reveal flex flex-wrap gap-3 mb-12">
           <div className="flex items-center gap-2 text-sm bg-card border border-border rounded-full px-3.5 py-2 text-muted-foreground">
-            <span className="font-semibold text-foreground">NOIT</span>
+            <span className="font-semibold text-foreground">
+              {t("achievements.noit.short", language)}
+            </span>
             <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
-            <span>National Olympiad in Information Technologies</span>
+            <span>{t("achievements.noit.full", language)}</span>
           </div>
           <div className="flex items-center gap-2 text-sm bg-card border border-border rounded-full px-3.5 py-2 text-muted-foreground">
-            <span className="font-semibold text-foreground">NATIT</span>
+            <span className="font-semibold text-foreground">
+              {t("achievements.netit.short", language)}
+            </span>
             <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
-            <span>National Autumn Tournament in Information Technologies</span>
+            <span>{t("achievements.netit.full", language)}</span>
           </div>
         </div>
         <AchievementsGrid />
@@ -862,33 +880,24 @@ function AchievementsSection() {
 }
 
 function AboutSection() {
+  const { language } = useLanguage();
   return (
     <section id="about" className="py-24 px-6 sm:px-12 lg:px-20 bg-card/40">
       <div className="max-w-7xl mx-auto">
         <div className="reveal flex items-end gap-6 mb-16">
-          <h2 className="text-4xl sm:text-6xl font-bold">About Me</h2>
+          <h2 className="text-4xl sm:text-6xl font-bold">
+            {t("about.heading", language)}
+          </h2>
           <div className="hidden sm:flex items-center gap-2 pb-2 text-muted-foreground">
             <MapPin className="w-5 h-5 text-primary" />
-            <span className="text-lg">Bulgaria</span>
+            <span className="text-lg">{t("about.location", language)}</span>
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="reveal space-y-5 text-lg text-muted-foreground leading-relaxed">
-            <p>
-              I am a passionate software developer and engineer with practical
-              knowledge in full-stack development, android development,
-              artificial intelligence, databases, electronical sensors and more.
-              My work spans across multiple disciplines, combining hardware and
-              software to create innovative solutions.
-            </p>
-            <p>
-              With a strong foundation in computer science and hands-on
-              experience, I have achieved recognition in national competitions.
-            </p>
-            <p>
-              Currently seeking opportunities to apply my skills in challenging
-              projects and collaborate with like-minded professionals.
-            </p>
+            <p>{t("about.paragraph1", language)}</p>
+            <p>{t("about.paragraph2", language)}</p>
+            <p>{t("about.paragraph3", language)}</p>
             <div className="flex flex-wrap gap-4 pt-4">
               <Button
                 size="lg"
@@ -896,7 +905,8 @@ function AboutSection() {
                 asChild
               >
                 <a href="/cv-europass.pdf" download>
-                  <Download className="h-4 w-4 mr-2" /> Download CV
+                  <Download className="h-4 w-4 mr-2" />{" "}
+                  {t("about.downloadCV", language)}
                 </a>
               </Button>
             </div>
@@ -909,7 +919,7 @@ function AboutSection() {
               >
                 <CardHeader>
                   <CardTitle className="text-lg font-semibold text-primary">
-                    {group.category}
+                    {t(`about.skillCategories.${group.category}`, language)}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex-1 flex items-center">
@@ -1456,6 +1466,7 @@ function ProjectModal({
   project: Project;
   onClose: () => void;
 }) {
+  const { language } = useLanguage();
   const [imgIdx, setImgIdx] = useState(0);
   const [imgLoading, setImgLoading] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -1687,12 +1698,13 @@ function ProjectModal({
             </div>
 
             <p className="text-foreground/70 font-bold">
-              {project.shortDescription}
+              {localize(project.shortDescription, language)}
             </p>
 
             <div>
               <h3 className="text-sm font-semibold mb-2 flex items-center gap-1.5">
-                <Code2 className="w-4 h-4 text-primary" /> Technologies
+                <Code2 className="w-4 h-4 text-primary" />{" "}
+                {t("projects.technologies", language)}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((t) => (
@@ -1711,7 +1723,8 @@ function ProjectModal({
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
                 >
-                  <Github className="w-4 h-4" /> GitHub
+                  <Github className="w-4 h-4" />{" "}
+                  {t("projects.github", language)}
                 </a>
               )}
               {project.githubMobileUrl && (
@@ -1721,7 +1734,8 @@ function ProjectModal({
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
                 >
-                  <Github className="w-4 h-4" /> GitHub (Mobile)
+                  <Github className="w-4 h-4" />{" "}
+                  {t("projects.githubMobile", language)}
                 </a>
               )}
               {project.docs &&
@@ -1741,7 +1755,7 @@ function ProjectModal({
                       >
                         <path d="M17.523 0.976l-1.302 2.252a7.293 7.293 0 0 0-8.442 0L6.477.976a.5.5 0 0 0-.866.5l1.312 2.27A7.271 7.271 0 0 0 4.5 9.5h15a7.271 7.271 0 0 0-2.423-5.754l1.312-2.27a.5.5 0 0 0-.866-.5ZM9 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm6 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM2 10.5a1.5 1.5 0 0 0-1.5 1.5v5a1.5 1.5 0 0 0 3 0V12A1.5 1.5 0 0 0 2 10.5Zm20 0a1.5 1.5 0 0 0-1.5 1.5v5a1.5 1.5 0 0 0 3 0V12a1.5 1.5 0 0 0-1.5-1.5ZM4.5 10.5v9A1.5 1.5 0 0 0 6 21v2.5a1.5 1.5 0 0 0 3 0V21h6v2.5a1.5 1.5 0 0 0 3 0V21a1.5 1.5 0 0 0 1.5-1.5v-9Z" />
                       </svg>
-                      {doc.label}
+                      {localize(doc.label, language)}
                     </a>
                   ) : (
                     <a
@@ -1751,7 +1765,7 @@ function ProjectModal({
                       className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
                     >
                       <Download className="w-4 h-4" />
-                      {doc.label}
+                      {localize(doc.label, language)}
                       {doc.label !== "All Schemes & Photos" && (
                         <>
                           <Languages className="w-4 h-4" />
@@ -1777,13 +1791,14 @@ function ProjectModal({
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
                 >
-                  <ExternalLink className="w-4 h-4" /> Live Demo
+                  <ExternalLink className="w-4 h-4" />{" "}
+                  {t("projects.liveDemo", language)}
                 </a>
               )}
             </div>
 
             <div className="space-y-2">
-              {project.fullDescription
+              {localize(project.fullDescription, language)
                 .trim()
                 .split("\n")
                 .map((line, i) => {
@@ -1932,7 +1947,7 @@ function ProjectModal({
             {!isVideo(images[imgIdx].src) && (
               <div className="flex items-center gap-3">
                 <span className="text-white/50 text-sm">
-                  Scroll to zoom · drag to pan
+                  {t("projects.scrollToZoom", language)}
                 </span>
                 {zoom > 1 && (
                   <button
@@ -1942,7 +1957,7 @@ function ProjectModal({
                     }}
                     className="text-sm text-white/70 border border-white/20 px-2 py-0.5 cursor-pointer rounded-full hover:border-white/50 transition-colors"
                   >
-                    Reset zoom
+                    {t("projects.resetZoom", language)}
                   </button>
                 )}
               </div>
@@ -1990,6 +2005,7 @@ function ProjectModal({
 // ─── Projects ──────────────────────────────────────────────────────────────
 function ProjectsSection() {
   const [selected, setSelected] = useState<Project | null>(null);
+  const { language } = useLanguage();
 
   return (
     <section id="projects" className="py-24 px-6 sm:px-12 lg:px-20">
@@ -1998,7 +2014,7 @@ function ProjectsSection() {
       )}
       <div className="max-w-7xl mx-auto">
         <h2 className="reveal text-4xl sm:text-6xl font-bold mb-12">
-          Projects
+          {t("projects.heading", language)}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.slice(0, 5).map((project) => (
@@ -2028,7 +2044,7 @@ function ProjectsSection() {
                 </div>
                 <div className="absolute inset-0 bg-primary/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 gap-2">
                   <span className="text-white text-base font-semibold">
-                    Click to expand
+                    {t("projects.clickToExpand", language)}
                   </span>
                 </div>
               </div>
@@ -2043,7 +2059,7 @@ function ProjectsSection() {
                   </Badge>
                 </div>
                 <p className="text-base text-muted-foreground mt-1.5">
-                  {project.shortDescription}
+                  {localize(project.shortDescription, language)}
                 </p>
               </div>
               <div className="absolute top-4 right-4 w-7 h-7 bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
@@ -2064,7 +2080,7 @@ function ProjectsSection() {
                 <span className="text-2xl">+</span>
               </div>
               <h3 className="font-bold text-lg">
-                Collaborate on a New Project
+                {t("projects.collaborateTitle", language)}
               </h3>
             </div>
           </div>
@@ -2076,6 +2092,7 @@ function ProjectsSection() {
 
 // ─── Contact ───────────────────────────────────────────────────────────────
 function ContactSection() {
+  const { language } = useLanguage();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -2109,12 +2126,14 @@ function ContactSection() {
       <div className="max-w-3xl mx-auto relative z-10">
         <div className="reveal text-center mb-14">
           <h2 className="text-4xl sm:text-6xl font-bold">
-            {"Let's work"}
+            {t("contact.headingLine1", language)}
             <br />
-            <span className="text-primary">together!</span>
+            <span className="text-primary">
+              {t("contact.headingLine2", language)}
+            </span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Interested in working together? I'd love to hear from you.
+            {t("contact.subtitle", language)}
           </p>
         </div>
         <Card className="reveal shadow-xl">
@@ -2124,16 +2143,18 @@ function ContactSection() {
                 <div className="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
                   <Send className="h-7 w-7" />
                 </div>
-                <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
+                <h3 className="text-2xl font-bold mb-2">
+                  {t("contact.sentTitle", language)}
+                </h3>
                 <p className="text-muted-foreground mb-6 text-base">
-                  I'll respond as soon as possible.
+                  {t("contact.sentSubtitle", language)}
                 </p>
                 <Button
                   size="lg"
                   className="rounded-full px-8 text-base bg-transparent border border-border font-semibold text-foreground cursor-pointer hover:bg-secondary transition-all duration-300"
                   onClick={() => setDone(false)}
                 >
-                  Send Another
+                  {t("contact.sendAnother", language)}
                 </Button>
               </div>
             ) : (
@@ -2141,11 +2162,11 @@ function ContactSection() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
                     <Label htmlFor="name" className="text-base">
-                      Name
+                      {t("contact.name", language)}
                     </Label>
                     <Input
                       id="name"
-                      placeholder="Your name"
+                      placeholder={t("contact.namePlaceholder", language)}
                       className="rounded-xl text-base"
                       value={form.name}
                       onChange={(e) =>
@@ -2156,12 +2177,12 @@ function ContactSection() {
                   </div>
                   <div className="space-y-1.5">
                     <Label htmlFor="email" className="text-base">
-                      Email
+                      {t("contact.email", language)}
                     </Label>
                     <Input
                       id="email"
                       type="email"
-                      placeholder="you@email.com"
+                      placeholder={t("contact.emailPlaceholder", language)}
                       className="rounded-xl text-base"
                       value={form.email}
                       onChange={(e) =>
@@ -2173,11 +2194,11 @@ function ContactSection() {
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="subject" className="text-base">
-                    Subject
+                    {t("contact.subject", language)}
                   </Label>
                   <Input
                     id="subject"
-                    placeholder="What is this about?"
+                    placeholder={t("contact.subjectPlaceholder", language)}
                     className="rounded-xl text-base"
                     value={form.subject}
                     onChange={(e) =>
@@ -2188,11 +2209,11 @@ function ContactSection() {
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="message" className="text-base">
-                    Message
+                    {t("contact.message", language)}
                   </Label>
                   <Textarea
                     id="message"
-                    placeholder="Your message..."
+                    placeholder={t("contact.messagePlaceholder", language)}
                     rows={5}
                     className="rounded-xl resize-none text-base"
                     value={form.message}
@@ -2209,11 +2230,11 @@ function ContactSection() {
                   disabled={submitting}
                 >
                   {submitting ? (
-                    "Sending…"
+                    t("contact.sending", language)
                   ) : (
                     <>
                       <Send className="h-4 w-4 mr-2" />
-                      Send Message
+                      {t("contact.sendMessage", language)}
                     </>
                   )}
                 </Button>
@@ -2228,12 +2249,12 @@ function ContactSection() {
 
 // ─── Footer ────────────────────────────────────────────────────────────────
 function Footer() {
+  const { language } = useLanguage();
   return (
     <footer className="py-8 px-6 sm:px-12 lg:px-20 border-t border-border">
       <div className="max-w-7xl mx-auto text-center">
         <p className="text-sm text-muted-foreground">
-          Designed and coded by Kaloyan Kostadinov &copy;{" "}
-          {new Date().getFullYear()}
+          {t("footer.text", language)} &copy; {new Date().getFullYear()}
         </p>
       </div>
     </footer>
