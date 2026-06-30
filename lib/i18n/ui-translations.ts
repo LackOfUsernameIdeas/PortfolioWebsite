@@ -89,7 +89,7 @@ export const uiTranslations = {
     projectPrefix: { en: "Project:", bg: "Проект:" },
     technologies: { en: "Technologies", bg: "Технологии" },
     github: { en: "GitHub", bg: "GitHub" },
-    githubMobile: { en: "GitHub (Mobile)", bg: "GitHub (Мобилно)" },
+    githubMobile: { en: "GitHub (Mobile)", bg: "GitHub (Mobile)" },
     liveDemo: { en: "Live Demo", bg: "Онлайн демо" },
     clickToExpand: { en: "Click to expand", bg: "Натиснете за уголемяване" },
     scrollToZoom: {

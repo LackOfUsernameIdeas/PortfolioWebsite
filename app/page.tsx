@@ -1767,7 +1767,7 @@ function ProjectModal({
                     >
                       <Download className="w-4 h-4" />
                       {localize(doc.label, language)}
-                      {doc.label !== "All Schemes & Photos" && (
+                      {doc.label.en !== "All Schemes & Photos" && (
                         <>
                           <Languages className="w-4 h-4" />
                           <svg

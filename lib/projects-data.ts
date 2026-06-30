@@ -15,7 +15,7 @@ export interface Project {
   year: string;
   // Documentation download files
   docs?: {
-    label: string;
+    label: Localized;
     filename: string; // relative to /documentations/ in public/
     icon?: "pdf" | "docx" | "zip" | "apk";
   }[];
@@ -86,7 +86,7 @@ export const projects: Project[] = [
     liveUrl: "https://mobilis.noit.eu/",
     docs: [
       {
-        label: "Documentation",
+        label: { en: "Documentation", bg: "Документация" },
         filename: "mobilis_documentation.docx",
         icon: "docx"
       }
@@ -98,7 +98,7 @@ export const projects: Project[] = [
     title: "MindReel",
     shortDescription: {
       en: "Recommendation platform that analyzes live EEG brainwave signals and user preferences in order to understand psycho-emotional state, stress levels and cognitive performance, then suggests the most suitable movies, TV series, books, and songs",
-      bg: "Платформа за препоръки, която анализира мозъчни ЕЕГ сигнали в реално време и предпочитанията на потребителя, за да разбере психо-емоционалното състояние, нивото на стрес и когнитивните показатели, след което предлага най-подходящите филми, сериали, книги и песни"
+      bg: "Платформа за препоръки, която анализира мозъчни вълни в реално време, както и предпочитанията на потребителя, за да определи психо-емоционалното му състояние, нивото на стрес и когнитивните показатели, на база на които да предлага най-подходящите филми, сериали, книги и песни"
     },
     fullDescription: {
       en: `**MindReel** is a comprehensive platform that integrates **live EEG bioelectric brain activity analysis** (via **NeuroSky MindWave Mobile 2** headset) with **AI-suggested content recommendations** tailored to the user's real-time emotional and cognitive state, as well as their personal preferences - where the AI itself is continuously subjected to accuracy and reliability evaluation through industry-standard ML metrics adapted to the specific needs and logic of the platform, measuring **Precision, Recall, F1 Score, Accuracy, Specificity, FPR, and FNR** against a relevance algorithm grounded in the user's own preferences. The project was developed in consultation with **qualified neurologists and specialists in that field** to validate its **science-based approach** to brainwave interpretation.
@@ -167,12 +167,12 @@ export const projects: Project[] = [
     liveUrl: "https://mindreel.noit.eu",
     docs: [
       {
-        label: "Documentation",
+        label: { en: "Documentation", bg: "Документация" },
         filename: "mindreel_documentation.docx",
         icon: "docx"
       },
       {
-        label: "All Schemes & Photos",
+        label: { en: "All Schemes & Photos", bg: "Всички схеми и снимки" },
         filename: "schemes_and_photos.zip",
         icon: "zip"
       }
@@ -252,12 +252,12 @@ export const projects: Project[] = [
     liveUrl: "https://nutri.noit.eu",
     docs: [
       {
-        label: "Documentation",
+        label: { en: "Documentation", bg: "Документация" },
         filename: "nutrifit_documentation.docx",
         icon: "docx"
       },
       {
-        label: "NutriFit Mobile (.apk)",
+        label: { en: "NutriFit Mobile (.apk)", bg: "NutriFit Mobile (.apk)" },
         filename: "../NutriFitMobile.apk",
         icon: "apk"
       }
@@ -325,7 +325,7 @@ export const projects: Project[] = [
     liveUrl: "https://fluence.noit.eu/",
     docs: [
       {
-        label: "Documentation",
+        label: { en: "Documentation", bg: "Документация" },
         filename: "tikfluence_documentation.docx",
         icon: "docx"
       }
