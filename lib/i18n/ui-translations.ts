@@ -90,7 +90,7 @@ export const uiTranslations = {
     technologies: { en: "Technologies", bg: "Технологии" },
     github: { en: "GitHub", bg: "GitHub" },
     githubMobile: { en: "GitHub (Mobile)", bg: "GitHub (Мобилно)" },
-    liveDemo: { en: "Live Demo", bg: "Демо на живо" },
+    liveDemo: { en: "Live Demo", bg: "Онлайн демо" },
     clickToExpand: { en: "Click to expand", bg: "Натиснете за уголемяване" },
     scrollToZoom: {
       en: "Scroll to zoom · hold down the left mouse button to pan",
