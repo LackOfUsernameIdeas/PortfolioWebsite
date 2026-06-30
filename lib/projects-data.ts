@@ -193,12 +193,12 @@ export const projects: Project[] = [
 
 **Core features:**
 - **Meal generation:** full daily menus with breakfast, lunch (starter + main + dessert), and dinner - each with exact macros, ingredients, and recipes. Food images are fetched via **Google Custom Search API** with custom-configured Search Engines
-- **AI deviation algorithm:** measures how closely **ChatGPT vs Gemini** adhere to user-defined nutritional limits - tracking average deviation %, max deviation per category (calories, protein, fat, carbs), and overall AI deviation score
+- **AI deviation algorithm:** measures how closely **ChatGPT** and **Gemini** adhere to user-defined nutritional limits - tracking average deviation %, max deviation per category (calories, protein, fat, carbs), and overall AI deviation score
 - **Weight regulation algorithm:** compares current vs ideal weight for the user's height and recommends whether to reduce, maintain, or gain weight, with guidance on diet and activity adjustments
-- **Nearly 40 interactive statistics** and Chart.js diagrams: BMI, body fat %, lean mass, fat mass, daily macro intake over time, platform-wide aggregated user data, and a **head-to-head AI comparison panel** on the home page
+- **Nearly 40 interactive statistics** and Chart.js diagrams: BMI, body fat %, lean body mass, fat body mass, daily macro intake over time, platform-wide aggregated user data, and a **head-to-head AI comparison panel** on the home page
 - **Weight Calculator page:** shows BMI range, ideal vs current weight, body fat %, lean mass, fat mass - all with day-over-day progress tracking
-- **User measurement flow:** height, weight, age, waist/hip/neck entered once per 24h; persisted via cookie if the user opts in, yesterday's values pre-filled via localStorage on any device
-- **NutriFit API** (Node.js/Express + Firebase Admin SDK): proxies **Fitness Calculator API** calls server-side so the flood of per-page-load requests is reduced to one batch per day, regardless of whether the user stays on the page - data is safe in Firestore either way
+- **User measurement flow:** height, weight, age, waist/hip/neck are entered once per 24h. The data is persisted via cookie if the user opts in, and the values from the previous log-in are pre-filled via localStorage
+- **NutriFit API** (Node.js/Express + Firebase Admin SDK): requests are proxied through the server, reducing per-page-load traffic to a single daily batch, regardless of whether the user stays on the page. Data remains safely stored in Firestore in all cases
 - **Food ranking system** across 4 dedicated pages: sorted by calories, fat, carbs, and protein per 100g, with recipes, preparation steps, and nutritional values
 - **React Native mobile app** (separate codebase) mirroring core web features
  
@@ -214,20 +214,20 @@ export const projects: Project[] = [
 
 **Основни функции:**
 - **Генериране на хранения:** пълни дневни менюта със закуска, обяд (предястие + основно + десерт) и вечеря - всяко с точни макроси, съставки и рецепти. Изображенията на храните се извличат чрез **Google Custom Search API** с персонализирани търсещи машини
-- **Алгоритъм за AI отклонение:** измерва доколко точно **ChatGPT vs Gemini** се придържат към зададените от потребителя хранителни граници - следи средно отклонение в %, максимално отклонение по категория (калории, протеин, мазнини, въглехидрати) и обща оценка за отклонение на изкуствения интелект
+- **Алгоритъм за AI отклонение:** измерва доколко точно **ChatGPT** и **Gemini** се придържат към зададените от потребителя хранителни лимити - следи средно отклонение в %, максимално отклонение по категория (калории, протеин, мазнини, въглехидрати) и обща оценка за отклонение на изкуствения интелект
 - **Алгоритъм за регулиране на тегло:** сравнява текущото с идеалното тегло за височината на потребителя и препоръчва дали да намали, запази или увеличи теглото си, с насоки за хранителен режим и активност
-- **Близо 40 интерактивни статистики** и диаграми с Chart.js: BMI, процент телесни мазнини, чиста маса, мастна маса, дневен прием на макроси във времето, обобщени данни за цялата платформа, и **панел за пряко сравнение между AI моделите** на началната страница
-- **Страница „Калкулатор на тегло“:** показва диапазон на BMI, идеално спрямо текущо тегло, процент телесни мазнини, чиста маса, мастна маса - всичко със следене на прогреса ден за ден
-- **Поток за измервания на потребителя:** височина, тегло, възраст, обиколка на талия/таз/врат, въвеждани веднъж на 24 часа; запазвани чрез бисквитка при съгласие на потребителя, а стойностите от вчера се попълват автоматично чрез localStorage на всяко устройство
-- **NutriFit API** (Node.js/Express + Firebase Admin SDK): препраща заявките към **Fitness Calculator API** през сървъра, така че потокът от заявки при всяко зареждане на страница се намалява до едно групирано извикване на ден, независимо дали потребителят остава на страницата - данните са защитени във Firestore във всички случаи
-- **Система за класиране на храни** в 4 отделни страници: сортирани по калории, мазнини, въглехидрати и протеин на 100 г, с рецепти, начин на приготвяне и хранителни стойности
-- **Мобилно приложение с React Native** (отделна кодова база), отразяващо основните уеб функции
+- **Близо 40 интерактивни статистики** и диаграми с Chart.js: BMI, процент телесни мазнини, чиста телесна маса, мастна телесна маса, дневен прием на макроси във времето, обобщени данни за цялата платформа и **панел за пряко сравнение между AI моделите** на началната страница
+- **Страница „Калкулатор на тегло“:** показва диапазон на BMI, идеално спрямо текущо тегло, процент телесни мазнини, чиста маса, мастна маса - всичко това със следене на прогреса ден за ден
+- **Процес на въвеждане на измерванията на потребителя:** височина, тегло, възраст, обиколка на талия/таз/врат се въвеждат веднъж на 24 часа. Запазват се чрез бисквитка при съгласие на потребителя, а стойностите от последното влизане в платформата се попълват автоматично чрез localStorage
+- **NutriFit API** (Node.js/Express + Firebase Admin SDK): заявките се пренасочват през сървъра, като потокът от заявки при всяко зареждане на страница се свежда до едно групирано извикване на ден, независимо дали потребителят остава на страницата. Данните се съхраняват сигурно във Firestore във всички случаи
+- **Система за класифициране на храни** в 4 отделни страници: сортирани по калории, мазнини, въглехидрати и протеин на 100 г, с рецепти, начин на приготвяне и хранителни стойности
+- **Мобилно приложение с React Native** (отделен код), отразяващо основните уеб функции
  
 **Бележки от разработката:**
-- Един от най-трудните проблеми беше **проектирането на промптове:** ранните версии на проекта, използващи GPT-3.5, давали препоръки за предмети и дейности вместо храна в хранителните режими. Преходът към **GPT-4 Turbo** и пренаписването на целия промпт от нулата бяха решаващата стъпка. В момента проектът използва **GPT 5.2** и **Gemini 3.5 Flash**
+- Един от най-трудните проблеми беше **съставянето на промптовете:** ранните версии на проекта, използващи GPT-3.5, даваха препоръки за предмети и дейности, вместо храна в хранителните режими. Преходът към **GPT-4 Turbo** и пренаписването на целия промпт от нулата бяха решаващата стъпка. В момента проектът използва **GPT 5.2** и **Gemini 3.5 Flash**
 - Достъпът до Gemini се осъществява чрез **Vertex AI (Google Cloud)**, защото Gemini API не беше достъпен в България по времето на разработката на проекта
-- След месец отстраняване на грешки се установи, че **Firebase client SDK** не успява надеждно да доставя данни в по-голям мащаб; преминаването към **Firebase Admin SDK** през Node.js бекенда напълно реши проблема
-- Генерирането на хранения преминало през **два отхвърлени API** (първо Spoonacular, после Edamam), преди да се стигне до изкуствен интелект - ограниченото разнообразие от рецепти и невъзможността да представят българската кухня бяха решаващите причини
+- След месец отстраняване на грешки се установи, че **Firebase client SDK** не успява надеждно да доставя данни в по-голям мащаб - преминаването към **Firebase Admin SDK** през Node.js бекенда напълно реши проблема
+- Концепцията около генерирането на хранения премина през **два отхвърлени API достъпа** (първо Spoonacular, после Edamam), преди да се стигне до изкуствен интелект - ограниченото разнообразие от рецепти и невъзможността да представят българската кухня бяха решаващите причини
 - **Включени unit тестове** и **GitHub branching стратегия** (main, dev, клонове по функционалност)`
     },
     technologies: [
@@ -269,10 +269,10 @@ export const projects: Project[] = [
     title: "TikFluence",
     shortDescription: {
       en: "Data analytics platform that proves TikTok's influence on songs' popularity, with different stats and real-time personal profile information",
-      bg: "Платформа за анализ на данни, която доказва влиянието на TikTok върху популярността на песните, с различни статистики и информация за личния профил в реално време"
+      bg: "Платформа за анализ на данни, която доказва влиянието на TikTok върху популярността на песните, с различни статистически данни и информация от личните профили в реално време"
     },
     fullDescription: {
-      en: `**TikFluence** was my **first serious project**, built primarily as a **learning exercise** to get comfortable working with the technologies involved. The core idea explores a real phenomenon: when a song gets used repeatedly across TikTok videos, the platform's exposure gradually pushes up that song's popularity on **Spotify and YouTube** over time - TikTok acts as a launchpad that influences a track's trajectory across other music platforms.
+      en: `**TikFluence** was my **first serious project**, built primarily as a **learning exercise** to get comfortable working with the technologies involved. The core idea explores a real phenomenon: when a song gets used repeatedly across TikTok videos, the platform's exposure gradually pushes up that song's popularity on **Spotify and YouTube** over time - TikTok influences a track's trajectory across other music platforms.
 
 **Note:** the live demo is visitable but **some features may not function** as the project is **no longer actively maintained** due to changes in Spotify API policies and access restrictions, which **removed access to the track popularity score (0–100)** used in core functionality and made long-term maintenance **impractical**
 
@@ -287,7 +287,7 @@ export const projects: Project[] = [
  
 **Development notes:**
 - **14 API approval attempts** with TikTok Developer team before gaining access - images from the email correspondence are included in the documentation`,
-      bg: `**TikFluence** беше моят **първи сериозен проект**, изграден основно като **учебно упражнение**, за да свикна да работя с включените технологии. Основната идея изследва реален феномен: когато песен се използва многократно в TikTok видеа, експозицията от платформата постепенно повишава популярността на тази песен в **Spotify и YouTube** с времето - TikTok действа като стартова площадка, която влияе на траекторията на песента в други музикални платформи.
+      bg: `**TikFluence** беше моят **първи сериозен проект**, създаден предимно като **упражнение**, за да се запозная с използваните технологии. Основната идея изследва реален феномен: когато песен се използва многократно в TikTok видеа, широката достъпност в платформата постепенно повишава популярността на тази песен в **Spotify и YouTube** с времето - TikTok оказва влияние върху развитието на дадена песен в други музикални платформи.
 
 **Забележка:** демото на живо е достъпно, но **някои функции може да не работят**, тъй като проектът **вече не се поддържа активно** поради промени в политиките на Spotify API и ограниченията за достъп, които **премахнаха достъпа до индекса за популярност на песента (0–100)**, използван в основната функционалност, и направиха дългосрочната поддръжка **непрактична**
 
