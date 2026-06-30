@@ -183,11 +183,11 @@ export const projects: Project[] = [
     id: "nutrifit",
     title: "NutriFit",
     shortDescription: {
-      en: "A modern platform that takes advantage of the power of GPT & Gemini to actively support users in maintaining their optimal weight and healthy lifestyle",
-      bg: "Модерна платформа, която впряга силата на GPT и Gemini, за активно да подпомага потребителите в поддържането на оптималното им тегло и здравословен начин на живот"
+      en: "A modern platform that takes advantage of the capabilities of GPT & Gemini to actively support users in maintaining their optimal weight and healthy lifestyle",
+      bg: "Модерна платформа, която използва възможностите на GPT и Gemini, за да подпомага активно потребителите в поддържането на оптималното им тегло и здравословен начин на живот"
     },
     fullDescription: {
-      en: `**NutriFit** is an integrated web and mobile nutrition platform focused entirely on **AI-driven meal planning** - the project that later inspired **Mobilis**, where the concept expanded to include movement and physical activity. NutriFit's core idea is to make **two AI models generate a truly personalized, nutritionally accurate meal plan**, measure how far they deviate from the user's defined limits, and compare their performance against each other.
+      en: `**NutriFit** is an integrated web and mobile nutrition platform focused entirely on **AI-driven meal planning**. This is the project that later led to the idea for **Mobilis**, where the concept expanded to include physical activity. NutriFit's core idea is to make **two AI models generate a truly personalized, nutritionally accurate meal plan**, measure how far they deviate from the user's defined limits, and compare their performance against each other.
  
 **Note:** Ongoing **model upgrades** (due to **deprecation of older models**) have introduced occasional **inconsistencies** in meal naming and food image matching
 
@@ -208,12 +208,12 @@ export const projects: Project[] = [
 - After a month of debugging, the **Firebase client SDK** was found to be failing to reliably deliver data at scale; switching to the **Firebase Admin SDK** via the Node.js backend resolved it entirely
 - Meal generation went through **two rejected APIs** (Spoonacular, then Edamam) before landing on AI - limited recipe variety and inability to represent Bulgarian cuisine were the dealbreakers
 - **Unit tests included** and **GitHub branching strategy** (main, dev, per-feature branches)`,
-      bg: `**NutriFit** е интегрирана уеб и мобилна платформа за хранене, изцяло фокусирана върху **планиране на хранения чрез изкуствен интелект** - проектът, който по-късно вдъхнови **Mobilis**, където концепцията се разширява, за да включи движение и физическа активност. Основната идея на NutriFit е да накара **два AI модела да генерират наистина персонализиран и точен от хранителна гледна точка хранителен план**, да измерва доколко се отклоняват от зададените от потребителя граници и да сравнява тяхното представяне.
+      bg: `**NutriFit** е интегрирана уеб и мобилна платформа, изцяло фокусирана върху **планиране на храненията чрез изкуствен интелект**. Това е проектът, който по-късно даде началото на идеята за **Mobilis**, където концепцията се разширява, като се включва физическа активност. Основната идея на NutriFit е да накара **два AI модела да генерират наистина персонализиран и точен хранителен план, от гледна точка на хранителната стойност**, да измерва доколко се отклоняват от зададените от потребителя граници и да сравнява тяхното представяне.
  
-**Забележка:** Текущите **обновявания на моделите** (поради **прекратяване на поддръжката на по-стари модели**) понякога водят до **несъответствия** в наименованията на храненията и съпоставянето на изображения на храни
+**Забележка:** Текущите **актуализации на моделите** (поради **прекратяване на поддръжката на по-стари версии**) понякога водят до **несъответствия** в наименованията на ястията и представящите ги изображения
 
 **Основни функции:**
-- **Генериране на хранения:** пълни дневни менюта със закуска, обяд (предястие + основно + десерт) и вечеря - всяко с точни макроси, съставки и рецепти. Изображенията на храните се извличат чрез **Google Custom Search API** с персонализирано конфигурирани търсещи машини
+- **Генериране на хранения:** пълни дневни менюта със закуска, обяд (предястие + основно + десерт) и вечеря - всяко с точни макроси, съставки и рецепти. Изображенията на храните се извличат чрез **Google Custom Search API** с персонализирани търсещи машини
 - **Алгоритъм за AI отклонение:** измерва доколко точно **ChatGPT vs Gemini** се придържат към зададените от потребителя хранителни граници - следи средно отклонение в %, максимално отклонение по категория (калории, протеин, мазнини, въглехидрати) и обща оценка за отклонение на изкуствения интелект
 - **Алгоритъм за регулиране на тегло:** сравнява текущото с идеалното тегло за височината на потребителя и препоръчва дали да намали, запази или увеличи теглото си, с насоки за хранителен режим и активност
 - **Близо 40 интерактивни статистики** и диаграми с Chart.js: BMI, процент телесни мазнини, чиста маса, мастна маса, дневен прием на макроси във времето, обобщени данни за цялата платформа, и **панел за пряко сравнение между AI моделите** на началната страница
