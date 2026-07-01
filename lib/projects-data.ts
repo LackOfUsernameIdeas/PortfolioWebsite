@@ -280,28 +280,28 @@ export const projects: Project[] = [
 - **Influence Algorithm:** identifies songs whose **TikTok popularity** peak predates their **Spotify peak** - proving cross-platform influence. One noticeable constraint is that Spotify doesn't expose raw play counts, only a **proprietary 0-100 popularity score** - understanding and working around this was essential to making the algorithm applicable
 - **Growth Algorithm:** flags songs that are currently surging (last 2 days' popularity > all-time average)
 - **Charts & leaderboards** for: Top 200 Global TikTok songs, Top 200 TikTok songs in Bulgaria, Top 200 most-followed TikTokers, Top 200 most-viewed videos - all updated daily via **Cronjob + Chartex API** scraping
-- **Per-song stats pages:** TikTok videos count, YouTube views, Spotify popularity (0-100 scale), historical popularity change charts
+- **Per-song stats pages:** TikTok videos count, YouTube views, Spotify popularity, chronological popularity change charts
 - **Nearly 60 interactive statistics** and diagrams across the platform
-- **"My Statistics" page:** live personal TikTok profile stats (followers, likes, following, videos) updated every minute via **Socket.IO + proxy server** (CORS mechanism did not allow requests to be sent directly from a browser to a different domain). This is the only page requiring TikTok OAuth login - session key is stored in a cookie valid for 1 hour. All other pages are publicly accessible
-- All rankings rendered with **jQuery Datatables**; diagrams with **Chart.js**; real-time data via **Socket.IO** WebSocket / HTTP Long Polling
+- **"My TikTok Statistics" page:** live personal TikTok profile stats (followers, likes, following, videos) updated every minute via **Socket.IO / HTTP Long Polling + proxy server** (CORS mechanism did not allow requests to be sent directly from a browser to a different domain). This is the only page requiring TikTok OAuth login - session key is stored in a cookie valid for 1 hour. All other pages are publicly accessible
+- All rankings are rendered with **jQuery Datatables**, while the diagrams are rendered with **Chart.js**
  
 **Development notes:**
-- **14 API approval attempts** with TikTok Developer team before gaining access - images from the email correspondence are included in the documentation`,
+- **14 API access approval attempts** with the TikTok Developer team before succeeding. Images from the email correspondence are included in the documentation`,
       bg: `**TikFluence** беше моят **първи сериозен проект**, създаден предимно като **упражнение**, за да се запозная с използваните технологии. Основната идея изследва реален феномен: когато песен се използва многократно в TikTok видеа, широката достъпност в платформата постепенно повишава популярността на тази песен в **Spotify и YouTube** с времето - TikTok оказва влияние върху развитието на дадена песен в други музикални платформи.
 
-**Забележка:** демото на живо е достъпно, но **някои функции може да не работят**, тъй като проектът **вече не се поддържа активно** поради промени в политиките на Spotify API и ограниченията за достъп, които **премахнаха достъпа до индекса за популярност на песента (0–100)**, използван в основната функционалност, и направиха дългосрочната поддръжка **непрактична**
+**Забележка:** онлайн демото е достъпно, но **някои функции може да не работят**, тъй като проектът **вече не се поддържа активно** поради промени в политиките на Spotify API и ограниченията за достъп, които **премахнаха достъпа до показателя за популярност на песните (0–100)**, използван в основната функционалност, и направиха дългосрочната поддръжка **непрактична**
 
 **Основни функции:**
-- **Алгоритъм за влияние:** идентифицира песни, чийто пик на **популярност в TikTok** предхожда пика им в **Spotify** - доказвайки влияние между платформите. Едно забележимо ограничение е, че Spotify не разкрива реалния брой пускания, а само **собствен индекс за популярност от 0 до 100** - разбирането и заобикалянето на това ограничение беше от съществено значение, за да бъде алгоритъмът приложим
-- **Алгоритъм за растеж:** отбелязва песни, които в момента нарастват в популярност (популярността през последните 2 дни > средната за цялото време)
-- **Диаграми и класирания** за: Топ 200 най-популярни TikTok песни в света, Топ 200 TikTok песни в България, Топ 200 TikTok потребители с най-много последователи, Топ 200 най-гледани видеа - всички обновявани ежедневно чрез скрапинг с **Cronjob + Chartex API**
-- **Страници със статистика за всяка песен:** брой TikTok видеа, гледания в YouTube, популярност в Spotify (по скала 0-100), диаграми за историческата промяна на популярността
+- **Алгоритъм за влияние:** идентифицира песни, чийто пик на **популярност в TikTok** предхожда пика в **Spotify** - доказвайки влияние между платформите. Едно забележимо ограничение е, че Spotify не разкрива реалния брой пускания, а само **собствен индекс за популярност от 0 до 100** - разбирането и заобикалянето на това ограничение беше от съществено значение, за да бъде алгоритъмът приложим
+- **Алгоритъм за растеж:** отбелязва песните, чиято популярност в момента нараства (популярността през последните 2 дни > средната стойност за целия период)
+- **Диаграми и класирания**: Топ 200 най-популярни TikTok песни в света, Топ 200 TikTok песни в България, Топ 200 TikTok потребители с най-много последователи, Топ 200 най-гледани видеа - всички обновявани ежедневно чрез scraping с **Cronjob + Chartex API**
+- **Страници със статистики за всяка песен:** брой TikTok видеа, гледания в YouTube, популярност в Spotify, диаграми за хронологичната промяна на популярността
 - **Близо 60 интерактивни статистики** и диаграми в цялата платформа
-- **Страница „Моята статистика“:** статистика на живо за личния TikTok профил (последователи, харесвания, последвани, видеа), обновявана всяка минута чрез **Socket.IO + проксиращ сървър** (CORS механизмът не позволяваше заявки да се изпращат директно от браузъра към друг домейн). Това е единствената страница, изискваща вход чрез TikTok OAuth - сесийният ключ се пази в бисквитка, валидна 1 час. Всички останали страници са публично достъпни
-- Всички класирания се изобразяват с **jQuery Datatables**; диаграмите - с **Chart.js**; данните в реално време - чрез **Socket.IO** WebSocket / HTTP Long Polling
+- **Страница „Моите статистики в TikTok“:** статистики в реално време за личния TikTok профил (последователи, харесвания, брой видеа), актуализирани всяка минута чрез **Socket.IO / HTTP Long Polling + прокси сървър** (CORS механизмът не позволяваше заявки да се изпращат директно от браузъра към друг домейн). Това е единствената страница, изискваща вход чрез TikTok OAuth - ключът за сесията се съхранява в бисквитка, валидна 1 час. Всички останали страници са публично достъпни
+- Всички класации се изобразяват с **jQuery Datatables**, а диаграмите с **Chart.js**
  
 **Бележки от разработката:**
-- **14 опита за одобрение на API** с екипа на TikTok за разработчици, преди да се получи достъп - снимки от имейл кореспонденцията са включени в документацията`
+- **14 опита за одобрение на API достъп** от екипа на TikTok, преди разрешението да бъде получено. В документацията са включени изображения от кореспонденцията по имейл`
     },
     technologies: [
       "PHP",
