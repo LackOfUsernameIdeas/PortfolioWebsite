@@ -971,134 +971,134 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: Localized }[]> = {
     {
       src: "/mobilis3.png",
       caption: {
-        en: "Weight prognosis panel showing 91% progress (70 out of 77 days elapsed), estimated completion date (end of May 2026), remaining weeks (~1), and weekly change of -0.45 kg/week calculated from the -500 kcal/day deficit - with milestone stages (Week 3, 6, 9 completed, Week 11 current) showing expected weight at each step, and a prognosis note accounting for 2 training days per week, water/glycogen fluctuations, and protein intake recommendations",
-        bg: ""
+        en: "Target weight achievement prognosis panel showing 91% progress (70 out of 77 days elapsed), estimated completion date (end of May 2026), remaining weeks (~1), and weekly change of -0.45 kg/week calculated from the -500 kcal/day deficit - with milestone stages (Week 3, 6, 9 completed, Week 11 current) showing expected weight at each step, and a prognosis note accounting for 2 training days per week, water/glycogen fluctuations, and protein intake recommendations",
+        bg: "Панел с прогноза за постигане на целево тегло, показващ 91% напредък (изминали 70 от 77 дни), очаквана дата на завършване (края на май 2026 г.), оставащи седмици (~1) и седмична промяна от -0,45 кг/седмица, изчислена въз основа на дефицит от -500 kcal/ден – с етапи на развитие (завършени седмици 3, 6, 9, текуща седмица 11), показващи очакваното тегло на всеки етап, както и бележка към прогнозата, отчитаща 2 тренировъчни дни седмично, колебанията във водата/гликогена и препоръките за прием на протеини"
       }
     },
     {
       src: "/mobilis4.png",
       caption: {
         en: "Workout recommendations entry point where the user selects a training category - Gym, Calisthenics, or Yoga - before being guided through a preference questionnaire used to generate a personalized workout plan tailored to their level, needs, and physical condition",
-        bg: ""
+        bg: "В страницата за тренировъчни препоръки потребителят избира категория тренировка – фитнес, калистеника или йога – след което се преминава към въпросник за предпочитания, който се използва за изготвяне на персонализиран тренировъчен план, съобразен с нивото, нуждите и физическото състояние на потребителя"
       }
     },
     {
       src: "/mobilis5.png",
       caption: {
         en: "Workout preference questionnaire - goal selection step showing all 8 available goals: Cut, Aggressive Cut, Lean Bulk, Dirty Bulk, Recomposition, Maintenance, Aesthetic, and Strength - each with a short description, with Cut preselected and marked as the recommended goal in this case, based on the user's body metrics",
-        bg: ""
+        bg: "Въпросник за предпочитания при тренировките – стъпка с избор на цел, показваща всички 8 налични цели: Cut, Aggressive Cut, Lean Bulk, Dirty Bulk, Recomposition, Maintenance, Aesthetic и Strength – всяка с кратко описание, като в този случай „Cut“ е предварително избрана и отбелязана като препоръчителна цел въз основа на телесните показатели на потребителя"
       }
     },
     {
       src: "/mobilis6.png",
       caption: {
         en: "Yoga-specific questionnaire step where the user selects their preferred yoga style - Hatha, Vinyasa, Yin, Power Yoga, Restorative, or No preference - with Yin selected (long-held poses for deeper stretching)",
-        bg: ""
+        bg: "Стъпка от въпросника, посветена на йогата, в която потребителят избира предпочитания от него стил йога – Hatha, Vinyasa, Yin, Power Yoga, Restorative или „Нямам предпочитания“ – като е избран стилът „Yin“ (пози, които се задържат дълго време, за по-дълбоко разтягане)"
       }
     },
     {
       src: "/mobilis7.png",
       caption: {
         en: "Weekly gym workout plan - Day 3 (Upper Body: Back/Shoulders + Arms) showing a 10-minute warm-up, 6 exercises each with sets, reps, and activated muscle count, an 8-minute cooldown stretching, and safety notes covering rest periods, progressive overload - with day navigation tabs (Day 1-4, based on the selected 4-day training split in the questionnaire) and a button for generating a new plan",
-        bg: ""
+        bg: "Седмичен план за фитнес тренировки – Ден 3 (Горна част на тялото: гръб/рамене + ръце), включващ 10-минутна загрявка, 6 упражнения, всяко с брой серии, повторения и активирани мускули, 8-минyтнo разтягане и бележки за безопасност, обхващащи периодите на почивка и прогресивното натоварване – с раздели за навигация по дни (в случая Ден 1–4, тъй като е избран във въпросника 4-дневен тренировъчен план) и бутон за генериране на нов план"
       }
     },
     {
       src: "/mobilis8.png",
       caption: {
         en: "Exercise detail modal for Barbell Bench Press (4 sets × 8-12 reps) showing the targeted muscle groups - Chest (red), Front Deltoids (yellow), and Triceps (purple) - highlighted on a front and back body diagram",
-        bg: ""
+        bg: "Модално прозорче с подробности за упражнението „Barbell Bench Press“ (4 серии × 8–12 повторения), показващо активираните мускулни групи – гърди (червено), предни делтоиди (жълто) и трицепси (лилаво) – подчертани на диаграма на тялото с изглед отпред и отзад"
       }
     },
     {
       src: "/mobilis9.png",
       caption: {
         en: "Exercise tutorial video section showing an embedded YouTube player with a technique guide for the Barbell Bench Press, with an option to open it directly on YouTube",
-        bg: ""
+        bg: "Секция с видео за изпълнение на упражнението, в която се показва вграден YouTube плейър с демонстрация на техниката при лежанката с щанга, с възможност за директно отваряне на видеото в YouTube"
       }
     },
     {
       src: "/mobilis10.png",
       caption: {
-        en: "Nutrition questionnaire steps - target weight input (current weight: 95kg, target: 90kg, difference: -5.0kg) and training days selection (minimum 2 days per week, Monday/Wednesday/Saturday selected) - both used to generate the weight prognosis and personalize the meal plan with pre- and post-workout meals on selected training days",
-        bg: ""
+        en: "Nutrition questionnaire steps - target weight input (current weight: 95kg, target: 90kg, difference: -5.0kg) and training days selection (minimum 2 days per week, Monday/Wednesday/Saturday selected) - both used to generate the target weight achievement prognosis and personalize the meal plan with pre- and post-workout meals on selected training days",
+        bg: "Стъпки от въпросника за хранене – въвеждане на целевото тегло (текущо тегло: 95 кг, целево: 90 кг, разлика: -5,0 кг) и избор на дни за тренировка (минимум 2 дни седмично, избрани са понеделник/сряда/събота) – и двете се използват за изготвяне на прогноза за постигане на целевото тегло и персонализиране на хранителния план с ястия преди и след тренировка в избраните дни за тренировка"
       }
     },
     {
       src: "/mobilis11.png",
       caption: {
-        en: "Meal plan for the week - Day 1 (a training day) showing 5 meals with suggested times: Breakfast (07:30), Mid-Morning Snack (10:00), Pre-Workout Meal (11:15), Post-Workout Meal (14:30), and Dinner (19:00) - each with a description and macros breakdown. There are daily macro totals (2607 kcal, Protein: 223.1g, Carbs: 279.8g, Fat: 73.7g) against the target ones (2617 kcal, 262g, 229g, 73g), and general nutrition tips covering hydration, sleep, meal prep, and daily movement",
-        bg: ""
+        en: "Meal plan for the week - Day 1 (a training day) showing 5 meals with suggested times: Breakfast (07:30), Mid-Morning Snack (10:00), Pre-Workout Meal (11:15), Post-Workout Meal (14:30), and Dinner (19:00) - each with a description and macros breakdown. There are daily macro totals (2607 kcal, Protein: 223.1g, Carbs: 279.8g, Fat: 73.7g) against the target ones (2617 kcal, 262g, 229g, 73g), and general tips covering nutrition, hydration, sleep, meal prep, and daily movement",
+        bg: "План за седмично хранене – Ден 1 (тренировъчен ден), включващ 5 хранения с препоръчителни часове: Закуска (07:30), Предиобедна закуска (10:00), Предтренировъчно ястие (11:15), Следтренировъчно ястие (14:30) и Вечеря (19:00) – всяко с описание и разпределение на макронутриентите. Посочени са дневните общи калории и макроси (2607 kcal, 223,1g протеини, 279,8g въглехидрати, 73,7g мазнини) в сравнение с целевите (2617 kcal, 262g, 229g, 73g), както и общи съвети за хранене, хидратация, сън, подготовка на храната и ежедневна физическа активност"
       }
     },
     {
       src: "/mobilis12.png",
       caption: {
         en: "Meal detail modal for a post-workout dish (Chicken with Pasta and Carrots, 14:10, 25 min total) showing macros (604 kcal, Protein: 65.5g, Carbs: 71g, Fat: 6.4g), prep and cooking time (10 + 15 min), ingredients with gram amounts (Chicken fillet: 170g, Pasta: 240g, Carrots: 200g), and 4-step preparation instructions",
-        bg: ""
+        bg: "Модален прозорец с подробности за съответното ястие след тренировка (пилешко с паста и моркови, 14:10, общо 25 мин.), показващ макросите (604 kcal, 65,5g протеини, 71g въглехидрати, 6,4g мазнини), време за подготовка и готвене (10 + 15 мин.), съставки с количества в грами (пилешко филе: 170g, паста: 240g, моркови: 200g) и инструкции за приготвяне в 4 стъпки"
       }
     },
     {
       src: "/mobilis13.png",
       caption: {
-        en: "Specialized posture correction program (7 exercises) targeting flexibility and mobility of the neck, shoulders, and back, reducing tension from prolonged poor posture, and developing balance and injury prevention. Each exercise has a corresponding card showing the target zone (in this case, shoulder blades and shoulders), difficulty (medium), categories (Mobility/Posture), benefits, and four-step instructions. Each exercise also has a detail panel with an embedded YouTube demonstration video",
-        bg: ""
+        en: "Specialized posture correction program (7 exercises) targeting flexibility and mobility of the neck, shoulders, and back, reducing tension from prolonged poor posture, and developing balance and injury prevention. Each exercise has a corresponding card showing the target zone (in this case, shoulder blades and shoulders), difficulty (medium), categories (Mobility and Posture), benefits, and four-step instructions. Each exercise also has a detail panel with an embedded YouTube demonstration video",
+        bg: "Специализирана програма за коригиране на стойката (7 упражнения), насочена към гъвкавостта и подвижността на врата, раменете и гърба, намаляване на напрежението, причинено от продължителна неправилна стойка, както и към развиване на равновесие и превенция на травми. Всяко упражнение е придружено с информация за целева зона (в този случай лопатките и раменете), степен на трудност (средна), категории (мобилност и стойка), ползите и инструкциите за изпълнение. Всяко упражнение разполага и с панел с подробна информация, в който е вградено демонстрационно видео от YouTube"
       }
     },
     {
       src: "/mobilis14.png",
       caption: {
         en: "6-step setup guide for the Orbbec Astra+ posture correction application - covering app download, Nuitrack Runtime installation (with GitHub link), obtaining a free license key from 3DiVi, running the activation tool (Nuitrack.exe), activating the camera with the license key, and launching the Mobilis pose correction executable (mobilis_pose_correction.exe) from the downloaded zip",
-        bg: ""
+        bg: "Секция за конфигурация на приложението за коригиране на стойката с Orbbec Astra+ в 6 стъпки – включваща изтегляне на приложението, инсталиране на Nuitrack Runtime (с линк към GitHub), получаване на безплатен лицензен ключ от 3DiVi, стартиране на инструмента за активиране (Nuitrack.exe), активиране на камерата с лицензния ключ и стартиране на .exe програмата на Mobilis (mobilis_pose_correction.exe) от изтегления ZIP файл"
       }
     },
     {
       src: "/mobilis15.mov",
       caption: {
-        en: "Real-time posture correction session - tracked via the Orbbec Astra+ depth camera using the Nuitrack SDK and PyNuitrack, with a voice assistant (OpenAI TTS, gpt-4o-mini-tts) dictating each step. A 5-second calibration process is done where the user stands still with arms down and legs together, during which the system computes height, arm length, shoulder/hip width, and leg length to derive body-proportional tolerances for pose and angle checks. Chin Tucks address forward head posture caused by prolonged screen use by activating the deep neck flexors responsible for stabilizing the head",
-        bg: ""
+        en: "Real-time posture correction session. Tracking is done via the Orbbec Astra+ depth camera using the Nuitrack SDK and PyNuitrack, with a voice assistant (OpenAI TTS, gpt-4o-mini-tts) dictating each step. A 5-second calibration process is done where the user stands still with arms down and legs together, during which the system computes height, arm length, shoulder/hip width, and leg length to derive body-proportional tolerances for pose and angle checks. Chin Tucks address forward head posture caused by prolonged screen use by activating the deep neck flexors responsible for stabilizing the head",
+        bg: "Сесия за коригиране на стойката в реално време. Проследяването на изпълнението става чрез камерата Orbbec Astra+ с помощта на Nuitrack SDK и PyNuitrack, като гласовият асистент (OpenAI TTS, gpt-4o-mini-tts) дава указания за всяка стъпка. Извършва се 5-секунден процес на калибриране, при който потребителят стои неподвижно с ръцете надолу и събрани крака, като през това време системата изчислява височината, дължината на ръцете, ширината на раменете/бедрата и дължината на краката, за да определи пропорционални на тялото допустими граници за проверка на позата и ъглите. „Chin Tucks“ коригира наведената напред глава, получена в резултат на продължителна работа пред екран, като се активират дълбоките флексори на шията, отговорни за стабилизирането на главата"
       }
     },
     {
       src: "/mobilis16.mov",
       caption: {
         en: "Neck Side Tilts exercise improves lateral neck flexibility and reduces side tension caused by sustained poor head positioning and improves range of motion",
-        bg: ""
+        bg: "Упражнението „Neck Side Tilts“ подобрява страничната гъвкавост на врата, намалява напрежението в страничната част, причинено от продължително неправилно положение на главата, и подобрява обхвата на движение"
       }
     },
     {
       src: "/mobilis17.mov",
       caption: {
         en: "Shoulder Blade Squeezes exercise targets rounded shoulders caused by prolonged sitting, hunching, and forward head positioning, strengthening the upper back muscles and improving shoulder posture",
-        bg: ""
+        bg: "Упражнението „Shoulder Blade Squeezes“ е насочено към коригиране на извитите рамене, причинени от продължително седене, прегърбена стойка и наведена напред глава, като укрепва мускулите на горната част на гърба и подобрява стойката в раменете"
       }
     },
     {
       src: "/mobilis18.mov",
       caption: {
         en: "Wall Angels exercise addresses rounded shoulders and weak upper back control, improves shoulder mobility and upper back posture, and also opens the chest",
-        bg: ""
+        bg: "Упражнението „Wall Angels“ помага при извити рамене и слаб контрол над горната част на гърба, подобрява подвижността на раменете и стойката в горната част на гърба, а също така разгръща гръдния кош"
       }
     },
     {
       src: "/mobilis19.mov",
       caption: {
         en: "Standing T Stretch exercise targets the shoulder blades and shoulders, addressing rounded shoulders and upper back weakness caused by prolonged sitting and screen use, strengthening the muscles between the shoulder blades and improving upper back posture",
-        bg: ""
+        bg: "Упражнението „Standing T Stretch“ е насочено към лопатките и раменете, като помага при изкривени рамене и слаб контрол в горната част на гърба, причинени от продължително седене и работа пред екран, укрепва мускулите между лопатките и подобрява стойката в горната част на гърба"
       }
     },
     {
       src: "/mobilis20.mov",
       caption: {
-        en: "Standing Pelvic Tilts exercise improves pelvic stability and mobility, addressing lower back imbalances (caused by sedentary habits and prolonged standing) and reducing lower back pain",
-        bg: ""
+        en: "Standing Pelvic Tilts exercise improves pelvic stability and mobility, addressing lower back imbalances (caused by sedentary habits and prolonged standing) and reducing pain in that area",
+        bg: "Упражнението „Standing Pelvic Tilts“ подобрява стабилността и подвижността на таза, като коригира дисбалансите в долната част на гърба (причинени от заседнал начин на живот и продължителното стоене) и облекчава болките в тази област"
       }
     },
     {
       src: "/mobilis21.mov",
       caption: {
         en: "Standing Lumbar Extensions exercise targets the lower back, improving lumbar mobility and stability, and reducing stiffness and tension accumulated from prolonged sitting or poor postural habits",
-        bg: ""
+        bg: "Упражнението „Standing Lumbar Extensions“ е насочено към долната част на гърба, подобрява гъвкавостта и стабилността в областта на кръста, както и намалява сковаността и напрежението, натрупани в резултат на продължително седене или лоши постурални навици"
       }
     },
     {
