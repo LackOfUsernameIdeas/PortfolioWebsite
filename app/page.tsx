@@ -1198,7 +1198,7 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: Localized }[]> = {
       src: "/mindreel2.png",
       caption: {
         en: "Music statistics showing average Spotify popularity (63.50/100) and YouTube engagement metrics (403.6M views, 2.4M likes, 73.6K comments) fetched via the Spotify and YouTube APIs, followed by other platform-wide stats including total users (20), most recommended genre (Drama), average box office ($90,851,285), and total awards count (21,380)",
-        bg: "Музикални статистики, показващи средната популярност в Spotify (63,50/100), както и показателите за ангажираност в YouTube (403,6 млн. гледания, 2,4 млн. харесвания, 73,6 хил. коментара), извлечени чрез API-тата на Spotify и YouTube. Тук присъстват и други статистически данни за цялата платформа, включително общ брой потребители (20), най-препоръчван жанр (драма), средни бокс офис приходи ($90 851 285) и общ брой награди (21 380)"
+        bg: "Музикални статистики, показващи средната популярност в Spotify (63,50/100), както и показателите за ангажираност в YouTube (403,6 млн. гледания, 2,4 млн. харесвания, 73,6 хил. коментара), извлечени чрез API-тата на Spotify и YouTube. Тук присъстват и други статистически данни за цялата платформа, включително общ брой потребители (20), най-препоръчван жанр (драма), средни боксофис приходи ($90 851 285) и общ брой награди (21 380)"
       }
     },
     {
@@ -1219,7 +1219,7 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: Localized }[]> = {
       src: "/mindreel5.mov",
       caption: {
         en: "Five generated movies and series recommendations produced as a result of the EEG analysis - each card displays the title in Bulgarian and English, genre, duration, release year, IMDb rating and vote count, Metascore, Rotten Tomatoes score, description, plot summary, and additional metadata including director, writers, cast, release date, language, country, awards, and box office revenue. There is a diagnostic section that explains why the recommendation serves as a corrective for the user's recorded psycho-emotional state. Each card includes a trailer button that opens an embedded YouTube player in a modal, and a bookmark icon for adding or removing the title from the personal watchlist",
-        bg: "Пет препоръки за филми и сериали, генерирани в резултат на ЕЕГ анализа - всяка карта показва заглавието на български и английски език, жанра, продължителността, годината на издаване, рейтинга и броя на гласовете в IMDb, Metascore, оценката в Rotten Tomatoes, описание, резюме на сюжета и допълнителни метаданни, включително режисьор, сценаристи, актьорски състав, дата на излизане, език, държава, награди и приходи от бокс офис. Има секция, в която се обяснява защо препоръката служи като коректив за регистрираното психо-емоционално състояние на потребителя. Всяка карта включва бутон за трейлър, който отваря вграден YouTube плейър в модален прозорец, както и иконка за добавяне или премахване на заглавието от персоналния списък за гледане"
+        bg: "Пет препоръки за филми и сериали, генерирани в резултат на ЕЕГ анализа - всяка карта показва заглавието на български и английски език, жанра, продължителността, годината на издаване, рейтинга и броя на гласовете в IMDb, Metascore, оценката в Rotten Tomatoes, описание, резюме на сюжета и допълнителни метаданни, включително режисьор, сценаристи, актьорски състав, дата на излизане, език, държава, награди и приходи от боксофис. Има секция, в която се обяснява защо препоръката служи като коректив за регистрираното психо-емоционално състояние на потребителя. Всяка карта включва бутон за трейлър, който отваря вграден YouTube плейър в модален прозорец, както и иконка за добавяне или премахване на заглавието от персоналния списък за гледане"
       }
     },
     {
@@ -1289,35 +1289,35 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: Localized }[]> = {
       src: "/mindreel15.png",
       caption: {
         en: "AI Analyzer page showing the user-specific machine learning metrics - Precision (34.28%, 194 relevant out of 566 total generated), Recall/TPR (70.80%, 194 out of 274 relevant recommendations in the system sent to the user), and F1 Score (46.19%, balance between Precision and Recall) - alongside the four statistics used in their calculation: total recommendations generated (TP+FP: 566), relevant among generated (TP: 194), total recommendations in platform (TP+TN+FP+FN: 792), and total relevant recommendations in platform (274)",
-        bg: ""
+        bg: "Страницата „AI Анализатор“, показваща специфичните за потребителя стойности на метриките за машинно обучение - Precision (34,28%, 194 релевантни от общо 566 генерирани), Recall/TPR (70,80%, 194 от 274 релевантни препоръки в системата, предложени на потребителя) и F1 Score (46,19%) - заедно с четирите статистически показателя, използвани при изчислението им: общ брой генерирани препоръки (TP+FP: 566), релевантни сред генерираните (TP: 194), общо препоръки в платформата (TP+TN+FP+FN: 792) и общ брой релевантни препоръки в платформата (274)"
       }
     },
     {
       src: "/mindreel16.png",
       caption: {
         en: "AI Analyzer page showing two paginated line charts tracking the average Precision, Recall, and F1 Score over time (February–March 2025) - the left chart represents values across all platform users, while the right chart tracks the same metrics for the individual user, allowing direct comparison between personal AI behavior and the overall platform trend",
-        bg: ""
+        bg: "Страница „AI Анализатор“, показваща две линейни диаграми, които проследяват средните стойности на Precision, Recall и F1 Score във времето (февруари-март 2025 г.) - лявата диаграма представя стойностите за всички потребители на платформата, докато дясната проследява същите показатели за отделния потребител, което позволява пряко сравнение между личното поведение на ИИ и общата тенденция на платформата"
       }
     },
     {
       src: "/mindreel17.png",
       caption: {
         en: "The visualization is showing the extended recommendation metrics - FPR (71.81%, 372 irrelevant recommendations sent out of 518 total irrelevant in the platform), Specificity (28.19%), FNR (29.2%), and Accuracy (42.93%) - with a detailed breakdown panel for the currently selected metric (FPR) displaying its formula, progress bar, and the TP/FP/FN/TN counts, alongside a legend explaining all four types of AI predictions",
-        bg: ""
+        bg: "Снимката показва разширените метрики за препоръките - FPR (71,81%, 372 предложени нерелевантни препоръки от общо 518 нерелевантни в платформата), Specificity (28,19%), FNR (29,2%) и Accuracy (42,93%) - с панел за подробна информация за текущо избрания показател (FPR), показващ неговата формула и броя на TP/FP/FN/TN, както и легенда, обясняваща четирите типа предположения на изкуствения интелект"
       }
     },
     {
       src: "/mindreel18.png",
       caption: {
         en: "The Watchlist page displaying saved movies and series recommendations as cards with poster and metadata - with the filter panel on the right, offering filtering by genre, duration, type (movies or series), actors, directors, writers, languages, IMDb rating, Metascore, box office, and release year, with Apply and Reset buttons. The Readlist and Listenlist pages have the same structure and filtering options, but for books and music respectively",
-        bg: ""
+        bg: "Страницата „Списък за гледане“ показва запазените препоръки за филми и сериали под формата на картички със снимка и метаданни. Съществува панел за филтриране вдясно, който позволява филтриране по жанр, продължителност, тип (филми или сериали), актьори, режисьори, сценаристи, езици, рейтинг в IMDb, Metascore, боксофис и година на излизане, както и бутони „Приложи“ и „Нулирай“. Страниците „Списък за четене“ и „Списък за слушане“ имат същата структура и опции за филтриране, но съответно за книги и музика"
       }
     },
     {
       src: "/mindreel19.png",
       caption: {
-        en: "Individual statistics page showing four sections: a paginated table of the most frequently recommended movies and series (565 total) with prosperity rating, box office, and Oscar wins; a top directors/actors/writers table ranked by recommendation count with average IMDb and Rotten Tomatoes ratings; a bar chart of the user's most recommended genres; and a summary count of total recommendations split by movies (359), series (206), and combined (565)",
-        bg: ""
+        en: "Individual statistics page showing four sections: a paginated table of the most frequently recommended movies and series (565 total) with prosperity rating, box office, and Oscar wins; a top directors/actors/writers table ranked by recommendation count with average IMDb and Rotten Tomatoes ratings; a bar chart showing the genres most frequently recommended to the user; total count of recommendations split by categories: movies (359), series (206), and combined (565)",
+        bg: "Страницата „Индивидуални статистики“, съдържаща четири секции: таблица с най-често препоръчваните филми и сериали (общо 565) с рейтинг на популярност, боксофис и спечелени „Оскари“; таблица с най-популярните режисьори/актьори/сценаристи, подредени по брой препоръки, със средни оценки от IMDb и Rotten Tomatoes; колонна диаграма, показваща най-често препоръчваните на потребителя жанрове; брой на всички препоръки, разпределени по категории: филми (359), сериали (206) и общо (565)"
       }
     },
     {
