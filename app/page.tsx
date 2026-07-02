@@ -1183,29 +1183,29 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: Localized }[]> = {
     {
       src: "/mindreel.png",
       caption: {
-        en: "MindReel - neuroassistant platform that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs",
-        bg: ""
+        en: "MindReel - the neuroassistant that transforms brain activity and personal preferences into the perfect content - movies, TV series, books, and songs",
+        bg: "MindReel - невроасистентът, който превръща мозъчната активност и субективните предпочитания в перфектното съдържание - филми, сериали, книги и песни"
       }
     },
     {
       src: "/mindreel1.png",
       caption: {
         en: "Home page statistics displaying average machine learning evaluation metrics (Precision – 82.27% for last generation, 29.48% overall; Recall – 54.49%; F1 Score – 29.44%) across all users, alongside a book adaptations counter showing how many recommended books have been adapted into movies and series (360 movie adaptations, 133 series adaptations, 493 total)",
-        bg: ""
+        bg: "Статистики на началната страница, показващи средните стойности на показателите за оценка на машинно обучение (Precision – 82,27% за последното генериране, 29,48% като цяло; Recall – 54,49%; F1 Score – 29,44%) за всички потребители, както и брояч на адаптациите, показващ колко от препоръчаните книги са адаптирани във филми и сериали (360 филмови адаптации, 133 сериални адаптации, общо 493)"
       }
     },
     {
       src: "/mindreel2.png",
       caption: {
         en: "Music statistics showing average Spotify popularity (63.50/100) and YouTube engagement metrics (403.6M views, 2.4M likes, 73.6K comments) fetched via the Spotify and YouTube APIs, followed by other platform-wide stats including total users (20), most recommended genre (Drama), average box office ($90,851,285), and total awards count (21,380)",
-        bg: ""
+        bg: "Музикални статистики, показващи средната популярност в Spotify (63,50/100), както и показателите за ангажираност в YouTube (403,6 млн. гледания, 2,4 млн. харесвания, 73,6 хил. коментара), извлечени чрез API-та на Spotify и YouTube. Тук присъстват и други статистически данни за цялата платформа, включително общ брой потребители (20), най-препоръчван жанр (драма), средни бокс офис приходи ($90 851 285) и общ брой награди (21 380)"
       }
     },
     {
       src: "/mindreel3.png",
       caption: {
         en: "The New Recommendations page entry point, where the user selects the type of content they want to explore - Movies & Series, Books, or Music - before being guided through a preference questionnaire that collects data for the AI prompt",
-        bg: ""
+        bg: "Началната точка в страницата „Нови Препоръки“, където потребителят избира типа съдържание, което иска да разгледа – „Филми и сериали“, „Книги“ или „Музика“ – след което се преминава към въпросник за предпочитания, който събира данни за промпта към изкуствения интелект"
       }
     },
     {
