@@ -1198,7 +1198,7 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: Localized }[]> = {
       src: "/mindreel2.png",
       caption: {
         en: "Music statistics showing average Spotify popularity (63.50/100) and YouTube engagement metrics (403.6M views, 2.4M likes, 73.6K comments) fetched via the Spotify and YouTube APIs, followed by other platform-wide stats including total users (20), most recommended genre (Drama), average box office ($90,851,285), and total awards count (21,380)",
-        bg: "Музикални статистики, показващи средната популярност в Spotify (63,50/100), както и показателите за ангажираност в YouTube (403,6 млн. гледания, 2,4 млн. харесвания, 73,6 хил. коментара), извлечени чрез API-та на Spotify и YouTube. Тук присъстват и други статистически данни за цялата платформа, включително общ брой потребители (20), най-препоръчван жанр (драма), средни бокс офис приходи ($90 851 285) и общ брой награди (21 380)"
+        bg: "Музикални статистики, показващи средната популярност в Spotify (63,50/100), както и показателите за ангажираност в YouTube (403,6 млн. гледания, 2,4 млн. харесвания, 73,6 хил. коментара), извлечени чрез API-тата на Spotify и YouTube. Тук присъстват и други статистически данни за цялата платформа, включително общ брой потребители (20), най-препоръчван жанр (драма), средни бокс офис приходи ($90 851 285) и общ брой награди (21 380)"
       }
     },
     {
@@ -1212,56 +1212,56 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: Localized }[]> = {
       src: "/mindreel4.mov",
       caption: {
         en: "Full end-to-end walkthrough of the EEG analysis session - the NeuroSky MindWave Mobile 2 headset is placed on the head and connected via Bluetooth, after which the user runs a purpose-built Python .exe application that establishes a Socket.IO connection with the MindReel API and begins transmitting the raw brainwave data in real time. Once the connection is confirmed, the live brain activity dashboard activates, displaying the Attention and Meditation meter values as circular gauges, a combined area chart tracking both metrics over time, and eight individual brainwave frequency charts (Delta, Theta, Low Alpha, High Alpha, Low Beta, High Beta, Low Gamma, High Gamma) - all streamed for one minute until the session ends and the collected data is forwarded to the AI for recommendation generation",
-        bg: ""
+        bg: "Инструкции за съставяне на сесията за ЕЕГ анализ – устройството NeuroSky MindWave Mobile 2 се поставя на главата и се свързват чрез Bluetooth, след което потребителят стартира специално създадено приложение на Python (.exe), което установява Socket.IO връзка с API-то на MindReel и започва да предава необработените данни за мозъчните вълни в реално време. След като връзката бъде потвърдена, се активира таблото за следене на мозъчната активност в реално време, което показва стойностите на индикаторите за внимание и медитация под формата на кръгли диаграми, комбинирана диаграма, проследяваща и двата показателя, както и осем индивидуални диаграми за честотите на мозъчните вълни (Delta, Theta, Ниски Alpha, Високи Alpha, Ниски Beta, Високи Beta, Ниски Gamma, Високи Gamma) – всички те се проследяват в продължение на една минута, докато сесията приключи и събраните данни бъдат предадени на изкуствения интелект за генериране на препоръки"
       }
     },
     {
       src: "/mindreel5.mov",
       caption: {
         en: "Five generated movies and series recommendations produced as a result of the EEG analysis - each card displays the title in Bulgarian and English, genre, duration, release year, IMDb rating and vote count, Metascore, Rotten Tomatoes score, description, plot summary, and additional metadata including director, writers, cast, release date, language, country, awards, and box office revenue. There is a diagnostic section that explains why the recommendation serves as a corrective for the user's recorded psycho-emotional state. Each card includes a trailer button that opens an embedded YouTube player in a modal, and a bookmark icon for adding or removing the title from the personal watchlist",
-        bg: ""
+        bg: "Пет препоръки за филми и сериали, генерирани в резултат на ЕЕГ анализа – всяка карта показва заглавието на български и английски език, жанра, продължителността, годината на издаване, рейтинга и броя на гласовете в IMDb, Metascore, оценката в Rotten Tomatoes, описание, резюме на сюжета и допълнителни метаданни, включително режисьор, сценаристи, актьорски състав, дата на излизане, език, държава, награди и приходи от бокс офис. Има секция, в която се обяснява защо препоръката служи като коректив за регистрираното психо-емоционално състояние на потребителя. Всяка карта включва бутон за трейлър, който отваря вграден YouTube плейър в модален прозорец, както и иконка за добавяне или премахване на заглавието от персоналния списък за гледане"
       }
     },
     {
       src: "/mindreel6.png",
       caption: {
-        en: "A recommendation card generated via the standard preference questionnaire, following the same structure as the EEG-based results. There is a section explaining why the movie/series was recommended based on the inputted individual preferences",
-        bg: ""
+        en: "A recommendation card generated via the standard preference questionnaire, following the same information representation structure as the EEG-based results. There is a section explaining why the movie/series was recommended based on the inputted individual preferences",
+        bg: "Карта с препоръка, генерирана чрез стандартния въпросник за предпочитания, която следва същата структура за представяне на информацията като резултатите, базирани на ЕЕГ. Има раздел, в който се обяснява защо филмът/сериалът е бил препоръчан въз основа на въведените индивидуални предпочитания"
       }
     },
     {
       src: "/mindreel7.png",
       caption: {
-        en: "Relevance analysis panel for the last recommendation generation - each recommendation is displayed as a navigable card (with previous/next arrows) showing its relevance classification (Relevant/Irrelevant) and a breakdown score across six categories: Genres, Type, Mood, Watch Time, Creation Period, and Target Audience, each scored individually and summed into a total relevance score (e.g. 7/7). Below, a summary row shows the number of relevant recommendations, total recommendations generated, Precision percentage, and average relevance score for the generation",
-        bg: ""
+        en: "Relevance analysis panel for the last recommendation generation - each recommendation is displayed as a navigable card showing its relevance classification (Relevant/Irrelevant) and a breakdown score across six categories: Genres, Type, Mood, Watch Time, Creation Period, and Target Audience, each scored individually and summed into a total relevance score (e.g. 7/7). Below, a summary section shows the number of relevant recommendations, total recommendations generated, Precision percentage value, and average relevance score for the generation",
+        bg: "Панел за анализ на релевантността при последното генериране – под всяка препоръка се показва карта с възможност за навигация, на която се вижда класификацията ѝ по релевантност („Релевантен“/„Нерелевантен“) и детайлна оценка по шест категории: жанрове, тип, настроение, време за гледане, период на създаване и целева аудитория, като всяка категория се оценява поотделно, а резултатите се сумират в обща оценка за релевантност (например 7/7). По-долу, в обобщаваща секция, се показват броят на релевантните препоръки, общият брой генерирани препоръки, стойността на Precision и средната стойност на точките за релевантност за генерирането"
       }
     },
     {
       src: "/mindreel8.png",
       caption: {
-        en: "A book recommendation card displaying data scraped from Goodreads - showing the cover image, genres, Goodreads rating (4.24 / 1,204,089 votes), explanation of why the book was recommended, description, characters, literary awards, adaptations (movies, series, theatre, and more), is the book part of a series, and additional metadata such as origin, language, cover type, setting, publisher, publication date, and ISBN",
-        bg: ""
+        en: "A book recommendation card displaying data scraped from Goodreads - showing the cover image, pages count, genres, Goodreads rating (4.24 / 1,204,089 votes), explanation of why the book was recommended, description, characters, literary awards, adaptations (movies, series, theatre, and more), is the book part of a series, and additional metadata such as origin, language, cover type, setting, publisher, publication date, and ISBN",
+        bg: "Карта с препоръка за книга, съдържаща данни, извлечени от Goodreads – изображение на корицата, брой страници, жанрове, рейтинг в Goodreads (4,24 / 1 204 089 гласа), обяснение защо книгата е препоръчана, описание, герои, литературни награди, адаптации (филми, сериали, театрални постановки и др.), дали книгата е част от поредица, както и допълнителни метаданни като произход, език, тип корица, място на действието, издател, дата на издаване и ISBN"
       }
     },
     {
       src: "/mindreel9.png",
       caption: {
-        en: "A music recommendation card displaying data fetched from the Spotify and YouTube APIs - showing the thumbnail with a play button for the YouTube video, Spotify popularity score (91/100) with a direct listening link, YouTube views (383.0M) and likes (2.0M), an explanation of why the song was recommended, description, and additional metadata such as artists, album, album type, duration, release date, tracks in album, and Spotify popularity",
-        bg: ""
+        en: "A music recommendation card displaying data fetched from the Spotify and YouTube APIs - showing the thumbnail with a play button for the YouTube video, Spotify popularity score (91/100) with a direct listening link, YouTube views (383.0M) and likes (2.0M), an explanation of why the song was recommended, description, and additional metadata such as artists, album, album type, duration, release date, and tracks count in album",
+        bg: "Карта с музикална препоръка, показваща данни, извлечени от API-тата на Spotify и YouTube – представящо изображение и бутон за отваряне на вграден YouTube плейър в модален прозорец, рейтинг на популярност в Spotify (91/100) с пряк линк за възпроизвеждане, брой гледания (383,0 млн.) и харесвания (2,0 млн.) в YouTube, обяснение защо песента е препоръчана, описание и допълнителни метаданни като изпълнители, албум, тип албум, продължителност, дата на издаване и брой песни в албума"
       }
     },
     {
       src: "/mindreel10.png",
       caption: {
-        en: "The VR cinema page showing the entry button to the A-Frame virtual scene, alongside a keyboard and mouse controls reference panel (WASD and arrow keys for navigation, left mouse button drag for rotation)",
-        bg: ""
+        en: "The New Recommendations page, after the VR cinema experience options is chosen, showing the entry button to the A-Frame virtual scene, alongside a keyboard and mouse controls reference panel (WASD and arrow keys for navigation, left mouse button drag for rotation)",
+        bg: "Страницата „Нови Препоръки“, след като е избрана опцията за VR кино изживяване, на която се вижда бутонът за достъп до A-Frame виртуалната сцена, заедно с панел с указания за управление с клавиатура и мишка"
       }
     },
     {
       src: "/mindreel11.png",
       caption: {
         en: 'Inside the A-Frame virtual cinema hall - featuring rows of red seats, a ceiling projector and spotlights, a popcorn machine with yellow lights on the left, and navigation arrows for switching between recommendations, with the "Home Alone" recommendation card displayed on the central screen',
-        bg: ""
+        bg: "Изглед отвътре на виртуалната кинозала – редици от червени седалки, прожектор на тавана и насочени светлини, машина за пуканки с жълти светлини отляво, както и стрелки за навигация за превключване между препоръките, като на централния екран е изведена препоръката „Сам вкъщи“"
       }
     },
     {
