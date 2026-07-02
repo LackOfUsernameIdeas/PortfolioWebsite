@@ -269,7 +269,7 @@ export const projects: Project[] = [
     title: "TikFluence",
     shortDescription: {
       en: "Data analytics platform that proves TikTok's influence on songs' popularity, with different stats and real-time personal profile information",
-      bg: "Платформа за анализ на данни, която доказва влиянието на TikTok върху популярността на песните, с различни статистически данни и информация от личните профили в реално време"
+      bg: "Платформа за анализ на данни, която доказва влиянието на TikTok върху популярността на песните, с различни статистически данни и информация от персоналните профили на потребителите в реално време"
     },
     fullDescription: {
       en: `**TikFluence** was my **first serious project**, built primarily as a **learning exercise** to get comfortable working with the technologies involved. The core idea explores a real phenomenon: when a song gets used repeatedly across TikTok videos, the platform's exposure gradually pushes up that song's popularity on **Spotify and YouTube** over time - TikTok influences a track's trajectory across other music platforms.
