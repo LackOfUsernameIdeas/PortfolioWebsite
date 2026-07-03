@@ -1382,126 +1382,126 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: Localized }[]> = {
       src: "/nutrifit.png",
       caption: {
         en: "NutriFit - platform that actively supports users in maintaining their optimal weight and healthy lifestyle",
-        bg: ""
+        bg: "NutriFit - платформа, която активно подпомага потребителите в поддържането на оптимално тегло и здравословен начин на живот"
       }
     },
     {
       src: "/nutrifit2.png",
       caption: {
-        en: "ChatGPT vs Gemini AI deviation comparison panel. The overall score (e.g. 12.61% vs 33.50%) represents the platform-wide average absolute deviation - calculated by taking the absolute deviation of every meal plan generation ever stored in the database, across all users and all categories, and averaging the results into a single value. Deviations are treated as absolute values, meaning both undershooting and overshooting the user's nutritional limits count equally. Below that, two category-level breakdowns are shown for each model: average deviation (absolute difference from the user's defined limit per each category, in grams and %) and maximum deviation (the largest absolute overshoot or undershoot ever recorded per category), across Calories, Protein, Carbohydrates, and Fats",
-        bg: ""
+        en: "OpenAI vs Gemini deviation comparison panel. The overall score (12.61% vs 33.50%) represents the platform-wide average absolute deviation - calculated by taking the absolute deviation of every meal plan generation ever stored in the database, across all users and all categories, and averaging the results into a single value. Deviations are treated as absolute values, meaning both undershooting and overshooting the user's nutritional limits count equally. Below that, two category-level breakdowns are shown for each model: average deviation (absolute difference from the user's defined limit per each category, in grams and %) and maximum deviation (the largest absolute overshoot or undershoot ever recorded per category), across Calories, Protein, Carbohydrates, and Fats",
+        bg: "Панел за сравнение на отклоненията между OpenAI и Gemini. Общият резултат (12,61% срещу 33,50%) представлява средното абсолютно отклонение за цялата платформа - изчислено чрез вземане на абсолютното отклонение на всеки генериран хранителен план, съхранен някога в базата данни, за всички потребители и всички категории, и усредняване на резултатите в една единствена стойност. Отклоненията се разглеждат като абсолютни стойности, което означава, че както недостигането, така и надвишаването на хранителните ограничения на потребителя се отчитат еднакво. По-надолу са показани две групи от разделения по категории за всеки модел: средно отклонение (абсолютна разлика спрямо определеното от потребителя ограничение за всяка категория, в грами и %) и максимално отклонение (най-голямото абсолютно надвишаване или недостигане, регистрирано някога за всяка категория) за калории, протеини, въглехидрати и мазнини"
       }
     },
     {
       src: "/nutrifit3.png",
       caption: {
         en: "Platform-wide user statistics dashboard showing average body metrics and nutrient intake split by gender (45 men, 36 women, 81 total), visualized as both a line chart and a bar chart",
-        bg: ""
+        bg: "Табло с потребителски статистики за цялата платформа, показващо средни стойности на телесните показатели и приема на хранителни вещества, разпределени по пол, визуализирани както като линейна, така и като колонна диаграма"
       }
     },
     {
       src: "/nutrifit4.png",
       caption: {
         en: "Weight Calculator page showing the user's BMI (26.78 - overweight, healthy range 18.5–25), ideal weight (70.99kg, currently 11.01kg above), and body composition breakdown - body fat % (24.09%), fat mass (19.75kg), and lean mass (62.25kg). Each metric includes a day-over-day comparison against the previous entry",
-        bg: ""
+        bg: "Страница „Калкулатор за тегло“, показваща ИТМ на потребителя (26,78 - наднормено тегло, здравословен диапазон 18,5–25), перфектното тегло (70,99кг, в момента с 11,01кг над него) и подробности около телесния състав - процент телесни мазнини (24,09%), мастна телесна маса (19,75кг) и чиста телесна маса (62,25кг). Всеки показател включва сравнение със запис от предходно влизане в платформата"
       }
     },
     {
       src: "/nutrifit5.png",
       caption: {
-        en: "Historical body composition charts tracking the user's daily progress over time - weight, BMI, body fat %, fat mass, lean mass, and kg above/below ideal weight",
-        bg: ""
+        en: "Chronological body composition charts tracking the user's progress over time - weight, BMI, body fat %, fat mass, lean mass, and kg above/below ideal weight",
+        bg: "Диаграми с хронологически данни за състава на тялото, проследяващи напредък на потребителя във времето - тегло, ИТМ, процент телесни мазнини, мастна телесна маса, чиста телесна маса и килограми над/под идеалното тегло"
       }
     },
     {
       src: "/nutrifit6.png",
       caption: {
-        en: "Meal plan generation page - the user selects their activity level (6 levels), a calorie goal (7 presets from mild weight loss to extreme bulk, BMR value), and a diet type (Balanced, Low Fat, Low Carb, High Protein), which auto-fills the macro targets. The user can also specify foods to exclude and choose a cuisine (Bulgarian, Spanish, Italian, French). Submitting generates a meal plan via either OpenAI or Gemini",
-        bg: ""
+        en: "In the meal plan generation page the user selects their activity level (6 levels), a calorie goal (7 presets from mild weight loss to extreme bulk, BMR value), and a diet type (Balanced, Low Fat, Low Carb, High Protein), which auto-fills the macro targets. The user can also specify foods to exclude and choose a cuisine (Bulgarian, Spanish, Italian, French). Submitting generates a meal plan via either OpenAI or Gemini",
+        bg: "В страницата „Хранителен план“ потребителят избира нивото си на натовареност (6 нива), целевия брой калории (7 предварително зададени опции - от леко отслабване до екстремно натрупване на мускулна маса, както и стойността на базовия метаболизъм) и тип диета (балансирана, с ниско съдържание на мазнини, с ниско съдържание на въглехидрати, с високо съдържание на протеини), след което целевите стойности за макронутриентите се попълват автоматично. Потребителят може също да посочи храни, които да бъдат изключени, и да избере кухня (българска, испанска, италианска, френска). След изпращане се генерира хранителен план чрез OpenAI или Gemini"
       }
     },
     {
       src: "/nutrifit7.png",
       caption: {
-        en: "AI-generated meal plan showing breakfast (1 dish) and lunch (starter, main, dessert) - each meal card displays a food image fetched via Google Custom Search API, weight in grams, and exact macros (calories, protein, carbs, fats), with a button linking to the preparation steps",
-        bg: ""
+        en: "AI-generated meal plan showing breakfast (1 dish) and lunch (starter, main, dessert). Each meal card displays a food image fetched via Google Custom Search API, weight in grams, and exact calories and macros (protein, carbs, fats), with a button linking to the preparation steps",
+        bg: "Създаден от изкуствен интелект план за хранене, включващ закуска (1 ястие) и обяд (предястие, основно ястие, десерт). Всяка карта за хранене съдържа изображение на храната, извлечено чрез Google Custom Search API, тегло в грами и точни калории и макроси (протеини, въглехидрати, мазнини), както и бутон, водещ към стъпките за приготвяне"
       }
     },
     {
       src: "/nutrifit8.png",
       caption: {
-        en: "Dinner section (main + dessert) of the meal plan, followed by the daily macro totals - summed calories, protein, carbs, and fats across all meals - with Gemini's deviation shown per category in both absolute grams and percentage, indicating how far the generated plan strayed from the current user's defined limits",
-        bg: ""
+        en: "Dinner section (main + dessert) of the meal plan, followed by the daily calorie and macro totals across all meals. The deviation, computed for Gemini in this case, is shown per category in both grams and percentage, indicating how far the generated plan strayed from the current user's defined limits",
+        bg: "Вечерята (основно ястие + десерт) от плана за хранене, последвана от дневните общи стойности на калории и макронутриенти за всички хранения. Отклонението, в случая изчислено за Gemini, се показва за всяка категория както в грами, така и в проценти, което показва доколко генерираният план се е отклонил от определените от потребителя граници"
       }
     },
     {
       src: "/nutrifit9.png",
       caption: {
-        en: "Most recommended foods ranking - dishes sorted by how many times the system included them in generated meal plans across all users. The top entry expands to show full nutritional details (calories, macros, serving size) and a macro bar chart, with buttons to view ingredients and the recipe. The sidebar also shows the other 4 ranking pages (by calories, fats, carbs, protein)",
-        bg: ""
+        en: "Ranking of the most recommended foods across all users. Every entry could be expanded to show its full nutritional details (calories, macros, serving size) and a macro bar chart, with buttons to view ingredients and the recipe. The sidebar also shows the other 4 ranking pages (top meals by calories, fats, carbs, protein)",
+        bg: "Класация на най-препоръчваните храни за всички потребители. Всеки елемент може да се разгръща, за да покаже пълна информация за хранителната си стойност и колонна диаграма на макронутриентите, както и бутони за преглед на съставките и рецептата. В страничното меню се показват и останалите 4 страници с класации (топ храни спрямо калории, мазнини, въглехидрати, протеини)"
       }
     },
     {
       src: "/nutrifit10.mov",
       caption: {
         en: "The video demonstration showcases the user interface and features of the NutriFit mobile application",
-        bg: ""
+        bg: "Демонстрационното видео представя потребителския интерфейс и функциите на мобилната версия на NutriFit"
       }
     },
     {
       src: "/nutrifit11.png",
       caption: {
-        en: "NutriFit mobile app - welcome screen, login form, and daily measurements input (height, age, weight, neck, waist, hip circumference) used to calculate body metrics",
-        bg: ""
+        en: "NutriFit mobile app - welcome screen, login form, and current measurements input fields (height, age, weight, neck, waist, hip circumference) used to calculate body metrics",
+        bg: "Мобилната версия на NutriFit - начален екран, форма за вход и полета за въвеждане на текущи измервания, използвани за изчисляване на телесните показатели"
       }
     },
     {
       src: "/nutrifit12.png",
       caption: {
         en: "Meal plan generation form - activity level selection (6 levels), calorie goal presets, diet type table with auto-filled macros, foods to exclude, cuisine selection, and generate buttons for OpenAI or Gemini - all the same as the web version",
-        bg: ""
+        bg: "Опция за създаване на хранителен план - избор на ниво на натовареност (6 нива); предварително зададени калорийни цели; таблица с видове диети с автоматично подбрани макронутриенти; храни, които да се изключат; избор на кухня и бутони за генериране с OpenAI или Gemini - всичко се припокрива с уеб версията"
       }
     },
     {
       src: "/nutrifit13.png",
       caption: {
-        en: "Info tooltips on the meal plan form explaining activity levels (1–6) and diet types. Activity levels range from Level 1 (little to no exercise, e.g. short walk or light yoga) up to Level 6 (very intense daily training, e.g. marathon prep, 2hr cycling, weightlifting). Diet types cover Balanced (even macro distribution for general health), Low Fat (reduced fat for calorie control), Low Carb (minimized carbs with adequate protein and healthy fats), and High Protein (prioritizes protein intake, ideal for muscle development and strength training)",
-        bg: ""
+        en: "Info tooltips on the meal plan form explaining activity levels and diet types. Activity levels range from Level 1 (little to no exercise, e.g. short walk or light yoga) up to Level 6 (very intense daily training, e.g. marathon prep, 2hr cycling, weightlifting). Diet types cover Balanced (even macro distribution for general health), Low Fat (reduced fat for calorie control), Low Carb (minimized carbs with adequate protein and healthy fats), and High Protein (prioritizes protein intake, ideal for muscle development and strength training)",
+        bg: "Информационни подсказки, обясняващи нивата на натовареност и видовете диети. Нивата на активност варират от ниво 1 до ниво 6. Видовете диети включват „Балансирана“ (равномерно разпределение на макросите за общо здраве), „Нискомаслена“ (намалено съдържание на мазнини за контрол на калориите), „Нисковъглехидратна“ (минимално съдържание на въглехидрати с достатъчно протеини и здравословни мазнини) и „Високопротеинова“ (дава приоритет на приема на протеини, идеална за мускулно развитие и силова тренировка)"
       }
     },
     {
       src: "/nutrifit14.png",
       caption: {
-        en: "Meal plan result - breakfast dishes with food images, weight, and macros, followed by daily macro totals with their deviations in absolute grams and percentage. This image also shows the diet type tooltip modal explaining each type in details",
-        bg: ""
+        en: "Meal plan generation result - dishes with food images, quantity, and daily calorie and macro totals with their deviations in absolute grams and percentage. This image also shows the diet type tooltip modal explaining each type in details",
+        bg: "Резултат от генерирането на план за хранене - ястия със снимки на храната, количество и дневни общи стойности на калории и макроси с отклоненията им в абсолютни грами и проценти. На тази снимка се вижда и модалният прозорец с подсказки за видовете диети, в който всеки вид е обяснен подробно"
       }
     },
     {
       src: "/nutrifit15.png",
       caption: {
-        en: "Recipe modal showing ingredients and preparation steps for a selected dish, alongside the full daily macro summary with deviation per category (calories, protein, carbs, fats) in both absolute and percentage values",
-        bg: ""
+        en: "Recipe modal showing ingredients and preparation steps for a selected dish, alongside the full daily macro summary with deviation per category",
+        bg: "Модален прозорец с рецепта, показващ съставките и стъпките за приготвяне на избраното ястие, заедно с пълното дневно макро обобщение с отклоненията по категории"
       }
     },
     {
       src: "/nutrifit16.png",
       caption: {
-        en: "Diagram of the NutriFit API data flow. The user's measurements (weight, age, gender, neck, hip, waist, height, goal) and activity level are sent to the `measurements/userData` endpoint, which batches all calculations into a single request to the Fitness Calculator API - covering body fat, daily calories, macros, ideal weight, and BMI. The response is processed by the NutriFit API and saved to Firestore (Firebase) under the `additionalUserData` collection, keyed by UID. Simultaneously, the user is redirected to `admin/default`. This architecture is designed to work only with a single API call per day",
-        bg: ""
+        en: "Diagram of the NutriFit API data flow. The user's measurements (weight, age, gender, neck, hip, waist, height, goal) and activity level are sent from the `measurements/userData` endpoint, which batches all calculations into a single request to the Fitness Calculator API - covering body fat, daily calories, macros, ideal weight, and BMI. The response is processed by the NutriFit API and saved to Firestore (Firebase) under the `additionalUserData` collection, keyed by UID. Simultaneously, the user is redirected to `admin/default`. This architecture is designed to work only with a single API call per day",
+        bg: "Диаграма, показваща обработката на данни на NutriFit API-то. Данните за измерванията на потребителя и нивото на натовареност се изпращат от `measurements/userData`, което обединява всички изчисления в една-единствена заявка към API-то на Fitness Calculator - включващо телесни мазнини, дневен калориен прием, макронутриенти, идеално тегло и ИТМ. Отговорът се обработва от API-то на NutriFit и се запазва във Firestore (Firebase) в колекцията `additionalUserData`, индексирана по UID. Едновременно с това потребителят се пренасочва към `admin/default`. Тази архитектура е проектирана да работи само с една API-заявка на ден"
       }
     },
     {
       src: "/nutrifit17.png",
       caption: {
-        en: "Diagram of the meal plan generation flow. The user's preferences (excluded foods, cuisine, protein, diet type, carbs, fats, calories) are saved and fed into an AI prompt, which is sent to either the OpenAI API or the NutriFit API (Gemini via Vertex AI library). The raw response is cleaned into a structured meal plan object. Dish names from the response are then sent to the Google Custom Search API to fetch food images, which are injected back into the final meal plan rendered on the `admin/mealplan` page",
-        bg: ""
+        en: "Diagram of the meal plan generation flow. The user's preferences (excluded foods, cuisine, protein, diet type, carbs, fats, calories) are saved and fed into an AI prompt, which is sent to either the OpenAI API or the NutriFit API (Gemini via Vertex AI library). The raw response is cleaned into a structured JSON object. Dish names from the response are then sent to the Google Custom Search API to fetch food images, which are injected back into the final meal plan rendered on the `admin/mealplan` page",
+        bg: "Диаграма на процеса на генериране на хранително меню. Предпочитанията на потребителя се запазват и се въвеждат в заявка, която се изпраща към API-то на OpenAI или към API-то на NutriFit (Gemini чрез библиотеката Vertex AI). Необработеният отговор се преобразува в структуриран JSON обект. Наименованията на ястията от отговора след това се изпращат към Google Custom Search API, за да се извлекат изображения на храните, които се вмъкват обратно в окончателния хранителен план, визуализиран на страницата `admin/mealplan`"
       }
     },
     {
       src: "/nutrifitDB.png",
       caption: {
-        en: "Firestore database schema for NutriFit. Each user document is keyed by UID and stores gender and goal as top-level fields, with a `dataEntries` subcollection where each document is keyed by date (YYYY-MM-DD). Each daily entry holds body measurements (weight, waist, neck, hip, height, age), BMI data (bmi, health status, healthy range), perfect weight (ideal value and difference from current). Preferences are also stored (calories, nutrients per diet type), as well as the full meal plans for both OpenAI and Gemini (breakfast, lunch with appetizer/main/dessert, dinner) each with dish name, ingredients, instructions, image, recipe quantity, and deviations (absolute value, percentage, user limit) per macro category. Alongside, 'MacroNutrients' and 'DailyCalorieRequirements' are stored by being broken down across all 6 activity levels, diet types, and calorie goals (ExtremeLoss, MildLoss, Loss, Gain, MildGain, ExtremeGain)",
-        bg: ""
+        en: "Firestore database schema for NutriFit. Each user document is keyed by UID and stores gender and goal as top-level fields, with a `dataEntries` subcollection where each document is keyed by date (YYYY-MM-DD). Each daily entry holds body measurements (weight, waist, neck, hip, height, age), BMI data (bmi, health status, healthy range), perfect weight (ideal value and difference from current). Preferences are also stored (calories, nutrients per diet type), as well as the full meal plans for both OpenAI and Gemini (breakfast, lunch, dinner) each with dish name, ingredients, instructions, image, recipe quantity, and deviations (absolute value, percentage, user limit) per macro category. Alongside, 'MacroNutrients' and 'DailyCalorieRequirements' are stored by being broken down across all 6 activity levels, diet types, and calorie goals (ExtremeLoss, MildLoss, Loss, Gain, MildGain, ExtremeGain)",
+        bg: "Схема на Firestore базата данни на NutriFit. Всеки потребителски документ се идентифицира по UID и съдържа пол и цел като полета от най-високо ниво, с подколекция `dataEntries`, в която всеки документ се идентифицира по дата (ГГГГ-ММ-ДД). Всеки дневен запис съдържа телесни измервания (тегло, талия, шия, ханш, ръст, възраст), данни за ИТМ (ИТМ, здравословно състояние, здравословен диапазон), идеално тегло (идеална стойност и разлика спрямо текущото). Също така се съхраняват предпочитанията (калории, хранителни вещества по тип диета), както и пълните планове за хранене както за OpenAI, така и за Gemini (закуска, обяд, вечеря), като всеки от тях съдържа име на ястието, съставки, инструкции, изображение, количество по рецептата и отклонения (абсолютна стойност, процент, лимит на потребителя) по макрокатегория. Наред с това „MacroNutrients“ и „DailyCalorieRequirements“ се съхраняват, като се разпределят по всички 6 нива на активност, видове диети и калорийни цели (ExtremeLoss, MildLoss, Loss, Gain, MildGain, ExtremeGain)"
       }
     }
   ],
