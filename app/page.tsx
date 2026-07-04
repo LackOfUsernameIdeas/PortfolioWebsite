@@ -1510,49 +1510,49 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: Localized }[]> = {
       src: "/tikfluence.png",
       caption: {
         en: "TikFluence - data analytics platform proving TikTok's cross-platform music influence",
-        bg: ""
+        bg: "TikFluence - платформа за анализ на данни, която доказва влиянието на TikTok върху музиката в различни платформи"
       }
     },
     {
       src: "/tikfluence2.png",
       caption: {
         en: "Ranking of songs whose popularity was most influenced by TikTok. The table contains data about peak popularity dates on Spotify and TikTok, showing the time difference between them in days. There is also a section that includes the most frequently used hashtags in TikTok video descriptions",
-        bg: ""
+        bg: "Класация на песни, чиято популярност е била най-силно повлияна от TikTok. Таблицата съдържа данни за датите на пиковата популярност в Spotify и TikTok, като показва времевата разлика между тях в дни. Има и секция, която включва най-често използваните хаштагове в описанията на видеоклиповете в TikTok"
       }
     },
     {
       src: "/tikfluence3.png",
       caption: {
-        en: "The visualization is representing the change in popularity, including rises and declines within the respective platform, and highlights the peak date",
-        bg: ""
+        en: "The visualization shows changes in popularity, including rises and declines on the respective platform, and highlights the peak date",
+        bg: "Снимка, показваща промените в популярността, включително ръстовете, спадовете и датата на достигане на пиковата популярност в рамките на съответната платформа"
       }
     },
     {
       src: "/tikfluence4.png",
       caption: {
         en: "Explanation of the TikTok influence effect. A song increases in popularity across TikTok and Spotify until reaching peak interest on both platforms. When the TikTok peak happens before the Spotify peak, the song is classified as influenced by TikTok, where exposure on TikTok drives later growth on Spotify",
-        bg: ""
+        bg: "Обяснение на ефекта на повлияване от TikTok"
       }
     },
     {
       src: "/tikfluence5.png",
       caption: {
         en: "Table showing songs affected by the TikTok influence effect. The dataset includes tracks that appeared in the global Top 200 TikTok songs ranking from the “ОЩЕ СТАТИСТИКИ” section, along with their peak dates on TikTok and Spotify",
-        bg: ""
+        bg: "Таблица, показваща песните, засегнати от ефекта на повлияване на TikTok. Наборът от данни включва песни, които са се появили в класацията „Топ 200 TikTok песни глобално“ от раздела „ОЩЕ СТАТИСТИКИ“, заедно с датите, на които са достигнали най-високата си популярност в TikTok и Spotify"
       }
     },
     {
       src: "/tikfluence6.png",
       caption: {
-        en: "Ranking of the most streamed songs on TikTok across all platform users (Global Top 200 TikTok Songs). It shows information such as the number of recent videos created, total likes across all TikTok videos, YouTube views, and Spotify popularity index (0–100). Each song has a subpage accessed via “Вижте нарастване / Вижте детайли” button, which includes detailed popularity metrics",
-        bg: ""
+        en: "Ranking of the most frequently used songs on TikTok across all platform users (Global Top 200 TikTok Songs). It shows information such as the number of recent videos created, total likes across all TikTok videos created with the respective song, YouTube views, and Spotify popularity index (0–100). Each song has a subpage accessed via “Вижте нарастване / Вижте детайли” button, which includes detailed popularity metrics",
+        bg: "Класация на най-често използваните песни в TikTok сред всички потребители на платформата. Тя показва информация като броя на наскоро създадените видеоклипове, общия брой харесвания на всички видеоклипове със съответната песен в TikTok, гледанията в YouTube и индекса на популярност в Spotify (0–100). Всяка песен има подстраница, достъпна чрез бутона „Вижте нарастване / Вижте детайли“, която включва подробни статистики за популярността"
       }
     },
     {
       src: "/tikfluence7.png",
       caption: {
-        en: "The statistics shown apply to the selected song from the respective ranking, including position in the ranking of most popular songs, changes in the popularity statistics over the time, and daily percentage growth on likes, views, videos made, and popularity index",
-        bg: ""
+        en: "The statistics shown apply to the selected song from the respective ranking, including position in the ranking of most popular songs, changes in the popularity statistics over the time, and daily growth on views, videos made, and popularity index",
+        bg: "Показаните статистически данни се отнасят за избраната песен от съответната класация - място в класацията на най-популярните песни, промени в статистиките за популярност с течение на времето, както и дневния ръст на гледанията, създадените видеоклипове и индекса на популярността"
       }
     },
     {
