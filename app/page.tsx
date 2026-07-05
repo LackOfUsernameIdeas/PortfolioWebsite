@@ -1558,43 +1558,43 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: Localized }[]> = {
     {
       src: "/tikfluence8.png",
       caption: {
-        en: "After authenticating using a personal TikTok account, the user can view real-time statistics such as follower count, following count, total likes, and number of videos. This approach is relies on a self-hosted proxy server with Socket.IO for transmitting data from TikTok servers to the end user",
-        bg: ""
+        en: "After authenticating using a personal TikTok account, the user can view real-time' statistics such as follower count, following count, total likes, and number of videos. The data is transmitted through a self-hosted Socket.IO proxy server from TikTok's servers to the end user",
+        bg: "След като влезе със своя профил в TikTok, потребителят може да преглежда статистически данни в реално време, като например брой последователи, брой хора, които следва, общ брой харесвания и брой видеоклипове. Данните се препредават от сървърите на TikTok към крайния потребител чрез самостоятелно хостван Socket.IO прокси сървър"
       }
     },
     {
       src: "/tikfluence9.png",
       caption: {
-        en: "Ranking of Top 200 most popular TikTok content creators. There is information such as change of follower count over time, total likes, and total number of videos created. Each creator has a subpage with detailed statistics and growth metrics",
-        bg: ""
+        en: "Ranking of Top 200 most popular TikTok content creators. There is information such as change of follower count over time, total likes, and total number of videos created. Each tiktoker has a subpage with detailed statistics and popularity growth metrics",
+        bg: "Класация на Топ 200 най-популярни създатели на съдържание в TikTok. Представена е информация като промяната в броя на последователите във времето, общият брой харесвания и общият брой създадени видеоклипове. Всеки тиктокър има подстраница с подробни статистики и показатели за растежа в популярността"
       }
     },
     {
       src: "/tikfluence10.png",
       caption: {
-        en: "Main information related to the selected video from the ranking list - views, shares, and likes. Similar to the song details page, there are chronological diagrams showing growth or decline in the follower count",
-        bg: ""
+        en: "Information related to the selected video from the Top 200 most viewed TikTok videos ranking - views, shares, and likes. Similar to the song details page, there are charts that chronologically track growth or decline in follower count",
+        bg: "Информация за избраното видео от класацията „Топ 200 най-гледани видеа в TikTok“ - гледания, споделяния и харесвания. Подобно на страницата с подробности за песента, тук има диаграми, които хронологично проследяват нарастването или намаляването на броя на последователите"
       }
     },
     {
       src: "/tikfluence11.png",
       caption: {
-        en: "OAuth authentication flow for accessing personal TikTok account data: the server requests an access and refresh token from the TikTok API, then uses them to make two separate HTTP requests - one fetching profile statistics (follower count, following, likes, uploaded videos count), and another fetching per-video engagement metrics (likes, views, shares, comments). Both data sets are passed into Chart.js and rendered in the UI",
-        bg: ""
+        en: "OAuth authentication flow for accessing personal TikTok account data: the server requests an access and refresh token from the TikTok API, then uses them to make two separate HTTP requests - one fetching profile statistics (follower count, following count, likes, uploaded videos count), and another fetching per-video engagement metrics (likes, views, shares, comments). Both results are passed into Chart.js diagrams and rendered in the UI",
+        bg: "Процес на OAuth автентификация за достъп до лични данни от TikTok профилите: сървърът изисква ключ за достъп и ключ за обновяване от API-то на TikTok, за да отправи две отделни HTTP заявки - едната за извличане на данни за профила (брой последователи, брой последвани хора, харесвания, брой качени видеоклипове), а другата - за извличане на данни за всеки видеоклип (харесвания, гледания, споделяния, коментари). И двата резултата се предават в Chart.js диаграми като се визуализират в потребителския интерфейс"
       }
     },
     {
       src: "/tikfluence12.png",
       caption: {
-        en: "Detailed 7-step Socket.IO real-time data flow: (1) the browser requests a Socket.IO connection to the server, (2) the server confirms with a success message, (3) the browser sends the access token to the server, (4) every minute the server makes an async fetch request to the TikTok API for likes and followers data, (5) the API returns the data to the server, (6) the server pushes the data to the browser via the Socket.IO connection, and (7) the data is embedded into Chart.js diagrams for real-time visualization",
-        bg: ""
+        en: "Socket.IO real-time data flow: (1) the browser requests a Socket.IO connection to the server, (2) the server confirms with a success message, (3) the browser sends the access token to the server, (4) every minute the server makes an async fetch request to the TikTok API for likes and followers data, (5) the API returns the data to the server, (6) the server pushes the data to the browser via the Socket.IO connection, and (7) the data is embedded into Chart.js diagrams for real-time visualization",
+        bg: "Процес на обмен на данни в реално време със Socket.IO"
       }
     },
     {
       src: "/tikfluenceDB.png",
       caption: {
         en: "Structure of the MySQL Database",
-        bg: ""
+        bg: "Структура на MySQL базата данни"
       }
     }
   ]
