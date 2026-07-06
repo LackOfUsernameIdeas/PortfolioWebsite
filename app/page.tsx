@@ -329,12 +329,11 @@ const skills = [
       "Bootstrap",
       "Three.js",
       "A-Frame",
-      "WebXR",
-      "Expo Go"
+      "WebXR"
     ]
   },
   {
-    category: "Backend & Databases",
+    category: "Backend & Data",
     items: [
       "Node.js",
       "Express.js",
@@ -342,13 +341,14 @@ const skills = [
       "PostgreSQL",
       "Firebase",
       "Supabase",
-      "Socket.IO",
       "Google Cloud Run",
-      "Google Cloud Storage"
+      "Google Cloud Storage",
+      "Beautiful Soup",
+      "Socket.IO"
     ]
   },
   {
-    category: "AI, Computer Vision & Data",
+    category: "AI & Computer Vision",
     items: [
       "OpenAI API",
       "Gemini API",
@@ -357,16 +357,16 @@ const skills = [
       "OpenCV",
       "NumPy",
       "PyNuitrack",
-      "Nuitrack SDK",
-      "Beautiful Soup"
+      "Nuitrack SDK"
     ]
   },
   {
-    category: "Tools, Testing & APIs",
+    category: "Tools & APIs",
     items: [
       "Git",
       "Docker",
       "Android Studio",
+      "Expo Go",
       "Vitest",
       "Cronjob",
       "YouTube API",

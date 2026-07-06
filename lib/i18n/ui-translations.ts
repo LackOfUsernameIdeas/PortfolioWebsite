@@ -39,17 +39,17 @@ export const uiTranslations = {
         en: "Frontend & Mobile",
         bg: "Frontend и Мобилни технологии"
       },
-      "Backend & Databases": {
-        en: "Backend & Databases",
-        bg: "Backend и Бази данни"
+      "Backend & Data": {
+        en: "Backend & Data",
+        bg: "Backend и Данни"
       },
-      "AI, Computer Vision & Data": {
-        en: "AI, Computer Vision & Data",
-        bg: "ИИ, Компютърно зрение и Данни"
+      "AI & Computer Vision": {
+        en: "AI & Computer Vision",
+        bg: "ИИ и Компютърно зрение"
       },
-      "Tools, Testing & APIs": {
-        en: "Tools, Testing & APIs",
-        bg: "Инструменти, Тестване и API-та"
+      "Tools & APIs": {
+        en: "Tools & APIs",
+        bg: "Инструменти и API-та"
       },
       "Visualization, Desktop & Hardware": {
         en: "Visualization, Desktop apps & Hardware",
