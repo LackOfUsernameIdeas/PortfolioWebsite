@@ -904,7 +904,7 @@ function AboutSection() {
                 className="rounded-full px-7 py-5 text-base leading-none"
                 asChild
               >
-                <a href="/cv-europass.pdf" download>
+                <a href="/CV/Kaloyan_Kostadinov_CV.pdf" download>
                   <Download className="h-4 w-4 mr-2" />{" "}
                   {t("about.downloadCV", language)}
                 </a>
