@@ -33,6 +33,8 @@ export const uiTranslations = {
       bg: "Търся възможности да прилагам уменията си в предизвикателни проекти и да работя с мотивирани специалисти със сходни интереси."
     },
     downloadCV: { en: "Download CV", bg: "Изтеглете CV" },
+    downloadCVEnglish: { en: "English version", bg: "Английска версия" },
+    downloadCVBulgarian: { en: "Bulgarian version", bg: "Българска версия" },
     skillCategories: {
       Languages: { en: "Languages", bg: "Езици за разработка" },
       "Frontend & Mobile": {

@@ -9,12 +9,19 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
+import {
   ArrowRight,
   Github,
   Linkedin,
   Mail,
   Send,
   Award,
+  ChevronDown,
   Download,
   GraduationCap,
   MapPin,
@@ -899,16 +906,39 @@ function AboutSection() {
             <p>{t("about.paragraph2", language)}</p>
             <p>{t("about.paragraph3", language)}</p>
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button
-                size="lg"
-                className="rounded-full px-7 py-5 text-base leading-none"
-                asChild
-              >
-                <a href="/CV/Kaloyan_Kostadinov_CV.pdf" download>
-                  <Download className="h-4 w-4 mr-2" />{" "}
-                  {t("about.downloadCV", language)}
-                </a>
-              </Button>
+              <DropdownMenu modal={false}>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    size="lg"
+                    className="group rounded-full px-7 py-5 text-base leading-none cursor-pointer"
+                  >
+                    <Download className="h-4 w-4 mr-2" />{" "}
+                    {t("about.downloadCV", language)}
+                    <ChevronDown className="h-4 w-4 ml-2 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="start"
+                  className="min-w-56 bg-card border border-border rounded-2xl shadow-lg p-2"
+                >
+                  <DropdownMenuItem
+                    asChild
+                    className="cursor-pointer rounded-full px-4 py-2.5 text-sm font-medium transition-colors focus:bg-secondary focus:text-primary data-[highlighted]:bg-secondary data-[highlighted]:text-primary"
+                  >
+                    <a href="/CV/Kaloyan_Kostadinov_CV.pdf" download>
+                      {t("about.downloadCVEnglish", language)}
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    asChild
+                    className="cursor-pointer rounded-full px-4 py-2.5 text-sm font-medium transition-colors focus:bg-secondary focus:text-primary data-[highlighted]:bg-secondary data-[highlighted]:text-primary"
+                  >
+                    <a href="/CV/Kaloyan_Kostadinov_CV_BG.pdf" download>
+                      {t("about.downloadCVBulgarian", language)}
+                    </a>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
           <div className="reveal grid grid-cols-1 sm:grid-cols-2 gap-3 auto-rows-fr">
