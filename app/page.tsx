@@ -383,8 +383,8 @@ const skills = [
       "ApexCharts",
       "Tkinter",
       "Pygame",
-      "Orbbec Astra+ (3D Camera)",
-      "NeuroSky MindWave EEG",
+      "Orbbec Astra+",
+      "NeuroSky MindWave Mobile 2",
       "Meta Quest 2"
     ]
   }
