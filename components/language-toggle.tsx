@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/lib/i18n/language-context";
 
-function UKFlag() {
+export function UKFlag() {
   return (
     <svg viewBox="0 0 60 60" className="w-full h-full">
       <circle cx="30" cy="30" r="30" fill="#012169" />
@@ -21,7 +21,7 @@ function UKFlag() {
   );
 }
 
-function BulgariaFlag() {
+export function BulgariaFlag() {
   return (
     <svg viewBox="0 0 60 60" className="w-full h-full">
       <defs>

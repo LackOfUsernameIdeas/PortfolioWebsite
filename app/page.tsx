@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Navigation } from "@/components/navigation";
+import { UKFlag, BulgariaFlag } from "@/components/language-toggle";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -914,7 +915,7 @@ function AboutSection() {
                   >
                     <Download className="h-4 w-4 mr-2" />{" "}
                     {t("about.downloadCV", language)}
-                    <ChevronDown className="h-4 w-4 ml-2 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+                    <ChevronDown className="h-4 w-4 ml-2 transition-transform duration-150 group-data-[state=open]:rotate-180" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
@@ -926,6 +927,9 @@ function AboutSection() {
                     className="cursor-pointer rounded-full px-4 py-2.5 text-sm font-medium transition-colors focus:bg-secondary focus:text-primary data-[highlighted]:bg-secondary data-[highlighted]:text-primary"
                   >
                     <a href="/CV/Kaloyan_Kostadinov_CV.pdf" download>
+                      <span className="w-4 h-4 rounded-full overflow-hidden shrink-0">
+                        <UKFlag />
+                      </span>
                       {t("about.downloadCVEnglish", language)}
                     </a>
                   </DropdownMenuItem>
@@ -934,6 +938,9 @@ function AboutSection() {
                     className="cursor-pointer rounded-full px-4 py-2.5 text-sm font-medium transition-colors focus:bg-secondary focus:text-primary data-[highlighted]:bg-secondary data-[highlighted]:text-primary"
                   >
                     <a href="/CV/Kaloyan_Kostadinov_CV_BG.pdf" download>
+                      <span className="w-4 h-4 rounded-full overflow-hidden shrink-0">
+                        <BulgariaFlag />
+                      </span>
                       {t("about.downloadCVBulgarian", language)}
                     </a>
                   </DropdownMenuItem>
