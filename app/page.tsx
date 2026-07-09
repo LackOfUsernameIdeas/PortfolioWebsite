@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Navigation } from "@/components/navigation";
 import { UKFlag, BulgariaFlag } from "@/components/language-toggle";
 import { Badge } from "@/components/ui/badge";
@@ -2324,17 +2325,42 @@ function ContactSection() {
   });
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    const body = `From: ${form.name} (${form.email})\n\n${form.message}`;
-    const mailtoLink = `mailto:kaloyan.kostadinov0730@gmail.com?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
-    await new Promise((r) => setTimeout(r, 500));
-    setSubmitting(false);
-    setDone(true);
-    setForm({ name: "", email: "", subject: "", message: "" });
+    setError(false);
+    try {
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error("EmailJS is not configured.");
+      }
+
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          name: form.name,
+          email: form.email,
+          subject: form.subject,
+          message: form.message,
+          time: new Date().toLocaleString()
+        },
+        { publicKey }
+      );
+
+      setDone(true);
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch (err) {
+      console.error("Failed to send message:", err);
+      setError(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -2446,6 +2472,11 @@ function ContactSection() {
                     required
                   />
                 </div>
+                {error && (
+                  <p className="text-sm text-destructive text-center">
+                    {t("contact.error", language)}
+                  </p>
+                )}
                 <Button
                   type="submit"
                   size="lg"
