@@ -382,7 +382,7 @@ const skills = [
       "Spotify API",
       "TikTok API",
       "OMDb API",
-      "Google Custom Search API"
+      "Google Custom Search JSON API"
     ]
   },
   {
@@ -1461,8 +1461,8 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: Localized }[]> = {
     {
       src: "/nutrifit7.png",
       caption: {
-        en: "AI-generated meal plan showing breakfast (1 dish) and lunch (starter, main, dessert). Each meal card displays a food image fetched via Google Custom Search API, weight in grams, and exact calories and macros (protein, carbs, fats), with a button linking to the preparation steps",
-        bg: "Създаден от изкуствен интелект план за хранене, включващ закуска (1 ястие) и обяд (предястие, основно ястие, десерт). Всяка карта за хранене съдържа изображение на храната, извлечено чрез Google Custom Search API, тегло в грами и точни калории и макроси (протеини, въглехидрати, мазнини), както и бутон, водещ към стъпките за приготвяне"
+        en: "AI-generated meal plan showing breakfast (1 dish) and lunch (starter, main, dessert). Each meal card displays a food image fetched via Google Custom Search JSON API, weight in grams, and exact calories and macros (protein, carbs, fats), with a button linking to the preparation steps",
+        bg: "Създаден от изкуствен интелект план за хранене, включващ закуска (1 ястие) и обяд (предястие, основно ястие, десерт). Всяка карта за хранене съдържа изображение на храната, извлечено чрез Google Custom Search JSON API, тегло в грами и точни калории и макроси (протеини, въглехидрати, мазнини), както и бутон, водещ към стъпките за приготвяне"
       }
     },
     {
@@ -1531,8 +1531,8 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: Localized }[]> = {
     {
       src: "/nutrifit17.png",
       caption: {
-        en: "Diagram of the meal plan generation flow. The user's preferences (excluded foods, cuisine, protein, diet type, carbs, fats, calories) are saved and fed into an AI prompt, which is sent to either the OpenAI API or the NutriFit API (Gemini via Vertex AI library). The raw response is cleaned into a structured JSON object. Dish names from the response are then sent to the Google Custom Search API to fetch food images, which are injected back into the final meal plan rendered on the `admin/mealplan` page",
-        bg: "Диаграма на процеса на генериране на хранително меню. Предпочитанията на потребителя се запазват и се въвеждат в заявка, която се изпраща към API-то на OpenAI или към API-то на NutriFit (Gemini чрез библиотеката Vertex AI). Необработеният отговор се преобразува в структуриран JSON обект. Наименованията на ястията от отговора след това се изпращат към Google Custom Search API, за да се извлекат изображения на храните, които се вмъкват обратно в окончателния хранителен план, визуализиран на страницата `admin/mealplan`"
+        en: "Diagram of the meal plan generation flow. The user's preferences (excluded foods, cuisine, protein, diet type, carbs, fats, calories) are saved and fed into an AI prompt, which is sent to either the OpenAI API or the NutriFit API (Gemini via Vertex AI library). The raw response is cleaned into a structured JSON object. Dish names from the response are then sent to the Google Custom Search JSON API to fetch food images, which are injected back into the final meal plan rendered on the `admin/mealplan` page",
+        bg: "Диаграма на процеса на генериране на хранително меню. Предпочитанията на потребителя се запазват и се въвеждат в заявка, която се изпраща към API-то на OpenAI или към API-то на NutriFit (Gemini чрез библиотеката Vertex AI). Необработеният отговор се преобразува в структуриран JSON обект. Наименованията на ястията от отговора след това се изпращат към Google Custom Search JSON API, за да се извлекат изображения на храните, които се вмъкват обратно в окончателния хранителен план, визуализиран на страницата `admin/mealplan`"
       }
     },
     {

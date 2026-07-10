@@ -192,7 +192,7 @@ export const projects: Project[] = [
 **Note:** Ongoing **model upgrades** (due to **deprecation of older models**) have introduced occasional **inconsistencies** in meal naming and food image matching
 
 **Core features:**
-- **Meal generation:** full daily menus with breakfast, lunch (starter + main + dessert), and dinner - each with exact macros, ingredients, and recipes. Food images are fetched via **Google Custom Search API** with custom-configured Search Engines
+- **Meal generation:** full daily menus with breakfast, lunch (starter + main + dessert), and dinner - each with exact macros, ingredients, and recipes. Food images are fetched via **Google Custom Search JSON API** with custom-configured Search Engines
 - **AI deviation algorithm:** measures how closely **OpenAI** and **Gemini** adhere to user-defined nutritional limits - tracking average deviation %, max deviation per category (calories, protein, fat, carbs), and overall AI deviation score
 - **Weight regulation algorithm:** compares current vs ideal weight for the user's height and recommends whether to reduce, maintain, or gain weight, with guidance on diet and activity adjustments
 - **Nearly 40 interactive statistics** and Chart.js diagrams: BMI, body fat %, lean body mass, fat body mass, daily macro intake over time, platform-wide aggregated user data, and a **head-to-head AI comparison panel** on the home page
@@ -213,7 +213,7 @@ export const projects: Project[] = [
 **Забележка:** Текущите **актуализации на моделите** (поради **прекратяване на поддръжката на по-стари версии**) понякога водят до **несъответствия** в наименованията на ястията и представящите ги изображения
 
 **Основни функции:**
-- **Генериране на хранения:** пълни дневни менюта със закуска, обяд (предястие + основно + десерт) и вечеря - всяко с точни макроси, съставки и рецепти. Изображенията на храните се извличат чрез **Google Custom Search API** с персонализирани търсещи машини
+- **Генериране на хранения:** пълни дневни менюта със закуска, обяд (предястие + основно + десерт) и вечеря - всяко с точни макроси, съставки и рецепти. Изображенията на храните се извличат чрез **Google Custom Search JSON API** с персонализирани търсещи машини
 - **Алгоритъм за AI отклонение:** измерва доколко точно **OpenAI** и **Gemini** се придържат към зададените от потребителя хранителни лимити - следи средно отклонение в %, максимално отклонение по категория (калории, протеин, мазнини, въглехидрати) и обща оценка за отклонение на изкуствения интелект
 - **Алгоритъм за регулиране на тегло:** сравнява текущото с идеалното тегло за височината на потребителя и препоръчва дали да намали, запази или увеличи теглото си, с насоки за хранителен режим и активност
 - **Близо 40 интерактивни статистики** и диаграми с Chart.js: BMI, процент телесни мазнини, чиста телесна маса, мастна телесна маса, дневен прием на макроси във времето, обобщени данни за цялата платформа и **панел за пряко сравнение между AI моделите** на началната страница
@@ -241,7 +241,7 @@ export const projects: Project[] = [
       "Chart.js",
       "OpenAI API",
       "Vertex AI (Gemini)",
-      "Google Custom Search API",
+      "Google Custom Search JSON API",
       "Fitness Calculator API",
       "Chakra UI",
       "react-spring",
