@@ -336,14 +336,20 @@ export const projects: Project[] = [
 
 export interface Achievement {
   year: string;
-  title: string;
+  title: Localized;
   competition: Localized;
-  category: Localized;
+  category?: Localized;
   place?: string;
   score?: string;
   points?: Localized;
   extra?: Localized;
-  docs?: { label: Localized; path: string }[];
+  kind?: "competition" | "honor";
+  docs?: {
+    label: Localized;
+    path: string;
+    type?: "pdf" | "image";
+    caption?: Localized;
+  }[];
   links?: { label: Localized; url: string }[];
   fallbackImage?: string;
   fallbackImageCaption?: Localized;
@@ -352,19 +358,33 @@ export interface Achievement {
 export const achievements: Achievement[] = [
   {
     year: "2023",
-    title: "TikFluence",
+    title: { en: "TikFluence", bg: "TikFluence" },
     competition: { en: 'NATIT "John Atanasov"', bg: "НЕТИТ „Джон Атанасов“" },
     category: {
       en: "Software Applications · 8–10 grade",
       bg: "Софтуерни приложения · 8–10 клас"
     },
     place: "2nd",
-    extra: { en: "First НЕТИТ participation", bg: "Първо участие в НЕТИТ" },
-    fallbackImage: "/achievements/netit-2023-newspaper.png",
-    fallbackImageCaption: {
-      en: "Newspaper clipping from “Glashatai” covering the awards ceremony at the National Autumn Tournament in Information Technologies “John Atanasov”, held December 1–3 (2023) in Sofia. I won 2nd place in the “Software Applications” category with the “TikFluence” project",
-      bg: "Извадка от „Глашатай“, показваща церемонията по връчването на наградите на Националния есенен турнир по информационни технологии „Джон Атанасов“, проведен от 1 до 3 декември (2023) в София. Спечелих 2-ро място в категорията „Софтуерни приложения“ с проекта „TikFluence“"
-    },
+    extra: { en: "First NATIT participation", bg: "Първо участие в НЕТИТ" },
+    docs: [
+      {
+        label: { en: "Newspaper clipping", bg: "Извадка от статия" },
+        path: "/achievements/netit-2023-newspaper.png",
+        type: "image",
+        caption: {
+          en: "Newspaper clipping from “Glashatai” covering the awards ceremony at the National Autumn Tournament in Information Technologies “John Atanasov”, held December 1–3 (2023) in Sofia. I won 2nd place in the “Software Applications” category with the “TikFluence” project",
+          bg: "Извадка от „Глашатай“, показваща церемонията по връчването на наградите на Националния есенен турнир по информационни технологии „Джон Атанасов“, проведен от 1 до 3 декември (2023) в София. Спечелих 2-ро място в категорията „Софтуерни приложения“ с проекта „TikFluence“"
+        }
+      },
+      {
+        label: {
+          en: "Certificate of participation",
+          bg: "Грамота за участие"
+        },
+        path: "/achievements/certificates/2023_NATIT_certificate.png",
+        type: "image"
+      }
+    ],
     links: [
       {
         label: { en: "Newspaper Article", bg: "Новинарска статия" },
@@ -378,7 +398,7 @@ export const achievements: Achievement[] = [
   },
   {
     year: "2023",
-    title: "TikFluence",
+    title: { en: "TikFluence", bg: "TikFluence" },
     competition: { en: "NOIT", bg: "НОИТ" },
     category: {
       en: "Software Applications · 8–10 grade",
@@ -398,6 +418,26 @@ export const achievements: Achievement[] = [
       {
         label: { en: "Individual ranking", bg: "Индивидуално класиране" },
         path: "/achievements/noit-2023-individual.pdf"
+      },
+      {
+        label: {
+          en: "Certificate of participation",
+          bg: "Грамота за участие"
+        },
+        path: "/achievements/certificates/2023_NOIT_certificate.png",
+        type: "image"
+      },
+      {
+        label: {
+          en: "School certificate of excellence",
+          bg: "Училищна грамота"
+        },
+        caption: {
+          en: "School certificate for excellent performance in the National Olympiad in Information Technology",
+          bg: "Грамота от училището за отлично представяне в Националната олимпиада по информационни технологии"
+        },
+        path: "/achievements/certificates/2023_NOIT_certificate_of_excellence.png",
+        type: "image"
       }
     ],
     links: [
@@ -409,7 +449,7 @@ export const achievements: Achievement[] = [
   },
   {
     year: "2024",
-    title: "NutriFit",
+    title: { en: "NutriFit", bg: "NutriFit" },
     competition: { en: 'NATIT "John Atanasov"', bg: "НЕТИТ „Джон Атанасов“" },
     category: {
       en: "Software Applications",
@@ -432,7 +472,7 @@ export const achievements: Achievement[] = [
   },
   {
     year: "2024",
-    title: "NutriFit",
+    title: { en: "NutriFit", bg: "NutriFit" },
     competition: { en: "NOIT", bg: "НОИТ" },
     category: {
       en: "Software Applications · 8–10 grade",
@@ -452,6 +492,14 @@ export const achievements: Achievement[] = [
       {
         label: { en: "Individual ranking", bg: "Индивидуално класиране" },
         path: "/achievements/noit-2024-individual.pdf"
+      },
+      {
+        label: {
+          en: "Certificate of participation",
+          bg: "Сертификат за участие"
+        },
+        path: "/achievements/certificates/2024_NOIT_certificate.png",
+        type: "image"
       }
     ],
     links: [
@@ -463,7 +511,7 @@ export const achievements: Achievement[] = [
   },
   {
     year: "2025",
-    title: "MindReel",
+    title: { en: "MindReel", bg: "MindReel" },
     competition: { en: "NOIT", bg: "НОИТ" },
     category: {
       en: "Big Data · 11–12 grade",
@@ -481,18 +529,72 @@ export const achievements: Achievement[] = [
     },
     docs: [
       {
+        label: { en: "Ministry attestation", bg: "Служебна бележка" },
+        caption: {
+          en: "Official recognition from the Ministry of Education and Science for excellent performance at the National Olympiad in Information Technology",
+          bg: "Служебна бележка от Министерството на образованието и науката за отлично представяне на Националната олимпиада по информационни технологии"
+        },
+        path: "/achievements/certificates/2025_Ministry_of_education_official_confirmation_of_excellent_performance.png",
+        type: "image"
+      },
+      {
         label: { en: "Project ranking", bg: "Класиране на проект" },
         path: "/achievements/noit-2025-project.pdf"
       },
       {
         label: { en: "Individual ranking", bg: "Индивидуално класиране" },
         path: "/achievements/noit-2025-individual.pdf"
+      },
+      {
+        label: {
+          en: "Certificate of participation",
+          bg: "Грамота за участие"
+        },
+        path: "/achievements/certificates/2025_NOIT_certificate.png",
+        type: "image"
       }
     ],
     links: [
       {
         label: { en: "Official results", bg: "Официални резултати" },
         url: "https://edusoft.fmi.uni-sofia.bg/news/view/193"
+      }
+    ]
+  },
+  {
+    year: "2026",
+    title: {
+      en: "Academic Excellence & Graduation with Distinction",
+      bg: "„Отличник на випуск 2026“"
+    },
+    kind: "honor",
+    competition: {
+      en: "Award from the Mayor of Municipality Pernik",
+      bg: "Награда от кмета на Община Перник"
+    },
+    docs: [
+      {
+        label: { en: "Certificate from the Mayor", bg: "Сертификат от кмета" },
+        path: "/achievements/certificates/2026_certificate_of_academic_excellence_mayor.png",
+        type: "image"
+      },
+      {
+        label: { en: "Ceremony photo", bg: "Снимка от церемонията" },
+        caption: {
+          en: "Photo from the award ceremony",
+          bg: "Снимка от церемонията по връчване на наградата"
+        },
+        path: "/achievements/certificate_of_excellence_mayor_ceremony.png",
+        type: "image"
+      },
+      {
+        label: { en: "School certificate", bg: "Училищна грамота" },
+        caption: {
+          en: "School certificate for excellent academic performance",
+          bg: "Училищна грамота за отличен успех"
+        },
+        path: "/achievements/certificates/2026_certificate_of_academic_excellence_school.png",
+        type: "image"
       }
     ]
   }

@@ -416,7 +416,7 @@ function AchievementsGrid() {
       )}
 
       <div className="space-y-16">
-        {(["2025", "2024", "2023"] as const).map((year) => {
+        {(["2026", "2025", "2024", "2023"] as const).map((year) => {
           const items = achievements.filter((a) => a.year === year);
           return (
             <div key={year} className="reveal">
@@ -463,7 +463,9 @@ function AchievementsGrid() {
                         </p>
                         <div className="flex items-center justify-between gap-2">
                           <p className="font-bold text-2xl leading-snug">
-                            {t("projects.projectPrefix", language)} {a.title}
+                            {a.kind !== "honor" &&
+                              `${t("projects.projectPrefix", language)} `}
+                            {localize(a.title, language)}
                           </p>
                           {placeNum && (
                             <span
@@ -473,10 +475,13 @@ function AchievementsGrid() {
                             </span>
                           )}
                         </div>
-                        <p className="text-sm text-muted-foreground">
-                          {t("achievements.category", language)}:{" "}
-                          {localize(a.category, language)}
-                        </p>
+                        {a.category && (
+                          <p className="text-sm text-muted-foreground">
+                            {a.kind !== "honor" &&
+                              `${t("achievements.category", language)}: `}
+                            {localize(a.category, language)}
+                          </p>
+                        )}
 
                         {(a.score || a.points || a.extra) && (
                           <div className="flex flex-wrap gap-1.5 pt-1">
@@ -512,7 +517,12 @@ function AchievementsGrid() {
                           <div className="mt-auto pt-3">
                             <span className="flex items-center gap-1.5 text-sm text-primary font-medium">
                               <ExternalLink className="w-3.5 h-3.5" />
-                              {t("achievements.viewRanking", language)}
+                              {t(
+                                a.kind === "honor"
+                                  ? "achievements.viewCertificate"
+                                  : "achievements.viewRanking",
+                                language
+                              )}
                             </span>
                           </div>
                         )}
@@ -559,6 +569,8 @@ function AchievementModal({
   const [activeDoc, setActiveDoc] = useState<{
     label: Localized;
     path: string;
+    type?: "pdf" | "image";
+    caption?: Localized;
   } | null>(achievement.docs?.[0] ?? null);
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -573,6 +585,20 @@ function AchievementModal({
     setZoom(1);
     setPan({ x: 0, y: 0 });
   }, [achievement]);
+
+  // The image currently viewable in the lightbox - either the active image
+  // doc (e.g. a certificate) or the achievement's fallback image
+  const isImageDoc = activeDoc?.type === "image";
+  const lightboxSrc = isImageDoc ? activeDoc?.path : achievement.fallbackImage;
+  const lightboxCaption = isImageDoc
+    ? activeDoc?.caption
+      ? localize(activeDoc.caption, language)
+      : activeDoc?.label
+        ? localize(activeDoc.label, language)
+        : undefined
+    : achievement.fallbackImageCaption
+      ? localize(achievement.fallbackImageCaption, language)
+      : undefined;
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -649,12 +675,17 @@ function AchievementModal({
               {localize(achievement.competition, language)} · {achievement.year}
             </p>
             <h2 className="text-3xl font-bold">
-              {t("projects.projectPrefix", language)} {achievement.title}
+              {achievement.kind !== "honor" &&
+                `${t("projects.projectPrefix", language)} `}
+              {localize(achievement.title, language)}
             </h2>
-            <p className="text-base text-muted-foreground mt-1.5">
-              {t("achievements.category", language)}:{" "}
-              {localize(achievement.category, language)}
-            </p>
+            {achievement.category && (
+              <p className="text-base text-muted-foreground mt-1.5">
+                {achievement.kind !== "honor" &&
+                  `${t("achievements.category", language)}: `}
+                {localize(achievement.category, language)}
+              </p>
+            )}
           </div>
 
           {/* Badges, doc tabs, links - with rank floating in the empty space to the right */}
@@ -729,9 +760,32 @@ function AchievementModal({
           </div>
         </div>
 
-        {/* PDF viewer or fallback image */}
+        {/* PDF viewer, certificate image, or fallback image */}
         <div className="flex-1 min-h-0 px-6 pb-6 sm:px-8 sm:pb-8">
-          {activeDoc ? (
+          {activeDoc && isImageDoc ? (
+            <div
+              className="w-full h-full max-h-[55vh] rounded-xl overflow-hidden border border-border relative cursor-zoom-in group/img"
+              onClick={() => setLightboxOpen(true)}
+            >
+              <img
+                src={activeDoc.path}
+                alt={`${localize(achievement.title, language)} – ${localize(activeDoc.label, language)}`}
+                className="w-full h-full object-contain"
+              />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-200">
+                <div className="bg-black/60 text-white text-base px-6 py-3 rounded-full font-semibold">
+                  {t("achievements.clickToExpand", language)}
+                </div>
+              </div>
+              {activeDoc.caption && (
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3 pointer-events-none">
+                  <p className="text-white text-xs line-clamp-2">
+                    {localize(activeDoc.caption, language)}
+                  </p>
+                </div>
+              )}
+            </div>
+          ) : activeDoc ? (
             <div className="w-full h-full min-h-[55vh] rounded-xl overflow-hidden border border-border">
               <iframe
                 key={activeDoc.path}
@@ -768,8 +822,8 @@ function AchievementModal({
         </div>
       </div>
 
-      {/* ── Fallback image lightbox ── */}
-      {lightboxOpen && achievement.fallbackImage && (
+      {/* ── Image lightbox (certificate doc or fallback image) ── */}
+      {lightboxOpen && lightboxSrc && (
         <div
           className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black/90 backdrop-blur-sm py-4"
           onClick={() => {
@@ -817,7 +871,7 @@ function AchievementModal({
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={achievement.fallbackImage}
+              src={lightboxSrc}
               alt={`${achievement.title} – ${achievement.competition} ${achievement.year}`}
               className="w-full h-full object-contain select-none"
               style={{
@@ -846,9 +900,9 @@ function AchievementModal({
                 </button>
               )}
             </div>
-            {achievement.fallbackImageCaption && (
+            {lightboxCaption && (
               <p className="text-white/70 text-sm text-center leading-relaxed">
-                {localize(achievement.fallbackImageCaption, language)}
+                {lightboxCaption}
               </p>
             )}
           </div>
