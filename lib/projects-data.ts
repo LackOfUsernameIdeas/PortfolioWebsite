@@ -336,15 +336,13 @@ export const projects: Project[] = [
 
 export interface Achievement {
   year: string;
-  title: string;
+  title: Localized;
   competition: Localized;
-  category: Localized;
+  category?: Localized;
   place?: string;
   score?: string;
   points?: Localized;
   extra?: Localized;
-  // "competition" (default) = coding competition/olympiad result, shown as "Project: <title>" with a rank
-  // "honor" = general recognition/award (no project, no rank)
   kind?: "competition" | "honor";
   docs?: {
     label: Localized;
@@ -360,7 +358,7 @@ export interface Achievement {
 export const achievements: Achievement[] = [
   {
     year: "2023",
-    title: "TikFluence",
+    title: { en: "TikFluence", bg: "TikFluence" },
     competition: { en: 'NATIT "John Atanasov"', bg: "НЕТИТ „Джон Атанасов“" },
     category: {
       en: "Software Applications · 8–10 grade",
@@ -400,7 +398,7 @@ export const achievements: Achievement[] = [
   },
   {
     year: "2023",
-    title: "TikFluence",
+    title: { en: "TikFluence", bg: "TikFluence" },
     competition: { en: "NOIT", bg: "НОИТ" },
     category: {
       en: "Software Applications · 8–10 grade",
@@ -451,7 +449,7 @@ export const achievements: Achievement[] = [
   },
   {
     year: "2024",
-    title: "NutriFit",
+    title: { en: "NutriFit", bg: "NutriFit" },
     competition: { en: 'NATIT "John Atanasov"', bg: "НЕТИТ „Джон Атанасов“" },
     category: {
       en: "Software Applications",
@@ -474,7 +472,7 @@ export const achievements: Achievement[] = [
   },
   {
     year: "2024",
-    title: "NutriFit",
+    title: { en: "NutriFit", bg: "NutriFit" },
     competition: { en: "NOIT", bg: "НОИТ" },
     category: {
       en: "Software Applications · 8–10 grade",
@@ -513,7 +511,7 @@ export const achievements: Achievement[] = [
   },
   {
     year: "2025",
-    title: "MindReel",
+    title: { en: "MindReel", bg: "MindReel" },
     competition: { en: "NOIT", bg: "НОИТ" },
     category: {
       en: "Big Data · 11–12 grade",
@@ -565,20 +563,28 @@ export const achievements: Achievement[] = [
   },
   {
     year: "2026",
-    title: "„Отличник на випуск 2026“",
+    title: {
+      en: "Academic Excellence & Graduation with Distinction",
+      bg: "„Отличник на випуск 2026“"
+    },
     kind: "honor",
     competition: {
       en: "Award from the Mayor of Municipality Pernik",
       bg: "Награда от кмета на Община Перник"
     },
-    category: {
-      en: "",
-      bg: ""
-    },
     docs: [
       {
         label: { en: "Certificate from the Mayor", bg: "Сертификат от кмета" },
         path: "/achievements/certificates/2026_certificate_of_academic_excellence_mayor.png",
+        type: "image"
+      },
+      {
+        label: { en: "Ceremony photo", bg: "Снимка от церемонията" },
+        caption: {
+          en: "Photo from the award ceremony",
+          bg: "Снимка от церемонията по връчване на наградата"
+        },
+        path: "/achievements/certificate_of_excellence_mayor_ceremony.png",
         type: "image"
       },
       {

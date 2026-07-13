@@ -465,7 +465,7 @@ function AchievementsGrid() {
                           <p className="font-bold text-2xl leading-snug">
                             {a.kind !== "honor" &&
                               `${t("projects.projectPrefix", language)} `}
-                            {a.title}
+                            {localize(a.title, language)}
                           </p>
                           {placeNum && (
                             <span
@@ -475,11 +475,13 @@ function AchievementsGrid() {
                             </span>
                           )}
                         </div>
-                        <p className="text-sm text-muted-foreground">
-                          {a.kind !== "honor" &&
-                            `${t("achievements.category", language)}: `}
-                          {localize(a.category, language)}
-                        </p>
+                        {a.category && (
+                          <p className="text-sm text-muted-foreground">
+                            {a.kind !== "honor" &&
+                              `${t("achievements.category", language)}: `}
+                            {localize(a.category, language)}
+                          </p>
+                        )}
 
                         {(a.score || a.points || a.extra) && (
                           <div className="flex flex-wrap gap-1.5 pt-1">
@@ -675,13 +677,15 @@ function AchievementModal({
             <h2 className="text-3xl font-bold">
               {achievement.kind !== "honor" &&
                 `${t("projects.projectPrefix", language)} `}
-              {achievement.title}
+              {localize(achievement.title, language)}
             </h2>
-            <p className="text-base text-muted-foreground mt-1.5">
-              {achievement.kind !== "honor" &&
-                `${t("achievements.category", language)}: `}
-              {localize(achievement.category, language)}
-            </p>
+            {achievement.category && (
+              <p className="text-base text-muted-foreground mt-1.5">
+                {achievement.kind !== "honor" &&
+                  `${t("achievements.category", language)}: `}
+                {localize(achievement.category, language)}
+              </p>
+            )}
           </div>
 
           {/* Badges, doc tabs, links - with rank floating in the empty space to the right */}
@@ -765,7 +769,7 @@ function AchievementModal({
             >
               <img
                 src={activeDoc.path}
-                alt={`${achievement.title} – ${localize(activeDoc.label, language)}`}
+                alt={`${localize(achievement.title, language)} – ${localize(activeDoc.label, language)}`}
                 className="w-full h-full object-contain"
               />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-200">
