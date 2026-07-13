@@ -476,7 +476,8 @@ function AchievementsGrid() {
                           )}
                         </div>
                         <p className="text-sm text-muted-foreground">
-                          {t("achievements.category", language)}:{" "}
+                          {a.kind !== "honor" &&
+                            `${t("achievements.category", language)}: `}
                           {localize(a.category, language)}
                         </p>
 
@@ -514,7 +515,12 @@ function AchievementsGrid() {
                           <div className="mt-auto pt-3">
                             <span className="flex items-center gap-1.5 text-sm text-primary font-medium">
                               <ExternalLink className="w-3.5 h-3.5" />
-                              {t("achievements.viewRanking", language)}
+                              {t(
+                                a.kind === "honor"
+                                  ? "achievements.viewCertificate"
+                                  : "achievements.viewRanking",
+                                language
+                              )}
                             </span>
                           </div>
                         )}
@@ -562,6 +568,7 @@ function AchievementModal({
     label: Localized;
     path: string;
     type?: "pdf" | "image";
+    caption?: Localized;
   } | null>(achievement.docs?.[0] ?? null);
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -582,9 +589,11 @@ function AchievementModal({
   const isImageDoc = activeDoc?.type === "image";
   const lightboxSrc = isImageDoc ? activeDoc?.path : achievement.fallbackImage;
   const lightboxCaption = isImageDoc
-    ? activeDoc?.label
-      ? localize(activeDoc.label, language)
-      : undefined
+    ? activeDoc?.caption
+      ? localize(activeDoc.caption, language)
+      : activeDoc?.label
+        ? localize(activeDoc.label, language)
+        : undefined
     : achievement.fallbackImageCaption
       ? localize(achievement.fallbackImageCaption, language)
       : undefined;
@@ -669,7 +678,8 @@ function AchievementModal({
               {achievement.title}
             </h2>
             <p className="text-base text-muted-foreground mt-1.5">
-              {t("achievements.category", language)}:{" "}
+              {achievement.kind !== "honor" &&
+                `${t("achievements.category", language)}: `}
               {localize(achievement.category, language)}
             </p>
           </div>
@@ -763,6 +773,13 @@ function AchievementModal({
                   {t("achievements.clickToExpand", language)}
                 </div>
               </div>
+              {activeDoc.caption && (
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3 pointer-events-none">
+                  <p className="text-white text-xs line-clamp-2">
+                    {localize(activeDoc.caption, language)}
+                  </p>
+                </div>
+              )}
             </div>
           ) : activeDoc ? (
             <div className="w-full h-full min-h-[55vh] rounded-xl overflow-hidden border border-border">

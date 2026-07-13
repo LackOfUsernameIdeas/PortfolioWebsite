@@ -78,6 +78,7 @@ export const uiTranslations = {
     grade: { en: "Grade", bg: "Оценка" },
     points: { en: "Points", bg: "Точки" },
     viewRanking: { en: "View ranking", bg: "Вижте класирането" },
+    viewCertificate: { en: "View certificate", bg: "Вижте сертификата" },
     clickToExpand: { en: "Click to expand", bg: "Натиснете за уголемяване" },
     scrollToZoom: {
       en: "Scroll to zoom · hold down the left mouse button to pan",
