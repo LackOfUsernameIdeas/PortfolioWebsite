@@ -36,10 +36,10 @@ export function LanguageSplash() {
   }, [phase]);
 
   useEffect(() => {
-    if (phase === "done") {
-      document.body.style.overflow = "";
-    } else {
+    if (phase === "picking") {
       document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
     }
     return () => {
       document.body.style.overflow = "";
