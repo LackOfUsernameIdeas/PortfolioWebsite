@@ -99,11 +99,13 @@ export function LanguageSplash() {
       {showPicker && (
         <div className="relative z-10 flex flex-col items-center px-6 text-center">
           <h1
-            className={`${a ? "hero-1" : "opacity-0"} text-4xl sm:text-6xl font-bold tracking-tight leading-[0.95]`}
+            className={`${a ? "hero-1" : "opacity-0"} font-bold tracking-tight max-w-lg text-5xl sm:text-5xl lg:text-6xl leading-[1.05]`}
           >
-            Kaloyan
+            {uiTranslations.splash.welcome.en}
             <br />
-            <span className="text-primary">Kostadinov</span>
+            <span className="block pt-2 text-primary">
+              {uiTranslations.splash.welcome.bg}
+            </span>
           </h1>
 
           <p
