@@ -1,6 +1,11 @@
 import type { Language } from "./language-context";
 
 export const uiTranslations = {
+  splash: {
+    prompt: { en: "Please select a language", bg: "Моля, изберете език" },
+    english: { en: "English", bg: "Английски" },
+    bulgarian: { en: "Bulgarian", bg: "Български" }
+  },
   nav: {
     home: { en: "HOME", bg: "НАЧАЛО" },
     about: { en: "ABOUT ME", bg: "ЗА МЕН" },
