@@ -8,42 +8,55 @@ import { Particles } from "@/components/particles";
 
 const CHOSEN_KEY = "portfolio-language-chosen";
 
+type Phase = "checking" | "picking" | "closing" | "done";
+
 export function LanguageSplash() {
   const { setLanguage } = useLanguage();
+  const [phase, setPhase] = useState<Phase>("checking");
   const [mounted, setMounted] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const [closing, setClosing] = useState(false);
 
   useEffect(() => {
     const chosen = window.localStorage.getItem(CHOSEN_KEY);
-    if (!chosen) {
-      setVisible(true);
+    if (chosen) {
+      // Returning visitor: skip the picker entirely, just fade the loading
+      // cover away smoothly instead of popping straight to the content.
+      const id = window.setTimeout(() => setPhase("closing"), 200);
+      return () => window.clearTimeout(id);
     }
+    setPhase("picking");
     const id = requestAnimationFrame(() => setMounted(true));
     return () => cancelAnimationFrame(id);
   }, []);
 
   useEffect(() => {
-    if (visible) {
-      document.body.style.overflow = "hidden";
-    } else {
+    if (phase === "closing") {
+      const id = window.setTimeout(() => setPhase("done"), 550);
+      return () => clearTimeout(id);
+    }
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase === "done") {
       document.body.style.overflow = "";
+    } else {
+      document.body.style.overflow = "hidden";
     }
     return () => {
       document.body.style.overflow = "";
     };
-  }, [visible]);
+  }, [phase]);
 
-  if (!visible) return null;
+  if (phase === "done") return null;
 
   const handleSelect = (lang: "en" | "bg") => {
     setLanguage(lang);
     window.localStorage.setItem(CHOSEN_KEY, "1");
-    setClosing(true);
-    window.setTimeout(() => setVisible(false), 550);
+    setPhase("closing");
   };
 
-  const a = mounted && !closing;
+  const closing = phase === "closing";
+  const showPicker = phase === "picking";
+  const a = mounted && showPicker;
 
   return (
     <div
@@ -71,59 +84,73 @@ export function LanguageSplash() {
 
       <Particles count={14} />
 
-      <div className="relative z-10 flex flex-col items-center px-6 text-center">
-        <h1
-          className={`${a ? "hero-1" : "opacity-0"} text-4xl sm:text-6xl font-bold tracking-tight leading-[0.95]`}
-        >
-          Kaloyan
-          <br />
-          <span className="text-primary">Kostadinov</span>
-        </h1>
-
-        <p
-          className={`${a ? "hero-2" : "opacity-0"} mt-6 text-base sm:text-lg text-muted-foreground max-w-md leading-relaxed`}
-        >
-          {uiTranslations.splash.prompt.en}
-          <br />
-          {uiTranslations.splash.prompt.bg}
-        </p>
-
+      {/* Lightweight loader shown only while we're checking localStorage or
+          quietly closing for a returning visitor — never the flag picker. */}
+      {!showPicker && (
         <div
-          className={`${a ? "hero-3" : "opacity-0"} flex items-center gap-6 sm:gap-10 mt-12`}
+          className={`relative z-10 flex flex-col items-center gap-4 transition-opacity duration-300 ${
+            phase === "checking" ? "opacity-100" : "opacity-0"
+          }`}
         >
-          <button
-            type="button"
-            onClick={() => handleSelect("en")}
-            className="group flex flex-col items-center gap-3 cursor-pointer"
-          >
-            <span
-              className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border border-border shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:shadow-xl group-hover:border-primary group-active:scale-95"
-              style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.12)" }}
-            >
-              <UKFlag />
-            </span>
-            <span className="text-sm font-bold tracking-wide text-foreground transition-colors duration-300 group-hover:text-primary">
-              {uiTranslations.splash.english.en}
-            </span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleSelect("bg")}
-            className="group flex flex-col items-center gap-3 cursor-pointer"
-          >
-            <span
-              className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border border-border shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:shadow-xl group-hover:border-primary group-active:scale-95"
-              style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.12)" }}
-            >
-              <BulgariaFlag />
-            </span>
-            <span className="text-sm font-bold tracking-wide text-foreground transition-colors duration-300 group-hover:text-primary">
-              {uiTranslations.splash.bulgarian.bg}
-            </span>
-          </button>
+          <span className="w-10 h-10 rounded-full border-2 border-border border-t-primary animate-spin" />
         </div>
-      </div>
+      )}
+
+      {showPicker && (
+        <div className="relative z-10 flex flex-col items-center px-6 text-center">
+          <h1
+            className={`${a ? "hero-1" : "opacity-0"} text-4xl sm:text-6xl font-bold tracking-tight leading-[0.95]`}
+          >
+            Kaloyan
+            <br />
+            <span className="text-primary">Kostadinov</span>
+          </h1>
+
+          <p
+            className={`${a ? "hero-2" : "opacity-0"} mt-6 text-base sm:text-lg text-muted-foreground max-w-md leading-relaxed`}
+          >
+            {uiTranslations.splash.prompt.en}
+            <br />
+            {uiTranslations.splash.prompt.bg}
+          </p>
+
+          <div
+            className={`${a ? "hero-3" : "opacity-0"} flex items-center gap-6 sm:gap-10 mt-12`}
+          >
+            <button
+              type="button"
+              onClick={() => handleSelect("en")}
+              className="group flex flex-col items-center gap-3 cursor-pointer"
+            >
+              <span
+                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border border-border shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:shadow-xl group-hover:border-primary group-active:scale-95"
+                style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.12)" }}
+              >
+                <UKFlag />
+              </span>
+              <span className="text-sm font-bold tracking-wide text-foreground transition-colors duration-300 group-hover:text-primary">
+                {uiTranslations.splash.english.en}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleSelect("bg")}
+              className="group flex flex-col items-center gap-3 cursor-pointer"
+            >
+              <span
+                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border border-border shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:shadow-xl group-hover:border-primary group-active:scale-95"
+                style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.12)" }}
+              >
+                <BulgariaFlag />
+              </span>
+              <span className="text-sm font-bold tracking-wide text-foreground transition-colors duration-300 group-hover:text-primary">
+                {uiTranslations.splash.bulgarian.bg}
+              </span>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
