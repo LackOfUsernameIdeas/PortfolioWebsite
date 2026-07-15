@@ -123,12 +123,12 @@ export function LanguageSplash() {
               className="group flex flex-col items-center gap-3 cursor-pointer"
             >
               <span
-                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border border-border shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:shadow-xl group-hover:border-primary group-active:scale-95"
+                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 border-border shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:shadow-xl group-hover:border-primary group-hover:border-[3px] group-active:scale-95"
                 style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.12)" }}
               >
                 <UKFlag />
               </span>
-              <span className="text-sm font-bold tracking-wide text-foreground transition-colors duration-300 group-hover:text-primary">
+              <span className="text-sm font-bold tracking-wide text-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-110">
                 {uiTranslations.splash.english.en}
               </span>
             </button>
@@ -139,12 +139,12 @@ export function LanguageSplash() {
               className="group flex flex-col items-center gap-3 cursor-pointer"
             >
               <span
-                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border border-border shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:shadow-xl group-hover:border-primary group-active:scale-95"
+                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 border-border shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:shadow-xl group-hover:border-primary group-hover:border-[3px] group-active:scale-95"
                 style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.12)" }}
               >
                 <BulgariaFlag />
               </span>
-              <span className="text-sm font-bold tracking-wide text-foreground transition-colors duration-300 group-hover:text-primary">
+              <span className="text-sm font-bold tracking-wide text-foreground transition-all duration-300 group-hover:text-primary group-hover:scale-110">
                 {uiTranslations.splash.bulgarian.bg}
               </span>
             </button>
