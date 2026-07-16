@@ -1993,7 +1993,11 @@ function ProjectModal({
                       key={i}
                       href={`/documentations/${doc.filename}`}
                       download
-                      className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors dark:bg-secondary/60"
+                      className={`flex items-center gap-2 text-sm px-4 py-2 rounded-full transition-colors dark:bg-secondary/60 ${
+                        doc.label.en === "All Schemes & Photos"
+                          ? "border border-primary/50 text-primary hover:border-primary hover:text-primary"
+                          : "border border-border hover:border-primary hover:text-primary"
+                      }`}
                     >
                       <Download className="w-4 h-4" />
                       {localize(doc.label, language)}
