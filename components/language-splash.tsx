@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { uiTranslations } from "@/lib/i18n/ui-translations";
 import { UKFlag, BulgariaFlag } from "@/components/language-toggle";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Particles } from "@/components/particles";
 
 const CHOSEN_KEY = "portfolio-language-chosen";
@@ -97,23 +98,35 @@ export function LanguageSplash() {
       )}
 
       {showPicker && (
+        <div
+          className={`${a ? "hero-1" : "opacity-0"} absolute top-6 right-6 z-20`}
+        >
+          <ThemeToggle />
+        </div>
+      )}
+
+      {showPicker && (
         <div className="relative z-10 flex flex-col items-center px-6 text-center">
           <h1
-            className={`${a ? "hero-1" : "opacity-0"} font-bold tracking-tight max-w-lg text-5xl sm:text-5xl lg:text-6xl leading-[1.05]`}
+            className={`${a ? "hero-1" : "opacity-0"} font-bold tracking-tight leading-[1.05] text-[clamp(1.25rem,5vw,3.75rem)]`}
           >
-            {uiTranslations.splash.welcome.en}
-            <br />
-            <span className="block pt-2 text-primary">
+            <span className="block whitespace-nowrap">
+              {uiTranslations.splash.welcome.en}
+            </span>
+            <span className="block whitespace-nowrap pt-2 text-primary">
               {uiTranslations.splash.welcome.bg}
             </span>
           </h1>
 
           <p
-            className={`${a ? "hero-2" : "opacity-0"} mt-6 text-base sm:text-lg text-muted-foreground max-w-md leading-relaxed`}
+            className={`${a ? "hero-2" : "opacity-0"} mt-6 text-muted-foreground leading-relaxed text-[clamp(0.8rem,2.4vw,1.125rem)]`}
           >
-            {uiTranslations.splash.prompt.en}
-            <br />
-            {uiTranslations.splash.prompt.bg}
+            <span className="block whitespace-nowrap">
+              {uiTranslations.splash.prompt.en}
+            </span>
+            <span className="block whitespace-nowrap">
+              {uiTranslations.splash.prompt.bg}
+            </span>
           </p>
 
           <div
