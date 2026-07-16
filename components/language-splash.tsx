@@ -66,7 +66,7 @@ export function LanguageSplash() {
           : "opacity-100 scale-100"
       }`}
     >
-      {/* Solid opaque base — prevents the hero photo/scroll from showing through */}
+      {/* Solid opaque base - prevents the hero photo/scroll from showing through */}
       <div className="absolute inset-0 bg-background" />
 
       {/* Subtle corner tint, matches hero, layered on top of the opaque base */}
@@ -85,7 +85,7 @@ export function LanguageSplash() {
       <Particles count={14} />
 
       {/* Lightweight loader shown only while we're checking localStorage or
-          quietly closing for a returning visitor — never the flag picker. */}
+          quietly closing for a returning visitor - never the flag picker. */}
       {!showPicker && (
         <div
           className={`relative z-10 flex flex-col items-center gap-4 transition-opacity duration-300 ${
