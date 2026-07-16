@@ -2243,7 +2243,10 @@ function ProjectsSection() {
   const { language } = useLanguage();
 
   return (
-    <section id="projects" className="py-24 px-6 sm:px-12 lg:px-20">
+    <section
+      id="projects"
+      className="py-24 px-6 sm:px-12 lg:px-20 bg-muted/30 dark:bg-muted/20"
+    >
       {selected && (
         <ProjectModal project={selected} onClose={() => setSelected(null)} />
       )}
