@@ -55,9 +55,8 @@ export function LanguageToggle() {
         aria-checked={isBg}
         aria-label="Switch language between English and Bulgarian"
         onClick={toggleLanguage}
-        className="relative flex items-center w-14 h-7 rounded-full cursor-pointer select-none"
+        className="relative flex items-center w-14 h-7 rounded-full cursor-pointer select-none transition-colors duration-200 dark:bg-muted hover:bg-secondary dark:hover:bg-border"
         style={{
-          background: "hsl(var(--muted))",
           boxShadow: "inset 0 2px 5px rgba(0,0,0,0.2)"
         }}
       >

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { LanguageToggle } from "@/components/language-toggle";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { t } from "@/lib/i18n/ui-translations";
 import { Menu, X } from "lucide-react";
@@ -71,14 +72,16 @@ export function Navigation() {
         ))}
       </nav>
 
-      {/* Language toggle - desktop, sits right next to the nav pill */}
-      <div className="hidden md:block">
+      {/* Language + theme toggle - desktop, sits right next to the nav pill */}
+      <div className="hidden md:flex items-center gap-2">
         <LanguageToggle />
+        <ThemeToggle />
       </div>
 
       {/* Mobile */}
       <div className="md:hidden flex items-center gap-2">
         <LanguageToggle />
+        <ThemeToggle />
         <Button
           variant="outline"
           size="icon"

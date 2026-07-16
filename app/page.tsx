@@ -405,7 +405,7 @@ function AchievementsGrid() {
                   return (
                     <Card
                       key={i}
-                      className={`flex flex-col overflow-hidden transition-all duration-300 ${glowClass} ${hasViewer ? "hover:border-primary/30 hover:-translate-y-1 cursor-pointer" : ""}`}
+                      className={`flex flex-col overflow-hidden transition-[transform,box-shadow,border-color] duration-300 will-change-transform [backface-visibility:hidden] ${glowClass} ${hasViewer ? "hover:border-primary/30 hover:-translate-y-1 cursor-pointer" : ""}`}
                       onClick={() => hasViewer && setOpenAchievement(a)}
                     >
                       <div className={`h-1.5 w-full shrink-0 ${accentColor}`} />
@@ -676,7 +676,7 @@ function AchievementModal({
                     className={`text-sm px-3.5 py-1.5 rounded-full border transition-colors cursor-pointer ${
                       activeDoc?.path === doc.path
                         ? "bg-primary text-primary-foreground border-primary"
-                        : "border-border text-foreground hover:border-primary hover:text-primary"
+                        : "border-border text-foreground hover:border-primary hover:text-primary dark:bg-secondary/60"
                     }`}
                   >
                     {localize(doc.label, language)}
@@ -1652,7 +1652,7 @@ function renderInline(text: string, keyPrefix: string) {
       return (
         <code
           key={`${keyPrefix}-${i}`}
-          className="inline-block bg-primary/10 text-primary border border-primary/20 rounded-md px-2 py-0.5 mx-0.5 text-[0.85em]"
+          className="inline-block bg-primary/10 text-primary border border-primary/20 rounded-md px-2 py-0.5 mx-0.5 text-[0.85em] dark:bg-primary/15 dark:text-foreground dark:border-primary/30 dark:font-medium"
         >
           {part.slice(1, -1)}
         </code>
@@ -1678,7 +1678,7 @@ function renderFormatted(text: string) {
       return (
         <code
           key={i}
-          className="inline-block bg-primary/10 text-primary border border-primary/20 rounded-md px-2 py-0.5 mx-0.5 text-[0.85em]"
+          className="inline-block bg-primary/10 text-primary border border-primary/20 rounded-md px-2 py-0.5 mx-0.5 text-[0.85em] dark:bg-primary/15 dark:text-foreground dark:border-primary/30 dark:font-medium"
         >
           {part.slice(1, -1)}
         </code>
@@ -1951,7 +1951,7 @@ function ProjectModal({
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
+                  className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors dark:bg-secondary/60"
                 >
                   <Github className="w-4 h-4" />{" "}
                   {t("projects.github", language)}
@@ -1962,7 +1962,7 @@ function ProjectModal({
                   href={project.githubMobileUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
+                  className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors dark:bg-secondary/60"
                 >
                   <Github className="w-4 h-4" />{" "}
                   {t("projects.githubMobile", language)}
@@ -1976,7 +1976,7 @@ function ProjectModal({
                       key={i}
                       href={`/documentations/${doc.filename}`}
                       download
-                      className="flex items-center gap-2 text-sm border border-primary/50 text-primary px-4 py-2 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                      className="flex items-center gap-2 text-sm border border-primary/50 text-primary px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors dark:bg-secondary/60"
                     >
                       <Download className="w-4 h-4" />
                       {localize(doc.label, language)}
@@ -1993,7 +1993,11 @@ function ProjectModal({
                       key={i}
                       href={`/documentations/${doc.filename}`}
                       download
-                      className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors"
+                      className={`flex items-center gap-2 text-sm px-4 py-2 rounded-full transition-colors dark:bg-secondary/60 ${
+                        doc.label.en === "All Schemes & Photos"
+                          ? "border border-primary/50 text-primary hover:border-primary hover:text-primary"
+                          : "border border-border hover:border-primary hover:text-primary"
+                      }`}
                     >
                       <Download className="w-4 h-4" />
                       {localize(doc.label, language)}
@@ -2239,7 +2243,10 @@ function ProjectsSection() {
   const { language } = useLanguage();
 
   return (
-    <section id="projects" className="py-24 px-6 sm:px-12 lg:px-20">
+    <section
+      id="projects"
+      className="py-24 px-6 sm:px-12 lg:px-20 bg-muted/30 dark:bg-muted/20"
+    >
       {selected && (
         <ProjectModal project={selected} onClose={() => setSelected(null)} />
       )}
@@ -2273,7 +2280,7 @@ function ProjectsSection() {
                     </div>
                   )}
                 </div>
-                <div className="absolute inset-0 bg-primary/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 gap-2">
+                <div className="absolute inset-0 bg-primary/80 dark:bg-primary/95 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 gap-2">
                   <span className="text-white text-base font-semibold">
                     {t("projects.clickToExpand", language)}
                   </span>
@@ -2289,7 +2296,7 @@ function ProjectsSection() {
                     {project.year}
                   </Badge>
                 </div>
-                <p className="text-base text-muted-foreground mt-1.5">
+                <p className="text-base text-muted-foreground dark:text-foreground/85 mt-1.5">
                   {localize(project.shortDescription, language)}
                 </p>
               </div>
