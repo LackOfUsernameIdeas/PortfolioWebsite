@@ -539,6 +539,7 @@ function AchievementModal({
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [docLoading, setDocLoading] = useState(true);
 
   useEffect(() => {
     setActiveDoc(achievement.docs?.[0] ?? null);
@@ -546,6 +547,11 @@ function AchievementModal({
     setZoom(1);
     setPan({ x: 0, y: 0 });
   }, [achievement]);
+
+  // Reset the loading spinner whenever the doc/image being displayed changes
+  useEffect(() => {
+    setDocLoading(true);
+  }, [activeDoc?.path, achievement.fallbackImage]);
 
   // The image currently viewable in the lightbox - either the active image
   // doc (e.g. a certificate) or the achievement's fallback image
@@ -680,8 +686,12 @@ function AchievementModal({
                 {achievement.docs.map((doc) => (
                   <button
                     key={doc.path}
-                    onClick={() => setActiveDoc(doc)}
-                    className={`shine-sweep text-sm px-3.5 py-1.5 rounded-full border transition-colors cursor-pointer ${
+                    onClick={() => {
+                      if (docLoading) return;
+                      setActiveDoc(doc);
+                    }}
+                    disabled={docLoading}
+                    className={`shine-sweep text-sm px-3.5 py-1.5 rounded-full border transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
                       activeDoc?.path === doc.path
                         ? "bg-primary text-primary-foreground border-primary"
                         : "shine-sweep-tint border-border text-foreground hover:border-primary hover:text-primary dark:bg-secondary/60"
@@ -731,8 +741,17 @@ function AchievementModal({
               <img
                 src={activeDoc.path}
                 alt={`${localize(achievement.title, language)} – ${localize(activeDoc.label, language)}`}
-                className="w-full h-full object-contain"
+                className={`w-full h-full object-contain transition-opacity duration-150 ${
+                  docLoading ? "opacity-40" : "opacity-100"
+                }`}
+                onLoad={() => setDocLoading(false)}
+                onError={() => setDocLoading(false)}
               />
+              {docLoading && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                </div>
+              )}
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-200">
                 <div className="bg-black/60 text-white text-base px-6 py-3 rounded-full font-semibold">
                   {t("achievements.clickToExpand", language)}
@@ -747,14 +766,22 @@ function AchievementModal({
               )}
             </div>
           ) : activeDoc ? (
-            <div className="w-full h-full min-h-[55vh] rounded-xl overflow-hidden border border-border">
+            <div className="relative w-full h-full min-h-[55vh] rounded-xl overflow-hidden border border-border">
               <iframe
                 key={activeDoc.path}
                 src={`${activeDoc.path}#zoom=100`}
-                className="w-full h-full"
+                className={`w-full h-full transition-opacity duration-150 ${
+                  docLoading ? "opacity-40" : "opacity-100"
+                }`}
                 style={{ minHeight: "55vh", zoom: 1 }}
                 title={localize(activeDoc.label, language)}
+                onLoad={() => setDocLoading(false)}
               />
+              {docLoading && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                </div>
+              )}
             </div>
           ) : achievement.fallbackImage ? (
             <div
@@ -764,8 +791,17 @@ function AchievementModal({
               <img
                 src={achievement.fallbackImage}
                 alt={`${achievement.title} – ${achievement.competition} ${achievement.year}`}
-                className="w-full h-full object-contain"
+                className={`w-full h-full object-contain transition-opacity duration-150 ${
+                  docLoading ? "opacity-40" : "opacity-100"
+                }`}
+                onLoad={() => setDocLoading(false)}
+                onError={() => setDocLoading(false)}
               />
+              {docLoading && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                </div>
+              )}
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-200">
                 <div className="bg-black/60 text-white text-base px-6 py-3 rounded-full font-semibold">
                   {t("achievements.clickToExpand", language)}
@@ -834,15 +870,25 @@ function AchievementModal({
             <img
               src={lightboxSrc}
               alt={`${achievement.title} – ${achievement.competition} ${achievement.year}`}
-              className="w-full h-full object-contain select-none"
+              className={`w-full h-full object-contain select-none transition-opacity duration-150 ${
+                docLoading ? "opacity-40" : "opacity-100"
+              }`}
               style={{
                 transform: `scale(${zoom}) translate(${pan.x / zoom}px, ${pan.y / zoom}px)`,
                 transformOrigin: "center",
                 transition: dragging ? "none" : "transform 0.1s"
               }}
+              onLoad={() => setDocLoading(false)}
+              onError={() => setDocLoading(false)}
               draggable={false}
             />
           </div>
+
+          {docLoading && (
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="w-10 h-10 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+            </div>
+          )}
 
           <div className="flex flex-col items-center gap-3 mt-4 px-6 max-w-[85vw]">
             <div className="flex items-center gap-3">
