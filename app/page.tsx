@@ -164,6 +164,14 @@ function HeroSection() {
             }}
           />
         </div>
+        <div
+          className="glow-halo absolute top-[44%] right-[10%] -translate-y-1/2 w-[70%] h-[75%] rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(255,0,26,0.22) 0%, rgba(255,0,26,0.08) 45%, transparent 70%)",
+            filter: "blur(30px)"
+          }}
+        />
         <img
           src="/hero-photo.png"
           alt="Kaloyan Kostadinov"
@@ -178,7 +186,7 @@ function HeroSection() {
         >
           {language === "bg" ? "Калоян" : "Kaloyan"}
           <br />
-          <span className="text-primary">
+          <span className="text-primary glow-gradient-text glow-text">
             {language === "bg" ? "Костадинов" : "Kostadinov"}
           </span>
         </h1>
@@ -196,7 +204,7 @@ function HeroSection() {
                 .getElementById("projects")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
-            className="flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3 rounded-full font-semibold cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300"
+            className="shine-sweep glow-pulse flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3 rounded-full font-semibold cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
             {t("hero.viewProjects", language)}{" "}
             <ArrowRight className="w-4 h-4" />
@@ -207,7 +215,7 @@ function HeroSection() {
                 .getElementById("contact")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
-            className="flex items-center gap-2 border border-border px-7 py-3 rounded-full font-semibold cursor-pointer hover:bg-secondary transition-all duration-300"
+            className="shine-sweep shine-sweep-tint flex items-center gap-2 border border-border px-7 py-3 rounded-full font-semibold cursor-pointer hover:bg-secondary transition-all duration-300"
           >
             {t("hero.contactMe", language)}
           </button>
@@ -219,7 +227,7 @@ function HeroSection() {
             <a
               href="mailto:kaloyan.kostadinov0730@gmail.com"
               aria-label="Email"
-              className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
+              className="glow-icon w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
               onClick={(e) => {
                 if (window.innerWidth < 1024) {
                   e.preventDefault();
@@ -241,7 +249,7 @@ function HeroSection() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
+            className="glow-icon w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
           >
             <Github className="w-4 h-4" />
           </a>
@@ -250,7 +258,7 @@ function HeroSection() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
+            className="glow-icon w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
           >
             <Linkedin className="w-4 h-4" />
           </a>
@@ -616,7 +624,7 @@ function AchievementModal({
         <div className="h-1.5 w-full bg-gradient-to-r from-primary to-primary/30 shrink-0" />
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors z-10"
+          className="shine-sweep shine-sweep-tint absolute top-4 right-4 w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors z-10"
         >
           <X className="w-5 h-5" />
         </button>
@@ -673,10 +681,10 @@ function AchievementModal({
                   <button
                     key={doc.path}
                     onClick={() => setActiveDoc(doc)}
-                    className={`text-sm px-3.5 py-1.5 rounded-full border transition-colors cursor-pointer ${
+                    className={`shine-sweep text-sm px-3.5 py-1.5 rounded-full border transition-colors cursor-pointer ${
                       activeDoc?.path === doc.path
                         ? "bg-primary text-primary-foreground border-primary"
-                        : "border-border text-foreground hover:border-primary hover:text-primary dark:bg-secondary/60"
+                        : "shine-sweep-tint border-border text-foreground hover:border-primary hover:text-primary dark:bg-secondary/60"
                     }`}
                   >
                     {localize(doc.label, language)}
@@ -790,7 +798,7 @@ function AchievementModal({
               setLightboxOpen(false);
               resetZoom();
             }}
-            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors cursor-pointer"
+            className="shine-sweep absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors cursor-pointer"
           >
             <X className="w-6 h-6" />
           </button>
@@ -847,7 +855,7 @@ function AchievementModal({
                     e.stopPropagation();
                     resetZoom();
                   }}
-                  className="text-sm text-white/70 border border-white/20 px-2 py-0.5 cursor-pointer rounded-full hover:border-white/50 transition-colors"
+                  className="shine-sweep text-sm text-white/70 border border-white/20 px-2 py-0.5 cursor-pointer rounded-full hover:border-white/50 transition-colors"
                 >
                   {t("achievements.resetZoom", language)}
                 </button>
@@ -870,7 +878,7 @@ function AchievementsSection() {
   return (
     <section id="achievements" className="py-24 px-6 sm:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
-        <h2 className="reveal text-4xl sm:text-6xl font-bold mb-6">
+        <h2 className="reveal glow-underline text-4xl sm:text-6xl font-bold mb-6">
           {t("achievements.heading", language)}
         </h2>
         <div className="reveal flex flex-wrap gap-3 mb-12">
@@ -901,7 +909,7 @@ function AboutSection() {
     <section id="about" className="py-24 px-6 sm:px-12 lg:px-20 bg-card/40">
       <div className="max-w-7xl mx-auto">
         <div className="reveal flex items-end gap-6 mb-16">
-          <h2 className="text-4xl sm:text-6xl font-bold">
+          <h2 className="glow-underline text-4xl sm:text-6xl font-bold">
             {t("about.heading", language)}
           </h2>
           <div className="hidden sm:flex items-center gap-2 pb-2 text-muted-foreground">
@@ -919,7 +927,7 @@ function AboutSection() {
                 <DropdownMenuTrigger asChild>
                   <Button
                     size="lg"
-                    className="group rounded-full px-7 py-5 text-base leading-none cursor-pointer"
+                    className="shine-sweep group rounded-full px-7 py-5 text-base leading-none cursor-pointer"
                   >
                     <Download className="h-4 w-4 mr-2" />{" "}
                     {t("about.downloadCV", language)}
@@ -1811,7 +1819,7 @@ function ProjectModal({
         <div className="h-1.5 w-full bg-gradient-to-r from-primary to-primary/30 shrink-0" />
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors z-10"
+          className="shine-sweep shine-sweep-tint absolute top-4 right-4 w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors z-10"
         >
           <X className="w-5 h-5" />
         </button>
@@ -1886,14 +1894,14 @@ function ProjectModal({
                       goTo((imgIdx - 1 + images.length) % images.length)
                     }
                     disabled={imgLoading}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="shine-sweep absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     ‹
                   </button>
                   <button
                     onClick={() => goTo((imgIdx + 1) % images.length)}
                     disabled={imgLoading}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="shine-sweep absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     ›
                   </button>
@@ -2099,7 +2107,7 @@ function ProjectModal({
               e.stopPropagation();
               setLightboxOpen(false);
             }}
-            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-2xl hover:bg-white/20 transition-colors cursor-pointer"
+            className="shine-sweep absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-2xl hover:bg-white/20 transition-colors cursor-pointer"
           >
             <X className="w-6 h-6" />
           </button>
@@ -2111,7 +2119,7 @@ function ProjectModal({
                 goTo((imgIdx - 1 + images.length) % images.length);
               }}
               disabled={imgLoading}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              className="shine-sweep absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             >
               ‹
             </button>
@@ -2190,7 +2198,7 @@ function ProjectModal({
                       e.stopPropagation();
                       resetZoom();
                     }}
-                    className="text-sm text-white/70 border border-white/20 px-2 py-0.5 cursor-pointer rounded-full hover:border-white/50 transition-colors"
+                    className="shine-sweep text-sm text-white/70 border border-white/20 px-2 py-0.5 cursor-pointer rounded-full hover:border-white/50 transition-colors"
                   >
                     {t("projects.resetZoom", language)}
                   </button>
@@ -2226,7 +2234,7 @@ function ProjectModal({
                 goTo((imgIdx + 1) % images.length);
               }}
               disabled={imgLoading}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              className="shine-sweep absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             >
               ›
             </button>
@@ -2251,7 +2259,7 @@ function ProjectsSection() {
         <ProjectModal project={selected} onClose={() => setSelected(null)} />
       )}
       <div className="max-w-7xl mx-auto">
-        <h2 className="reveal text-4xl sm:text-6xl font-bold mb-12">
+        <h2 className="reveal glow-underline text-4xl sm:text-6xl font-bold mb-12">
           {t("projects.heading", language)}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -2259,7 +2267,7 @@ function ProjectsSection() {
             <div
               key={project.id}
               onClick={() => setSelected(project)}
-              className="reveal group relative bg-card rounded-2xl overflow-hidden shadow hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border border-border hover:border-primary/30 cursor-pointer"
+              className="reveal glow-card group relative bg-card rounded-2xl overflow-hidden shadow hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border border-border hover:border-primary/30 cursor-pointer"
             >
               <div className="h-1 w-full bg-gradient-to-r from-primary to-primary/40" />
               <div className="aspect-[4/3] bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center relative overflow-hidden">
@@ -2414,7 +2422,7 @@ function ContactSection() {
                 </p>
                 <Button
                   size="lg"
-                  className="rounded-full px-8 text-base bg-transparent border border-border font-semibold text-foreground cursor-pointer hover:bg-secondary transition-all duration-300"
+                  className="shine-sweep shine-sweep-tint rounded-full px-8 text-base bg-transparent border border-border font-semibold text-foreground cursor-pointer hover:bg-secondary transition-all duration-300"
                   onClick={() => setDone(false)}
                 >
                   {t("contact.sendAnother", language)}
@@ -2494,7 +2502,7 @@ function ContactSection() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full rounded-full text-base cursor-pointer"
+                  className="shine-sweep w-full rounded-full text-base cursor-pointer"
                   disabled={submitting}
                 >
                   {submitting ? (
@@ -2519,16 +2527,15 @@ function ContactSection() {
 function Footer() {
   const { language } = useLanguage();
   return (
-    <footer className="py-8 px-6 sm:px-12 lg:px-20 border-t border-border">
+    <footer className="py-8 px-6 sm:px-12 lg:px-20 border-t border-border bg-card/10">
       <div className="max-w-7xl mx-auto text-center">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-md text-muted-foreground">
           {t("footer.text", language)} &copy; {new Date().getFullYear()}
         </p>
       </div>
     </footer>
   );
 }
-
 // ─── Page ──────────────────────────────────────────────────────────────────
 export default function Home() {
   useReveal();

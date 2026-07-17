@@ -204,3 +204,242 @@ html {
 .hero-scroll {
   animation: heroFadeIn 1s ease 1s both;
 }
+
+/* ══════════════════════════════════════════════════════════
+   GLOW EFFECTS
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Pulsing text glow (headings, name, accent words) ── */
+@keyframes textGlowPulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 8px color-mix(in oklch, var(--primary) 55%, transparent),
+      0 0 18px color-mix(in oklch, var(--primary) 35%, transparent),
+      0 0 36px color-mix(in oklch, var(--primary) 18%, transparent);
+  }
+  50% {
+    text-shadow:
+      0 0 14px color-mix(in oklch, var(--primary) 75%, transparent),
+      0 0 30px color-mix(in oklch, var(--primary) 45%, transparent),
+      0 0 60px color-mix(in oklch, var(--primary) 28%, transparent);
+  }
+}
+.glow-text {
+  animation: textGlowPulse 3.2s ease-in-out infinite;
+}
+
+/* ── Shimmering gradient text ── */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.glow-gradient-text {
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    color-mix(in oklch, var(--primary) 55%, white) 25%,
+    var(--primary) 50%,
+    color-mix(in oklch, var(--primary) 75%, black) 75%,
+    var(--primary) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 5s linear infinite;
+}
+
+/* ── Shine sweep: a light beam that sweeps across on hover.
+   Implemented purely as a background-image (not a positioned ::before),
+   so it can NEVER interfere with a button's own position/layout classes.
+   Works on any button color via --shine-color (defaults to white for
+   solid/dark buttons; add .shine-sweep-tint for light/outlined buttons) ── */
+.shine-sweep {
+  background-image: linear-gradient(
+    120deg,
+    transparent 30%,
+    var(--shine-color, rgba(255, 255, 255, 0.5)) 50%,
+    transparent 70%
+  );
+  background-repeat: no-repeat;
+  background-size: 220% 100%;
+  background-position: 150% 0;
+  transition: background-position 0.7s ease;
+}
+.shine-sweep:hover {
+  background-position: -50% 0;
+}
+.shine-sweep-tint {
+  --shine-color: color-mix(in oklch, var(--primary) 40%, transparent);
+}
+
+/* ── Breathing glow halo: opt-in only, independent of the shine sweep ── */
+@keyframes glowPulseShadow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 color-mix(in oklch, var(--primary) 55%, transparent),
+      0 4px 18px color-mix(in oklch, var(--primary) 35%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 22px 4px color-mix(in oklch, var(--primary) 45%, transparent),
+      0 4px 26px color-mix(in oklch, var(--primary) 55%, transparent);
+  }
+}
+.glow-pulse {
+  animation: glowPulseShadow 2.6s ease-in-out infinite;
+}
+.glow-pulse:hover {
+  animation-play-state: paused;
+  box-shadow:
+    0 0 28px 6px color-mix(in oklch, var(--primary) 60%, transparent),
+    0 6px 30px color-mix(in oklch, var(--primary) 45%, transparent);
+}
+
+/* ── Rotating conic-gradient ring (for framed photos / avatars) ── */
+@keyframes ringSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.glow-ring {
+  position: relative;
+}
+.glow-ring::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  padding: 3px;
+  background: conic-gradient(
+    from 0deg,
+    var(--primary),
+    #ff6b4a,
+    #3b82f6,
+    var(--primary)
+  );
+  filter: blur(6px) saturate(1.4);
+  opacity: 0.7;
+  animation: ringSpin 6s linear infinite;
+  z-index: -1;
+}
+
+/* ── Glowing card border on hover ── */
+.glow-card {
+  transition:
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    transform 0.35s ease;
+}
+.glow-card:hover {
+  border-color: color-mix(in oklch, var(--primary) 70%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in oklch, var(--primary) 35%, transparent),
+    0 8px 28px color-mix(in oklch, var(--primary) 28%, transparent),
+    0 0 36px color-mix(in oklch, var(--primary) 22%, transparent);
+}
+
+/* ── Glow dot / status pulse (nav active, badges) ── */
+@keyframes glowDotPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklch, var(--primary) 60%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+}
+.glow-dot {
+  animation: glowDotPulse 1.8s ease-out infinite;
+}
+
+/* ── Icon links: soft glow halo on hover ── */
+.glow-icon {
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+.glow-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 16px 2px color-mix(in oklch, var(--primary) 55%, transparent);
+}
+
+/* ── Cursor-follow spotlight (fixed, sits behind content) ── */
+.cursor-spotlight {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    200px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in oklch, var(--primary) 12%, transparent),
+    transparent 70%
+  );
+  transition: background-position 0.05s linear;
+}
+
+/* ── Section heading underline glow accent ── */
+.glow-underline {
+  position: relative;
+  display: inline-block;
+}
+.glow-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 3px;
+  width: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), transparent);
+  box-shadow: 0 0 12px 2px color-mix(in oklch, var(--primary) 65%, transparent);
+}
+
+/* ── Pulsing radial glow halo (for divs/blobs behind photos, icons) ── */
+@keyframes haloPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+.glow-halo {
+  animation: haloPulse 3.6s ease-in-out infinite;
+}
+
+/* ── Stronger, glowier floating particles ── */
+.particle {
+  box-shadow:
+    0 0 6px 1px rgba(255, 0, 26, 0.7),
+    0 0 14px 3px rgba(255, 0, 26, 0.35);
+}
+
+/* ── Extra glow blob intensity boost on hover-reveal sections ── */
+.blob-glow {
+  filter: blur(10px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-text,
+  .glow-gradient-text,
+  .shine-sweep,
+  .glow-pulse,
+  .glow-ring::before,
+  .glow-dot {
+    animation: none !important;
+  }
+}

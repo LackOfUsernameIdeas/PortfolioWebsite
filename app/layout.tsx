@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { LanguageProvider } from "@/lib/i18n/language-context";
 import { ThemeProvider } from "@/components/theme-provider";
+import { CursorGlow } from "@/components/cursor-glow";
 import "./globals.css";
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -28,11 +29,14 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-background text-foreground">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
-          <LanguageProvider>{children}</LanguageProvider>
+          <LanguageProvider>
+            <CursorGlow />
+            {children}
+          </LanguageProvider>
           {process.env.NODE_ENV === "production" && <Analytics />}
         </ThemeProvider>
       </body>

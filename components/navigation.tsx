@@ -63,7 +63,7 @@ export function Navigation() {
             onClick={() => scrollTo(link.href)}
             className={`px-5 py-2 rounded-full text-sm font-medium tracking-wide transition-all duration-300 cursor-pointer ${
               active === link.href.replace("#", "")
-                ? "bg-primary text-primary-foreground shadow-md"
+                ? "bg-primary text-primary-foreground shadow-md shine-sweep"
                 : "text-foreground hover:bg-secondary"
             }`}
           >
@@ -100,7 +100,7 @@ export function Navigation() {
                   onClick={() => scrollTo(link.href)}
                   className={`px-4 py-3 rounded-xl text-sm font-medium tracking-wide text-center transition-all duration-300 cursor-pointer ${
                     active === link.href.replace("#", "")
-                      ? "bg-primary text-primary-foreground"
+                      ? "bg-primary text-primary-foreground shine-sweep"
                       : "text-foreground hover:bg-secondary"
                   }`}
                 >
