@@ -2005,7 +2005,7 @@ function ProjectModal({
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors dark:bg-secondary/60"
+                  className="shine-sweep shine-sweep-tint flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors dark:bg-secondary/60"
                 >
                   <Github className="w-4 h-4" />{" "}
                   {t("projects.github", language)}
@@ -2016,7 +2016,7 @@ function ProjectModal({
                   href={project.githubMobileUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors dark:bg-secondary/60"
+                  className="shine-sweep shine-sweep-tint flex items-center gap-2 text-sm border border-border px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors dark:bg-secondary/60"
                 >
                   <Github className="w-4 h-4" />{" "}
                   {t("projects.githubMobile", language)}
@@ -2030,7 +2030,7 @@ function ProjectModal({
                       key={i}
                       href={`/documentations/${doc.filename}`}
                       download
-                      className="flex items-center gap-2 text-sm border border-primary/50 text-primary px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors dark:bg-secondary/60"
+                      className="shine-sweep shine-sweep-tint flex items-center gap-2 text-sm border border-primary/50 text-primary px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors dark:bg-secondary/60"
                     >
                       <Download className="w-4 h-4" />
                       {localize(doc.label, language)}
@@ -2047,7 +2047,7 @@ function ProjectModal({
                       key={i}
                       href={`/documentations/${doc.filename}`}
                       download
-                      className={`flex items-center gap-2 text-sm px-4 py-2 rounded-full transition-colors dark:bg-secondary/60 ${
+                      className={`shine-sweep shine-sweep-tint flex items-center gap-2 text-sm px-4 py-2 rounded-full transition-colors dark:bg-secondary/60 ${
                         doc.label.en === "All Schemes & Photos"
                           ? "border border-primary/50 text-primary hover:border-primary hover:text-primary"
                           : "border border-border hover:border-primary hover:text-primary"
@@ -2078,7 +2078,7 @@ function ProjectModal({
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
+                  className="shine-sweep flex items-center gap-2 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
                 >
                   <ExternalLink className="w-4 h-4" />{" "}
                   {t("projects.liveDemo", language)}
