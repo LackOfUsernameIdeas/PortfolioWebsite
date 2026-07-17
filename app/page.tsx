@@ -630,7 +630,7 @@ function AchievementModal({
         <div className="h-1.5 w-full bg-gradient-to-r from-primary to-primary/30 shrink-0" />
         <button
           onClick={onClose}
-          className="shine-sweep shine-sweep-tint absolute top-4 right-4 w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors z-10"
+          className="absolute top-4 right-4 w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors z-10"
         >
           <X className="w-5 h-5" />
         </button>
@@ -834,7 +834,7 @@ function AchievementModal({
               setLightboxOpen(false);
               resetZoom();
             }}
-            className="shine-sweep absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors cursor-pointer"
+            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors cursor-pointer"
           >
             <X className="w-6 h-6" />
           </button>
@@ -1865,7 +1865,7 @@ function ProjectModal({
         <div className="h-1.5 w-full bg-gradient-to-r from-primary to-primary/30 shrink-0" />
         <button
           onClick={onClose}
-          className="shine-sweep shine-sweep-tint absolute top-4 right-4 w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors z-10"
+          className="absolute top-4 right-4 w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors z-10"
         >
           <X className="w-5 h-5" />
         </button>
@@ -1940,14 +1940,14 @@ function ProjectModal({
                       goTo((imgIdx - 1 + images.length) % images.length)
                     }
                     disabled={imgLoading}
-                    className="shine-sweep absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     ‹
                   </button>
                   <button
                     onClick={() => goTo((imgIdx + 1) % images.length)}
                     disabled={imgLoading}
-                    className="shine-sweep absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     ›
                   </button>
@@ -2153,7 +2153,7 @@ function ProjectModal({
               e.stopPropagation();
               setLightboxOpen(false);
             }}
-            className="shine-sweep absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-2xl hover:bg-white/20 transition-colors cursor-pointer"
+            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-2xl hover:bg-white/20 transition-colors cursor-pointer"
           >
             <X className="w-6 h-6" />
           </button>
@@ -2165,7 +2165,7 @@ function ProjectModal({
                 goTo((imgIdx - 1 + images.length) % images.length);
               }}
               disabled={imgLoading}
-              className="shine-sweep absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             >
               ‹
             </button>
@@ -2280,7 +2280,7 @@ function ProjectModal({
                 goTo((imgIdx + 1) % images.length);
               }}
               disabled={imgLoading}
-              className="shine-sweep absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             >
               ›
             </button>
