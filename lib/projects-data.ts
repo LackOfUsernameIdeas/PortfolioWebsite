@@ -258,7 +258,7 @@ export const projects: Project[] = [
       },
       {
         label: { en: "NutriFit Mobile (.apk)", bg: "Мобилна версия (.apk)" },
-        filename: "../NutriFitMobile.apk",
+        filename: "../nutrifit/NutriFitMobile.apk",
         icon: "apk"
       }
     ],
