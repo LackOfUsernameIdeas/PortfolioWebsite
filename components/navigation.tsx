@@ -55,7 +55,6 @@ export function Navigation() {
         scrolled ? "scale-95" : ""
       }`}
     >
-      {/* Desktop pill */}
       <nav className="hidden md:flex items-center gap-1 bg-card/90 backdrop-blur-md rounded-full px-2 py-2 shadow-lg border border-border">
         {navLinks.map((link) => (
           <button
@@ -78,7 +77,6 @@ export function Navigation() {
         <ThemeToggle />
       </div>
 
-      {/* Mobile */}
       <div className="md:hidden flex items-center gap-2">
         <LanguageToggle />
         <ThemeToggle />

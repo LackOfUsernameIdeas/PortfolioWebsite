@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 
-// ─── Reveal on scroll ─────────────────────────────────────────────────────
 export function useReveal() {
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");

@@ -25,7 +25,6 @@ const STORAGE_KEY = "portfolio-language";
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>("en");
 
-  // Load saved preference on mount
   useEffect(() => {
     const saved = window.localStorage.getItem(STORAGE_KEY);
     if (saved === "en" || saved === "bg") {

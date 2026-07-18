@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-// ─── CSS particle background ───────────────────────────────────────────────
 export function Particles({ count = 18 }: { count?: number }) {
   const [items, setItems] = useState<
     Array<{

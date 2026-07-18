@@ -150,7 +150,6 @@ export const uiTranslations = {
 } as const;
 
 export function t(path: string, lang: Language): string {
-  // simple dot-path lookup
   const segments = path.split(".");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let node: any = uiTranslations;
