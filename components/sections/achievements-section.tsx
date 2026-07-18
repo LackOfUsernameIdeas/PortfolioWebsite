@@ -1,0 +1,600 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { ArrowRight, ExternalLink, X } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { achievements, type Achievement } from "@/lib/projects-data";
+import { useLanguage, localize, Localized } from "@/lib/i18n/language-context";
+import { t } from "@/lib/i18n/ui-translations";
+
+function AchievementsGrid() {
+  const [openAchievement, setOpenAchievement] = useState<Achievement | null>(
+    null
+  );
+  const { language } = useLanguage();
+
+  return (
+    <>
+      {openAchievement && (
+        <AchievementModal
+          achievement={openAchievement}
+          onClose={() => setOpenAchievement(null)}
+        />
+      )}
+
+      <div className="space-y-16">
+        {(["2026", "2025", "2024", "2023"] as const).map((year) => {
+          const items = achievements.filter((a) => a.year === year);
+          return (
+            <div key={year} className="reveal">
+              <div className="flex items-center gap-4 mb-7">
+                <h4 className="text-2xl font-bold text-primary">{year}</h4>
+                <div className="flex-1 h-px bg-border" />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {items.map((a, i) => {
+                  const placeNum = a.place ? a.place.replace(/\D/g, "") : null;
+                  const placeColor =
+                    a.place === "1st"
+                      ? "text-yellow-500"
+                      : a.place === "2nd"
+                        ? "text-slate-400"
+                        : "text-primary";
+                  const accentColor =
+                    a.place === "1st"
+                      ? "bg-yellow-500"
+                      : a.place === "2nd"
+                        ? "bg-slate-400"
+                        : "bg-primary/60";
+                  const glowClass =
+                    a.place === "1st"
+                      ? "hover:shadow-[0_0_28px_-6px_rgba(234,179,8,0.45)]"
+                      : a.place === "2nd"
+                        ? "hover:shadow-[0_0_22px_-6px_rgba(148,163,184,0.4)]"
+                        : "hover:shadow-md";
+                  const hasViewer =
+                    (a.docs && a.docs.length > 0) || a.fallbackImage;
+
+                  return (
+                    <Card
+                      key={i}
+                      className={`flex flex-col overflow-hidden transition-[transform,box-shadow,border-color] duration-300 will-change-transform [backface-visibility:hidden] ${glowClass} ${hasViewer ? "hover:border-primary/30 hover:-translate-y-1 cursor-pointer" : ""}`}
+                      onClick={() => hasViewer && setOpenAchievement(a)}
+                    >
+                      <div className={`h-1.5 w-full shrink-0 ${accentColor}`} />
+
+                      <CardContent className="flex flex-col gap-2.5 flex-1">
+                        <p className="text-md text-muted-foreground">
+                          {localize(a.competition, language)}
+                        </p>
+                        <div className="flex items-center justify-between gap-2">
+                          <p className="font-bold text-2xl leading-snug">
+                            {a.kind !== "honor" &&
+                              `${t("projects.projectPrefix", language)} `}
+                            {localize(a.title, language)}
+                          </p>
+                          {placeNum && (
+                            <span
+                              className={`text-3xl font-black tabular-nums leading-none shrink-0 ${placeColor}`}
+                            >
+                              #{placeNum}
+                            </span>
+                          )}
+                        </div>
+                        {a.category && (
+                          <p className="text-sm text-muted-foreground">
+                            {a.kind !== "honor" &&
+                              `${t("achievements.category", language)}: `}
+                            {localize(a.category, language)}
+                          </p>
+                        )}
+
+                        {(a.score || a.points || a.extra) && (
+                          <div className="flex flex-wrap gap-1.5 pt-1">
+                            {a.score && (
+                              <Badge
+                                variant="secondary"
+                                className="rounded-full text-sm"
+                              >
+                                {t("achievements.grade", language)}: {a.score}
+                              </Badge>
+                            )}
+                            {a.points && (
+                              <Badge
+                                variant="secondary"
+                                className="rounded-full text-sm"
+                              >
+                                {t("achievements.points", language)}:{" "}
+                                {localize(a.points, language)}
+                              </Badge>
+                            )}
+                            {a.extra && (
+                              <Badge
+                                variant="outline"
+                                className="rounded-full text-sm text-primary border-primary/30"
+                              >
+                                {localize(a.extra, language)}
+                              </Badge>
+                            )}
+                          </div>
+                        )}
+
+                        {hasViewer && (
+                          <div className="mt-auto pt-3">
+                            <span className="flex items-center gap-1.5 text-sm text-primary font-medium">
+                              <ExternalLink className="w-3.5 h-3.5" />
+                              {t(
+                                a.kind === "honor"
+                                  ? "achievements.viewCertificate"
+                                  : "achievements.viewRanking",
+                                language
+                              )}
+                            </span>
+                          </div>
+                        )}
+
+                        {a.links && a.links.length > 0 && (
+                          <div className="flex flex-wrap gap-2 pt-1">
+                            {a.links.map((link, li) => (
+                              <a
+                                key={li}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
+                              >
+                                <ExternalLink className="w-3.5 h-3.5" />
+                                {localize(link.label, language)}
+                              </a>
+                            ))}
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+}
+
+// ─── Achievement Modal ─────────────────────────────────────────────────────
+function AchievementModal({
+  achievement,
+  onClose
+}: {
+  achievement: Achievement;
+  onClose: () => void;
+}) {
+  const { language } = useLanguage();
+  const [activeDoc, setActiveDoc] = useState<{
+    label: Localized;
+    path: string;
+    type?: "pdf" | "image";
+    caption?: Localized;
+  } | null>(achievement.docs?.[0] ?? null);
+
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [docLoading, setDocLoading] = useState(true);
+
+  useEffect(() => {
+    setActiveDoc(achievement.docs?.[0] ?? null);
+    setLightboxOpen(false);
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+  }, [achievement]);
+
+  // Reset the loading spinner whenever the doc/image being displayed changes
+  useEffect(() => {
+    setDocLoading(true);
+  }, [activeDoc?.path, achievement.fallbackImage]);
+
+  // The image currently viewable in the lightbox - either the active image
+  // doc (e.g. a certificate) or the achievement's fallback image
+  const isImageDoc = activeDoc?.type === "image";
+  const lightboxSrc = isImageDoc ? activeDoc?.path : achievement.fallbackImage;
+  const lightboxCaption = isImageDoc
+    ? activeDoc?.caption
+      ? localize(activeDoc.caption, language)
+      : activeDoc?.label
+        ? localize(activeDoc.label, language)
+        : undefined
+    : achievement.fallbackImageCaption
+      ? localize(achievement.fallbackImageCaption, language)
+      : undefined;
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (lightboxOpen) {
+          setLightboxOpen(false);
+          setZoom(1);
+          setPan({ x: 0, y: 0 });
+        } else {
+          onClose();
+        }
+      }
+    };
+    window.addEventListener("keydown", handler);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handler);
+      document.body.style.overflow = "";
+    };
+  }, [onClose, lightboxOpen]);
+
+  const resetZoom = () => {
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+  };
+
+  const clampPan = (x: number, y: number, z: number) => {
+    const maxX = (z - 1) * (window.innerWidth * 0.425);
+    const maxY = (z - 1) * (window.innerHeight * 0.4);
+    return {
+      x: Math.max(-maxX, Math.min(maxX, x)),
+      y: Math.max(-maxY, Math.min(maxY, y))
+    };
+  };
+
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    setZoom((z) => {
+      const next = Math.min(5, Math.max(1, z - e.deltaY * 0.001));
+      setPan((p) => clampPan(p.x, p.y, next));
+      return next;
+    });
+  };
+
+  const placeColor =
+    achievement.place === "1st"
+      ? "text-yellow-500"
+      : achievement.place === "2nd"
+        ? "text-slate-400"
+        : "text-primary";
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-6"
+      onClick={onClose}
+    >
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+      <div
+        className="relative z-10 w-full sm:max-w-4xl max-h-[92vh] bg-card border border-border rounded-t-3xl sm:rounded-3xl overflow-hidden flex flex-col shadow-2xl animate-in slide-in-from-bottom-8 duration-300"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="h-1.5 w-full bg-gradient-to-r from-primary to-primary/30 shrink-0" />
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors z-10"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        {/* Header */}
+        <div className="px-6 pt-5 pb-4 sm:px-8 shrink-0">
+          <div className="pr-10">
+            <p className="text-sm text-muted-foreground mb-1">
+              {localize(achievement.competition, language)} · {achievement.year}
+            </p>
+            <h2 className="text-3xl font-bold">
+              {achievement.kind !== "honor" &&
+                `${t("projects.projectPrefix", language)} `}
+              {localize(achievement.title, language)}
+            </h2>
+            {achievement.category && (
+              <p className="text-base text-muted-foreground mt-1.5">
+                {achievement.kind !== "honor" &&
+                  `${t("achievements.category", language)}: `}
+                {localize(achievement.category, language)}
+              </p>
+            )}
+          </div>
+
+          {/* Badges, doc tabs, links - with rank floating in the empty space to the right */}
+          <div className="relative pr-20 sm:pr-24">
+            {/* Badges */}
+            <div className="flex flex-wrap gap-2 mt-4">
+              {achievement.score && (
+                <Badge variant="secondary" className="rounded-full text-sm">
+                  {t("achievements.grade", language)}: {achievement.score}
+                </Badge>
+              )}
+              {achievement.points && (
+                <Badge variant="secondary" className="rounded-full text-sm">
+                  {t("achievements.points", language)}:{" "}
+                  {localize(achievement.points, language)}
+                </Badge>
+              )}
+              {achievement.extra && (
+                <Badge
+                  variant="outline"
+                  className="rounded-full text-sm text-primary border-primary/30"
+                >
+                  {localize(achievement.extra, language)}
+                </Badge>
+              )}
+            </div>
+
+            {/* Doc tabs - if multiple docs */}
+            {achievement.docs && achievement.docs.length > 1 && (
+              <div className="flex gap-2 mt-4">
+                {achievement.docs.map((doc) => (
+                  <button
+                    key={doc.path}
+                    onClick={() => {
+                      if (docLoading) return;
+                      setActiveDoc(doc);
+                    }}
+                    disabled={docLoading}
+                    className={`shine-sweep text-sm px-3.5 py-1.5 rounded-full border transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
+                      activeDoc?.path === doc.path
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "shine-sweep-tint border-border text-foreground hover:border-primary hover:text-primary dark:bg-secondary/60"
+                    }`}
+                  >
+                    {localize(doc.label, language)}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Reference links */}
+            {achievement.links && achievement.links.length > 0 && (
+              <div className="flex flex-wrap gap-3 mt-3.5">
+                {achievement.links.map((link, i) => (
+                  <a
+                    key={i}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    {localize(link.label, language)}
+                  </a>
+                ))}
+              </div>
+            )}
+
+            {achievement.place && (
+              <span
+                className={`absolute right-0 top-1/2 -translate-y-1/2 text-4xl font-black tabular-nums ${placeColor}`}
+              >
+                #{achievement.place.replace(/\D/g, "")}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* PDF viewer, certificate image, or fallback image */}
+        <div className="flex-1 min-h-0 px-6 pb-6 sm:px-8 sm:pb-8">
+          {activeDoc && isImageDoc ? (
+            <div
+              className="w-full h-full max-h-[55vh] rounded-xl overflow-hidden border border-border relative cursor-zoom-in group/img"
+              onClick={() => setLightboxOpen(true)}
+            >
+              <img
+                src={activeDoc.path}
+                alt={`${localize(achievement.title, language)} – ${localize(activeDoc.label, language)}`}
+                className={`w-full h-full object-contain transition-opacity duration-150 ${
+                  docLoading ? "opacity-40" : "opacity-100"
+                }`}
+                decoding="async"
+                onLoad={() => setDocLoading(false)}
+                onError={() => setDocLoading(false)}
+              />
+              {docLoading && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                </div>
+              )}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-200">
+                <div className="bg-black/60 text-white text-base px-6 py-3 rounded-full font-semibold">
+                  {t("achievements.clickToExpand", language)}
+                </div>
+              </div>
+              {activeDoc.caption && (
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3 pointer-events-none">
+                  <p className="text-white text-xs line-clamp-2">
+                    {localize(activeDoc.caption, language)}
+                  </p>
+                </div>
+              )}
+            </div>
+          ) : activeDoc ? (
+            <div className="relative w-full h-full min-h-[55vh] rounded-xl overflow-hidden border border-border">
+              <iframe
+                key={activeDoc.path}
+                src={`${activeDoc.path}#zoom=100`}
+                className={`w-full h-full transition-opacity duration-150 ${
+                  docLoading ? "opacity-40" : "opacity-100"
+                }`}
+                style={{ minHeight: "55vh", zoom: 1 }}
+                title={localize(activeDoc.label, language)}
+                onLoad={() => setDocLoading(false)}
+              />
+              {docLoading && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                </div>
+              )}
+            </div>
+          ) : achievement.fallbackImage ? (
+            <div
+              className="w-full h-full max-h-[55vh] rounded-xl overflow-hidden border border-border relative cursor-zoom-in group/img"
+              onClick={() => setLightboxOpen(true)}
+            >
+              <img
+                src={achievement.fallbackImage}
+                alt={`${achievement.title} – ${achievement.competition} ${achievement.year}`}
+                className={`w-full h-full object-contain transition-opacity duration-150 ${
+                  docLoading ? "opacity-40" : "opacity-100"
+                }`}
+                decoding="async"
+                onLoad={() => setDocLoading(false)}
+                onError={() => setDocLoading(false)}
+              />
+              {docLoading && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                </div>
+              )}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-200">
+                <div className="bg-black/60 text-white text-base px-6 py-3 rounded-full font-semibold">
+                  {t("achievements.clickToExpand", language)}
+                </div>
+              </div>
+              {achievement.fallbackImageCaption && (
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3 pointer-events-none">
+                  <p className="text-white text-xs line-clamp-2">
+                    {localize(achievement.fallbackImageCaption, language)}
+                  </p>
+                </div>
+              )}
+            </div>
+          ) : null}
+        </div>
+      </div>
+
+      {/* ── Image lightbox (certificate doc or fallback image) ── */}
+      {lightboxOpen && lightboxSrc && (
+        <div
+          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black/90 backdrop-blur-sm py-4"
+          onClick={() => {
+            setLightboxOpen(false);
+            resetZoom();
+          }}
+        >
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxOpen(false);
+              resetZoom();
+            }}
+            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors cursor-pointer"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          <div
+            className="relative overflow-hidden"
+            style={{
+              width: "85vw",
+              maxWidth: "1200px",
+              maxHeight: "80vh",
+              cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default"
+            }}
+            onWheel={handleWheel}
+            onMouseDown={(e) => {
+              if (zoom > 1) {
+                setDragging(true);
+                setDragStart({ x: e.clientX - pan.x, y: e.clientY - pan.y });
+              }
+            }}
+            onMouseMove={(e) => {
+              if (dragging) {
+                const raw = {
+                  x: e.clientX - dragStart.x,
+                  y: e.clientY - dragStart.y
+                };
+                setPan(clampPan(raw.x, raw.y, zoom));
+              }
+            }}
+            onMouseUp={() => setDragging(false)}
+            onMouseLeave={() => setDragging(false)}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={lightboxSrc}
+              alt={`${achievement.title} – ${achievement.competition} ${achievement.year}`}
+              className={`w-full h-full object-contain select-none transition-opacity duration-150 ${
+                docLoading ? "opacity-40" : "opacity-100"
+              }`}
+              decoding="async"
+              style={{
+                transform: `scale(${zoom}) translate(${pan.x / zoom}px, ${pan.y / zoom}px)`,
+                transformOrigin: "center",
+                transition: dragging ? "none" : "transform 0.1s"
+              }}
+              onLoad={() => setDocLoading(false)}
+              onError={() => setDocLoading(false)}
+              draggable={false}
+            />
+          </div>
+
+          {docLoading && (
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="w-10 h-10 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+            </div>
+          )}
+
+          <div className="flex flex-col items-center gap-3 mt-4 px-6 max-w-[85vw]">
+            <div className="flex items-center gap-3">
+              <span className="text-white/50 text-sm">
+                {t("achievements.scrollToZoom", language)}
+              </span>
+              {zoom > 1 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    resetZoom();
+                  }}
+                  className="shine-sweep text-sm text-white/70 border border-white/20 px-2 py-0.5 cursor-pointer rounded-full hover:border-white/50 transition-colors"
+                >
+                  {t("achievements.resetZoom", language)}
+                </button>
+              )}
+            </div>
+            {lightboxCaption && (
+              <p className="text-white/70 text-sm text-center leading-relaxed">
+                {lightboxCaption}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function AchievementsSection() {
+  const { language } = useLanguage();
+  return (
+    <section id="achievements" className="py-24 px-6 sm:px-12 lg:px-20">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="reveal glow-underline text-4xl sm:text-6xl font-bold mb-6">
+          {t("achievements.heading", language)}
+        </h2>
+        <div className="reveal flex flex-wrap gap-3 mb-12">
+          <div className="flex items-center gap-2 text-sm bg-card border border-border rounded-full px-3.5 py-2 text-muted-foreground">
+            <span className="font-semibold text-foreground">
+              {t("achievements.noit.short", language)}
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+            <span>{t("achievements.noit.full", language)}</span>
+          </div>
+          <div className="flex items-center gap-2 text-sm bg-card border border-border rounded-full px-3.5 py-2 text-muted-foreground">
+            <span className="font-semibold text-foreground">
+              {t("achievements.netit.short", language)}
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+            <span>{t("achievements.netit.full", language)}</span>
+          </div>
+        </div>
+        <AchievementsGrid />
+      </div>
+    </section>
+  );
+}
