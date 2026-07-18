@@ -1217,7 +1217,7 @@ function ProjectModal({
                       e.stopPropagation();
                       resetZoom();
                     }}
-                    className="shine-sweep text-sm text-white/70 border border-white/20 px-2 py-0.5 cursor-pointer rounded-full hover:border-white/50 transition-colors"
+                    className="text-sm text-white/70 border border-white/20 px-2 py-0.5 cursor-pointer rounded-full hover:border-white/50 transition-colors"
                   >
                     {t("projects.resetZoom", language)}
                   </button>
