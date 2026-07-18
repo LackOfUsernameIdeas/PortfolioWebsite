@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { LanguageProvider } from "@/lib/i18n/language-context";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CursorGlow } from "@/components/cursor-glow";
 import "./globals.css";
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const geistSans = Geist({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   title: "Kaloyan Kostadinov",
@@ -25,7 +24,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-background" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`bg-background ${geistSans.className}`}
+      suppressHydrationWarning
+    >
       <body className="font-sans antialiased bg-background text-foreground">
         <ThemeProvider
           attribute="class"
