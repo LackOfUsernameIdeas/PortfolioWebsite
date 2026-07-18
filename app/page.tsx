@@ -176,6 +176,8 @@ function HeroSection() {
           src="/hero-photo.png"
           alt="Kaloyan Kostadinov"
           className="absolute top-[44%] right-[3%] -translate-y-1/2 h-[92%] w-auto object-contain"
+          decoding="async"
+          fetchPriority="high"
         />
       </div>
 
@@ -744,6 +746,7 @@ function AchievementModal({
                 className={`w-full h-full object-contain transition-opacity duration-150 ${
                   docLoading ? "opacity-40" : "opacity-100"
                 }`}
+                decoding="async"
                 onLoad={() => setDocLoading(false)}
                 onError={() => setDocLoading(false)}
               />
@@ -794,6 +797,7 @@ function AchievementModal({
                 className={`w-full h-full object-contain transition-opacity duration-150 ${
                   docLoading ? "opacity-40" : "opacity-100"
                 }`}
+                decoding="async"
                 onLoad={() => setDocLoading(false)}
                 onError={() => setDocLoading(false)}
               />
@@ -873,6 +877,7 @@ function AchievementModal({
               className={`w-full h-full object-contain select-none transition-opacity duration-150 ${
                 docLoading ? "opacity-40" : "opacity-100"
               }`}
+              decoding="async"
               style={{
                 transform: `scale(${zoom}) translate(${pan.x / zoom}px, ${pan.y / zoom}px)`,
                 transformOrigin: "center",
@@ -1821,7 +1826,7 @@ function ProjectModal({
     });
     ro.observe(el);
 
-    el.addEventListener("scroll", onScroll);
+    el.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
       el.removeEventListener("scroll", onScroll);
@@ -1912,6 +1917,7 @@ function ProjectModal({
                   className={`w-full h-full object-cover cursor-zoom-in transition-opacity duration-150 ${
                     imgLoading ? "opacity-40" : "opacity-100"
                   }`}
+                  decoding="async"
                   onLoad={() => setImgLoading(false)}
                   onError={() => setImgLoading(false)}
                   onClick={(e) => {
@@ -2219,6 +2225,7 @@ function ProjectModal({
                   transformOrigin: "center",
                   transition: dragging ? "none" : "transform 0.1s"
                 }}
+                decoding="async"
                 onLoad={() => setImgLoading(false)}
                 onError={() => setImgLoading(false)}
                 draggable={false}
@@ -2323,6 +2330,8 @@ function ProjectsSection() {
                       src={PROJECT_CARD_IMAGES[project.id]}
                       alt={project.title}
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                   ) : (
                     <div className="flex flex-col items-center gap-2 px-4 text-center h-full justify-center">
