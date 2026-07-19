@@ -368,10 +368,6 @@ export function ProjectModal({
         )}
       </ModalShell>
 
-      {/* ── Lightbox (rendered as a sibling of the modal card, not nested
-         inside it - the card has a transform-based enter animation, which
-         would create a containing block and trap this position:fixed
-         overlay instead of letting it cover the full viewport) ── */}
       {lightboxOpen && images.length > 0 && (
         <Lightbox
           src={images[imgIdx].src}

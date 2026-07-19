@@ -38,8 +38,6 @@ export function AchievementModal({
     setDocLoading(true);
   }, [activeDoc?.path, achievement.fallbackImage]);
 
-  // The image currently viewable in the lightbox - either the active image
-  // doc (e.g. a certificate) or the achievement's fallback image
   const isImageDoc = activeDoc?.type === "image";
   const lightboxSrc = isImageDoc ? activeDoc?.path : achievement.fallbackImage;
   const lightboxCaption = isImageDoc
@@ -88,7 +86,7 @@ export function AchievementModal({
             )}
           </div>
 
-          {/* Badges, doc tabs, links - with rank floating in the empty space to the right */}
+          {/* Badges, doc tabs, links and rank */}
           <div className="relative pr-20 sm:pr-24">
             {/* Badges */}
             <div className="flex flex-wrap gap-2 mt-4">
@@ -242,11 +240,6 @@ export function AchievementModal({
         </div>
       </ModalShell>
 
-      {/* ── Image lightbox (certificate doc or fallback image), rendered as a
-         sibling of the modal card rather than nested inside it - the card
-         has a transform-based enter animation, which would create a
-         containing block and trap this position:fixed overlay instead of
-         letting it cover the full viewport ── */}
       {lightboxOpen && lightboxSrc && (
         <Lightbox
           src={lightboxSrc}
