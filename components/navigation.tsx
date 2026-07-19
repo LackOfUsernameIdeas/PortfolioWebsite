@@ -55,7 +55,7 @@ export function Navigation() {
         scrolled ? "scale-95" : ""
       }`}
     >
-      <nav className="hidden md:flex items-center gap-1 bg-card/90 backdrop-blur-md rounded-full px-2 py-2 shadow-lg border border-border">
+      <nav className="hidden md:flex items-center gap-1 bg-card/90 backdrop-blur-md rounded-full whitespace-nowrap px-2 py-2 shadow-lg border border-border">
         {navLinks.map((link) => (
           <button
             key={link.href}
