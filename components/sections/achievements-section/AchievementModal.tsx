@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { ModalShell } from "@/components/ui/modal-shell";
 import { Lightbox } from "@/components/ui/lightbox";
 import { SpinnerOverlay } from "@/components/ui/spinner-overlay";
-import { type Achievement } from "@/lib/projects-data";
+import { type Achievement } from "@/lib/achievements-data";
 import { useLanguage, localize, Localized } from "@/lib/i18n/language-context";
 import { t } from "@/lib/i18n/ui-translations";
 

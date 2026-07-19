@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { achievements, type Achievement } from "@/lib/projects-data";
+import { achievements, type Achievement } from "@/lib/achievements-data";
 import { useLanguage, localize } from "@/lib/i18n/language-context";
 import { t } from "@/lib/i18n/ui-translations";
 import { AchievementModal } from "./AchievementModal";
