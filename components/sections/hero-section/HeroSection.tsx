@@ -1,0 +1,101 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { t } from "@/lib/i18n/ui-translations";
+import { Particles } from "@/components/particles";
+import { HeroPhotoPanel } from "./HeroPhotoPanel";
+import { HeroSocialLinks } from "./HeroSocialLinks";
+
+export function HeroSection() {
+  const [mounted, setMounted] = useState(false);
+  const { language } = useLanguage();
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  const a = mounted;
+
+  return (
+    <section
+      id="home"
+      className="relative h-screen w-full overflow-hidden flex flex-col justify-center px-6 sm:px-12 lg:px-20"
+    >
+      {/* Base gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/10" />
+
+      {/* Red glow blobs */}
+      <div
+        className="blob absolute -top-32 -right-100 w-[600px] h-[600px] rounded-full opacity-[0.12]"
+        style={{ background: "#FF001A" }}
+      />
+      <div
+        className="blob absolute bottom-0 -left-40 w-[400px] h-[400px] rounded-full opacity-[0.06]"
+        style={{ background: "#FF001A", animationDelay: "4s" }}
+      />
+
+      <Particles />
+
+      <HeroPhotoPanel mounted={mounted} />
+
+      {/* ── Left: text content ── */}
+      <div className="relative z-10 max-w-xl">
+        <h1
+          className={`${a ? "hero-1" : "opacity-0"} text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]`}
+        >
+          {language === "bg" ? "Калоян" : "Kaloyan"}
+          <br />
+          <span className="text-primary glow-gradient-text glow-text">
+            {language === "bg" ? "Костадинов" : "Kostadinov"}
+          </span>
+        </h1>
+        <p
+          className={`${a ? "hero-2" : "opacity-0"} mt-6 text-lg sm:text-xl text-muted-foreground max-w-md leading-relaxed`}
+        >
+          {t("hero.subtitle", language)}
+        </p>
+        <div
+          className={`${a ? "hero-3" : "opacity-0"} flex items-center gap-4 mt-10`}
+        >
+          <button
+            onClick={() =>
+              document
+                .getElementById("projects")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="shine-sweep glow-pulse flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3 rounded-full font-semibold cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300"
+          >
+            {t("hero.viewProjects", language)}{" "}
+            <ArrowRight className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() =>
+              document
+                .getElementById("contact")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="shine-sweep shine-sweep-tint flex items-center gap-2 border border-border px-7 py-3 rounded-full font-semibold cursor-pointer hover:bg-secondary transition-all duration-300"
+          >
+            {t("hero.contactMe", language)}
+          </button>
+        </div>
+        <HeroSocialLinks mounted={mounted} />
+      </div>
+
+      {/* Scroll indicator */}
+      <div
+        className={`${a ? "hero-scroll" : "opacity-0"} absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none`}
+      >
+        <div className="w-6 h-10 border-2 border-foreground/30 rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-bounce" />
+        </div>
+        <span className="text-xs text-muted-foreground tracking-widest">
+          {t("hero.scroll", language)}
+        </span>
+      </div>
+    </section>
+  );
+}
