@@ -5,7 +5,6 @@ import { ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { achievements, type Achievement } from "@/lib/projects-data";
-import { getPlaceColor } from "@/lib/achievement-style";
 import { useLanguage, localize } from "@/lib/i18n/language-context";
 import { t } from "@/lib/i18n/ui-translations";
 import { AchievementModal } from "./AchievementModal";
@@ -38,7 +37,12 @@ export function AchievementsGrid() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {items.map((a, i) => {
                   const placeNum = a.place ? a.place.replace(/\D/g, "") : null;
-                  const placeColor = getPlaceColor(a.place);
+                  const placeColor =
+                    a.place === "1st"
+                      ? "text-yellow-500"
+                      : a.place === "2nd"
+                        ? "text-slate-400"
+                        : "text-primary";
                   const accentColor =
                     a.place === "1st"
                       ? "bg-yellow-500"

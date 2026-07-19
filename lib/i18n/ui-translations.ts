@@ -151,7 +151,6 @@ export const uiTranslations = {
 
 export function t(path: string, lang: Language): string {
   const segments = path.split(".");
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let node: any = uiTranslations;
   for (const seg of segments) {
     node = node?.[seg];

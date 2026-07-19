@@ -1,12 +1,5 @@
 import type { Localized } from "./i18n/language-context";
 
-/**
- * Per-project gallery images shown in the project detail modal, plus a
- * single cover image used on the project card. Kept alongside the rest of
- * the project data in lib/ instead of inlined in the projects-section
- * component, matching how achievements-data.ts / projects-data.ts already
- * separate content from presentation.
- */
 export const PROJECT_CARD_IMAGES: Record<string, string> = {
   mobilis: "/mobilis/mobilis.png",
   mindreel: "/mindreel/mindreel.png",
@@ -14,7 +7,10 @@ export const PROJECT_CARD_IMAGES: Record<string, string> = {
   tikfluence: "/tikfluence/tikfluence.png"
 };
 
-export const PROJECT_IMAGES: Record<string, { src: string; caption: Localized }[]> = {
+export const PROJECT_IMAGES: Record<
+  string,
+  { src: string; caption: Localized }[]
+> = {
   mobilis: [
     {
       src: "/mobilis/mobilis.png",

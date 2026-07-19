@@ -1,11 +1,5 @@
 import { useCallback, useState } from "react";
 
-/**
- * Shared zoom / pan / drag-to-pan behavior for the fullscreen image lightboxes.
- * Previously this logic (state + resetZoom + clampPan + handleWheel + mouse
- * drag handlers) was duplicated almost verbatim between the project modal and
- * the achievement modal - it now lives in one place.
- */
 export function useZoomPanDrag() {
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
