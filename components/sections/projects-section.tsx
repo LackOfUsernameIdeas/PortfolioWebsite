@@ -20,7 +20,6 @@ import { renderFormatted } from "@/lib/text-format";
 import { useLanguage, localize } from "@/lib/i18n/language-context";
 import { t } from "@/lib/i18n/ui-translations";
 
-// ─── Project Modal ─────────────────────────────────────────────────────────
 function ProjectModal({
   project,
   onClose
@@ -403,7 +402,6 @@ function ProjectModal({
   );
 }
 
-// ─── Projects ──────────────────────────────────────────────────────────────
 export function ProjectsSection() {
   const [selected, setSelected] = useState<Project | null>(null);
   const { language } = useLanguage();
