@@ -85,8 +85,7 @@ export function LanguageSplash() {
 
       <Particles count={14} />
 
-      {/* Lightweight loader shown only while we're checking localStorage or
-          quietly closing for a returning visitor - never the flag picker. */}
+      {/* Lightweight loader shown only while checking localStorage */}
       {!showPicker && (
         <div
           className={`relative z-10 flex flex-col items-center gap-4 transition-opacity duration-300 ${

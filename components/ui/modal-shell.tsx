@@ -6,19 +6,11 @@ import { IconCircleButton } from "@/components/ui/icon-circle-button";
 
 export interface ModalShellProps {
   onClose: () => void;
-  /** Called on Escape instead of onClose, e.g. to close a nested lightbox first */
   onEscape?: () => void;
-  /** Tailwind max-width class for the card, e.g. "sm:max-w-2xl" */
   maxWidthClassName?: string;
   children: ReactNode;
 }
 
-/**
- * The bottom-sheet-on-mobile / centered-card-on-desktop modal chrome shared
- * by the project detail modal and the achievement detail modal: backdrop,
- * rounded card, top accent bar, close button, Escape-to-close, and
- * body-scroll lock while open.
- */
 export function ModalShell({
   onClose,
   onEscape,

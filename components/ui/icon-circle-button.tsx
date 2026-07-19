@@ -1,12 +1,5 @@
 import { type ButtonHTMLAttributes } from "react";
 
-/**
- * The four recurring circular icon-button styles used across the modals and
- * lightboxes (close button on a card, close button on a dark backdrop, and
- * prev/next nav arrows in two sizes). Consolidating these removes several
- * near-identical className strings that were repeated across both the
- * project and achievement sections.
- */
 const VARIANTS = {
   modalClose:
     "w-10 h-10 rounded-full bg-secondary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors",
@@ -22,6 +15,8 @@ export function IconCircleButton({
   variant,
   className = "",
   ...props
-}: { variant: keyof typeof VARIANTS } & ButtonHTMLAttributes<HTMLButtonElement>) {
+}: {
+  variant: keyof typeof VARIANTS;
+} & ButtonHTMLAttributes<HTMLButtonElement>) {
   return <button {...props} className={`${VARIANTS[variant]} ${className}`} />;
 }

@@ -12,7 +12,6 @@ export interface LightboxProps {
   alt: string;
   caption?: string;
   onClose: () => void;
-  /** Multi-image navigation - omit for a single-image lightbox (e.g. achievements) */
   onPrev?: () => void;
   onNext?: () => void;
   dotsCount?: number;
@@ -24,12 +23,6 @@ export interface LightboxProps {
   resetZoomLabel: string;
 }
 
-/**
- * Fullscreen backdrop with a zoomable/pannable image (or a plain video
- * player), optional prev/next navigation and position dots, and a caption.
- * This was previously duplicated almost line-for-line between the project
- * gallery modal and the achievement certificate modal.
- */
 export function Lightbox({
   src,
   isVideo = false,
@@ -62,7 +55,6 @@ export function Lightbox({
   useEffect(() => {
     setLoading(true);
     resetZoom();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src]);
 
   const showNav = !!dotsCount && dotsCount > 1;

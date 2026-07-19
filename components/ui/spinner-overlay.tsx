@@ -1,8 +1,3 @@
-/**
- * Centered loading spinner, absolutely positioned over its parent.
- * "light" is for use over light/card surfaces (project cards, doc viewers).
- * "dark" is for use over the black lightbox backdrop.
- */
 export function SpinnerOverlay({
   variant = "light"
 }: {

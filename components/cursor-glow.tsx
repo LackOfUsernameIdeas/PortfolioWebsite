@@ -2,12 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-/**
- * Fixed, full-viewport radial-gradient spotlight that follows the pointer.
- * Purely CSS-driven (via custom properties) so it costs ~nothing to run.
- * Automatically disables itself on touch-only devices and for users who
- * prefer reduced motion.
- */
 export function CursorGlow() {
   const ref = useRef<HTMLDivElement>(null);
 
