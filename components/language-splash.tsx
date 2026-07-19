@@ -107,7 +107,7 @@ export function LanguageSplash() {
       {showPicker && (
         <div className="relative z-10 flex flex-col items-center px-6 text-center">
           <h1
-            className={`${a ? "hero-1" : "opacity-0"} font-bold tracking-tight leading-[1.05] text-[clamp(1.25rem,5vw,3.75rem)]`}
+            className={`${a ? "hero-1" : "opacity-0"} font-bold tracking-tight leading-[1.05] text-2xl sm:text-3xl md:text-4xl lg:text-5xl`}
           >
             <span className="block whitespace-nowrap">
               {uiTranslations.splash.welcome.en}
@@ -118,7 +118,7 @@ export function LanguageSplash() {
           </h1>
 
           <p
-            className={`${a ? "hero-2" : "opacity-0"} mt-6 text-muted-foreground leading-relaxed text-[clamp(0.8rem,2.4vw,1.125rem)]`}
+            className={`${a ? "hero-2" : "opacity-0"} mt-6 text-muted-foreground leading-relaxed text-md sm:text-lg lg:text-xl`}
           >
             <span className="block whitespace-nowrap">
               {uiTranslations.splash.prompt.en}
