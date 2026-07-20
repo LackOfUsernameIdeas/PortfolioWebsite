@@ -79,7 +79,7 @@ export function ProjectsSection() {
             </div>
           ))}
           <div
-            className="reveal group relative bg-card rounded-2xl overflow-hidden border-2 border-dashed border-border hover:border-primary transition-colors flex items-center justify-center aspect-[4/3] sm:min-h-[280px] cursor-pointer"
+            className="reveal group relative bg-card rounded-2xl overflow-hidden border-2 border-dashed border-border hover:border-primary transition-colors flex items-center justify-center aspect-[4/3] sm:aspect-auto sm:h-[280px] cursor-pointer"
             onClick={() =>
               document
                 .getElementById("contact")
