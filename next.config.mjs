@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+const devIP = process.env.NEXT_PUBLIC_DEV_IP;
+
 const nextConfig = {
   typescript: {
     ignoreBuildErrors: true
@@ -6,7 +9,7 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  allowedDevOrigins: ["192.168.50.54"]
+  allowedDevOrigins: devIP ? [devIP] : []
 };
 
 export default nextConfig;
