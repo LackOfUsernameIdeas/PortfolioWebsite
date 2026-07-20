@@ -44,7 +44,7 @@ export function HeroSection() {
       {/* ── Left: text content ── */}
       <div className="relative z-10 max-w-xl">
         <h1
-          className={`${a ? "hero-1" : "opacity-0"} text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]`}
+          className={`${a ? "hero-1" : "opacity-0"} text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]`}
         >
           {language === "bg" ? "Калоян" : "Kaloyan"}
           <br />
