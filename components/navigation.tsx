@@ -37,7 +37,7 @@ export function Navigation() {
           if (entry.isIntersecting) setActive(entry.target.id);
         }
       },
-      { threshold: 0.4 }
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
     );
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
