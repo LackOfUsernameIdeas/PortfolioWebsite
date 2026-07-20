@@ -7,16 +7,16 @@ interface HeroPhotoPanelProps {
 export function HeroPhotoPanel({ mounted }: HeroPhotoPanelProps) {
   return (
     <div
-      className={`${mounted ? "hero-photo" : "opacity-0"} absolute right-0 top-0 h-full w-[55%] hidden lg:block pointer-events-none`}
+      className={`${mounted ? "hero-photo" : "opacity-0"} absolute right-0 top-20 h-[calc(100%-5rem)] w-[55%] hidden min-[1070px]:block pointer-events-none`}
     >
       <div
         className="absolute"
         style={{
-          top: "49%",
-          right: "9%",
+          top: "44%",
+          right: "8%",
           transform: "translateY(-50%)",
-          width: "420px",
-          height: "750px"
+          height: "80%",
+          aspectRatio: "420 / 750"
         }}
       >
         <div
@@ -77,7 +77,7 @@ export function HeroPhotoPanel({ mounted }: HeroPhotoPanelProps) {
         />
       </div>
       <div
-        className="glow-halo absolute top-[44%] right-[10%] -translate-y-1/2 w-[70%] h-[75%] rounded-full pointer-events-none"
+        className="glow-halo absolute top-[44%] right-[12%] -translate-y-1/2 w-[70%] h-[75%] rounded-full pointer-events-none"
         style={{
           background:
             "radial-gradient(circle, rgba(255,0,26,0.22) 0%, rgba(255,0,26,0.08) 45%, transparent 70%)",
@@ -87,7 +87,7 @@ export function HeroPhotoPanel({ mounted }: HeroPhotoPanelProps) {
       <img
         src="/hero-photo.png"
         alt="Kaloyan Kostadinov"
-        className="absolute top-[44%] right-[3%] -translate-y-1/2 h-[92%] w-auto object-contain"
+        className="absolute top-[40%] right-[3%] max-[1300px]:right-[0%] max-[1500px]:right-[1%] -translate-y-1/2 h-[92%] w-auto object-contain"
         decoding="async"
         fetchPriority="high"
       />
