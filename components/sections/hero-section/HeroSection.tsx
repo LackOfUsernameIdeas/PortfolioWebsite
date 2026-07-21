@@ -41,7 +41,7 @@ export function HeroSection() {
 
       <HeroPhotoPanel mounted={mounted} />
 
-      {/* ── Left: text content ── */}
+      {/* Left: text content */}
       <div className="relative z-10 max-w-xl">
         <h1
           className={`${a ? "hero-1" : "opacity-0"} text-6xl sm:text-7xl lg:text-8xl laptop-short:text-7xl! font-bold tracking-tight leading-[0.95]`}

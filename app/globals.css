@@ -106,7 +106,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ── Floating particles (pure CSS, no WebGL) ── */
+/* Floating particles */
 @keyframes float-up {
   0% {
     transform: translateY(0) scale(1);
@@ -139,7 +139,7 @@ html {
   will-change: transform, opacity;
 }
 
-/* ── Blob glow ── */
+/* Glowing blob shape */
 @keyframes blob {
   0%,
   100% {
@@ -154,7 +154,7 @@ html {
   will-change: border-radius;
 }
 
-/* ── Fade-in on scroll (via Intersection Observer set in page) ── */
+/* Fade-in on scroll, driven by an Intersection Observer in the page */
 .reveal {
   opacity: 0;
   transform: translateY(32px);
@@ -167,7 +167,7 @@ html {
   transform: none;
 }
 
-/* ── Hero entrance animations ── */
+/* Hero entrance animations */
 @keyframes heroFadeUp {
   from {
     opacity: 0;
@@ -206,11 +206,7 @@ html {
   animation: heroFadeIn 1s ease 1s both;
 }
 
-/* ══════════════════════════════════════════════════════════
-   GLOW EFFECTS
-   ══════════════════════════════════════════════════════════ */
-
-/* ── Pulsing text glow (headings, name, accent words) ── */
+/* Pulsing glow for headings, name, and accent text */
 @keyframes textGlowPulse {
   0%,
   100% {
@@ -230,7 +226,7 @@ html {
   animation: textGlowPulse 3.2s ease-in-out infinite;
 }
 
-/* ── Shimmering gradient text ── */
+/* Shimmering gradient text */
 @keyframes gradientShift {
   0% {
     background-position: 0% 50%;
@@ -258,11 +254,7 @@ html {
   animation: gradientShift 5s linear infinite;
 }
 
-/* ── Shine sweep: a light beam that sweeps across on hover.
-   Implemented purely as a background-image (not a positioned ::before),
-   so it can NEVER interfere with a button's own position/layout classes.
-   Works on any button color via --shine-color (defaults to white for
-   solid/dark buttons; add .shine-sweep-tint for light/outlined buttons) ── */
+/* Light beam that sweeps across on hover */
 .shine-sweep {
   background-image: linear-gradient(
     120deg,
@@ -282,7 +274,7 @@ html {
   --shine-color: color-mix(in oklch, var(--primary) 40%, transparent);
 }
 
-/* ── Breathing glow halo: opt-in only, independent of the shine sweep ── */
+/* Slow breathing glow */
 @keyframes glowPulseShadow {
   0%,
   100% {
@@ -306,7 +298,7 @@ html {
     0 6px 30px color-mix(in oklch, var(--primary) 45%, transparent);
 }
 
-/* ── Rotating conic-gradient ring (for framed photos / avatars) ── */
+/* Spinning ring for framed photos and avatars */
 @keyframes ringSpin {
   to {
     transform: rotate(360deg);
@@ -334,7 +326,7 @@ html {
   z-index: -1;
 }
 
-/* ── Glowing card border on hover ── */
+/* Card border glows on hover */
 .glow-card {
   transition:
     box-shadow 0.35s ease,
@@ -349,7 +341,7 @@ html {
     0 0 36px color-mix(in oklch, var(--primary) 22%, transparent);
 }
 
-/* ── Glow dot / status pulse (nav active, badges) ── */
+/* Pulsing dot for active nav items and badges */
 @keyframes glowDotPulse {
   0%,
   100% {
@@ -363,7 +355,7 @@ html {
   animation: glowDotPulse 1.8s ease-out infinite;
 }
 
-/* ── Icon links: soft glow halo on hover ── */
+/* Soft glow halo on icon links when hovered */
 .glow-icon {
   transition:
     box-shadow 0.3s ease,
@@ -375,7 +367,7 @@ html {
   box-shadow: 0 0 16px 2px color-mix(in oklch, var(--primary) 55%, transparent);
 }
 
-/* ── Cursor-follow spotlight (fixed, sits behind content) ── */
+/* Spotlight that follows the cursor, fixed behind content */
 .cursor-spotlight {
   position: fixed;
   inset: 0;
@@ -389,7 +381,7 @@ html {
   transition: background-position 0.05s linear;
 }
 
-/* ── Section heading underline glow accent ── */
+/* Glowing underline under section headings */
 .glow-underline {
   position: relative;
   display: inline-block;
@@ -406,7 +398,7 @@ html {
   box-shadow: 0 0 12px 2px color-mix(in oklch, var(--primary) 65%, transparent);
 }
 
-/* ── Pulsing radial glow halo (for divs/blobs behind photos, icons) ── */
+/* Pulsing halo behind photos, icons, etc. */
 @keyframes haloPulse {
   0%,
   100% {
@@ -422,14 +414,14 @@ html {
   animation: haloPulse 3.6s ease-in-out infinite;
 }
 
-/* ── Stronger, glowier floating particles ── */
+/* Stronger glow for particles */
 .particle {
   box-shadow:
     0 0 6px 1px rgba(255, 0, 26, 0.7),
     0 0 14px 3px rgba(255, 0, 26, 0.35);
 }
 
-/* ── Extra glow blob intensity boost on hover-reveal sections ── */
+/* Extra blur for blobs in hover-reveal sections */
 .blob-glow {
   filter: blur(10px);
 }

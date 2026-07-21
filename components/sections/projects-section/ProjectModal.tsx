@@ -97,7 +97,7 @@ export function ProjectModal({
   return (
     <>
       <ModalShell onClose={onClose} maxWidthClassName="sm:max-w-2xl">
-        {/* ── Scrollable body ── */}
+        {/* Scrollable body */}
         <div ref={scrollRef} className="overflow-y-auto flex flex-col">
           {/* Image gallery */}
           {images.length > 0 && (

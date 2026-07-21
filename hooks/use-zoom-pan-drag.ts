@@ -60,7 +60,7 @@ export function useZoomPanDrag() {
 
   const stopDragging = useCallback(() => setDragging(false), []);
 
-  // ── Touch (mobile) ──
+  // Touch (mobile)
   const pinchStateRef = useRef<{
     startDist: number;
     startZoom: number;
