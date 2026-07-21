@@ -181,7 +181,7 @@ export function ProjectModal({
             </div>
           )}
           {images.length > 1 && (
-            <div className="flex justify-center gap-1.5 pt-3">
+            <div className="flex flex-wrap justify-center gap-1.5 pt-3 px-6 max-w-full">
               {images.map((_, i) => (
                 <button
                   key={i}

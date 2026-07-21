@@ -174,7 +174,7 @@ export function Lightbox({
           </div>
         )}
         {showNav && (
-          <div className="flex gap-1.5">
+          <div className="flex flex-wrap justify-center gap-1.5 max-w-full">
             {Array.from({ length: dotsCount! }).map((_, i) => (
               <button
                 key={i}
