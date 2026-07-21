@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
+import { useEffect, type ReactNode, type Ref } from "react";
 import { X } from "lucide-react";
 import { IconCircleButton } from "@/components/ui/icon-circle-button";
 
@@ -9,13 +9,15 @@ export interface ModalShellProps {
   onEscape?: () => void;
   maxWidthClassName?: string;
   children: ReactNode;
+  scrollContainerRef?: Ref<HTMLDivElement>;
 }
 
 export function ModalShell({
   onClose,
   onEscape,
   maxWidthClassName = "sm:max-w-2xl",
-  children
+  children,
+  scrollContainerRef
 }: ModalShellProps) {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -47,7 +49,12 @@ export function ModalShell({
         >
           <X className="w-6 h-6" />
         </IconCircleButton>
-        <div className="flex-1 min-h-0 overflow-y-auto">{children}</div>
+        <div
+          ref={scrollContainerRef}
+          className="flex-1 min-h-0 overflow-y-auto"
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { uiTranslations } from "@/lib/i18n/ui-translations";
 import { UKFlag, BulgariaFlag } from "@/components/language-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Particles } from "@/components/particles";
+import { GlowBlobs } from "@/components/glow-blobs";
 
 const CHOSEN_KEY = "portfolio-language-chosen";
 
@@ -74,14 +75,7 @@ export function LanguageSplash() {
       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/10" />
 
       {/* Red glow blobs, matches hero */}
-      <div
-        className="blob absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full opacity-[0.12]"
-        style={{ background: "#FF001A" }}
-      />
-      <div
-        className="blob absolute bottom-0 -left-40 w-[400px] h-[400px] rounded-full opacity-[0.06]"
-        style={{ background: "#FF001A", animationDelay: "4s" }}
-      />
+      <GlowBlobs />
 
       <Particles count={14} />
 

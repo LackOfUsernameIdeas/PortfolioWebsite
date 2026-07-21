@@ -6,6 +6,7 @@ import { LanguageToggle } from "@/components/language-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { t } from "@/lib/i18n/ui-translations";
+import { scrollToSection } from "@/lib/scroll-to-section";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -44,8 +45,7 @@ export function Navigation() {
   }, []);
 
   const scrollTo = (href: string) => {
-    const id = href.replace("#", "");
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    scrollToSection(href.replace("#", ""));
     setOpen(false);
   };
 

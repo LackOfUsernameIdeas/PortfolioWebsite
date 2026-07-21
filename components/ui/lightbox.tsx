@@ -4,6 +4,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { X } from "lucide-react";
 import { IconCircleButton } from "@/components/ui/icon-circle-button";
 import { SpinnerOverlay } from "@/components/ui/spinner-overlay";
+import { DotsNav } from "@/components/ui/dots-nav";
 import { useZoomPanDrag } from "@/hooks/use-zoom-pan-drag";
 
 export interface LightboxProps {
@@ -290,20 +291,13 @@ export function Lightbox({
           </div>
         )}
         {showNav && (
-          <div className="flex flex-wrap justify-center gap-1.5 max-w-full">
-            {Array.from({ length: dotsCount! }).map((_, i) => (
-              <button
-                key={i}
-                onClick={() => onDotClick?.(i)}
-                disabled={navDisabled}
-                className={`w-2 h-2 rounded-full cursor-pointer transition-all duration-150 hover:scale-150 active:scale-125 disabled:cursor-not-allowed disabled:hover:scale-100 ${
-                  i === activeIndex
-                    ? "bg-primary"
-                    : "bg-white/40 hover:bg-white/70"
-                }`}
-              />
-            ))}
-          </div>
+          <DotsNav
+            count={dotsCount!}
+            activeIndex={activeIndex}
+            onDotClick={onDotClick}
+            disabled={navDisabled}
+            theme="overlay"
+          />
         )}
         {caption && (
           <p className="text-white/70 text-sm text-center leading-relaxed">

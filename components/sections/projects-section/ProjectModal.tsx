@@ -13,7 +13,8 @@ import { Badge } from "@/components/ui/badge";
 import { ModalShell } from "@/components/ui/modal-shell";
 import { Lightbox } from "@/components/ui/lightbox";
 import { IconCircleButton } from "@/components/ui/icon-circle-button";
-import { SpinnerOverlay } from "@/components/ui/spinner-overlay";
+import { DotsNav } from "@/components/ui/dots-nav";
+import { ZoomableMedia } from "@/components/ui/zoomable-media";
 import { type Project } from "@/lib/projects-data";
 import { PROJECT_IMAGES } from "@/lib/project-images-data";
 import { renderFormatted } from "@/lib/text-format";
@@ -96,9 +97,13 @@ export function ProjectModal({
 
   return (
     <>
-      <ModalShell onClose={onClose} maxWidthClassName="sm:max-w-2xl">
+      <ModalShell
+        onClose={onClose}
+        maxWidthClassName="sm:max-w-2xl"
+        scrollContainerRef={scrollRef}
+      >
         {/* Scrollable body */}
-        <div ref={scrollRef} className="overflow-y-auto flex flex-col">
+        <div className="flex flex-col">
           {/* Image gallery */}
           {images.length > 0 && (
             <div className="relative w-full max-h-[55vh] aspect-video bg-black/40 shrink-0 select-none">
@@ -134,29 +139,19 @@ export function ProjectModal({
                   </div>
                 </div>
               ) : (
-                <img
+                <ZoomableMedia
                   src={images[imgIdx].src}
                   alt={localize(images[imgIdx].caption, language)}
-                  className={`w-full h-full object-cover cursor-zoom-in transition-opacity duration-150 ${
-                    imgLoading ? "opacity-40" : "opacity-100"
-                  }`}
-                  decoding="async"
+                  caption={localize(images[imgIdx].caption, language)}
+                  loading={imgLoading}
                   onLoad={() => setImgLoading(false)}
                   onError={() => setImgLoading(false)}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setLightboxOpen(true);
-                  }}
+                  onExpand={() => setLightboxOpen(true)}
+                  objectFit="cover"
+                  captionClamp={1}
+                  captionPointerEventsNone={false}
                 />
               )}
-              {/* Loading spinner overlay */}
-              {imgLoading && !isVideo(images[imgIdx].src) && <SpinnerOverlay />}
-              {/* Caption */}
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3">
-                <p className="text-white text-xs line-clamp-1">
-                  {localize(images[imgIdx].caption, language)}
-                </p>
-              </div>
               {/* Prev / Next */}
               {images.length > 1 && (
                 <>
@@ -183,20 +178,14 @@ export function ProjectModal({
             </div>
           )}
           {images.length > 1 && (
-            <div className="flex flex-wrap justify-center gap-1.5 pt-3 px-6 max-w-full">
-              {images.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => goTo(i)}
-                  disabled={imgLoading}
-                  className={`w-2 h-2 rounded-full cursor-pointer transition-all duration-150 hover:scale-150 active:scale-125 disabled:cursor-not-allowed disabled:hover:scale-100 ${
-                    i === imgIdx
-                      ? "bg-primary"
-                      : "bg-muted-foreground/30 hover:bg-muted-foreground/60"
-                  }`}
-                />
-              ))}
-            </div>
+            <DotsNav
+              count={images.length}
+              activeIndex={imgIdx}
+              onDotClick={goTo}
+              disabled={imgLoading}
+              theme="card"
+              className="pt-3 px-6"
+            />
           )}
           <div className="px-6 pb-6 pt-2 sm:px-8 sm:pb-8 flex flex-col gap-4">
             <div className="flex items-center justify-between mt-1">
@@ -365,8 +354,8 @@ export function ProjectModal({
         </div>
         {isScrollable && !hasScrolled && (
           <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-card to-transparent pointer-events-none flex items-end justify-center pb-2">
-            <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center animate-bounce">
-              <ArrowRight className="w-4 h-4 rotate-90 text-foreground" />
+            <div className="w-10 h-10 rounded-full bg-primary/80 shadow-lg shadow-primary/30 flex items-center justify-center animate-bounce">
+              <ArrowRight className="w-4 h-4 rotate-90 text-primary-foreground" />
             </div>
           </div>
         )}

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { ModalShell } from "@/components/ui/modal-shell";
 import { Lightbox } from "@/components/ui/lightbox";
 import { SpinnerOverlay } from "@/components/ui/spinner-overlay";
+import { ZoomableMedia } from "@/components/ui/zoomable-media";
 import { type Achievement } from "@/lib/achievements-data";
 import { useLanguage, localize, Localized } from "@/lib/i18n/language-context";
 import { t } from "@/lib/i18n/ui-translations";
@@ -165,33 +166,18 @@ export function AchievementModal({
         {/* PDF viewer, certificate image, or fallback image */}
         <div className="flex-1 min-h-0 px-6 pb-6 sm:px-8 sm:pb-8">
           {activeDoc && isImageDoc ? (
-            <div
-              className="w-full h-full max-h-[55vh] rounded-xl overflow-hidden border border-border relative cursor-zoom-in group/img"
-              onClick={() => setLightboxOpen(true)}
-            >
-              <img
+            <div className="w-full h-full max-h-[55vh] rounded-xl overflow-hidden border border-border relative group/img">
+              <ZoomableMedia
                 src={activeDoc.path}
                 alt={`${localize(achievement.title, language)} – ${localize(activeDoc.label, language)}`}
-                className={`w-full h-full object-contain transition-opacity duration-150 ${
-                  docLoading ? "opacity-40" : "opacity-100"
-                }`}
-                decoding="async"
+                caption={
+                  activeDoc.caption ? localize(activeDoc.caption, language) : undefined
+                }
+                loading={docLoading}
                 onLoad={() => setDocLoading(false)}
-                onError={() => setDocLoading(false)}
+                onExpand={() => setLightboxOpen(true)}
+                clickToExpandLabel={t("achievements.clickToExpand", language)}
               />
-              {docLoading && <SpinnerOverlay />}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-200">
-                <div className="bg-black/60 text-white text-base px-6 py-3 rounded-full font-semibold">
-                  {t("achievements.clickToExpand", language)}
-                </div>
-              </div>
-              {activeDoc.caption && (
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3 pointer-events-none">
-                  <p className="text-white text-xs line-clamp-2">
-                    {localize(activeDoc.caption, language)}
-                  </p>
-                </div>
-              )}
             </div>
           ) : activeDoc ? (
             <div className="relative w-full h-full min-h-[55vh] rounded-xl overflow-hidden border border-border">
@@ -208,33 +194,20 @@ export function AchievementModal({
               {docLoading && <SpinnerOverlay />}
             </div>
           ) : achievement.fallbackImage ? (
-            <div
-              className="w-full h-full max-h-[55vh] rounded-xl overflow-hidden border border-border relative cursor-zoom-in group/img"
-              onClick={() => setLightboxOpen(true)}
-            >
-              <img
+            <div className="w-full h-full max-h-[55vh] rounded-xl overflow-hidden border border-border relative group/img">
+              <ZoomableMedia
                 src={achievement.fallbackImage}
                 alt={altText}
-                className={`w-full h-full object-contain transition-opacity duration-150 ${
-                  docLoading ? "opacity-40" : "opacity-100"
-                }`}
-                decoding="async"
+                caption={
+                  achievement.fallbackImageCaption
+                    ? localize(achievement.fallbackImageCaption, language)
+                    : undefined
+                }
+                loading={docLoading}
                 onLoad={() => setDocLoading(false)}
-                onError={() => setDocLoading(false)}
+                onExpand={() => setLightboxOpen(true)}
+                clickToExpandLabel={t("achievements.clickToExpand", language)}
               />
-              {docLoading && <SpinnerOverlay />}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-200">
-                <div className="bg-black/60 text-white text-base px-6 py-3 rounded-full font-semibold">
-                  {t("achievements.clickToExpand", language)}
-                </div>
-              </div>
-              {achievement.fallbackImageCaption && (
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3 pointer-events-none">
-                  <p className="text-white text-xs line-clamp-2">
-                    {localize(achievement.fallbackImageCaption, language)}
-                  </p>
-                </div>
-              )}
             </div>
           ) : null}
         </div>

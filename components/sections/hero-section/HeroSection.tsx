@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { t } from "@/lib/i18n/ui-translations";
+import { scrollToSection } from "@/lib/scroll-to-section";
 import { Particles } from "@/components/particles";
+import { GlowBlobs } from "@/components/glow-blobs";
 import { HeroPhotoPanel } from "./HeroPhotoPanel";
 import { HeroSocialLinks } from "./HeroSocialLinks";
 
@@ -28,14 +30,7 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/10" />
 
       {/* Red glow blobs */}
-      <div
-        className="blob absolute -top-32 -right-100 w-[600px] h-[600px] rounded-full opacity-[0.12]"
-        style={{ background: "#FF001A" }}
-      />
-      <div
-        className="blob absolute bottom-0 -left-40 w-[400px] h-[400px] rounded-full opacity-[0.06]"
-        style={{ background: "#FF001A", animationDelay: "4s" }}
-      />
+      <GlowBlobs primaryPositionClassName="-top-32 -right-100" />
 
       <Particles />
 
@@ -61,22 +56,14 @@ export function HeroSection() {
           className={`${a ? "hero-3" : "opacity-0"} flex items-center gap-4 mt-10 laptop-short:mt-6!`}
         >
           <button
-            onClick={() =>
-              document
-                .getElementById("projects")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+            onClick={() => scrollToSection("projects")}
             className="shine-sweep glow-pulse flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3 rounded-full font-semibold cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
             {t("hero.viewProjects", language)}{" "}
             <ArrowRight className="w-4 h-4" />
           </button>
           <button
-            onClick={() =>
-              document
-                .getElementById("contact")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+            onClick={() => scrollToSection("contact")}
             className="shine-sweep shine-sweep-tint flex items-center gap-2 border border-border px-7 py-3 rounded-full font-semibold cursor-pointer hover:bg-secondary transition-all duration-300"
           >
             {t("hero.contactMe", language)}

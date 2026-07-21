@@ -7,6 +7,7 @@ import { projects, type Project } from "@/lib/projects-data";
 import { PROJECT_CARD_IMAGES } from "@/lib/project-images-data";
 import { useLanguage, localize } from "@/lib/i18n/language-context";
 import { t } from "@/lib/i18n/ui-translations";
+import { scrollToSection } from "@/lib/scroll-to-section";
 import { ProjectModal } from "./ProjectModal";
 
 export function ProjectsSection() {
@@ -80,11 +81,7 @@ export function ProjectsSection() {
           ))}
           <div
             className="reveal group relative bg-card rounded-2xl overflow-hidden border-2 border-dashed border-border hover:border-primary transition-colors flex items-center justify-center aspect-[4/3] sm:aspect-auto sm:h-[280px] cursor-pointer"
-            onClick={() =>
-              document
-                .getElementById("contact")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+            onClick={() => scrollToSection("contact")}
           >
             <div className="text-center p-6">
               <div className="w-12 h-12 rounded-full border-2 border-foreground/30 flex items-center justify-center mx-auto mb-4 group-hover:border-primary group-hover:text-primary transition-colors">
