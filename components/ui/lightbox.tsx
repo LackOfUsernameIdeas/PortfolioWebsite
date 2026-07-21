@@ -147,10 +147,6 @@ export function Lightbox({
   return (
     <div
       className={`fixed inset-0 z-[200] flex flex-col lg:items-center lg:justify-center bg-black/90 backdrop-blur-sm lg:py-4${scrollable ? " overflow-y-auto" : ""}`}
-      onClick={(e) => {
-        e.stopPropagation();
-        onClose();
-      }}
     >
       <div ref={closeBtnWrapperRef} className="absolute top-4 right-4 z-10">
         <IconCircleButton
