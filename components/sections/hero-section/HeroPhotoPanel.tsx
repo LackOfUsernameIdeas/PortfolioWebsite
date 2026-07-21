@@ -87,7 +87,7 @@ export function HeroPhotoPanel({ mounted }: HeroPhotoPanelProps) {
       <img
         src="/hero-photo.png"
         alt="Kaloyan Kostadinov"
-        className="absolute top-[40%] right-[3%] max-[1300px]:right-[0%] max-[1500px]:right-[1%] -translate-y-1/2 h-[92%] w-auto object-contain"
+        className="absolute top-[40%] right-[3%] -translate-y-1/2 h-[92%] w-auto object-contain"
         decoding="async"
         fetchPriority="high"
       />
