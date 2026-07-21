@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { X } from "lucide-react";
 import { IconCircleButton } from "@/components/ui/icon-circle-button";
 import { SpinnerOverlay } from "@/components/ui/spinner-overlay";
@@ -51,11 +51,96 @@ export function Lightbox({
     stopDragging
   } = useZoomPanDrag();
 
-  // Reset loading + zoom/pan whenever the displayed media changes
+  // --- Close-button / media collision avoidance ---
+  // If the close (X) button would overlap the visible pixels of the
+  // image/video, push the media area down instead of moving the button.
+  const closeBtnWrapperRef = useRef<HTMLDivElement>(null);
+  const contentAreaRef = useRef<HTMLDivElement>(null);
+  const imageBoxRef = useRef<HTMLDivElement>(null);
+  const imgElRef = useRef<HTMLImageElement>(null);
+  const videoElRef = useRef<HTMLVideoElement>(null);
+  const [pushDown, setPushDown] = useState(0);
+  const pushDownRef = useRef(0);
+
+  // Returns the actual visible bounding box of the current media, in
+  // viewport coordinates, ignoring any push-down we've already applied
+  // (so repeated measurements don't compound on themselves).
+  const getVisibleMediaRect = useCallback(() => {
+    if (isVideo) {
+      // Videos auto-size to their own aspect ratio (no object-fit
+      // letterboxing), so the element's own box is the visible box.
+      const el = videoElRef.current;
+      if (!el) return null;
+      const rect = el.getBoundingClientRect();
+      return {
+        top: rect.top - pushDownRef.current,
+        left: rect.left,
+        right: rect.right,
+        bottom: rect.bottom - pushDownRef.current
+      };
+    }
+
+    // Images sit in a fixed-size box and use object-contain, so the
+    // rendered <img> box can be larger than the actual visible pixels.
+    // Compute the real contained rect from the natural aspect ratio.
+    const box = imageBoxRef.current;
+    const img = imgElRef.current;
+    if (!box || !img || !img.naturalWidth || !img.naturalHeight) return null;
+
+    const boxRect = box.getBoundingClientRect();
+    const boxTop = boxRect.top - pushDownRef.current;
+    const containerRatio = boxRect.width / boxRect.height;
+    const mediaRatio = img.naturalWidth / img.naturalHeight;
+
+    let width: number, height: number;
+    if (mediaRatio > containerRatio) {
+      width = boxRect.width;
+      height = width / mediaRatio;
+    } else {
+      height = boxRect.height;
+      width = height * mediaRatio;
+    }
+
+    const left = boxRect.left + (boxRect.width - width) / 2;
+    const top = boxTop + (boxRect.height - height) / 2;
+    return { top, left, right: left + width, bottom: top + height };
+  }, [isVideo]);
+
+  const recalcOverlap = useCallback(() => {
+    const btn = closeBtnWrapperRef.current;
+    const mediaRect = getVisibleMediaRect();
+    if (!btn || !mediaRect) return;
+
+    const btnRect = btn.getBoundingClientRect();
+    const gap = 12; // breathing room below the button
+    const requiredTop = btnRect.bottom + gap;
+
+    const horizontalOverlap =
+      mediaRect.right > btnRect.left && mediaRect.left < btnRect.right;
+
+    const needed =
+      horizontalOverlap && mediaRect.top < requiredTop
+        ? Math.ceil(requiredTop - mediaRect.top)
+        : 0;
+
+    if (needed !== pushDownRef.current) {
+      pushDownRef.current = needed;
+      setPushDown(needed);
+    }
+  }, [getVisibleMediaRect]);
+
+  // Reset loading + zoom/pan + push whenever the displayed media changes
   useEffect(() => {
     setLoading(true);
     resetZoom();
+    pushDownRef.current = 0;
+    setPushDown(0);
   }, [src]);
+
+  useEffect(() => {
+    window.addEventListener("resize", recalcOverlap);
+    return () => window.removeEventListener("resize", recalcOverlap);
+  }, [recalcOverlap]);
 
   const showNav = !!dotsCount && dotsCount > 1;
 
@@ -67,51 +152,62 @@ export function Lightbox({
         onClose();
       }}
     >
-      <IconCircleButton
-        variant="lightboxClose"
-        className="absolute top-4 right-4 z-10"
-        onClick={(e) => {
-          e.stopPropagation();
-          onClose();
-        }}
-      >
-        <X className="w-6 h-6" />
-      </IconCircleButton>
+      <div ref={closeBtnWrapperRef} className="absolute top-4 right-4 z-10">
+        <IconCircleButton
+          variant="lightboxClose"
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+        >
+          <X className="w-6 h-6" />
+        </IconCircleButton>
+      </div>
 
-      <div className="relative flex-1 min-h-[45vh] lg:flex-none lg:min-h-0 flex items-center justify-center w-full px-4 py-4">
-        <div className="relative flex items-center justify-center">
+      <div
+        ref={contentAreaRef}
+        className="relative flex-1 min-h-[45vh] lg:flex-none lg:min-h-0 flex items-center justify-center w-full px-4 py-4 overflow-hidden"
+        style={{ marginTop: pushDown }}
+      >
+        <div className="relative w-full h-full lg:h-auto flex items-center justify-center">
           {showNav && onPrev && (
-            <IconCircleButton
-              variant="lightboxNav"
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10"
-              onClick={(e) => {
-                e.stopPropagation();
-                onPrev();
-              }}
-              disabled={navDisabled}
-            >
-              ‹
-            </IconCircleButton>
+            <div className="hidden lg:block">
+              <IconCircleButton
+                variant="lightboxNav"
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-10"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onPrev();
+                }}
+                disabled={navDisabled}
+              >
+                ‹
+              </IconCircleButton>
+            </div>
           )}
 
           {isVideo ? (
             <video
+              ref={videoElRef}
               src={src}
-              className="max-w-[85vw] max-h-[80vh] rounded-lg shadow-2xl"
+              className="max-w-[85vw] max-h-full lg:max-h-[80vh] rounded-lg shadow-2xl"
               controls
               autoPlay
               loop
               playsInline
-              onCanPlay={() => setLoading(false)}
+              onCanPlay={() => {
+                setLoading(false);
+                requestAnimationFrame(recalcOverlap);
+              }}
               onClick={(e) => e.stopPropagation()}
             />
           ) : (
             <div
-              className="relative overflow-hidden"
+              ref={imageBoxRef}
+              className="relative overflow-hidden h-full max-h-full lg:h-auto lg:max-h-[80vh]"
               style={{
                 width: "85vw",
                 maxWidth: "1200px",
-                maxHeight: "80vh",
                 cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default"
               }}
               onWheel={handleWheel}
@@ -122,6 +218,7 @@ export function Lightbox({
               onClick={(e) => e.stopPropagation()}
             >
               <img
+                ref={imgElRef}
                 src={src}
                 alt={alt}
                 className={`w-full h-full object-contain select-none transition-opacity duration-150 ${loading ? "opacity-40" : "opacity-100"}`}
@@ -131,7 +228,10 @@ export function Lightbox({
                   transition: dragging ? "none" : "transform 0.1s"
                 }}
                 decoding="async"
-                onLoad={() => setLoading(false)}
+                onLoad={() => {
+                  setLoading(false);
+                  requestAnimationFrame(recalcOverlap);
+                }}
                 onError={() => setLoading(false)}
                 draggable={false}
               />
@@ -139,22 +239,49 @@ export function Lightbox({
           )}
 
           {showNav && onNext && (
-            <IconCircleButton
-              variant="lightboxNav"
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10"
-              onClick={(e) => {
-                e.stopPropagation();
-                onNext();
-              }}
-              disabled={navDisabled}
-            >
-              ›
-            </IconCircleButton>
+            <div className="hidden lg:block">
+              <IconCircleButton
+                variant="lightboxNav"
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-10"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onNext();
+                }}
+                disabled={navDisabled}
+              >
+                ›
+              </IconCircleButton>
+            </div>
           )}
         </div>
 
         {loading && !isVideo && <SpinnerOverlay variant="dark" />}
       </div>
+
+      {showNav && (
+        <div className="flex lg:hidden items-center justify-center gap-6 pb-1 shrink-0">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onPrev?.();
+            }}
+            disabled={navDisabled}
+            className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+          >
+            ‹
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onNext?.();
+            }}
+            disabled={navDisabled}
+            className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+          >
+            ›
+          </button>
+        </div>
+      )}
 
       <div className="flex flex-col items-center gap-3 pt-2 pb-4 px-6 shrink-0 mx-auto max-w-[85vw]">
         {!isVideo && (
