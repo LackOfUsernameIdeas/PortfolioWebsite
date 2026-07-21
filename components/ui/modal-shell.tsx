@@ -42,7 +42,7 @@ export function ModalShell({
         <div className="h-1.5 w-full bg-gradient-to-r from-primary to-primary/30 shrink-0" />
         <IconCircleButton
           variant="modalClose"
-          className="absolute top-4 right-4 z-10"
+          className="absolute top-4 right-5 z-10"
           onClick={onClose}
         >
           <X className="w-6 h-6" />
