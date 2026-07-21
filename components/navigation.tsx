@@ -86,7 +86,7 @@ export function Navigation() {
           className="rounded-full bg-card/90 backdrop-blur-md shadow-lg border-border"
           onClick={() => setOpen(!open)}
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </Button>
 
         {open && (

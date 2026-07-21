@@ -45,7 +45,7 @@ export function ModalShell({
           className="absolute top-4 right-4 z-10"
           onClick={onClose}
         >
-          <X className="w-5 h-5" />
+          <X className="w-6 h-6" />
         </IconCircleButton>
         <div className="flex-1 min-h-0 overflow-y-auto">{children}</div>
       </div>

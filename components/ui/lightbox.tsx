@@ -267,7 +267,7 @@ export function Lightbox({
               onPrev?.();
             }}
             disabled={navDisabled}
-            className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+            className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
             ‹
           </button>
@@ -277,7 +277,7 @@ export function Lightbox({
               onNext?.();
             }}
             disabled={navDisabled}
-            className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-white text-2xl hover:bg-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+            className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
             ›
           </button>
