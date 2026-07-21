@@ -124,11 +124,27 @@ export function Lightbox({
     resetZoom();
     pushDownRef.current = 0;
     setPushDown(0);
-  }, [src]);
+
+    if (isVideo) return;
+
+    const img = imgElRef.current;
+    if (img && img.complete && img.naturalWidth > 0) {
+      setLoading(false);
+      requestAnimationFrame(recalcOverlap);
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setLoading(false);
+      recalcOverlap();
+    }, 150);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [src, isVideo, resetZoom, recalcOverlap]);
 
   useEffect(() => {
-    window.addEventListener("resize", recalcOverlap);
-    return () => window.removeEventListener("resize", recalcOverlap);
+    const target: VisualViewport | Window = window.visualViewport ?? window;
+    target.addEventListener("resize", recalcOverlap);
+    return () => target.removeEventListener("resize", recalcOverlap);
   }, [recalcOverlap]);
 
   const showNav = !!dotsCount && dotsCount > 1;
@@ -138,13 +154,7 @@ export function Lightbox({
       className={`fixed inset-0 z-[200] flex flex-col lg:items-center lg:justify-center bg-black/90 backdrop-blur-sm lg:py-4${scrollable ? " overflow-y-auto" : ""}`}
     >
       <div ref={closeBtnWrapperRef} className="absolute top-4 right-4 z-10">
-        <IconCircleButton
-          variant="lightboxClose"
-          onClick={(e) => {
-            e.stopPropagation();
-            onClose();
-          }}
-        >
+        <IconCircleButton variant="lightboxClose" onClick={onClose}>
           <X className="w-6 h-6" />
         </IconCircleButton>
       </div>
@@ -160,10 +170,7 @@ export function Lightbox({
               <IconCircleButton
                 variant="lightboxNav"
                 className="absolute left-4 top-1/2 -translate-y-1/2 z-10"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onPrev();
-                }}
+                onClick={onPrev}
                 disabled={navDisabled}
               >
                 ‹
@@ -185,7 +192,6 @@ export function Lightbox({
                 setLoading(false);
                 requestAnimationFrame(recalcOverlap);
               }}
-              onClick={(e) => e.stopPropagation()}
             />
           ) : (
             <div
@@ -203,7 +209,6 @@ export function Lightbox({
               onMouseMove={handleMouseMove}
               onMouseUp={stopDragging}
               onMouseLeave={stopDragging}
-              onClick={(e) => e.stopPropagation()}
             >
               <img
                 ref={imgElRef}
@@ -231,10 +236,7 @@ export function Lightbox({
               <IconCircleButton
                 variant="lightboxNav"
                 className="absolute right-4 top-1/2 -translate-y-1/2 z-10"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onNext();
-                }}
+                onClick={onNext}
                 disabled={navDisabled}
               >
                 ›
@@ -249,20 +251,14 @@ export function Lightbox({
       {showNav && (
         <div className="flex lg:hidden items-center justify-center gap-6 pb-1 shrink-0">
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onPrev?.();
-            }}
+            onClick={() => onPrev?.()}
             disabled={navDisabled}
             className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
             ‹
           </button>
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onNext?.();
-            }}
+            onClick={() => onNext?.()}
             disabled={navDisabled}
             className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white text-3xl hover:bg-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
@@ -277,10 +273,7 @@ export function Lightbox({
             <span className="text-white/50 text-sm">{scrollToZoomLabel}</span>
             {zoom > 1 && (
               <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  resetZoom();
-                }}
+                onClick={resetZoom}
                 className="text-sm text-white/70 border border-white/20 px-2 py-0.5 cursor-pointer rounded-full hover:border-white/50 transition-colors"
               >
                 {resetZoomLabel}
@@ -293,10 +286,7 @@ export function Lightbox({
             {Array.from({ length: dotsCount! }).map((_, i) => (
               <button
                 key={i}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onDotClick?.(i);
-                }}
+                onClick={() => onDotClick?.(i)}
                 disabled={navDisabled}
                 className={`w-2 h-2 rounded-full transition-colors disabled:cursor-not-allowed ${
                   i === activeIndex ? "bg-primary" : "bg-white/40"
