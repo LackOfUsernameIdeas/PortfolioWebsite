@@ -61,7 +61,7 @@ export function Lightbox({
 
   return (
     <div
-      className={`fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black/90 backdrop-blur-sm py-4${scrollable ? " overflow-y-auto" : ""}`}
+      className={`fixed inset-0 z-[200] flex flex-col lg:items-center lg:justify-center bg-black/90 backdrop-blur-sm lg:py-4${scrollable ? " overflow-y-auto" : ""}`}
       onClick={(e) => {
         e.stopPropagation();
         onClose();
@@ -69,7 +69,7 @@ export function Lightbox({
     >
       <IconCircleButton
         variant="lightboxClose"
-        className="absolute top-4 right-4"
+        className="absolute top-4 right-4 z-10"
         onClick={(e) => {
           e.stopPropagation();
           onClose();
@@ -78,81 +78,85 @@ export function Lightbox({
         <X className="w-6 h-6" />
       </IconCircleButton>
 
-      {showNav && onPrev && (
-        <IconCircleButton
-          variant="lightboxNav"
-          className="absolute left-4 top-1/2 -translate-y-1/2"
-          onClick={(e) => {
-            e.stopPropagation();
-            onPrev();
-          }}
-          disabled={navDisabled}
-        >
-          ‹
-        </IconCircleButton>
-      )}
+      <div className="relative flex-1 min-h-[45vh] lg:flex-none lg:min-h-0 flex items-center justify-center w-full px-4 py-4">
+        <div className="relative flex items-center justify-center">
+          {showNav && onPrev && (
+            <IconCircleButton
+              variant="lightboxNav"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10"
+              onClick={(e) => {
+                e.stopPropagation();
+                onPrev();
+              }}
+              disabled={navDisabled}
+            >
+              ‹
+            </IconCircleButton>
+          )}
 
-      {isVideo ? (
-        <video
-          src={src}
-          className="max-w-[85vw] max-h-[80vh] rounded-lg shadow-2xl"
-          controls
-          autoPlay
-          loop
-          playsInline
-          onCanPlay={() => setLoading(false)}
-          onClick={(e) => e.stopPropagation()}
-        />
-      ) : (
-        <div
-          className="relative overflow-hidden"
-          style={{
-            width: "85vw",
-            maxWidth: "1200px",
-            maxHeight: "80vh",
-            cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default"
-          }}
-          onWheel={handleWheel}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={stopDragging}
-          onMouseLeave={stopDragging}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <img
-            src={src}
-            alt={alt}
-            className={`w-full h-full object-contain select-none transition-opacity duration-150 ${loading ? "opacity-40" : "opacity-100"}`}
-            style={{
-              transform: `scale(${zoom}) translate(${pan.x / zoom}px, ${pan.y / zoom}px)`,
-              transformOrigin: "center",
-              transition: dragging ? "none" : "transform 0.1s"
-            }}
-            decoding="async"
-            onLoad={() => setLoading(false)}
-            onError={() => setLoading(false)}
-            draggable={false}
-          />
+          {isVideo ? (
+            <video
+              src={src}
+              className="max-w-[85vw] max-h-[80vh] rounded-lg shadow-2xl"
+              controls
+              autoPlay
+              loop
+              playsInline
+              onCanPlay={() => setLoading(false)}
+              onClick={(e) => e.stopPropagation()}
+            />
+          ) : (
+            <div
+              className="relative overflow-hidden"
+              style={{
+                width: "85vw",
+                maxWidth: "1200px",
+                maxHeight: "80vh",
+                cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default"
+              }}
+              onWheel={handleWheel}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={stopDragging}
+              onMouseLeave={stopDragging}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={src}
+                alt={alt}
+                className={`w-full h-full object-contain select-none transition-opacity duration-150 ${loading ? "opacity-40" : "opacity-100"}`}
+                style={{
+                  transform: `scale(${zoom}) translate(${pan.x / zoom}px, ${pan.y / zoom}px)`,
+                  transformOrigin: "center",
+                  transition: dragging ? "none" : "transform 0.1s"
+                }}
+                decoding="async"
+                onLoad={() => setLoading(false)}
+                onError={() => setLoading(false)}
+                draggable={false}
+              />
+            </div>
+          )}
+
+          {showNav && onNext && (
+            <IconCircleButton
+              variant="lightboxNav"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10"
+              onClick={(e) => {
+                e.stopPropagation();
+                onNext();
+              }}
+              disabled={navDisabled}
+            >
+              ›
+            </IconCircleButton>
+          )}
         </div>
-      )}
 
-      {showNav && onNext && (
-        <IconCircleButton
-          variant="lightboxNav"
-          className="absolute right-4 top-1/2 -translate-y-1/2"
-          onClick={(e) => {
-            e.stopPropagation();
-            onNext();
-          }}
-          disabled={navDisabled}
-        >
-          ›
-        </IconCircleButton>
-      )}
+        {loading && !isVideo && <SpinnerOverlay variant="dark" />}
+      </div>
 
-      {loading && !isVideo && <SpinnerOverlay variant="dark" />}
-
-      <div className="flex flex-col items-center gap-3 mt-4 px-6 max-w-[85vw]">
+      <div className="flex flex-col items-center gap-3 pt-2 pb-4 px-6 shrink-0 mx-auto max-w-[85vw]">
         {!isVideo && (
           <div className="flex items-center gap-3">
             <span className="text-white/50 text-sm">{scrollToZoomLabel}</span>
