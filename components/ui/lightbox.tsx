@@ -51,9 +51,6 @@ export function Lightbox({
     stopDragging
   } = useZoomPanDrag();
 
-  // --- Close-button / media collision avoidance ---
-  // If the close (X) button would overlap the visible pixels of the
-  // image/video, push the media area down instead of moving the button.
   const closeBtnWrapperRef = useRef<HTMLDivElement>(null);
   const contentAreaRef = useRef<HTMLDivElement>(null);
   const imageBoxRef = useRef<HTMLDivElement>(null);
@@ -62,13 +59,8 @@ export function Lightbox({
   const [pushDown, setPushDown] = useState(0);
   const pushDownRef = useRef(0);
 
-  // Returns the actual visible bounding box of the current media, in
-  // viewport coordinates, ignoring any push-down we've already applied
-  // (so repeated measurements don't compound on themselves).
   const getVisibleMediaRect = useCallback(() => {
     if (isVideo) {
-      // Videos auto-size to their own aspect ratio (no object-fit
-      // letterboxing), so the element's own box is the visible box.
       const el = videoElRef.current;
       if (!el) return null;
       const rect = el.getBoundingClientRect();
@@ -80,9 +72,6 @@ export function Lightbox({
       };
     }
 
-    // Images sit in a fixed-size box and use object-contain, so the
-    // rendered <img> box can be larger than the actual visible pixels.
-    // Compute the real contained rect from the natural aspect ratio.
     const box = imageBoxRef.current;
     const img = imgElRef.current;
     if (!box || !img || !img.naturalWidth || !img.naturalHeight) return null;
