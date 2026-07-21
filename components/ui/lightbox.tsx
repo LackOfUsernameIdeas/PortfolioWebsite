@@ -166,10 +166,10 @@ export function Lightbox({
 
       <div
         ref={contentAreaRef}
-        className="relative flex-1 min-h-[45vh] lg:flex-none lg:min-h-0 flex items-center justify-center w-full px-4 py-4 overflow-hidden"
+        className="relative flex-1 min-h-[45vh] lg:min-h-0 flex items-center justify-center w-full px-4 py-4 overflow-hidden"
         style={{ marginTop: pushDown }}
       >
-        <div className="relative w-full h-full lg:h-auto flex items-center justify-center">
+        <div className="relative w-full h-full flex items-center justify-center">
           {showNav && onPrev && (
             <div className="hidden lg:block">
               <IconCircleButton
@@ -205,7 +205,7 @@ export function Lightbox({
           ) : (
             <div
               ref={imageBoxRef}
-              className="relative overflow-hidden h-full max-h-full lg:h-auto lg:max-h-[80vh]"
+              className="relative overflow-hidden h-full max-h-full lg:max-h-[80vh]"
               style={{
                 width: "85vw",
                 maxWidth: "1200px",
