@@ -12,7 +12,7 @@ export function HeroSocialLinks({ mounted }: HeroSocialLinksProps) {
 
   return (
     <div
-      className={`${mounted ? "hero-4" : "opacity-0"} flex items-center gap-4 mt-8`}
+      className={`${mounted ? "hero-4" : "opacity-0"} flex items-center gap-4 mt-8 laptop-short:mt-5!`}
     >
       <div className="relative group/email">
         <a

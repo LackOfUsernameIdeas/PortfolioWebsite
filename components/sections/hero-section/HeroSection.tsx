@@ -44,7 +44,7 @@ export function HeroSection() {
       {/* ── Left: text content ── */}
       <div className="relative z-10 max-w-xl">
         <h1
-          className={`${a ? "hero-1" : "opacity-0"} text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]`}
+          className={`${a ? "hero-1" : "opacity-0"} text-6xl sm:text-7xl lg:text-8xl laptop-short:text-7xl! font-bold tracking-tight leading-[0.95]`}
         >
           {language === "bg" ? "Калоян" : "Kaloyan"}
           <br />
@@ -53,12 +53,12 @@ export function HeroSection() {
           </span>
         </h1>
         <p
-          className={`${a ? "hero-2" : "opacity-0"} mt-6 text-lg sm:text-xl text-muted-foreground max-w-md leading-relaxed`}
+          className={`${a ? "hero-2" : "opacity-0"} mt-6 laptop-short:mt-4! text-lg sm:text-xl laptop-short:text-base! text-muted-foreground max-w-md leading-relaxed`}
         >
           {t("hero.subtitle", language)}
         </p>
         <div
-          className={`${a ? "hero-3" : "opacity-0"} flex items-center gap-4 mt-10`}
+          className={`${a ? "hero-3" : "opacity-0"} flex items-center gap-4 mt-10 laptop-short:mt-6!`}
         >
           <button
             onClick={() =>
