@@ -189,12 +189,13 @@ export function Lightbox({
           {isVideo ? (
             <video
               ref={videoElRef}
-              src={src}
+              src={isVideo ? `${src}#t=0.1` : src}
               className="max-w-[85vw] max-h-full lg:max-h-[80vh] rounded-lg shadow-2xl"
               controls
               autoPlay
               loop
               playsInline
+              preload="auto"
               onCanPlay={() => {
                 setLoading(false);
                 requestAnimationFrame(recalcOverlap);

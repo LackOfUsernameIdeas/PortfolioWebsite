@@ -39,14 +39,15 @@ export function ProjectModal({
 
   const isVideo = (src: string) => /\.(mp4|mov|webm|ogg)$/i.test(src);
 
-  // Guarded navigation - blocked while the current image is still loading
   const goTo = useCallback(
     (idx: number) => {
       if (imgLoading) return;
-      setImgLoading(true);
+      if (!isVideo(images[idx].src)) {
+        setImgLoading(true);
+      }
       setImgIdx(idx);
     },
-    [imgLoading]
+    [imgLoading, images]
   );
 
   // Reset on project change
@@ -110,12 +111,13 @@ export function ProjectModal({
                   }}
                 >
                   <video
-                    src={images[imgIdx].src}
+                    src={`${images[imgIdx].src}#t=0.1`}
                     className={`w-full h-full object-cover transition-opacity duration-150 ${
                       imgLoading ? "opacity-40" : "opacity-100"
                     }`}
                     loop
                     playsInline
+                    preload="auto"
                     onCanPlay={() => setImgLoading(false)}
                     onError={() => setImgLoading(false)}
                   />
