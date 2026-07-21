@@ -21,9 +21,9 @@ export function useZoomPanDrag() {
   }, []);
 
   const zoomAtDelta = useCallback(
-    (deltaY: number) => {
+    (deltaY: number, sensitivity: number) => {
       setZoom((z) => {
-        const next = Math.min(5, Math.max(1, z - deltaY * 0.001));
+        const next = Math.min(5, Math.max(1, z - deltaY * sensitivity));
         setPan((p) => clampPan(p.x, p.y, next));
         return next;
       });
@@ -34,7 +34,8 @@ export function useZoomPanDrag() {
   const nativeWheelHandler = useCallback(
     (e: WheelEvent) => {
       e.preventDefault();
-      zoomAtDelta(e.deltaY);
+      const sensitivity = e.ctrlKey ? 0.012 : 0.001;
+      zoomAtDelta(e.deltaY, sensitivity);
     },
     [zoomAtDelta]
   );
@@ -71,10 +72,10 @@ export function useZoomPanDrag() {
   const panRef = useRef(pan);
   panRef.current = pan;
 
-  const dist = (t1: React.Touch, t2: React.Touch) =>
+  const dist = (t1: Touch, t2: Touch) =>
     Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
 
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+  const handleTouchStart = useCallback((e: TouchEvent) => {
     if (e.touches.length === 2) {
       touchPanStartRef.current = null;
       const [t1, t2] = [e.touches[0], e.touches[1]];
@@ -96,7 +97,7 @@ export function useZoomPanDrag() {
   }, []);
 
   const handleTouchMove = useCallback(
-    (e: React.TouchEvent) => {
+    (e: TouchEvent) => {
       if (e.touches.length === 2 && pinchStateRef.current) {
         e.preventDefault();
         const [t1, t2] = [e.touches[0], e.touches[1]];
@@ -123,23 +124,38 @@ export function useZoomPanDrag() {
     [clampPan]
   );
 
-  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+  const handleTouchEnd = useCallback((e: TouchEvent) => {
     if (e.touches.length < 2) pinchStateRef.current = null;
     if (e.touches.length === 0) touchPanStartRef.current = null;
   }, []);
 
-  const wheelElRef = useRef<HTMLElement | null>(null);
-  const wheelRef = useCallback(
+  const targetElRef = useRef<HTMLElement | null>(null);
+  const targetRef = useCallback(
     (el: HTMLElement | null) => {
-      if (wheelElRef.current) {
-        wheelElRef.current.removeEventListener("wheel", nativeWheelHandler);
+      const prev = targetElRef.current;
+      if (prev) {
+        prev.removeEventListener("wheel", nativeWheelHandler);
+        prev.removeEventListener("touchstart", handleTouchStart);
+        prev.removeEventListener("touchmove", handleTouchMove);
+        prev.removeEventListener("touchend", handleTouchEnd);
+        prev.removeEventListener("touchcancel", handleTouchEnd);
       }
-      wheelElRef.current = el;
+      targetElRef.current = el;
       if (el) {
         el.addEventListener("wheel", nativeWheelHandler, { passive: false });
+        el.addEventListener("touchstart", handleTouchStart, {
+          passive: false
+        });
+        el.addEventListener("touchmove", handleTouchMove, {
+          passive: false
+        });
+        el.addEventListener("touchend", handleTouchEnd, { passive: false });
+        el.addEventListener("touchcancel", handleTouchEnd, {
+          passive: false
+        });
       }
     },
-    [nativeWheelHandler]
+    [nativeWheelHandler, handleTouchStart, handleTouchMove, handleTouchEnd]
   );
 
   return {
@@ -147,12 +163,9 @@ export function useZoomPanDrag() {
     pan,
     dragging,
     resetZoom,
-    wheelRef,
+    wheelRef: targetRef,
     handleMouseDown,
     handleMouseMove,
-    stopDragging,
-    handleTouchStart,
-    handleTouchMove,
-    handleTouchEnd
+    stopDragging
   };
 }

@@ -50,10 +50,7 @@ export function Lightbox({
     wheelRef,
     handleMouseDown,
     handleMouseMove,
-    stopDragging,
-    handleTouchStart,
-    handleTouchMove,
-    handleTouchEnd
+    stopDragging
   } = useZoomPanDrag();
 
   const closeBtnWrapperRef = useRef<HTMLDivElement>(null);
@@ -215,10 +212,6 @@ export function Lightbox({
               onMouseMove={handleMouseMove}
               onMouseUp={stopDragging}
               onMouseLeave={stopDragging}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-              onTouchCancel={handleTouchEnd}
             >
               <img
                 ref={imgElRef}

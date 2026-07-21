@@ -90,8 +90,8 @@ export const uiTranslations = {
     viewCertificate: { en: "View certificate", bg: "Вижте сертификата" },
     clickToExpand: { en: "Click to expand", bg: "Натиснете за уголемяване" },
     scrollToZoom: {
-      en: "Scroll to zoom · hold down the left mouse button to pan",
-      bg: "Увеличете със скролера на мишката · задръжте ляв бутон на мишката за преглед"
+      en: "Zoom with your mouse wheel or touchpad · hold the left mouse button and drag to pan",
+      bg: "Увеличете със скролера на мишката или тъчпада · задръжте левия бутон на мишката и плъзнете за преглед"
     },
     touchToZoom: {
       en: "Pinch to zoom · drag to pan",
@@ -109,8 +109,8 @@ export const uiTranslations = {
     liveDemo: { en: "Live Demo", bg: "Онлайн демо" },
     clickToExpand: { en: "Click to expand", bg: "Натиснете за уголемяване" },
     scrollToZoom: {
-      en: "Scroll to zoom · hold down the left mouse button to pan",
-      bg: "Увеличете със скролера на мишката · задръжте ляв бутон на мишката за преглед"
+      en: "Zoom with your mouse wheel or touchpad · hold the left mouse button and drag to pan",
+      bg: "Увеличете със скролера на мишката или тъчпада · задръжте левия бутон на мишката и плъзнете за преглед"
     },
     touchToZoom: {
       en: "Pinch to zoom · drag to pan",
