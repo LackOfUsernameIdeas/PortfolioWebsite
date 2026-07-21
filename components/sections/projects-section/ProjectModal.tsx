@@ -395,6 +395,7 @@ export function ProjectModal({
           onDotClick={goTo}
           navDisabled={imgLoading}
           scrollToZoomLabel={t("projects.scrollToZoom", language)}
+          touchToZoomLabel={t("projects.touchToZoom", language)}
           resetZoomLabel={t("projects.resetZoom", language)}
         />
       )}

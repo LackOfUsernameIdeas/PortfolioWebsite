@@ -20,6 +20,7 @@ export interface LightboxProps {
   navDisabled?: boolean;
   scrollable?: boolean;
   scrollToZoomLabel: string;
+  touchToZoomLabel: string;
   resetZoomLabel: string;
 }
 
@@ -37,6 +38,7 @@ export function Lightbox({
   navDisabled = false,
   scrollable = false,
   scrollToZoomLabel,
+  touchToZoomLabel,
   resetZoomLabel
 }: LightboxProps) {
   const [loading, setLoading] = useState(true);
@@ -48,7 +50,10 @@ export function Lightbox({
     wheelRef,
     handleMouseDown,
     handleMouseMove,
-    stopDragging
+    stopDragging,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd
   } = useZoomPanDrag();
 
   const closeBtnWrapperRef = useRef<HTMLDivElement>(null);
@@ -203,12 +208,17 @@ export function Lightbox({
               style={{
                 width: "85vw",
                 maxWidth: "1200px",
-                cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default"
+                cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default",
+                touchAction: zoom > 1 ? "none" : "pan-y"
               }}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={stopDragging}
               onMouseLeave={stopDragging}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onTouchCancel={handleTouchEnd}
             >
               <img
                 ref={imgElRef}
@@ -270,7 +280,12 @@ export function Lightbox({
       <div className="flex flex-col items-center gap-3 pt-2 pb-4 px-6 shrink-0 mx-auto max-w-[85vw]">
         {!isVideo && (
           <div className="flex items-center gap-3">
-            <span className="text-white/50 text-sm">{scrollToZoomLabel}</span>
+            <span className="text-white/50 text-sm hidden sm:inline">
+              {scrollToZoomLabel}
+            </span>
+            <span className="text-white/50 text-sm sm:hidden">
+              {touchToZoomLabel}
+            </span>
             {zoom > 1 && (
               <button
                 onClick={resetZoom}

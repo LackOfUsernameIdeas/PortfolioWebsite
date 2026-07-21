@@ -93,6 +93,10 @@ export const uiTranslations = {
       en: "Scroll to zoom · hold down the left mouse button to pan",
       bg: "Увеличете със скролера на мишката · задръжте ляв бутон на мишката за преглед"
     },
+    touchToZoom: {
+      en: "Pinch to zoom · drag to pan",
+      bg: "Увеличете с пръсти · плъзнете за преглед"
+    },
     resetZoom: { en: "Reset zoom", bg: "Нулирайте мащаба" },
     category: { en: "Category", bg: "Категория" }
   },
@@ -107,6 +111,10 @@ export const uiTranslations = {
     scrollToZoom: {
       en: "Scroll to zoom · hold down the left mouse button to pan",
       bg: "Увеличете със скролера на мишката · задръжте ляв бутон на мишката за преглед"
+    },
+    touchToZoom: {
+      en: "Pinch to zoom · drag to pan",
+      bg: "Увеличете с пръсти · плъзнете за преглед"
     },
     resetZoom: { en: "Reset zoom", bg: "Нулирайте мащаба" },
     collaborateTitle: {

@@ -247,6 +247,7 @@ export function AchievementModal({
           caption={lightboxCaption}
           onClose={() => setLightboxOpen(false)}
           scrollToZoomLabel={t("achievements.scrollToZoom", language)}
+          touchToZoomLabel={t("achievements.touchToZoom", language)}
           resetZoomLabel={t("achievements.resetZoom", language)}
           scrollable
         />
