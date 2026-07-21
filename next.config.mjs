@@ -3,9 +3,6 @@
 const devIP = process.env.NEXT_PUBLIC_DEV_IP;
 
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true
-  },
   images: {
     unoptimized: true
   },

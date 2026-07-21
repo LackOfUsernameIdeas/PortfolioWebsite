@@ -157,12 +157,17 @@ export const uiTranslations = {
   }
 } as const;
 
+type TranslationNode =
+  | { [key: string]: TranslationNode }
+  | { en: string; bg: string };
+
 export function t(path: string, lang: Language): string {
   const segments = path.split(".");
-  let node: any = uiTranslations;
+  let node: TranslationNode | undefined = uiTranslations;
   for (const seg of segments) {
-    node = node?.[seg];
+    node = node ? (node as { [key: string]: TranslationNode })[seg] : undefined;
   }
   if (!node) return path;
-  return node[lang] ?? node.en ?? path;
+  const leaf = node as { en: string; bg: string };
+  return leaf[lang] ?? leaf.en ?? path;
 }
