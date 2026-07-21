@@ -113,7 +113,7 @@ export function AchievementModal({
 
             {/* Doc tabs - if multiple docs */}
             {achievement.docs && achievement.docs.length > 1 && (
-              <div className="flex gap-2 mt-4">
+              <div className="flex flex-wrap gap-2 mt-4">
                 {achievement.docs.map((doc) => (
                   <button
                     key={doc.path}
