@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 export function useZoomPanDrag() {
   const [zoom, setZoom] = useState(1);
@@ -20,16 +20,37 @@ export function useZoomPanDrag() {
     };
   }, []);
 
-  const handleWheel = useCallback(
-    (e: React.WheelEvent) => {
-      e.preventDefault();
+  const zoomAtDelta = useCallback(
+    (deltaY: number) => {
       setZoom((z) => {
-        const next = Math.min(5, Math.max(1, z - e.deltaY * 0.001));
+        const next = Math.min(5, Math.max(1, z - deltaY * 0.001));
         setPan((p) => clampPan(p.x, p.y, next));
         return next;
       });
     },
     [clampPan]
+  );
+
+  const nativeWheelHandler = useCallback(
+    (e: WheelEvent) => {
+      e.preventDefault();
+      zoomAtDelta(e.deltaY);
+    },
+    [zoomAtDelta]
+  );
+
+  const wheelElRef = useRef<HTMLElement | null>(null);
+  const wheelRef = useCallback(
+    (el: HTMLElement | null) => {
+      if (wheelElRef.current) {
+        wheelElRef.current.removeEventListener("wheel", nativeWheelHandler);
+      }
+      wheelElRef.current = el;
+      if (el) {
+        el.addEventListener("wheel", nativeWheelHandler, { passive: false });
+      }
+    },
+    [nativeWheelHandler]
   );
 
   const handleMouseDown = useCallback(
@@ -57,7 +78,7 @@ export function useZoomPanDrag() {
     pan,
     dragging,
     resetZoom,
-    handleWheel,
+    wheelRef,
     handleMouseDown,
     handleMouseMove,
     stopDragging

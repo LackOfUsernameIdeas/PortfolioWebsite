@@ -45,7 +45,7 @@ export function Lightbox({
     pan,
     dragging,
     resetZoom,
-    handleWheel,
+    wheelRef,
     handleMouseDown,
     handleMouseMove,
     stopDragging
@@ -204,14 +204,16 @@ export function Lightbox({
             />
           ) : (
             <div
-              ref={imageBoxRef}
+              ref={(el) => {
+                imageBoxRef.current = el;
+                wheelRef(el);
+              }}
               className="relative overflow-hidden h-full max-h-full lg:max-h-[80vh]"
               style={{
                 width: "85vw",
                 maxWidth: "1200px",
                 cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default"
               }}
-              onWheel={handleWheel}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={stopDragging}
