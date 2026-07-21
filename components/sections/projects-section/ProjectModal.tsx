@@ -189,8 +189,10 @@ export function ProjectModal({
                   key={i}
                   onClick={() => goTo(i)}
                   disabled={imgLoading}
-                  className={`w-2 h-2 rounded-full transition-colors disabled:cursor-not-allowed ${
-                    i === imgIdx ? "bg-primary" : "bg-muted-foreground/30"
+                  className={`w-2 h-2 rounded-full cursor-pointer transition-all duration-150 hover:scale-150 active:scale-125 disabled:cursor-not-allowed disabled:hover:scale-100 ${
+                    i === imgIdx
+                      ? "bg-primary"
+                      : "bg-muted-foreground/30 hover:bg-muted-foreground/60"
                   }`}
                 />
               ))}

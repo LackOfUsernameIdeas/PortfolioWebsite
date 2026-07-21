@@ -288,8 +288,10 @@ export function Lightbox({
                 key={i}
                 onClick={() => onDotClick?.(i)}
                 disabled={navDisabled}
-                className={`w-2 h-2 rounded-full transition-colors disabled:cursor-not-allowed ${
-                  i === activeIndex ? "bg-primary" : "bg-white/40"
+                className={`w-2 h-2 rounded-full cursor-pointer transition-all duration-150 hover:scale-150 active:scale-125 disabled:cursor-not-allowed disabled:hover:scale-100 ${
+                  i === activeIndex
+                    ? "bg-primary"
+                    : "bg-white/40 hover:bg-white/70"
                 }`}
               />
             ))}
