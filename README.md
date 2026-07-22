@@ -163,7 +163,7 @@ Make sure the EmailJS values in `.env` are your production credentials.
 
 ### 4. Build manually (only needed for non-Vercel hosting)
 
-If deploying to a host that doesn't build the project for you — like cPanel, GitHub Pages, or a drag-and-drop static host — build it yourself first:
+If deploying to a host that doesn't build the project for you – like cPanel, GitHub Pages, or a drag-and-drop static host – build it yourself first:
 
 ```bash
 npm run build
