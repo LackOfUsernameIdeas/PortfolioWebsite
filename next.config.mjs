@@ -3,9 +3,7 @@
 const devIP = process.env.NEXT_PUBLIC_DEV_IP;
 
 const nextConfig = {
-  images: {
-    unoptimized: true
-  },
+  output: "export",
   allowedDevOrigins: devIP ? [devIP] : []
 };
 
