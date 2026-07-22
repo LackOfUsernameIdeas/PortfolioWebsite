@@ -131,7 +131,7 @@ npm run lint
 
 ## Production Deployment
 
-The site is deployed on **Vercel** as a fully static export – no server, no serverless functions, just prerendered HTML/CSS/JS served from the CDN.
+The project is deployed on **Vercel** as a fully static export.
 
 ### 1. Enable static export (one-time)
 
@@ -160,13 +160,13 @@ Make sure the EmailJS values in `.env` are your production credentials (EmailJS 
 npm run build
 ```
 
-This produces an `out/` directory at the **repo root** (outside `.next/`), containing the fully static site – plain HTML, CSS, JS, and copied `public/` assets.
+This produces an `out/` directory at the **repo root** (outside `.next/`), containing the fully static project files – plain HTML, CSS, JS, and copied `public/` assets.
 
 ### 4. Deploy to Vercel
 
 1. Push the repo to GitHub.
 2. Import the repo as a new project on [vercel.com](https://vercel.com).
-3. Vercel auto-detects Next.js and, since `output: "export"` is set, builds and serves the contents of `out/` as a static site – no configuration changes needed.
+3. Vercel auto-detects Next.js and, since `output: "export"` is set, builds and serves the contents of `out/` as a static project – no configuration changes needed.
 4. Every subsequent push to `main` automatically triggers a new build and deployment.
 
 ### 5. Preview the static build locally (optional)
