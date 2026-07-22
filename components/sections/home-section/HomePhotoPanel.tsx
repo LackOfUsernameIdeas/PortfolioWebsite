@@ -1,13 +1,13 @@
 "use client";
 
-interface HeroPhotoPanelProps {
+interface HomePhotoPanelProps {
   mounted: boolean;
 }
 
-export function HeroPhotoPanel({ mounted }: HeroPhotoPanelProps) {
+export function HomePhotoPanel({ mounted }: HomePhotoPanelProps) {
   return (
     <div
-      className={`${mounted ? "hero-photo" : "opacity-0"} absolute right-0 top-20 laptop-short:top-16! h-[calc(100%-5rem)] laptop-short:h-[calc(100%-4rem)]! w-[55%] laptop-short:w-[62%]! hidden min-[1070px]:block pointer-events-none`}
+      className={`${mounted ? "home-photo" : "opacity-0"} absolute right-0 top-20 laptop-short:top-16! h-[calc(100%-5rem)] laptop-short:h-[calc(100%-4rem)]! w-[55%] laptop-short:w-[62%]! hidden min-[1070px]:block pointer-events-none`}
     >
       <div
         className="absolute laptop-short:h-[88%]! laptop-short:right-[7%]!"
@@ -85,7 +85,7 @@ export function HeroPhotoPanel({ mounted }: HeroPhotoPanelProps) {
         }}
       />
       <img
-        src="/hero-photo.png"
+        src="/home-photo.png"
         alt="Kaloyan Kostadinov"
         className="absolute top-[40%] right-[3%] -translate-y-1/2 h-[92%] laptop-short:h-[99%]! w-auto object-contain"
         decoding="async"

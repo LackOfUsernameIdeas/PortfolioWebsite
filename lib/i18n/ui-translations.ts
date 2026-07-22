@@ -17,7 +17,7 @@ export const uiTranslations = {
     projects: { en: "PROJECTS", bg: "ПРОЕКТИ" },
     contact: { en: "CONTACT", bg: "КОНТАКТИ" }
   },
-  hero: {
+  home: {
     subtitle: {
       en: "Full-stack Software Developer | Building scalable web and mobile applications",
       bg: "Full-stack Софтуерен инженер | Занимавам се с изграждането на съвременни уеб и мобилни приложения"

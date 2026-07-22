@@ -24,7 +24,7 @@ PortfolioWebsite/
 │   └── globals.css               # Global styles and Tailwind CSS layer
 ├── components/
 │   ├── sections/                 # Page sections
-│   │   ├── hero-section/         # Hero, social links, photo panel
+│   │   ├── home-section/         # Home, social links, photo panel
 │   │   ├── about-section/        # About text, skills grid, CV download menu
 │   │   ├── achievements-section/ # Achievements grid + detail modal
 │   │   ├── projects-section/     # Projects showcase + detail modal

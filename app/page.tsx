@@ -3,7 +3,7 @@
 import { Navigation } from "@/components/navigation";
 import { LanguageSplash } from "@/components/language-splash";
 import { Footer } from "@/components/footer";
-import { HeroSection } from "@/components/sections/hero-section/HeroSection";
+import { HomeSection } from "@/components/sections/home-section/HomeSection";
 import { AboutSection } from "@/components/sections/about-section/AboutSection";
 import { AchievementsSection } from "@/components/sections/achievements-section/AchievementsSection";
 import { ProjectsSection } from "@/components/sections/projects-section/ProjectsSection";
@@ -18,7 +18,7 @@ export default function Home() {
       <LanguageSplash />
       <Navigation />
       <main>
-        <HeroSection />
+        <HomeSection />
         <AboutSection />
         <AchievementsSection />
         <ProjectsSection />

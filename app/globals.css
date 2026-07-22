@@ -167,8 +167,8 @@ html {
   transform: none;
 }
 
-/* Hero entrance animations */
-@keyframes heroFadeUp {
+/* Home entrance animations */
+@keyframes homeFadeUp {
   from {
     opacity: 0;
     transform: translateY(32px);
@@ -178,7 +178,7 @@ html {
     transform: translateY(0);
   }
 }
-@keyframes heroFadeIn {
+@keyframes homeFadeIn {
   from {
     opacity: 0;
   }
@@ -187,23 +187,23 @@ html {
   }
 }
 
-.hero-1 {
-  animation: heroFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+.home-1 {
+  animation: homeFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
 }
-.hero-2 {
-  animation: heroFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+.home-2 {
+  animation: homeFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
 }
-.hero-3 {
-  animation: heroFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+.home-3 {
+  animation: homeFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
 }
-.hero-4 {
-  animation: heroFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+.home-4 {
+  animation: homeFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
 }
-.hero-photo {
-  animation: heroFadeIn 1.1s ease 0.15s both;
+.home-photo {
+  animation: homeFadeIn 1.1s ease 0.15s both;
 }
-.hero-scroll {
-  animation: heroFadeIn 1s ease 1s both;
+.home-scroll {
+  animation: homeFadeIn 1s ease 1s both;
 }
 
 /* Pulsing glow for headings, name, and accent text */

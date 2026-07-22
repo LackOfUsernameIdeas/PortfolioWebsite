@@ -68,13 +68,13 @@ export function LanguageSplash() {
           : "opacity-100 scale-100"
       }`}
     >
-      {/* Solid opaque base - prevents the hero photo/scroll from showing through */}
+      {/* Solid opaque base - prevents the home photo/scroll from showing through */}
       <div className="absolute inset-0 bg-background" />
 
-      {/* Subtle corner tint, matches hero, layered on top of the opaque base */}
+      {/* Subtle corner tint, matches home, layered on top of the opaque base */}
       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/10" />
 
-      {/* Red glow blobs, matches hero */}
+      {/* Red glow blobs, matches home */}
       <GlowBlobs />
 
       <Particles count={14} />
@@ -92,7 +92,7 @@ export function LanguageSplash() {
 
       {showPicker && (
         <div
-          className={`${a ? "hero-1" : "opacity-0"} absolute top-6 right-6 z-20`}
+          className={`${a ? "home-1" : "opacity-0"} absolute top-6 right-6 z-20`}
         >
           <ThemeToggle />
         </div>
@@ -101,7 +101,7 @@ export function LanguageSplash() {
       {showPicker && (
         <div className="relative z-10 flex flex-col items-center px-6 text-center">
           <h1
-            className={`${a ? "hero-1" : "opacity-0"} font-bold tracking-tight leading-[1.05] text-2xl sm:text-3xl md:text-4xl lg:text-5xl`}
+            className={`${a ? "home-1" : "opacity-0"} font-bold tracking-tight leading-[1.05] text-2xl sm:text-3xl md:text-4xl lg:text-5xl`}
           >
             <span className="block whitespace-nowrap">
               {uiTranslations.splash.welcome.en}
@@ -112,7 +112,7 @@ export function LanguageSplash() {
           </h1>
 
           <p
-            className={`${a ? "hero-2" : "opacity-0"} mt-6 text-muted-foreground leading-relaxed text-md sm:text-lg lg:text-xl`}
+            className={`${a ? "home-2" : "opacity-0"} mt-6 text-muted-foreground leading-relaxed text-md sm:text-lg lg:text-xl`}
           >
             <span className="block whitespace-nowrap">
               {uiTranslations.splash.prompt.en}
@@ -123,7 +123,7 @@ export function LanguageSplash() {
           </p>
 
           <div
-            className={`${a ? "hero-3" : "opacity-0"} flex items-center gap-6 sm:gap-10 mt-12`}
+            className={`${a ? "home-3" : "opacity-0"} flex items-center gap-6 sm:gap-10 mt-12`}
           >
             <button
               type="button"

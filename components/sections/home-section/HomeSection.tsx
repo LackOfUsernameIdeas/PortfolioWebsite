@@ -7,10 +7,10 @@ import { t } from "@/lib/i18n/ui-translations";
 import { scrollToSection } from "@/lib/scroll-to-section";
 import { Particles } from "@/components/particles";
 import { GlowBlobs } from "@/components/glow-blobs";
-import { HeroPhotoPanel } from "./HeroPhotoPanel";
-import { HeroSocialLinks } from "./HeroSocialLinks";
+import { HomePhotoPanel } from "./HomePhotoPanel";
+import { HomeSocialLinks } from "./HomeSocialLinks";
 
-export function HeroSection() {
+export function HomeSection() {
   const [mounted, setMounted] = useState(false);
   const { language } = useLanguage();
 
@@ -34,12 +34,12 @@ export function HeroSection() {
 
       <Particles />
 
-      <HeroPhotoPanel mounted={mounted} />
+      <HomePhotoPanel mounted={mounted} />
 
       {/* Left: text content */}
       <div className="relative z-10 max-w-xl">
         <h1
-          className={`${a ? "hero-1" : "opacity-0"} text-6xl sm:text-7xl lg:text-8xl laptop-short:text-7xl! font-bold tracking-tight leading-[0.95]`}
+          className={`${a ? "home-1" : "opacity-0"} text-6xl sm:text-7xl lg:text-8xl laptop-short:text-7xl! font-bold tracking-tight leading-[0.95]`}
         >
           {language === "bg" ? "Калоян" : "Kaloyan"}
           <br />
@@ -48,39 +48,39 @@ export function HeroSection() {
           </span>
         </h1>
         <p
-          className={`${a ? "hero-2" : "opacity-0"} mt-6 laptop-short:mt-4! text-lg sm:text-xl laptop-short:text-base! text-muted-foreground max-w-md leading-relaxed`}
+          className={`${a ? "home-2" : "opacity-0"} mt-6 laptop-short:mt-4! text-lg sm:text-xl laptop-short:text-base! text-muted-foreground max-w-md leading-relaxed`}
         >
-          {t("hero.subtitle", language)}
+          {t("home.subtitle", language)}
         </p>
         <div
-          className={`${a ? "hero-3" : "opacity-0"} flex items-center gap-4 mt-10 laptop-short:mt-6!`}
+          className={`${a ? "home-3" : "opacity-0"} flex items-center gap-4 mt-10 laptop-short:mt-6!`}
         >
           <button
             onClick={() => scrollToSection("projects")}
             className="shine-sweep glow-pulse flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3 rounded-full font-semibold cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
-            {t("hero.viewProjects", language)}{" "}
+            {t("home.viewProjects", language)}{" "}
             <ArrowRight className="w-4 h-4" />
           </button>
           <button
             onClick={() => scrollToSection("contact")}
             className="shine-sweep shine-sweep-tint flex items-center gap-2 border border-border px-7 py-3 rounded-full font-semibold cursor-pointer hover:bg-secondary transition-all duration-300"
           >
-            {t("hero.contactMe", language)}
+            {t("home.contactMe", language)}
           </button>
         </div>
-        <HeroSocialLinks mounted={mounted} />
+        <HomeSocialLinks mounted={mounted} />
       </div>
 
       {/* Scroll indicator */}
       <div
-        className={`${a ? "hero-scroll" : "opacity-0"} absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none`}
+        className={`${a ? "home-scroll" : "opacity-0"} absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none`}
       >
         <div className="w-6 h-10 border-2 border-foreground/30 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-bounce" />
         </div>
         <span className="text-xs text-muted-foreground tracking-widest">
-          {t("hero.scroll", language)}
+          {t("home.scroll", language)}
         </span>
       </div>
     </section>

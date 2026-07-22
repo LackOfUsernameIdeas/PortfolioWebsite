@@ -3,16 +3,16 @@
 import { useState } from "react";
 import { Github, Linkedin, Mail } from "lucide-react";
 
-interface HeroSocialLinksProps {
+interface HomeSocialLinksProps {
   mounted: boolean;
 }
 
-export function HeroSocialLinks({ mounted }: HeroSocialLinksProps) {
+export function HomeSocialLinks({ mounted }: HomeSocialLinksProps) {
   const [emailTipOpen, setEmailTipOpen] = useState(false);
 
   return (
     <div
-      className={`${mounted ? "hero-4" : "opacity-0"} flex items-center gap-4 mt-8 laptop-short:mt-5!`}
+      className={`${mounted ? "home-4" : "opacity-0"} flex items-center gap-4 mt-8 laptop-short:mt-5!`}
     >
       <div className="relative group/email">
         <a
