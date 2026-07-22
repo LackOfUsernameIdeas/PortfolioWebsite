@@ -112,7 +112,7 @@ npm i
 
 ### 2. Configure environment variables
 
-- Create an EmailJS account and set up a service + template at [emailjs.com](https://www.emailjs.com/).
+- Create an EmailJS account and set up a service and template at [emailjs.com](https://www.emailjs.com/).
 - Fill in the EmailJS credentials in `.env` as shown above.
 
 ### 3. Start the development server
