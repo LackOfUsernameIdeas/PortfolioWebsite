@@ -156,10 +156,10 @@ Make sure the EmailJS values in `.env` are your production credentials.
 
 ### 3. Deploy to Vercel
 
-1. Push the repo to GitHub.
-2. Import the repo as a new project on [vercel.com](https://vercel.com).
-3. Vercel automatically detects Next.js and, since `output: "export"` is set, deploys the contents of `out/`.
-4. New pushes to `main` automatically trigger a new build and deployment.
+1. Push the repo to GitHub
+2. Import the repo as a new project on [vercel.com](https://vercel.com)
+3. Vercel automatically detects Next.js and, since `output: "export"` is set
+4. New pushes to `main` automatically trigger a new build and deployment
 
 ### 4. Build manually (only needed for non-Vercel hosting)
 
