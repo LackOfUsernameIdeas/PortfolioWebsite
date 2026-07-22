@@ -1,6 +1,6 @@
 # Personal Website – Kaloyan Kostadinov
 
-> **Personal website** showcasing my **projects**, **achievements**, and **skills** in both **EN** and **BG**. It features a **home section**, **about/skills overview**, **achievements gallery**, **projects showcase** with detailed modals, and a **contact form** powered by **EmailJS** – all wrapped in a themeable (light and dark mode), animated UI with cursor glow, particle effects, and scroll reveal animations
+> **Personal website** showcasing my **projects**, **achievements**, and **skills** in both **English** and **Bulgarian**. It features a **home section**, **about/skills overview**, **achievements gallery**, **projects showcase** with detailed modals, and a **contact form** powered by **EmailJS** – all wrapped in a themeable UI with light and dark mode, animations and effects
 
 ---
 
