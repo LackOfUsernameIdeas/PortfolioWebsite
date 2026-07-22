@@ -13,7 +13,6 @@ export interface ZoomableMediaProps {
   /** Shown in a centered pill on hover. Omit to skip the hover hint entirely. */
   clickToExpandLabel?: string;
   objectFit?: "contain" | "cover";
-  captionClamp?: 1 | 2;
   /** Set false when the caption itself needs to be interactive/clickable. */
   captionPointerEventsNone?: boolean;
 }
@@ -28,7 +27,6 @@ export function ZoomableMedia({
   onExpand,
   clickToExpandLabel,
   objectFit = "contain",
-  captionClamp = 2,
   captionPointerEventsNone = true
 }: ZoomableMediaProps) {
   return (
@@ -61,9 +59,7 @@ export function ZoomableMedia({
             captionPointerEventsNone ? "pointer-events-none" : ""
           }`}
         >
-          <p className={`text-white text-xs line-clamp-${captionClamp}`}>
-            {caption}
-          </p>
+          <p className={`text-white text-xs line-clamp-1`}>{caption}</p>
         </div>
       )}
     </>

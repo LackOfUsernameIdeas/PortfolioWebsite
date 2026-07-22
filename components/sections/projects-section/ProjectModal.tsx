@@ -148,7 +148,6 @@ export function ProjectModal({
                   onError={() => setImgLoading(false)}
                   onExpand={() => setLightboxOpen(true)}
                   objectFit="cover"
-                  captionClamp={1}
                   captionPointerEventsNone={false}
                 />
               )}
