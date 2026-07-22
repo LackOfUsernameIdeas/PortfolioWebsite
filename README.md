@@ -154,20 +154,22 @@ export default nextConfig;
 
 Make sure the EmailJS values in `.env` are your production credentials.
 
-### 3. Build the app
-
-```bash
-npm run build
-```
-
-This produces an `out/` directory at the **repo root** (outside `.next/`), containing the static project build.
-
-### 4. Deploy to Vercel
+### 3. Deploy to Vercel
 
 1. Push the repo to GitHub.
 2. Import the repo as a new project on [vercel.com](https://vercel.com).
 3. Vercel automatically detects Next.js and, since `output: "export"` is set, deploys the contents of `out/`.
 4. New pushes to `main` automatically trigger a new build and deployment.
+
+### 4. Build manually (only needed for non-Vercel hosting)
+
+If deploying to a host that doesn't build the project for you — like cPanel, GitHub Pages, or a drag-and-drop static host — build it yourself first:
+
+```bash
+npm run build
+```
+
+This produces an `out/` directory at the **repo root** (outside `.next/`), containing the static project build. Upload the **contents** of `out/` to the host.
 
 ### 5. Preview the static build locally (optional)
 
@@ -175,4 +177,4 @@ This produces an `out/` directory at the **repo root** (outside `.next/`), conta
 npm run serve
 ```
 
-Serves the contents of `out/` locally via `serve`, useful for testing the static export before pushing.
+Serves the contents of `out/` locally via `serve`, useful for testing the static export before uploading.
