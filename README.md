@@ -55,25 +55,25 @@ PortfolioWebsite/
 └── .env                          # Environment variables
 ```
 
-| Layer                  | Purpose                                              |
-| ---------------------- | ---------------------------------------------------- |
-| `app/`                 | Entry point – global layout and the page composition |
-| `components/sections/` | Visual blocks of the page, one folder per section    |
-| `components/ui/`       | UI components, reused across sections                |
-| `hooks/`               | Behavior shared across components                    |
-| `lib/`                 | Data, translations, helpers                          |
+| Layer                  | Purpose                                           |
+| ---------------------- | ------------------------------------------------- |
+| `app/`                 | Entry point – global layout and main page         |
+| `components/sections/` | Visual blocks of the page, one folder per section |
+| `components/ui/`       | UI components, reused across sections             |
+| `hooks/`               | Behavior shared across components                 |
+| `lib/`                 | Data, translations, helpers                       |
 
 ---
 
 ## Tech Stack
 
-**Framework & Language**
+**Framework & Language**  
 Next.js, React 19, TypeScript
 
-**Styling & UI**
+**Styling & UI**  
 Tailwind CSS, shadcn/ui, Radix UI, Lucide React icons, `next-themes` (light/dark mode), `tw-animate-css`
 
-**Services & Tooling**
+**Services & Tooling**  
 EmailJS, Vercel, ESLint
 
 ---
