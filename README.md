@@ -152,7 +152,7 @@ export default nextConfig;
 
 ### 2. Update `.env` for production
 
-Make sure the EmailJS values in `.env` are your production credentials (EmailJS keys are the same across environments, so no domain-specific changes are usually needed here).
+Make sure the EmailJS values in `.env` are your production credentials.
 
 ### 3. Build the app
 
@@ -160,14 +160,14 @@ Make sure the EmailJS values in `.env` are your production credentials (EmailJS 
 npm run build
 ```
 
-This produces an `out/` directory at the **repo root** (outside `.next/`), containing the fully static project files – plain HTML, CSS, JS, and copied `public/` assets.
+This produces an `out/` directory at the **repo root** (outside `.next/`), containing the static project build.
 
 ### 4. Deploy to Vercel
 
 1. Push the repo to GitHub.
 2. Import the repo as a new project on [vercel.com](https://vercel.com).
-3. Vercel auto-detects Next.js and, since `output: "export"` is set, builds and serves the contents of `out/` as a static project – no configuration changes needed.
-4. Every subsequent push to `main` automatically triggers a new build and deployment.
+3. Vercel automatically detects Next.js and, since `output: "export"` is set, deploys the contents of `out/`.
+4. New pushes to `main` automatically trigger a new build and deployment.
 
 ### 5. Preview the static build locally (optional)
 
@@ -175,4 +175,4 @@ This produces an `out/` directory at the **repo root** (outside `.next/`), conta
 npm run serve
 ```
 
-Serves the contents of `out/` locally via `serve`, useful for sanity-checking the static export before pushing.
+Serves the contents of `out/` locally via `serve`, useful for testing the static export before pushing.
