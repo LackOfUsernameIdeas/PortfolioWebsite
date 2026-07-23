@@ -1,6 +1,6 @@
 # Personal Portfolio Website
 
-[![kaloyan-kostadinov.vercel.app](https://img.shields.io/badge/Visit%20at%20https://kaloyan--kostadinov.vercel.app-f01e2c?style=for-the-badge)](https://kaloyan-kostadinov.vercel.app/)
+[![kaloyan-kostadinov.vercel.app](https://img.shields.io/badge/Visit%20at%20https://kaloyan--kostadinov.vercel.app-c30010?style=for-the-badge)](https://kaloyan-kostadinov.vercel.app/)
 
 > **Website** showcasing my **projects**, **achievements**, and **skills** in both **English** and **Bulgarian**. It features a **home section**, **about/skills overview**, **achievements gallery**, **projects showcase** with detailed modals, and a **contact form** – all wrapped in a themeable UI with light and dark mode, animations and effects
 
