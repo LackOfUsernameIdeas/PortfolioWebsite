@@ -30,7 +30,7 @@ export const uiTranslations = {
     heading: { en: "About me", bg: "За мен" },
     location: { en: "Bulgaria", bg: "България" },
     paragraph1: {
-      en: "I am a passionate software developer and engineer with practical knowledge in full-stack development, android development, artificial intelligence, databases, some electronical sensors and more. My work spans across multiple disciplines, combining hardware and software to create innovative solutions.",
+      en: "I am a passionate software developer and engineer with practical knowledge in full-stack development, Android development, artificial intelligence, databases, various electronic sensors and more. My work spans across multiple disciplines, combining hardware and software to create innovative solutions.",
       bg: "Аз съм отдаден софтуерен инженер с практически познания във full-stack разработката, Android приложенията, изкуствения интелект, базите данни, някои електронни сензори и други. Работата ми обхваща множество дисциплини, съчетавайки хардуер и софтуер за създаване на иновативни решения."
     },
     paragraph2: {
