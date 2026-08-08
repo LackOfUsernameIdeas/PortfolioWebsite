@@ -1,6 +1,7 @@
 import type { Localized } from "./i18n/language-context";
 
 export const PROJECT_CARD_IMAGES: Record<string, string> = {
+  taskboard: "/taskboard/taskboard.png",
   mobilis: "/mobilis/mobilis.png",
   mindreel: "/mindreel/mindreel.png",
   nutrifit: "/nutrifit/nutrifit.png",
@@ -11,6 +12,22 @@ export const PROJECT_IMAGES: Record<
   string,
   { src: string; caption: Localized }[]
 > = {
+  taskboard: [
+    {
+      src: "/taskboard/taskboard.png",
+      caption: {
+        en: "REST API endpoint reference table showing all seven routes with their required authentication level, description, request body fields, and possible response codes, alongside an example Task object returned by the API",
+        bg: "Таблица за седемте REST API endpoint-а, показваща за всеки от тях съответното изисквано ниво на автентикация, описание, полета на request body-то и възможните response кодове, както и примерен Task обект, връщан от API-то"
+      }
+    },
+    {
+      src: "/taskboard/taskboard1.png",
+      caption: {
+        en: "Module architecture diagram",
+        bg: "Диаграма на архитектурата на проекта, показваща как taskboard-api (REST слоят, защитен с JWT) и taskboard-worker (background процесът, проверяващ за просрочени задачи на всеки 60 секунди) зависят от споделената библиотека taskboard-core и достъпват една и съща PostgreSQL схема"
+      }
+    }
+  ],
   mobilis: [
     {
       src: "/mobilis/mobilis.png",
