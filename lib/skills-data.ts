@@ -6,7 +6,16 @@ interface SkillCategory {
 export const skills: SkillCategory[] = [
   {
     category: "Languages",
-    items: ["TypeScript", "JavaScript", "Python", "PHP", "SQL", "HTML", "CSS"]
+    items: [
+      "TypeScript",
+      "JavaScript",
+      "Python",
+      "Java",
+      "PHP",
+      "SQL",
+      "HTML",
+      "CSS"
+    ]
   },
   {
     category: "Frontend & Mobile",
@@ -29,6 +38,7 @@ export const skills: SkillCategory[] = [
     items: [
       "Node.js",
       "Express.js",
+      "Spring Boot",
       "MySQL",
       "PostgreSQL",
       "Firebase",
@@ -57,6 +67,9 @@ export const skills: SkillCategory[] = [
     items: [
       "Git",
       "Docker",
+      "Maven",
+      "GitHub Actions",
+      "JUnit",
       "Android Studio",
       "Expo Go",
       "Vitest",

@@ -23,6 +23,60 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "taskboard",
+    title: "Taskboard",
+    shortDescription: {
+      en: "Multi-module task-management API split into a shared domain library, a JWT-secured REST layer, and a standalone background worker that polls the database for overdue tasks",
+      bg: "Многомодулно API за управление на задачи, разделено на споделена библиотека с основните класове и модули, REST слой, защитен с JWT, и самостоятелен процес, който периодично проверява базата данни за просрочени задачи"
+    },
+    fullDescription: {
+      en: `A **task-management REST API** built as a **learning exercise** with a focus on understanding how a layered **Spring Boot** backend is structured, secured, tested, containerized, and deployed, including an automated **CI/CD automation** with **GitHub Actions**. The codebase is split into three Maven modules - **\`taskboard-core\`** (shared domain: entities, repositories, services), **\`taskboard-api\`** (the public REST API, auth, JWT security), and **\`taskboard-worker\`** (a standalone background process) - sharing the same PostgreSQL schema.
+
+**Core features:**
+- **Stateless JWT authentication:** \`/auth/register\` creates a \`USER\` account (BCrypt-hashed password, 3-50 char username, 8+ char password); \`/auth/login\` exchanges credentials for an HMAC-signed JWT key, expiring after a configurable duration. A custom \`JwtAuthenticationFilter\` runs before Spring Security's own authentication, extracting and validating the \`Bearer\` token on every request except \`/auth/**\` requests
+- **Role-based task ownership:** regular \`USER\`s can only see and edit tasks they created; \`ADMIN\`s can view, edit, and delete anyone's tasks. The only way an admin account is registered is through \`AdminSeeder\`, a \`CommandLineRunner\` that reads \`ADMIN_USERNAME\` and \`ADMIN_PASSWORD\` env variables on startup
+- **Background worker:** \`taskboard-worker\` polls the database every 60 seconds - \`@Scheduled(fixedRate = 60000)\` - for tasks that are still \`TODO\` past their due date, and logs each one. It runs as a completely separate Spring Boot process, so it can be deployed, restarted, and scaled on its own
+- **Docker Compose Setup:** \`docker-compose.yml\` builds and wires \`postgres\`, \`app\` (the API on port \`:8080\`), and \`worker\` (no exposed port) containers together, all using a single \`.env\` file for DB credentials, JWT secret, and the seeded admin's credentials
+
+**Development notes:**
+- **Two-stage GitHub Actions CI pipeline:** the first job runs the full JUnit test suite across all of the three modules of the app; the second builds the JARs and Docker images (api and worker), and scans them for \`CRITICAL\`/\`HIGH\` vulnerabilities with **Trivy**, then boots the whole \`docker-compose\` stack and smoke-tests it by polling \`/auth/register\` with an empty body until it returns the expected \`400\` status code, confirming the app booted and can reach Postgres, before bringing the Docker Compose stack down
+- **31 unit tests** across the three modules, run against an in-memory **H2** database so the suite needs neither Docker nor a live Postgres instance
+- Since Docker builds its images from the **already-compiled JARs** in each module's \`target/\` directory rather than compiling the source code itself, \`mvnw clean package\` has to be re-run before every build with the \`docker compose up --build\` command whenever the Java code changes. The idea is to keep the images focused on running the application rather than compiling it`,
+      bg: `**REST API за управление на задачи**, изградено като **упражнение с цел разбиране** на това как е структуриран, защитен, тестван, контейнеризиран и внедрен един типичен **Spring Boot** бекенд, като се използва и **CI/CD автоматизация** с **GitHub Actions**. Кодът е разделен на три Maven модула - **\`taskboard-core\`** (entity-та, repository-та, услуги), **\`taskboard-api\`** (публичното REST API, автентикация, JWT) и **\`taskboard-worker\`** (самостоятелен background процес) - споделяйки една и съща PostgreSQL схема.
+
+**Основни функции:**
+- **Stateless JWT автентикация:** \`/auth/register\` създава \`USER\` акаунт (парола, хеширана с BCrypt, потребителско име от 3-50 символа, парола от поне 8 символа); \`/auth/login\` разменя credentials за подписан с HMAC JWT ключ, изтичащ след определено време. Персонализиран \`JwtAuthenticationFilter\` се изпълнява преди автентикацията от Spring Security, извличайки и валидирайки \`Bearer\` токена при всяка заявка, освен при \`/auth/**\` заявките
+- **Собственост върху задачите, базирана на роли:** обикновените потребители могат да виждат и редактират само задачите, които те са създали; \`ADMIN\` потребителите могат да преглеждат, редактират и изтриват задачите на всеки. Единственият начин да се регистрира администраторски акаунт е чрез \`AdminSeeder\` - \`CommandLineRunner\`, който при стартиране чете \`ADMIN_USERNAME\` и \`ADMIN_PASSWORD\` env променливите
+- **Background worker:** \`taskboard-worker\` проверява базата данни на всеки 60 секунди - \`@Scheduled(fixedRate = 60000)\` - за задачи, които все още са със статус \`TODO\` след крайния си срок на изпълнение, като log-ва всяка от тях. Това е Spring Boot процес, който е напълно отделен, за да може да бъде вграждан, рестартиран и надграждан самостоятелно
+- **Настройка на Docker Compose:** \`docker-compose.yml\` изгражда и свързва \`postgres\`, \`app\` (API-то на порт \`:8080\`) и \`worker\` (без изложен порт) контейнерите, използващи един \`.env\` файл за credentials на базата данни, JWT secret ключа и credentials на seed-натия администратор
+
+**Бележки от разработката:**
+- **CI процес в GitHub Actions на два етапа:** първият етап изпълнява целия JUnit test suite за трите модула на приложението; вторият създава JAR файловете и Docker image-ите (api и worker), като ги сканира за \`CRITICAL\`/\`HIGH\` уязвимости с **Trivy**, след което стартира целия \`docker-compose\` стек и го smoke-тества, като праща заявки към \`/auth/register\` с празно body, докато не получи очаквания статус код - \`400\`, потвърждавайки, че приложението е стартирало и може да достигне до Postgres, преди да спре Docker Compose стека
+- **31 unit теста** за трите модула, изпълнявани с in-memory базата данни **H2**, така че тестовете да не изискват нито Docker, нито реален instance на Postgres
+- Тъй като Docker изгражда image-ите от **вече компилираните JAR файлове** в \`target/\` директорията на всеки модул, вместо да компилира изходния код, \`mvnw clean package\` трябва да се изпълнява отново преди всеки build с \`docker compose up --build\` командата, при всяка промяна в Java кода. Идеята е image-ите да останат фокусирани върху изпълнението на приложението, а не върху неговото компилиране`
+    },
+    technologies: [
+      "Java",
+      "Spring Boot",
+      "Spring Web MVC",
+      "Spring Data JPA",
+      "Spring Security",
+      "JWT (JJWT)",
+      "PostgreSQL",
+      "H2",
+      "Maven",
+      "Docker",
+      "Docker Compose",
+      "JUnit 5",
+      "Mockito",
+      "AssertJ",
+      "GitHub Actions",
+      "Trivy"
+    ],
+    githubUrl: "https://github.com/LackOfUsernameIdeas/Taskboard",
+    year: "2026"
+  },
+  {
     id: "mobilis",
     title: "Mobilis",
     shortDescription: {
