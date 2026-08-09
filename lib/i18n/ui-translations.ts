@@ -54,13 +54,13 @@ export const uiTranslations = {
         en: "Backend & Data",
         bg: "Backend и данни"
       },
-      "AI & Computer Vision": {
-        en: "AI & Computer Vision",
-        bg: "ИИ и компютърно зрение"
+      AI: {
+        en: "Artificial Intelligence",
+        bg: "Изкуствен интелект"
       },
-      "Tools & APIs": {
-        en: "Tools & APIs",
-        bg: "Инструменти и API-та"
+      Tools: {
+        en: "Tools",
+        bg: "Инструменти"
       },
       "Visualization, Desktop & Hardware": {
         en: "Visualization, Desktop apps & Hardware",

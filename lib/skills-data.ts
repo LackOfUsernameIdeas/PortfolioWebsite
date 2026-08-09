@@ -26,11 +26,10 @@ export const skills: SkillCategory[] = [
       "Vite",
       "Tailwind CSS",
       "shadcn/ui",
-      "Chakra UI",
-      "Bootstrap",
       "Three.js",
       "A-Frame",
-      "WebXR"
+      "Bootstrap",
+      "Chakra UI"
     ]
   },
   {
@@ -50,36 +49,22 @@ export const skills: SkillCategory[] = [
     ]
   },
   {
-    category: "AI & Computer Vision",
-    items: [
-      "OpenAI API",
-      "Gemini API",
-      "Vertex AI",
-      "LangChain",
-      "OpenCV",
-      "NumPy",
-      "PyNuitrack",
-      "Nuitrack SDK"
-    ]
-  },
-  {
-    category: "Tools & APIs",
+    category: "Tools",
     items: [
       "Git",
       "Docker",
       "Maven",
       "GitHub Actions",
-      "JUnit",
       "Android Studio",
       "Expo Go",
       "Vitest",
-      "Cronjob",
-      "YouTube API",
-      "Spotify API",
-      "TikTok API",
-      "OMDb API",
-      "Google Custom Search JSON API"
+      "JUnit",
+      "Cronjob"
     ]
+  },
+  {
+    category: "AI",
+    items: ["OpenAI API", "Gemini API", "Vertex AI", "LangChain"]
   },
   {
     category: "Visualization, Desktop & Hardware",
@@ -87,7 +72,6 @@ export const skills: SkillCategory[] = [
       "Chart.js",
       "ApexCharts",
       "Tkinter",
-      "Pygame",
       "Orbbec Astra+",
       "NeuroSky MindWave Mobile 2",
       "Meta Quest 2"
