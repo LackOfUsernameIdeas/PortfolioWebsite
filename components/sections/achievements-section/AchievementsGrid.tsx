@@ -71,7 +71,7 @@ export function AchievementsGrid() {
                           {localize(a.competition, language)}
                         </p>
                         <div className="flex items-center justify-between gap-2">
-                          <p className="font-bold text-2xl leading-snug">
+                          <p className="font-bold text-2xl leading-snug min-w-0 break-words">
                             {a.kind !== "honor" &&
                               `${t("projects.projectPrefix", language)} `}
                             {localize(a.title, language)}
@@ -97,7 +97,7 @@ export function AchievementsGrid() {
                             {a.score && (
                               <Badge
                                 variant="secondary"
-                                className="rounded-full text-sm"
+                                className="rounded-full text-sm whitespace-normal break-words max-w-full text-left"
                               >
                                 {t("achievements.grade", language)}: {a.score}
                               </Badge>
@@ -105,7 +105,7 @@ export function AchievementsGrid() {
                             {a.points && (
                               <Badge
                                 variant="secondary"
-                                className="rounded-full text-sm"
+                                className="rounded-full text-sm whitespace-normal break-words max-w-full text-left"
                               >
                                 {t("achievements.points", language)}:{" "}
                                 {localize(a.points, language)}
@@ -114,7 +114,7 @@ export function AchievementsGrid() {
                             {a.extra && (
                               <Badge
                                 variant="outline"
-                                className="rounded-full text-sm text-primary border-primary/30"
+                                className="rounded-full text-sm text-primary border-primary/30 whitespace-normal break-words max-w-full text-left"
                               >
                                 {localize(a.extra, language)}
                               </Badge>

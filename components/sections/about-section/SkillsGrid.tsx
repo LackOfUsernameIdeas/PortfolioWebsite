@@ -24,7 +24,11 @@ export function SkillsGrid() {
           <CardContent className="flex-1 flex items-center">
             <div className="flex flex-wrap gap-1.5">
               {group.items.map((s) => (
-                <Badge key={s} variant="secondary" className="rounded-full text-sm">
+                <Badge
+                  key={s}
+                  variant="secondary"
+                  className="rounded-full text-sm whitespace-normal break-words max-w-full text-left"
+                >
                   {s}
                 </Badge>
               ))}
