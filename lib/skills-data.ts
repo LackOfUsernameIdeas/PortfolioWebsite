@@ -26,7 +26,6 @@ export const skills: SkillCategory[] = [
       "Vite",
       "Tailwind CSS",
       "shadcn/ui",
-      "Three.js",
       "A-Frame",
       "Bootstrap",
       "Chakra UI"
