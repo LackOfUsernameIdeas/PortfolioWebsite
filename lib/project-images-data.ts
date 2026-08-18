@@ -75,7 +75,7 @@ export const PROJECT_IMAGES: Record<
       src: "/mobilis/mobilis7.png",
       caption: {
         en: "Weekly gym workout plan - Day 3 (Upper Body: Back/Shoulders + Arms) showing a 10-minute warm-up, 6 exercises each with sets, reps, and activated muscle count, an 8-minute cooldown stretching, and safety notes covering rest periods, progressive overload - with day navigation tabs (Day 1-4, based on the selected 4-day training split in the questionnaire) and a button for generating a new plan",
-        bg: "Седмичен план за фитнес тренировки - Ден 3 (Горна част на тялото: гръб/рамене + ръце), включващ 10-минутна загрявка, 6 упражнения, всяко с брой серии, повторения и активирани мускули, 8-минyтнo разтягане и бележки за безопасност, обхващащи периодите на почивка и прогресивното натоварване - с раздели за навигация по дни (в случая Ден 1–4, тъй като е избран във въпросника 4-дневен тренировъчен план) и бутон за генериране на нов план"
+        bg: "Седмичен план за фитнес тренировки - Ден 3 (Горна част на тялото: гръб/рамене + ръце), включващ 10-минутна загрявка, 6 упражнения, всяко с брой серии, повторения и активирани мускули, 8-минутно разтягане и бележки за безопасност, обхващащи периодите на почивка и прогресивното натоварване - с раздели за навигация по дни (в случая Ден 1–4, тъй като е избран във въпросника 4-дневен тренировъчен план) и бутон за генериране на нов план"
       }
     },
     {
@@ -655,7 +655,7 @@ export const PROJECT_IMAGES: Record<
       src: "/tikfluence/tikfluence11.png",
       caption: {
         en: "OAuth authentication flow for accessing personal TikTok account data: the server requests an access and refresh token from the TikTok API, then uses them to make two separate HTTP requests - one fetching profile statistics (follower count, following count, likes, uploaded videos count), and another fetching per-video engagement metrics (likes, views, shares, comments). Both results are passed into Chart.js diagrams and rendered in the UI",
-        bg: "Процес на OAuth автентификация за достъп до лични данни от TikTok профилите: сървърът изисква ключ за достъп и ключ за обновяване от API-то на TikTok, за да отправи две отделни HTTP заявки - едната за извличане на данни за профила (брой последователи, брой последвани хора, харесвания, брой качени видеоклипове), а другата - за извличане на данни за всеки видеоклип (харесвания, гледания, споделяния, коментари). И двата резултата се предават в Chart.js диаграми като се визуализират в потребителския интерфейс"
+        bg: "Процес на OAuth автентикация за достъп до лични данни от TikTok профилите: сървърът изисква ключ за достъп и ключ за обновяване от API-то на TikTok, за да отправи две отделни HTTP заявки - едната за извличане на данни за профила (брой последователи, брой последвани хора, харесвания, брой качени видеоклипове), а другата - за извличане на данни за всеки видеоклип (харесвания, гледания, споделяния, коментари). И двата резултата се предават в Chart.js диаграми като се визуализират в потребителския интерфейс"
       }
     },
     {

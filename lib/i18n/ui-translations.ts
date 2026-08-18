@@ -147,7 +147,11 @@ export const uiTranslations = {
       en: "I'll respond as soon as possible.",
       bg: "Ще отговоря възможно най-скоро."
     },
-    sendAnother: { en: "Send Another", bg: "Изпратете друго" }
+    sendAnother: { en: "Send Another", bg: "Изпратете друго" },
+    error: {
+      en: "Something went wrong. Please try again.",
+      bg: "Възникна грешка. Моля, опитайте отново."
+    }
   },
   footer: {
     text: {
